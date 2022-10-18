@@ -1,0 +1,146 @@
+<?php
+
+use Illuminate\Support\Facades\Route;
+
+/*
+|--------------------------------------------------------------------------
+| Web Routes
+|--------------------------------------------------------------------------
+|
+| Here is where you can register web routes for your application. These
+| routes are loaded by the RouteServiceProvider within a group which
+| contains the "web" middleware group. Now create something great!
+|
+*/
+
+Route::get('/', function () {
+    return view('welcome');
+});
+
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->middleware(['auth','hasOneRole'])->name('dashboard');
+
+Route::get('infoProfile', [\App\Http\Controllers\UserController::class, 'enterprise'])->name('users.enterprise')->middleware(['auth']);
+require __DIR__.'/auth.php';
+
+Route::post('company', [\App\Http\Controllers\CompanyController::class, 'store'])->name('company.store');
+
+Route::middleware('auth','hasOneRole')->group(function () {
+    Route::view('about', 'about')->name('about');
+    Route::middleware('role:Super-Admin|cabinet|enterprise')->group(function () {
+        Route::get('company', [\App\Http\Controllers\CompanyController::class, 'index'])->name('company.index');
+        Route::get('company/{id}', [\App\Http\Controllers\CompanyController::class, 'edit'])->name('company.edit');
+        Route::get('company/downlad-ifu/{id}', [\App\Http\Controllers\CompanyController::class, 'downloadIfu'])->name('company.downladIFU');
+        Route::get('company/downlad-rcccm/{id}', [\App\Http\Controllers\CompanyController::class, 'downloadRCCM'])->name('company.downladRCCM');
+        Route::post('company/{id}', [\App\Http\Controllers\CompanyController::class, 'update'])->name('company.update');
+        Route::delete('company/{id}', [\App\Http\Controllers\CompanyController::class, 'destroy'])->name('company.delete');
+    });
+    Route::get('create-company', [\App\Http\Controllers\CompanyController::class, 'create'])->name('company.enterprise');
+    Route::get('work-in-enterprise/{id}', [\App\Http\Controllers\WorkInEnterprise::class, 'show'])->name('work.show');
+
+    Route::get('users', [\App\Http\Controllers\UserController::class, 'index'])->name('users.index');
+    Route::post('users', [\App\Http\Controllers\UserController::class, 'store'])->name('users.store');
+    Route::get('users/{id}', [\App\Http\Controllers\UserController::class, 'find'])->name('users.find');
+    Route::post('users/{id}', [\App\Http\Controllers\UserController::class, 'update'])->name('users.update');
+    Route::delete('users/{id}', [\App\Http\Controllers\UserController::class, 'delete'])->name('users.delete');
+
+
+    Route::get('profile', [\App\Http\Controllers\ProfileController::class, 'show'])->name('profile.show');
+    Route::put('profile', [\App\Http\Controllers\ProfileController::class, 'update'])->name('profile.update');
+
+});
+Route::middleware('auth','role:Super-Admin|cabinet|enterprise')->group(function(){
+    Route::get('role', [\App\Http\Controllers\RoleController::class, 'index'])->name('role.index');
+    Route::post('role', [\App\Http\Controllers\RoleController::class, 'store'])->name('role.store');
+    Route::get('role/{id}', [\App\Http\Controllers\RoleController::class, 'edit'])->name('role.edit');
+    Route::post('role/{id}', [\App\Http\Controllers\RoleController::class, 'update'])->name('role.update');
+    Route::delete('role/{id}', [\App\Http\Controllers\RoleController::class, 'destroy'])->name('role.delete');
+
+    Route::get('Permission', [\App\Http\Controllers\PermissionController::class, 'index'])->name('permission.index');
+    Route::post('Permission', [\App\Http\Controllers\PermissionController::class, 'store'])->name('permission.store');
+    Route::get('Permission/{id}', [\App\Http\Controllers\PermissionController::class, 'edit'])->name('permission.edit');
+    Route::post('Permission/{id}', [\App\Http\Controllers\PermissionController::class, 'update'])->name('permission.update');
+    Route::delete('Permission/{id}', [\App\Http\Controllers\PermissionController::class, 'destroy'])->name('permission.delete');
+
+});
+
+
+
+Route::middleware('auth','role:Super-Admin')->group(function () {
+
+    Route::get('company/accept/{id}', [\App\Http\Controllers\CompanyController::class, 'acceptCompany'])->name('company.acceptCompany');
+    Route::get('company/reject/{id}', [\App\Http\Controllers\CompanyController::class, 'rejectCompany'])->name('company.rejectCompany');
+    Route::get('company/active/{id}', [\App\Http\Controllers\CompanyController::class, 'activeCompany'])->name('company.activeCompany');
+    Route::get('company/block/{id}', [\App\Http\Controllers\CompanyController::class, 'blockCompany'])->name('company.blockCompany');
+    Route::get('company/unblock/{id}', [\App\Http\Controllers\CompanyController::class, 'unblockCompany'])->name('company.unblockCompany');
+
+
+    Route::get('category', [\App\Http\Controllers\CategoryController::class, 'index'])->name('category.index');
+    Route::post('category', [\App\Http\Controllers\CategoryController::class, 'store'])->name('category.store');
+    Route::post('category-affect/{id}', [\App\Http\Controllers\CategoryController::class, 'affect'])->name('category.affect');
+    Route::get('category/{id}', [\App\Http\Controllers\CategoryController::class, 'edit'])->name('category.edit');
+    Route::post('category/{id}', [\App\Http\Controllers\CategoryController::class, 'update'])->name('category.update');
+    Route::delete('category/{id}', [\App\Http\Controllers\CategoryController::class, 'destroy'])->name('category.delete');
+
+    Route::get('sub_category', [\App\Http\Controllers\DetailTypeController::class, 'index'])->name('subCategory.index');
+    Route::post('sub_category', [\App\Http\Controllers\DetailTypeController::class, 'store'])->name('subCategory.store');
+    Route::get('sub_category/{id}', [\App\Http\Controllers\DetailTypeController::class, 'edit'])->name('subCategory.edit');
+    Route::post('sub_category/{id}', [\App\Http\Controllers\DetailTypeController::class, 'update'])->name('subCategory.update');
+    Route::delete('sub_category/{id}', [\App\Http\Controllers\DetailTypeController::class, 'destroy'])->name('subCategory.delete');
+
+    Route::get('domain', [\App\Http\Controllers\DomainController::class, 'index'])->name('domain.index');
+    Route::post('domain', [\App\Http\Controllers\DomainController::class, 'store'])->name('domain.store');
+    Route::get('domain/{id}', [\App\Http\Controllers\DomainController::class, 'edit'])->name('domain.edit');
+    Route::post('domain/{id}', [\App\Http\Controllers\DomainController::class, 'update'])->name('domain.update');
+    Route::delete('domain/{id}', [\App\Http\Controllers\DomainController::class, 'destroy'])->name('domain.delete');
+
+    Route::get('base', [\App\Http\Controllers\BaseController::class, 'index'])->name('base.index');
+    Route::post('base', [\App\Http\Controllers\BaseController::class, 'store'])->name('base.store');
+    Route::get('base/{id}', [\App\Http\Controllers\BaseController::class, 'edit'])->name('base.edit');
+    Route::post('base/{id}', [\App\Http\Controllers\BaseController::class, 'update'])->name('base.update');
+    Route::delete('base/{id}', [\App\Http\Controllers\BaseController::class, 'destroy'])->name('base.delete');
+
+
+    Route::get('pack', [\App\Http\Controllers\PackController::class, 'index'])->name('pack.index');
+    Route::post('pack', [\App\Http\Controllers\PackController::class, 'store'])->name('pack.store');
+    Route::get('pack/{id}', [\App\Http\Controllers\PackController::class, 'edit'])->name('pack.edit');
+    Route::post('pack/{id}', [\App\Http\Controllers\PackController::class, 'update'])->name('pack.update');
+    Route::delete('pack/{id}', [\App\Http\Controllers\PackController::class, 'destroy'])->name('pack.delete');
+
+
+    Route::get('accounting-product', [\App\Http\Controllers\IncomeExpenseController::class, 'index'])->name('accounting-product.index');
+    Route::post('accounting-product', [\App\Http\Controllers\IncomeExpenseController::class, 'store'])->name('accounting-product.store');
+    Route::get('accounting-product/{id}', [\App\Http\Controllers\IncomeExpenseController::class, 'edit'])->name('accounting-product.edit');
+    Route::post('accounting-product/{id}', [\App\Http\Controllers\IncomeExpenseController::class, 'update'])->name('accounting-product.update');
+    Route::delete('accounting-product/{id}', [\App\Http\Controllers\IncomeExpenseController::class, 'destroy'])->name('accounting-product.delete');
+
+
+    Route::get('taxCenter', [\App\Http\Controllers\TaxCenterController::class, 'index'])->name('taxCenter.index');
+    Route::post('taxCenter', [\App\Http\Controllers\TaxCenterController::class, 'store'])->name('taxCenter.store');
+    Route::get('taxCenter/{id}', [\App\Http\Controllers\TaxCenterController::class, 'edit'])->name('taxCenter.edit');
+    Route::post('taxCenter/{id}', [\App\Http\Controllers\TaxCenterController::class, 'update'])->name('taxCenter.update');
+    Route::delete('taxCenter/{id}', [\App\Http\Controllers\TaxCenterController::class, 'destroy'])->name('taxCenter.delete');
+
+
+    Route::get('principalActivity', [\App\Http\Controllers\PrincipalActivityController::class, 'index'])->name('typeAct.index');
+    Route::post('principalActivity', [\App\Http\Controllers\PrincipalActivityController::class, 'store'])->name('typeAct.store');
+    Route::get('principalActivity/{id}', [\App\Http\Controllers\PrincipalActivityController::class, 'edit'])->name('typeAct.edit');
+    Route::post('principalActivity/{id}', [\App\Http\Controllers\PrincipalActivityController::class, 'update'])->name('typeAct.update');
+    Route::delete('principalActivity/{id}', [\App\Http\Controllers\PrincipalActivityController::class, 'destroy'])->name('typeAct.delete');
+
+
+    Route::get('type-impot', [\App\Http\Controllers\TypeImpotController::class, 'index'])->name('typeImpot.index');
+    Route::post('type-impot', [\App\Http\Controllers\TypeImpotController::class, 'store'])->name('typeImpot.store');
+    Route::get('type-impot/{id}', [\App\Http\Controllers\TypeImpotController::class, 'edit'])->name('typeImpot.edit');
+    Route::post('type-impot/{id}', [\App\Http\Controllers\TypeImpotController::class, 'update'])->name('typeImpot.update');
+    Route::delete('type-impot/{id}', [\App\Http\Controllers\TypeImpotController::class, 'destroy'])->name('typeImpot.delete');
+
+    Route::get('type_company', [\App\Http\Controllers\TypeCompanyController::class, 'index'])->name('type.index');
+    Route::post('type_company', [\App\Http\Controllers\TypeCompanyController::class, 'store'])->name('type.store');
+    Route::get('type_company/{id}', [\App\Http\Controllers\TypeCompanyController::class, 'edit'])->name('type.edit');
+    Route::post('type_company/{id}', [\App\Http\Controllers\TypeCompanyController::class, 'update'])->name('type.update');
+    Route::delete('type_company/{id}', [\App\Http\Controllers\TypeCompanyController::class, 'destroy'])->name('type.delete');
+
+
+});
