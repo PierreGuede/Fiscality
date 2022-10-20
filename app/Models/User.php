@@ -79,5 +79,12 @@ class User extends Authenticatable implements MustVerifyEmail
             return $value->name;
         }
     }
+    protected static function boot(){
+        parent::boot();
+        static::creating(function ($model) {
+           $model->username= Str::slug(request()->name.request()->firstname.rand(0,999));
+            $model->password = bcrypt($model->password);
+        });
+    }
 }
 
