@@ -3,14 +3,15 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Illuminate\Support\Str;
+use App\Fiscality\Packs\Pack;
 use Laravel\Sanctum\HasApiTokens;
 use Spatie\Permission\Models\Role;
 use App\Fiscality\Companies\Company;
-use App\Fiscality\Packs\Pack;
 use App\Fiscality\PackUsers\PackUser;
-use App\Fiscality\ProfileUsers\ProfileUser;
 use Spatie\Permission\Traits\HasRoles;
 use Illuminate\Notifications\Notifiable;
+use App\Fiscality\ProfileUsers\ProfileUser;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
