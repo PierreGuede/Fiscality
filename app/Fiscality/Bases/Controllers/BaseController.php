@@ -22,14 +22,20 @@ class BaseController extends Controller
 
     public function store(CreateBaseRequest $request)
     {
-        $this->baseRepositoryInterface->store($request->all());
-        return response()->json(["message"=> "success"]);
+        $base=$this->baseRepositoryInterface->store($request->all());
+        return response()->json(["base"=> $base,"message"=>"Enregistrement bien effectué"]);
     }
 
+    public function find($id)
+    {
+        return response()->json([
+            'base'=>$this->baseRepositoryInterface->find($id)
+        ]);
+    }
     public function update(UpdateBaseRequest $request,$id)
     {
-        $this->baseRepositoryInterface->update($request->all(),$id);
-        return response()->json(["message"=> "success"]);
+        $base=$this->baseRepositoryInterface->update($request->all(),$id);
+        return response()->json(['base'=>$base,"message"=> "Modifié avec succès"]);
     }
 
     public function destroy($id)

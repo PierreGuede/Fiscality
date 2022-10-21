@@ -34,8 +34,9 @@ Route::middleware('auth:sanctum')->group(function(){
 
     Route::get('base',["App\Fiscality\Bases\Controllers\BaseController",'index']);
     Route::post('base',["App\Fiscality\Bases\Controllers\BaseController",'store']);
-    Route::put('base',["App\Fiscality\Bases\Controllers\BaseController",'update']);
-    Route::delete('base',["App\Fiscality\Bases\Controllers\BaseController",'destroy']);
+    Route::get('base/{id}',["App\Fiscality\Bases\Controllers\BaseController",'find']);
+    Route::put('base/{id}',["App\Fiscality\Bases\Controllers\BaseController",'update']);
+    Route::delete('base/{id}',["App\Fiscality\Bases\Controllers\BaseController",'destroy']);
 
     Route::get('category',["App\Fiscality\Categories\Controllers\CategoryController",'index']);
     Route::post('category',["App\Fiscality\Categories\Controllers\CategoryController",'store']);
@@ -49,6 +50,7 @@ Route::middleware('auth:sanctum')->group(function(){
 
     Route::get('company',["App\Fiscality\Companies\Controllers\CompanyController",'index']);
     Route::post('company',["App\Fiscality\Companies\Controllers\CompanyController",'store']);
+    Route::get('company/{id}',["App\Fiscality\Companies\Controllers\CompanyController",'find']);
     Route::put('company',["App\Fiscality\Companies\Controllers\CompanyController",'update']);
     Route::delete('company',["App\Fiscality\Companies\Controllers\CompanyController",'destroy']);
 

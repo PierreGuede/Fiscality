@@ -15,6 +15,7 @@ class BaseResource extends JsonResource
     public function toArray($request)
     {
         return [
+            'id'=>$this->id,
             'name'=>$this->name,
             'detailType'=>$this->detailType,
             'itemsIM'=>$this->itemsIM

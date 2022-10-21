@@ -3,46 +3,55 @@ namespace App\Fiscality\Bases\Repositories;
 
 use App\Fiscality\Bases\Base;
 use App\Fiscality\Bases\Repositories\Interfaces\BaseRepositoryInterface;
+use App\Fiscality\Bases\Resources\BaseResource;
 
 class BaseRepository implements BaseRepositoryInterface
 {
+    public $model;
+    public function __construct(Base $model){
+        $this->model=$model;
+    }
     public function index()
     {
-        $base=Base::all();
-        return $base;
+        $base=BaseResource::collection($this->model->all());
+        return response()->json([
+            'base'=>$base
+        ]);
         // return view('admin.accounting-result.index',['base'=>$base]);
     }
 
     public function store(array $data):Base
     {
-        // $standarcode=Str::slug($data['name'],'_');
-        $base=Base::create([
-            'name'=>$data['name'],
-        ]);
-        // return redirect()->route('accounting-result.index');
+       try {
+        $base=$this->model->create($data);
         return $base;
+       } catch (\Throwable $th) {
+        throw $th;
+       }
     }
 
 
-    public function edit(Base $id)
-    {
-        return view('admin.accounting-result.update',['base'=>$id]);
-    }
 
-    public function update(array $data,$id):Base
+
+    public function find(int $id)
     {
-        $base=Base::find($id);
-        $base->update(['company_id'=>$data['company_id'],
-            'total_incomes'=>$data['account'],
-            'total_expenses'=>$data['name'],
-            'ar_value'=>$data['ar_value'],]);
-        // return redirect()->route('accounting-result.index');
-        return $base;
+        try {
+             return new BaseResource($this->model->findOrFail($id));
+
+        } catch (\Throwable $th) {
+            throw $th;
+        }
+    }
+    public function update(array $data,$id):BaseResource
+    {
+        $base=$this->model->find($id);
+        $base->update($data);
+        return new BaseResource($base);
 
     }
     public function destroy($id)
     {
-        $base = Base::find($id);
+        $base = $this->model->find($id);
         return $base->delete();
         // return redirect()->route('accounting-result.index');
     }

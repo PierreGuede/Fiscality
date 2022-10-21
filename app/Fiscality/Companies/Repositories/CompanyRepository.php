@@ -4,6 +4,7 @@ namespace App\Fiscality\Companies\Repositories;
 use App\Fiscality\Categories\Category;
 use App\Fiscality\Companies\Company;
 use App\Fiscality\Companies\Repositories\Interfaces\CompanyRepositoryInterface;
+use App\Fiscality\Companies\Resources\CompanyResource;
 use App\Fiscality\Domains\Domain;
 use App\Fiscality\TaxCenters\TaxCenter;
 use App\Fiscality\TypeCompanies\TypeCompany;
@@ -22,33 +23,12 @@ class CompanyRepository implements CompanyRepositoryInterface
     }
     public function index()
     {
-        $company=$this->model->all();
+        $company=CompanyResource::collection($this->model->all());
         return response()->json([
             'company'=>$company
         ]);
-        // $user=request()->user();
-        // if ($user->hasRole('Super-Admin')) {
-        //     $company=$this->model->whereNull('company_id')->get();
-        //     return view('admin.companies.indexAdmin',['company'=>$company]);
-        // }
-        // $company=$this->model->where('user_id',request()->user()->id)->get();
-        // $company_mere=$this->model->where('user_id',request()->user()->id)->whereNotNull('company_id')->get();
-        // return view('admin.companies.index',['company'=>$company,'mere'=>$company_mere]);
     }
-    public function create(){
-        $company=$this->model->where('user_id',request()->user()->id)->get();
 
-        if (count($company)<request()->user()->myPack->packs->max) {
-            $type=$this->typeCompany->all();
-            $typeCat=$this->category->all();
-            $domain= $this->domain->all();
-            $taxCenter=$this->taxCenter->all();
-            return view('auth.choseRole',compact('type','typeCat','domain','taxCenter'));
-        }
-        else{
-            return abort(403,'Vous avez atteint le max');
-        }
-    }
 
     public function store(array $data) : Company
     {
@@ -72,26 +52,23 @@ class CompanyRepository implements CompanyRepositoryInterface
             'company_id'=>$data['company_id'],
             'user_id'=>request()->user()->id
         ]);
-        // return redirect()->route('company.index');
         return $store;
     }
-
-
-    public function edit(Company $id)
+    public function find(int $id)
     {
-        $user=request()->user();
-        if ($user->hasRole('Super-Admin')) {
-            return view('admin.companies.infoAdmin',['company'=>$id]);
-        }
-        return view('admin.companies.info',['company'=>$id]);
-    }
+        try {
+             return new CompanyResource($this->model->findOrFail($id));
 
+        } catch (\Throwable $th) {
+            throw $th;
+        }
+    }
     public function update(array $data,$id) : Company
+
     {
         $company=$this->model->find($id);
-        $company->update(['name'=>$data['name'],]);
-        // return redirect()->route('company.index');
         return $company;
+        $company->update($data);
     }
     public function acceptCompany($id)
     {

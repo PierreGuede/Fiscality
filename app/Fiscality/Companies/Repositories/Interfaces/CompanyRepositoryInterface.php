@@ -7,6 +7,7 @@ interface CompanyRepositoryInterface
 {
     public function index();
     public function store(array $data):Company;
+    public function find(int $id);
     public function update(array $data,$id):Company;
     public function destroy($id);
 }
