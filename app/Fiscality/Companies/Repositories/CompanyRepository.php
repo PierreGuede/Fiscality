@@ -22,14 +22,18 @@ class CompanyRepository implements CompanyRepositoryInterface
     }
     public function index()
     {
-        $user=request()->user();
-        if ($user->hasRole('Super-Admin')) {
-            $company=$this->model->whereNull('company_id')->get();
-            return view('admin.companies.indexAdmin',['company'=>$company]);
-        }
-        $company=$this->model->where('user_id',request()->user()->id)->get();
-        $company_mere=$this->model->where('user_id',request()->user()->id)->whereNotNull('company_id')->get();
-        return view('admin.companies.index',['company'=>$company,'mere'=>$company_mere]);
+        $company=$this->model->all();
+        return response()->json([
+            'company'=>$company
+        ]);
+        // $user=request()->user();
+        // if ($user->hasRole('Super-Admin')) {
+        //     $company=$this->model->whereNull('company_id')->get();
+        //     return view('admin.companies.indexAdmin',['company'=>$company]);
+        // }
+        // $company=$this->model->where('user_id',request()->user()->id)->get();
+        // $company_mere=$this->model->where('user_id',request()->user()->id)->whereNotNull('company_id')->get();
+        // return view('admin.companies.index',['company'=>$company,'mere'=>$company_mere]);
     }
     public function create(){
         $company=$this->model->where('user_id',request()->user()->id)->get();
