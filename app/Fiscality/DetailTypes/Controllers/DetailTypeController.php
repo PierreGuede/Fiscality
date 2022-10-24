@@ -22,14 +22,20 @@ class DetailTypeController extends Controller
 
     public function store(CreateDetailTypeRequest $request)
     {
-        $this->detailTypeRepositoryInterface->store($request->all());
-        return response()->json(["message"=> "success"]);
+        $detail_type=$this->detailTypeRepositoryInterface->store($request->all());
+        return response()->json(["detail_type"=> $detail_type,"message"=>"Enregistrement bien effectué"]);
     }
 
+    public function find($id)
+    {
+        return response()->json([
+            'detail_type'=>$this->detailTypeRepositoryInterface->find($id)
+        ]);
+    }
     public function update(UpdateDetailTypeRequest $request,$id)
     {
-        $this->detailTypeRepositoryInterface->update($request->all(),$id);
-        return response()->json(["message"=> "success"]);
+        $detail_type=$this->detailTypeRepositoryInterface->update($request->all(),$id);
+        return response()->json(['detail_type'=>$detail_type,"message"=> "Modifié avec succès"]);
     }
 
     public function destroy($id)

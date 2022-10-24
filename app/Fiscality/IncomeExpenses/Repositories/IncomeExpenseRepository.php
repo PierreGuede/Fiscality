@@ -4,6 +4,7 @@ namespace App\Fiscality\IncomeExpenses\Repositories;
 use Illuminate\Support\Str;
 use App\Fiscality\IncomeExpenses\IncomeExpense;
 use App\Fiscality\IncomeExpenses\Repositories\Interfaces\IncomeExpenseRepositoryInterface;
+use App\Fiscality\IncomeExpenses\Resources\IncomeExpenseResource;
 
 class IncomeExpenseRepository implements IncomeExpenseRepositoryInterface
 {
@@ -15,46 +16,46 @@ class IncomeExpenseRepository implements IncomeExpenseRepositoryInterface
     }
     public function index()
     {
-        $productCountable=$this->model->all();
-        return view('admin.accounting-products.index',['productCountable'=>$productCountable]);
+        $imCalculationDetail=IncomeExpenseResource::collection($this->model->all());
+        return response()->json([
+            'imCalculationDetail'=>$imCalculationDetail
+        ]);
     }
 
     public function store(array $data):IncomeExpense
     {
-        $data->validate([
-        ]);
-        $standarcode=$this->str->slug($data['name'],'_');
-        $productCountable=$this->model->create([
-            'account'=>$data['account'],
-            'name'=>$data['name'],
-            'type'=>$data['type'],
-        ]);
-        // return redirect()->route('accounting-product.index');
-        return $productCountable;
+        try {
+            $imCalculationDetail=$this->model->create($data);
+            return $imCalculationDetail;
+           } catch (\Throwable $th) {
+            throw $th;
+           }
+        return $imCalculationDetail;
     }
 
 
-    public function edit(IncomeExpense $id)
+    public function find(int $id)
     {
-        return view('admin.accounting-products.update',['productCountable'=>$id]);
+        try {
+            $imCalculationDetail= new IncomeExpenseResource($this->model->findOrFail($id));
+            return response()->json([
+                'imCalculationDetail'=>$imCalculationDetail
+            ]);
+        } catch (\Throwable $th) {
+            throw $th;
+        }
     }
 
-    public function update(array $data,$id):IncomeExpense
+    public function update(array $data,$id):IncomeExpenseResource
     {
-        $data->validate([
-        ]);
-
-        $productCountable=$this->model->find($id);
-        $productCountable->update(['account'=>$data['account'],
-        'name'=>$data['name'],
-        'type'=>$data['type'],]);
-        return $productCountable;
-        // return redirect()->route('accounting-product.index');
+        $imCalculationDetail=$this->model->find($id);
+        $imCalculationDetail->update($imCalculationDetail);
+        return new IncomeExpenseResource($imCalculationDetail);
     }
     public function destroy($id)
     {
-        $productCountable = $this->model->find($id);
-        $productCountable->delete();
-        return redirect()->route('accounting-product.index');
+        $imCalculationDetail = $this->model->find($id);
+        return $imCalculationDetail->delete();
+        // return redirect()->back();
     }
 }

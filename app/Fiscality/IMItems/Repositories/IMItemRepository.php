@@ -4,6 +4,7 @@ namespace App\Fiscality\IMItems\Repositories;
 use Illuminate\Support\Str;
 use App\Fiscality\IMItems\IMItem;
 use App\Fiscality\IMItems\Repositories\Interfaces\IMItemRepositoryInterface;
+use App\Fiscality\IMItems\Resources\IMItemResource;
 
 class IMItemRepository implements IMItemRepositoryInterface
 {
@@ -15,42 +16,46 @@ class IMItemRepository implements IMItemRepositoryInterface
     }
     public function index()
     {
-        $imItem=$this->model->all();
-        return view('admin.IMItem.index',['imItem'=>$imItem]);
+        $imItem=IMItemResource::collection($this->model->all());
+        return response()->json([
+            'imItem'=>$imItem
+        ]);
     }
 
     public function store(array $data):IMItem
     {
-        $data->validate([
-        ]);
-        $standarcode=$this->str->slug($data['name'],'_');
-        $imItem=$this->model->create([
-            'name'=>$data['name'],
-            'base_id'=>$data['base_id'],
-        ]);
+        try {
+            $imItem=$this->model->create($data);
+            return $imItem;
+           } catch (\Throwable $th) {
+            throw $th;
+           }
         return $imItem;
-        // return redirect()->route('IMItem.index');
     }
 
 
-    public function edit(IMItem $id)
+    public function find(int $id)
     {
-        return view('admin.IMItem.update',['imItem'=>$id]);
+        try {
+            $imItem= new IMItemResource($this->model->findOrFail($id));
+            return response()->json([
+                'imItem'=>$imItem
+            ]);
+        } catch (\Throwable $th) {
+            throw $th;
+        }
     }
 
-    public function update(array $data,$id):IMItem
+    public function update(array $data,$id):IMItemResource
     {
         $imItem=$this->model->find($id);
-        $imItem->update(['name'=>$data['name'],
-        'base_id'=>$data['base_id'],]);
-        // return redirect()->route('IMItem.index');
-        return $imItem;
+        $imItem->update($imItem);
+        return new IMItemResource($imItem);
     }
     public function destroy($id)
     {
         $imItem = $this->model->find($id);
-        dd($imItem);
         return $imItem->delete();
-        // return redirect()->route('IMItem.index');
+        // return redirect()->back();
     }
 }

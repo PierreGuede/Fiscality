@@ -4,6 +4,7 @@ namespace App\Fiscality\DetailTypes\Repositories;
 use Illuminate\Support\Str;
 use App\Fiscality\DetailTypes\DetailType;
 use App\Fiscality\DetailTypes\Repositories\Interfaces\DetailTypeRepositoryInterface;
+use App\Fiscality\DetailTypes\Resources\DetailTypeResource;
 
 class DetailTypeRepository implements DetailTypeRepositoryInterface
 {
@@ -15,20 +16,16 @@ class DetailTypeRepository implements DetailTypeRepositoryInterface
     }
     public function index()
     {
-        $subCategory=$this->model->with('category')->get();
-        $category_id=Category::all();
-        $base_id=Base::all();
-        $type_impot_id=TypeImpot::all();
-        return view('admin.detailType.index',['subCategory'=>$subCategory,'category_id'=>$category_id,'base_id'=>$base_id,'type_impot_id'=>$type_impot_id]);
+        $detailType=DetailTypeResource::collection($this->model->all());
+        return response()->json([
+            'detailType'=>$detailType
+        ]);
     }
 
     public function store(array $data):DetailType
     {
-        $data->validate([
-            'name' => ['required', 'string', 'max:255','unique:type_impots'],
-        ]);
-        $standarcode=$this->str->slug($data['name'].'_'.$data['type_impot_id'],'_');
-        $detailTypeQuery=$this->model->create([
+
+        /*
             'name'=>$data['name'],
             'code'=>$standarcode,
             'taux'=>$data['taux'],
@@ -37,28 +34,40 @@ class DetailTypeRepository implements DetailTypeRepositoryInterface
             'category_id'=>$data['category_id'],
             'base_id'=>$data['base_id'],
             'type_impot_id'=>$data['type_impot_id'],
-        ]);
+        */
         // return redirect()->route('category.index');
-        return $detailTypeQuery;
+        try {
+            $detailType=$this->model->create($data);
+            return $detailType;
+           } catch (\Throwable $th) {
+            throw $th;
+           }
+        return $detailType;
     }
 
 
-    public function edit(DetailType $id)
+    public function find(int $id)
     {
-        return view('admin.detailType.update',['subCategory'=>$id]);
+        try {
+            $detailType= new DetailTypeResource($this->model->findOrFail($id));
+            return response()->json([
+                'detailType'=>$detailType
+            ]);
+        } catch (\Throwable $th) {
+            throw $th;
+        }
     }
 
-    public function update(array $data,$id):DetailType
+    public function update(array $data,$id):DetailTypeResource
     {
-        $detailTypeQuery=$this->model->find($id);
-        $detailTypeQuery->update(['name'=>$data['name'],]);
-        // return redirect()->route('detailTypeQuery.index');
-        return $detailTypeQuery;
+        $detailType=$this->model->find($id);
+        $detailType->update($detailType);
+        return new DetailTypeResource($detailType);
     }
     public function destroy($id)
     {
-        $detailTypeQuery = $this->model->find($id);
-        return $detailTypeQuery->delete();
+        $detailType = $this->model->find($id);
+        return $detailType->delete();
         // return redirect()->back();
     }
 }

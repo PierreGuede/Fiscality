@@ -2,8 +2,9 @@
 
 namespace App\Fiscality\Categories;
 
-use App\Fiscality\DetailTypes\DetailType;
+use Illuminate\Support\Str;
 use Illuminate\Database\Eloquent\Model;
+use App\Fiscality\DetailTypes\DetailType;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
@@ -20,4 +21,10 @@ class Category extends Model
         return $this->hasMany(DetailType::class);
     }
 
+    protected static function boot(){
+        parent::boot();
+        static::creating(function ($model) {
+           $model->code= Str::slug(request()->code.'_');
+        });
+    }
 }

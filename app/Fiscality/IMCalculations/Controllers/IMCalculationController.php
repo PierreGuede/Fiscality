@@ -23,14 +23,20 @@ class IMCalculationController extends Controller
 
     public function store(CreateIMCalculationRequest $request)
     {
-        $this->imCalculationRepositoryInterface->store($request->all());
-        return response()->json(["message"=> "success"]);
+        $imCalculation=$this->imCalculationRepositoryInterface->store($request->all());
+        return response()->json(["imCalculation"=> $imCalculation,"message"=>"Enregistrement bien effectué"]);
     }
 
+    public function find($id)
+    {
+        return response()->json([
+            'imCalculation'=>$this->imCalculationRepositoryInterface->find($id)
+        ]);
+    }
     public function update(UpdateIMCalculationRequest $request,$id)
     {
-        $this->imCalculationRepositoryInterface->update($request->all(),$id);
-        return response()->json(["message"=> "success"]);
+        $imCalculation=$this->imCalculationRepositoryInterface->update($request->all(),$id);
+        return response()->json(['imCalculation'=>$imCalculation,"message"=> "Modifié avec succès"]);
     }
 
     public function destroy($id)

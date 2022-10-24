@@ -3,6 +3,7 @@ namespace App\Fiscality\Packs\Repositories;
 
 use Illuminate\Support\Str;
 use App\Fiscality\Packs\Pack;
+use App\Fiscality\Packs\Resources\PackResource;
 use App\Fiscality\Packs\Repositories\Interfaces\PackRepositoryInterface;
 
 class PackRepository implements PackRepositoryInterface
@@ -15,43 +16,46 @@ class PackRepository implements PackRepositoryInterface
     }
     public function index()
     {
-        $pack=$this->model->all();
-        return view('admin.packs.index',['pack'=>$pack]);
+        $pack=PackResource::collection($this->model->all());
+        return response()->json([
+            'pack'=>$pack
+        ]);
     }
 
     public function store(array $data):Pack
     {
-        $data->validate([
-        ]);
-        $pack=$this->model->create([
-            'name'=>$data['name'],
-            'description'=>$data['description'],
-            'max'=>$data['max'],
-        ]);
-        // return redirect()->route('pack.index');
+        try {
+            $pack=$this->model->create($data);
+            return $pack;
+           } catch (\Throwable $th) {
+            throw $th;
+           }
         return $pack;
     }
 
 
-    public function edit(Pack $id)
+    public function find(int $id)
     {
-        return view('admin.packs.update',['pack'=>$id]);
+        try {
+            $pack= new PackResource($this->model->findOrFail($id));
+            return response()->json([
+                'pack'=>$pack
+            ]);
+        } catch (\Throwable $th) {
+            throw $th;
+        }
     }
 
-    public function update(array $data,$id):Pack
+    public function update(array $data,$id):PackResource
     {
         $pack=$this->model->find($id);
-        $pack->update(['name'=>$data['name'],
-        'description'=>$data['description'],
-        'max'=>$data['max'],]);
-        return $pack;
-        // return redirect()->route('pack.index');
+        $pack->update($pack);
+        return new PackResource($pack);
     }
     public function destroy($id)
     {
         $pack = $this->model->find($id);
-        dd($pack);
         return $pack->delete();
-        // return redirect()->route('pack.index');
+        // return redirect()->back();
     }
 }

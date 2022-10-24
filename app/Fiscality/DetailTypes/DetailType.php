@@ -2,6 +2,7 @@
 
 namespace App\Fiscality\DetailTypes;
 
+use Illuminate\Support\Str;
 use App\Fiscality\Bases\Base;
 use App\Fiscality\Categories\Category;
 use App\Fiscality\TypeImpots\TypeImpot;
@@ -33,5 +34,12 @@ class DetailType extends Model
     }
     public function typeImpot(){
         return $this->belongsTo(TypeImpot::class);;
+    }
+
+    protected static function boot(){
+        parent::boot();
+        static::creating(function ($model) {
+           $model->code= Str::slug(request()->type_impot_id.'_');
+        });
     }
 }

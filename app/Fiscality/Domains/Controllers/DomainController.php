@@ -22,14 +22,20 @@ class DomainController extends Controller
 
     public function store(CreateDomainRequest $request)
     {
-        $this->domainRepositoryInterface->store($request->all());
-        return response()->json(["message"=> "success"]);
+        $domain=$this->domainRepositoryInterface->store($request->all());
+        return response()->json(["domain"=> $domain,"message"=>"Enregistrement bien effectué"]);
     }
 
+    public function find($id)
+    {
+        return response()->json([
+            'domain'=>$this->domainRepositoryInterface->find($id)
+        ]);
+    }
     public function update(UpdateDomainRequest $request,$id)
     {
-        $this->domainRepositoryInterface->update($request->all(),$id);
-        return response()->json(["message"=> "success"]);
+        $domain=$this->domainRepositoryInterface->update($request->all(),$id);
+        return response()->json(['domain'=>$domain,"message"=> "Modifié avec succès"]);
     }
 
     public function destroy($id)

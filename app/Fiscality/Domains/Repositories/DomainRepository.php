@@ -3,6 +3,7 @@ namespace App\Fiscality\Domains\Repositories;
 
 use Illuminate\Support\Str;
 use App\Fiscality\Domains\Domain;
+use App\Fiscality\Domains\Resources\DomainResource;
 use App\Fiscality\Domains\Repositories\Interfaces\DomainRepositoryInterface;
 
 class DomainRepository implements DomainRepositoryInterface
@@ -15,39 +16,58 @@ class DomainRepository implements DomainRepositoryInterface
     }
     public function index()
     {
-        $domain=$this->model->all();
-        return view('admin.domains.index',['domain'=>$domain]);
+        $domain=DomainResource::collection($this->model->all());
+        return response()->json([
+            'domain'=>$domain
+        ]);
     }
 
     public function store(array $data):Domain
     {
-        $standarcode=$this->str->slug($data['name'],'_');
-        $domain=$this->model->create([
+
+        /*
             'name'=>$data['name'],
             'code'=>$standarcode,
-        ]);
-        // return redirect()->route('domain.index');
+            'taux'=>$data['taux'],
+            'description'=>$data['description'],
+            'article'=>$data['article'],
+            'category_id'=>$data['category_id'],
+            'base_id'=>$data['base_id'],
+            'type_impot_id'=>$data['type_impot_id'],
+        */
+        // return redirect()->route('category.index');
+        try {
+            $domain=$this->model->create($data);
+            return $domain;
+           } catch (\Throwable $th) {
+            throw $th;
+           }
         return $domain;
     }
 
 
-    public function edit(Domain $id)
+    public function find(int $id)
     {
-        return view('admin.domains.update',['domain'=>$id]);
+        try {
+            $domain= new DomainResource($this->model->findOrFail($id));
+            return response()->json([
+                'domain'=>$domain
+            ]);
+        } catch (\Throwable $th) {
+            throw $th;
+        }
     }
 
-    public function update(array $data,$id):Domain
+    public function update(array $data,$id):DomainResource
     {
         $domain=$this->model->find($id);
-        $domain->update(['name'=>$data['name'],]);
-        // return redirect()->route('domain.index');
-        return $domain;
+        $domain->update($domain);
+        return new DomainResource($domain);
     }
     public function destroy($id)
     {
         $domain = $this->model->find($id);
-        dd($domain);
         return $domain->delete();
-        // return redirect()->route('domain.index');
+        // return redirect()->back();
     }
 }

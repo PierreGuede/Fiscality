@@ -3,6 +3,7 @@ namespace App\Fiscality\Categories\Repositories;
 
 use App\Fiscality\Categories\Category;
 use App\Fiscality\Categories\Repositories\Interfaces\CategoryRepositoryInterface;
+use App\Fiscality\Categories\Resources\CategoryResource;
 use App\Fiscality\DetailTypes\DetailType;
 use Illuminate\Support\Str;
 
@@ -17,42 +18,38 @@ class CategoryRepository implements CategoryRepositoryInterface
     }
     public function index()
     {
-        $category=$this->model->all();
-        return view('admin.categories.index',['category'=>$category]);
+        try {
+            $category=  CategoryResource::collection($this->model->all());
+            return response()->json([
+                'categories'=>$category
+            ]);
+        } catch (\Throwable $th) {
+            throw $th;
+        }
     }
 
     public function store(array $data):Category
     {
-        $standarcode=$this->str->slug($data['name'],'_');
-        $category=$this->model->create([
-            'name'=>$data['name'],
-            'code'=>$standarcode,
-        ]);
-        // return redirect()->route('category.index');
+        $category=$this->model->create($data);
         return $category;
     }
-
-    public function affect(array $data,$id)
+    public function find(int $id)
     {
-        $standarcode=rand(100000,999999);
-        $subCategory=$this->detailType->create([
-            'name'=>$data['name'],
-            'category_id'=>$id,
-            'code'=>$standarcode,
-        ]);
-        return redirect()->route('category.edit',$id);
-    }
-    public function edit(Category $id)
-    {
-        return view('admin.categories.update',['category'=>$id]);
+        try {
+            $category= new CategoryResource($this->model->findOrFail($id));
+            return response()->json([
+                'category'=>$category
+            ]);
+        } catch (\Throwable $th) {
+            throw $th;
+        }
     }
 
-    public function update(array $data,$id):Category
+    public function update(array $data,$id)
     {
         $category=$this->model->find($id);
-        $category->update(['name'=>$data['name'],]);
-        // return redirect()->route('category.index');
-        return $category;
+        $category->update($data);
+        return new CategoryResource($category);
     }
     public function destroy($id)
     {

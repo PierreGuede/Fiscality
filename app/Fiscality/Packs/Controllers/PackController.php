@@ -22,14 +22,20 @@ class PackController extends Controller
 
     public function store(CreatePackRequest $request)
     {
-        $this->packRepositoryInterface->store($request->all());
-        return response()->json(["message"=> "success"]);
+        $pack=$this->packRepositoryInterface->store($request->all());
+        return response()->json(["pack"=> $pack,"message"=>"Enregistrement bien effectué"]);
     }
 
+    public function find($id)
+    {
+        return response()->json([
+            'pack'=>$this->packRepositoryInterface->find($id)
+        ]);
+    }
     public function update(UpdatePackRequest $request,$id)
     {
-        $this->packRepositoryInterface->update($request->all(),$id);
-        return response()->json(["message"=> "success"]);
+        $pack=$this->packRepositoryInterface->update($request->all(),$id);
+        return response()->json(['pack'=>$pack,"message"=> "Modifié avec succès"]);
     }
 
     public function destroy($id)

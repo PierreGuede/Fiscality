@@ -3,6 +3,7 @@ namespace App\Fiscality\IMCalculationDetails\Repositories;
 
 use Illuminate\Support\Str;
 use App\Fiscality\IMCalculationDetails\IMCalculationDetail;
+use App\Fiscality\IMCalculationDetails\Resources\IMCalculationDetailResource;
 use App\Fiscality\IMCalculationDetails\Repositories\Interfaces\IMCalculationDetailRepositoryInterface;
 
 class IMCalculationDetailRepository implements IMCalculationDetailRepositoryInterface
@@ -15,42 +16,46 @@ class IMCalculationDetailRepository implements IMCalculationDetailRepositoryInte
     }
     public function index()
     {
-        $imCalculation=$this->model->all();
-        return view('admin.IMCalculation.index',['imCalculation'=>$imCalculation]);
+        $imCalculationDetail=IMCalculationDetailResource::collection($this->model->all());
+        return response()->json([
+            'imCalculationDetail'=>$imCalculationDetail
+        ]);
     }
 
     public function store(array $data):IMCalculationDetail
     {
-        $data->validate([
-        ]);
-        $standarcode=Str::slug($data['name'],'_');
-        $imCalculation=$this->model->create([
-            'name'=>$data['name'],
-        ]);
-        return $imCalculation;
-        // return redirect()->route('IMCalculation.index');
+        try {
+            $imCalculationDetail=$this->model->create($data);
+            return $imCalculationDetail;
+           } catch (\Throwable $th) {
+            throw $th;
+           }
+        return $imCalculationDetail;
     }
 
 
-    public function edit(IMCalculationDetail $id)
+    public function find(int $id)
     {
-        return view('admin.IMCalculation.update',['imCalculation'=>$id]);
+        try {
+            $imCalculationDetail= new IMCalculationDetailResource($this->model->findOrFail($id));
+            return response()->json([
+                'imCalculationDetail'=>$imCalculationDetail
+            ]);
+        } catch (\Throwable $th) {
+            throw $th;
+        }
     }
 
-    public function update(array $data,$id):IMCalculationDetail
+    public function update(array $data,$id):IMCalculationDetailResource
     {
-        $imCalculation=$this->model->find($id);
-        $imCalculation->update([ 'account'=>$data['account'],
-            'name'=>$data['name'],
-           ]);
-           return $imCalculation;
-        // return redirect()->route('IMCalculation.index');
+        $imCalculationDetail=$this->model->find($id);
+        $imCalculationDetail->update($imCalculationDetail);
+        return new IMCalculationDetailResource($imCalculationDetail);
     }
     public function destroy($id)
     {
-        $imCalculation = $this->model->find($id);
-        dd($imCalculation);
-        return $imCalculation->delete();
-        // return redirect()->route('IMCalculation.index');
+        $imCalculationDetail = $this->model->find($id);
+        return $imCalculationDetail->delete();
+        // return redirect()->back();
     }
 }
