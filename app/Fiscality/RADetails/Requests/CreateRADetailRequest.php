@@ -13,7 +13,7 @@ class CreateRADetailRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**

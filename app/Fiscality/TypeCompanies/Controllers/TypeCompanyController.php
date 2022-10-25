@@ -23,14 +23,20 @@ class TypeCompanyController extends Controller
 
     public function store(CreateTypeCompanyRequest $request)
     {
-        $this->typeCompanyRepositoryInterface->store($request->all());
-        return response()->json(["message"=> "success"]);
+        $typeCompany=$this->typeCompanyRepositoryInterface->store($request->all());
+        return response()->json(["typeCompany"=> $typeCompany,"message"=>"Enregistrement bien effectué"]);
     }
 
+    public function find($id)
+    {
+        return response()->json([
+            'typeCompany'=>$this->typeCompanyRepositoryInterface->find($id)
+        ]);
+    }
     public function update(UpdateTypeCompanyRequest $request,$id)
     {
-        $this->typeCompanyRepositoryInterface->update($request->all(),$id);
-        return response()->json(["message"=> "success"]);
+        $typeCompany=$this->typeCompanyRepositoryInterface->update($request->all(),$id);
+        return response()->json(['typeCompany'=>$typeCompany,"message"=> "Modifié avec succès"]);
     }
 
     public function destroy($id)

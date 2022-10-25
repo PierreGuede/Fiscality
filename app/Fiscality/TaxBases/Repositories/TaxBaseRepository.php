@@ -1,9 +1,10 @@
 <?php
 namespace App\Fiscality\TaxBases\Repositories;
 
-use App\Fiscality\TaxBases\Repositories\Interfaces\TaxBaseRepositoryInterface;
 use Illuminate\Support\Str;
 use App\Fiscality\TaxBases\TaxBase;
+use App\Fiscality\TaxBases\Resources\TaxBaseResource;
+use App\Fiscality\TaxBases\Repositories\Interfaces\TaxBaseRepositoryInterface;
 
 class TaxBaseRepository implements TaxBaseRepositoryInterface
 {
@@ -15,42 +16,45 @@ class TaxBaseRepository implements TaxBaseRepositoryInterface
     }
     public function index()
     {
-        $taxCenter=$this->model->all();
-        return view('admin.taxCenters.index',['taxCenter'=>$taxCenter]);
+        $taxBase=TaxBaseResource::collection($this->model->all());
+        return response()->json([
+            'taxBase'=>$taxBase
+        ]);
     }
 
     public function store(array $data):TaxBase
     {
-        $data->validate([
-        ]);
-        $standarcode=$this->str->slug($data['name'],'_');
-        $taxCenter=$this->model->create([
-            'name'=>$data['name'],
-            'address'=>$data['address'],
-            'code'=>$standarcode,
-        ]);
-        // return redirect()->route('taxCenter.index');
-        return $taxCenter;
+        try {
+            $taxBase=$this->model->create($data);
+            return $taxBase;
+           } catch (\Throwable $th) {
+            throw $th;
+           }
+        return $taxBase;
     }
 
 
-    public function edit(TaxBase $id)
+    public function find(int $id)
     {
-        return view('admin.taxCenters.update',['taxCenter'=>$id]);
+        try {
+            $taxBase= new TaxBaseResource($this->model->findOrFail($id));
+            return response()->json([
+                'taxBase'=>$taxBase
+            ]);
+        } catch (\Throwable $th) {
+            throw $th;
+        }
     }
 
-    public function update(array $data,$id):TaxBase
+    public function update(array $data,$id):TaxBaseResource
     {
-        $taxCenter=$this->model->find($id);
-        $taxCenter->update(['name'=>$data['name'],'address'=>$data['address'],]);
-        // return redirect()->route('taxCenter.index');
-        return $taxCenter;
+        $taxBase=$this->model->find($id);
+        $taxBase->update($taxBase);
+        return new TaxBaseResource($taxBase);
     }
     public function destroy($id)
     {
-        $taxCenter = $this->model->find($id);
-        dd($taxCenter);
-        return $taxCenter->delete();
-        // return redirect()->route('taxCenter.index');
+        $taxBase = $this->model->find($id);
+        return $taxBase->delete();
     }
 }

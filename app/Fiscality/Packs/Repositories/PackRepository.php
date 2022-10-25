@@ -56,6 +56,5 @@ class PackRepository implements PackRepositoryInterface
     {
         $pack = $this->model->find($id);
         return $pack->delete();
-        // return redirect()->back();
     }
 }

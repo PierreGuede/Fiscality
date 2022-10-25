@@ -22,14 +22,20 @@ class TaxCenterController extends Controller
 
     public function store(CreateTaxCenterRequest $request)
     {
-        $this->taxCenterRepositoryInterface->store($request->all());
-        return response()->json(["message"=> "success"]);
+        $taxCenter=$this->taxCenterRepositoryInterface->store($request->all());
+        return response()->json(["taxCenter"=> $taxCenter,"message"=>"Enregistrement bien effectué"]);
     }
 
+    public function find($id)
+    {
+        return response()->json([
+            'taxCenter'=>$this->taxCenterRepositoryInterface->find($id)
+        ]);
+    }
     public function update(UpdateTaxCenterRequest $request,$id)
     {
-        $this->taxCenterRepositoryInterface->update($request->all(),$id);
-        return response()->json(["message"=> "success"]);
+        $taxCenter=$this->taxCenterRepositoryInterface->update($request->all(),$id);
+        return response()->json(['taxCenter'=>$taxCenter,"message"=> "Modifié avec succès"]);
     }
 
     public function destroy($id)

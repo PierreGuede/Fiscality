@@ -1,9 +1,10 @@
 <?php
 namespace App\Fiscality\TypeCompanies\Repositories;
 
-use App\Fiscality\TypeCompanies\Repositories\Interfaces\TypeCompanyRepositoryInterface;
 use Illuminate\Support\Str;
 use App\Fiscality\TypeCompanies\TypeCompany;
+use App\Fiscality\TypeCompanies\Resources\TypeCompanyResource;
+use App\Fiscality\TypeCompanies\Repositories\Interfaces\TypeCompanyRepositoryInterface;
 
 class TypeCompanyRepository implements TypeCompanyRepositoryInterface
 {
@@ -15,43 +16,45 @@ class TypeCompanyRepository implements TypeCompanyRepositoryInterface
     }
     public function index()
     {
-        $type=$this->model->all();
-        $impot=TypeImpot::all();
-        return view('admin.typesCompanies.index',['type'=>$type,'impot'=>$impot]);
+        $typeCompany=TypeCompanyResource::collection($this->model->all());
+        return response()->json([
+            'typeCompany'=>$typeCompany
+        ]);
     }
 
     public function store(array $data):TypeCompany
     {
-        $data->validate([
-        'name' => ['required', 'string', 'max:255','unique:type_impots'],
-    ]);
-    $standarcode=$this->str->slug($data['name'],'_');
-    $type=$this->model->create([
-            'name'=>$data['name'],
-            'code'=>$standarcode,
-        ]);
-        $type->impot()->sync($data['impot_id']);
-        // return redirect()->route('type.index');
-        return $type;
+        try {
+            $typeCompany=$this->model->create($data);
+            return $typeCompany;
+           } catch (\Throwable $th) {
+            throw $th;
+           }
+        return $typeCompany;
     }
 
 
-    public function edit(TypeCompany $id)
+    public function find(int $id)
     {
-        return view('admin.typesCompanies.update',['type'=>$id]);
+        try {
+            $typeCompany= new TypeCompanyResource($this->model->findOrFail($id));
+            return response()->json([
+                'typeCompany'=>$typeCompany
+            ]);
+        } catch (\Throwable $th) {
+            throw $th;
+        }
     }
 
-    public function update(array $data,$id):TypeCompany
+    public function update(array $data,$id):TypeCompanyResource
     {
-        $type=$this->model->find($id);
-        $type->update(['name'=>$data['name'],]);
-        // return redirect()->route('type.index');
-        return $type;
+        $typeCompany=$this->model->find($id);
+        $typeCompany->update($typeCompany);
+        return new TypeCompanyResource($typeCompany);
     }
     public function destroy($id)
     {
-        $type = $this->model->find($id);
-        return $type->delete();
-        // return redirect()->route('type.index');
+        $typeCompany = $this->model->find($id);
+        return $typeCompany->delete();
     }
 }

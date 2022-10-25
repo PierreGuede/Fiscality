@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Fiscality\Packs\Resources;
+namespace App\Fiscality\TypeCompanies\Resources;
 
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class PackResource extends JsonResource
+class TypeCompanyResource extends JsonResource
 {
     /**
      * Transform the resource into an array.

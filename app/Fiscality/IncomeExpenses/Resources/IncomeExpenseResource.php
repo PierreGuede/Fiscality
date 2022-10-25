@@ -15,9 +15,7 @@ class IncomeExpenseResource extends JsonResource
     public function toArray($request)
     {
         return [
-            'account'=>$this->account,
             'name'=>$this->name,
-            'type'=>$this->type,
         ];
     }
 }

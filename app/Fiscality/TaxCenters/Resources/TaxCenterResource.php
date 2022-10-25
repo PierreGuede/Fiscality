@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Fiscality\Packs\Resources;
+namespace App\Fiscality\TaxCenters\Resources;
 
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class PackResource extends JsonResource
+class TaxcenterResource extends JsonResource
 {
     /**
      * Transform the resource into an array.

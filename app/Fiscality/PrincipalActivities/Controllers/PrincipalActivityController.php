@@ -22,14 +22,20 @@ class PrincipalActivityController extends Controller
 
     public function store(CreatePrincipalActivityRequest $request)
     {
-        $this->principalActivityRepositoryInterface->store($request->all());
-        return response()->json(["message"=> "success"]);
+        $principalActivity=$this->principalActivityRepositoryInterface->store($request->all());
+        return response()->json(["principalActivity"=> $principalActivity,"message"=>"Enregistrement bien effectué"]);
     }
 
+    public function find($id)
+    {
+        return response()->json([
+            'principalActivity'=>$this->principalActivityRepositoryInterface->find($id)
+        ]);
+    }
     public function update(UpdatePrincipalActivityRequest $request,$id)
     {
-        $this->principalActivityRepositoryInterface->update($request->all(),$id);
-        return response()->json(["message"=> "success"]);
+        $principalActivity=$this->principalActivityRepositoryInterface->update($request->all(),$id);
+        return response()->json(['principalActivity'=>$principalActivity,"message"=> "Modifié avec succès"]);
     }
 
     public function destroy($id)

@@ -1,9 +1,10 @@
 <?php
 namespace App\Fiscality\TypeImpots\Repositories;
 
-use App\Fiscality\TypeImpots\Repositories\Interfaces\TypeImpotRepositoryInterface;
 use Illuminate\Support\Str;
 use App\Fiscality\TypeImpots\TypeImpot;
+use App\Fiscality\TypeImpots\Resources\TypeImpotResource;
+use App\Fiscality\TypeImpots\Repositories\Interfaces\TypeImpotRepositoryInterface;
 
 class TypeImpotRepository implements TypeImpotRepositoryInterface
 {
@@ -15,38 +16,45 @@ class TypeImpotRepository implements TypeImpotRepositoryInterface
     }
     public function index()
     {
-        $typeImpot=$this->model->all();
-        return view('admin.typeImpots.index',['typeImpot'=>$typeImpot]);
+        $typeImpot=TypeImpotResource::collection($this->model->all());
+        return response()->json([
+            'typeImpot'=>$typeImpot
+        ]);
     }
 
     public function store(array $data):TypeImpot
     {
-        $standarcode=$this->str->slug($data['name'],'_');
-        $typeImpot=$this->model->create([
-            'name'=>$data['name'],
-            'code'=>$standarcode,
-        ]);
-        // return redirect()->route('typeImpot.index');
+        try {
+            $typeImpot=$this->model->create($data);
+            return $typeImpot;
+           } catch (\Throwable $th) {
+            throw $th;
+           }
         return $typeImpot;
     }
 
 
-    public function edit(TypeImpot $id)
+    public function find(int $id)
     {
-        return view('admin.typeImpots.update',['typeImpot'=>$id]);
+        try {
+            $typeImpot= new TypeImpotResource($this->model->findOrFail($id));
+            return response()->json([
+                'typeImpot'=>$typeImpot
+            ]);
+        } catch (\Throwable $th) {
+            throw $th;
+        }
     }
 
-    public function update(array $data,$id):TypeImpot
+    public function update(array $data,$id):TypeImpotResource
     {
         $typeImpot=$this->model->find($id);
-        $typeImpot->update(['name'=>$data['name'],]);
-        // return redirect()->route('typeImpot.index');
-        return $typeImpot;
+        $typeImpot->update($typeImpot);
+        return new TypeImpotResource($typeImpot);
     }
     public function destroy($id)
     {
         $typeImpot = $this->model->find($id);
         return $typeImpot->delete();
-        // return redirect()->route('typeImpot.index');
     }
 }

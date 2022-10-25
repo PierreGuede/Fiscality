@@ -22,14 +22,20 @@ class RADetailController extends Controller
 
     public function store(CreateRADetailRequest $request)
     {
-        $this->raDetailRepositoryInterface->store($request->all());
-        return response()->json(["message"=> "success"]);
+        $raDetail=$this->raDetailRepositoryInterface->store($request->all());
+        return response()->json(["raDetail"=> $raDetail,"message"=>"Enregistrement bien effectué"]);
     }
 
+    public function find($id)
+    {
+        return response()->json([
+            'raDetail'=>$this->raDetailRepositoryInterface->find($id)
+        ]);
+    }
     public function update(UpdateRADetailRequest $request,$id)
     {
-        $this->raDetailRepositoryInterface->update($request->all(),$id);
-        return response()->json(["message"=> "success"]);
+        $raDetail=$this->raDetailRepositoryInterface->update($request->all(),$id);
+        return response()->json(['raDetail'=>$raDetail,"message"=> "Modifié avec succès"]);
     }
 
     public function destroy($id)
