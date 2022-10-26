@@ -1,79 +1,68 @@
 <x-guest-layout>
-    <div class="flex flex-col overflow-y-auto md:flex-row">
-        <div class="h-32 md:h-auto md:w-1/2">
-            <img aria-hidden="true" class="object-cover w-full h-full"
-                 src="{{ asset('images/create-account-office.jpeg') }}" alt="Office"/>
+    <main class="flex w-full h-screen text-gray-700 bg-white">
+        <div class="flex items-center justify-center w-3/5 h-full ">
+            <div class="w-4/6 mx-auto space-y-6 ">
+                <h2 class="text-4xl font-bold ">TECIT</h2>
+                <h6 class="text-lg font-medium ">Mettez un text plus important à ce niveau</h6>
+                <p class="">Lorem ipsum dolor sit amet consectetur adipisicing elit. Iure natus quibusdam quo
+                    commodi tenetur, labore hic est accusantium in eligendi sit reiciendis laudantium iste culpa
+                    laboriosam exercitationem? Consectetur, esse amet!</p>
+
+                <small class="block font-semibold text-gray-400">Mettez un text de salutation ici</small>
+                <button class="px-8 py-3 font-semibold text-blue-500 border-2 border-blue-500 rounded-md">
+                    En savoir plus
+                </button>
+            </div>
+
+
         </div>
+        <div class="flex items-center justify-center w-2/5 bg-blue-50/40 ">
+            <div class=" w-[90%] lg:w-[75%] xl:w-2/3 w">
+                <h6 class="mb-2 text-2xl font-semibold text-gray-700">Commencez</h6>
+                <p class="mb-10 text-sm text-gray-500">L'inscription ne prend qu'une minute</p>
+                <x-auth-validation-errors :errors="$errors" />
 
-        <div class="flex items-center justify-center p-6 sm:p-12 md:w-1/2">
-            <div class="w-full">
-                <h1 class="mb-4 text-xl font-semibold text-gray-700">
-                    Create account
-                </h1>
-
-                <x-auth-validation-errors :errors="$errors"/>
-
-                <form method="POST" action="{{ route('register') }}">
-                @csrf
-
-                    <div class="mt-4">
-                        <x-label for="name" :value="__('Name')"/>
-                        <x-input type="text"
-                                 id="name"
-                                 name="name"
-                                 class="block w-full"
-                                 value="{{ old('name') }}"
-                                 required
-                                 autofocus/>
+                <form method="POST" action="{{ route('register') }}" class="space-y-6">
+                    @csrf
+                    <div class="flex gap-x-4 ">
+                        <div class="mt-4">
+                            <x-input label="Nom" type="text" id="name" name="name" class="block w-full"
+                                value="{{ old('name') }}" required autofocus />
+                        </div>
+                        <div class="mt-4">
+                            <x-input label="Prénom" type="text" id="firstname" name="firstname" class="block w-full"
+                                value="{{ old('firstname') }}" required autofocus />
+                        </div>
                     </div>
                     <div class="mt-4">
-                        <x-label for="firstname" :value="__('Prénom')"/>
-                        <x-input type="text"
-                                 id="firstname"
-                                 name="firstname"
-                                 class="block w-full"
-                                 value="{{ old('firstname') }}"
-                                 required
-                                 autofocus/>
-                    </div>
-                    <div class="mt-4">
-                        <x-label for="email" :value="__('Email')"/>
-                        <x-input name="email"
-                                 type="email"
-                                 class="block w-full"
-                                 value="{{ old('email') }}"/>
+                        <x-input label="Email" name="email" type="email" class="block w-full"
+                            value="{{ old('email') }}" />
                     </div>
 
                     <div class="mt-4">
-                        <x-label for="password" :value="__('Password')"/>
-                        <x-input type="password"
-                                 name="password"
-                                 class="block w-full"
-                                 required/>
+                        <x-input label="Mot de passe" type="password" name="password" class="block w-full" required />
                     </div>
 
                     <div class="mt-4">
-                        <x-label id="password_confirmation" :value="__('Confirm Password')"/>
-                        <x-input type="password"
-                                 name="password_confirmation"
-                                 class="block w-full"
-                                 required/>
+                        <x-input label="Confirmez votre mot de passe" type="password" id="password_confirmation"
+                            name="password_confirmation" class="block w-full" required />
                     </div>
 
 
                     <div class="mt-4">
                         <x-button class="block w-full">
-                            {{ __('Register') }}
+                            {{ __('Créer un compte') }}
                         </x-button>
                     </div>
                 </form>
 
-                <hr class="my-8"/>
-
-                <p class="mt-4">
-                    <a class="text-sm font-medium text-primary-600 hover:underline"
-                       href="{{ route('login') }}">{{ __('Already registered?') }}</a>
+                <p class="text-sm text-center text-gray-500">
+                    J'ai déjà un compte?
+                    <a href="{{ route('login') }}"
+                        class="inline-block mt-4 text-sm font-medium text-center text-blue-600 hover:underline focus:outline-none focus:ring-2 focus:ring-blue-500">
+                        Connectez-vous </a>
                 </p>
             </div>
         </div>
+    </main>
 </x-guest-layout>
