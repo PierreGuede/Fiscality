@@ -28,9 +28,7 @@ class TaxCenterController extends Controller
 
     public function find($id)
     {
-        return response()->json([
-            'taxCenter'=>$this->taxCenterRepositoryInterface->find($id)
-        ]);
+        return $this->taxCenterRepositoryInterface->find($id);
     }
     public function update(UpdateTaxCenterRequest $request,$id)
     {

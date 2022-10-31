@@ -29,9 +29,7 @@ class IMCalculationDetailController extends Controller
 
     public function find($id)
     {
-        return response()->json([
-            'imCalculationDetail'=>$this->imCalculationDetailRepositoryInterface->find($id)
-        ]);
+        return $this->imCalculationDetailRepositoryInterface->find($id);
     }
     public function update(UpdateIMCalculationDetailRequest $request,$id)
     {

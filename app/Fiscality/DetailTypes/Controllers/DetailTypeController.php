@@ -28,9 +28,7 @@ class DetailTypeController extends Controller
 
     public function find($id)
     {
-        return response()->json([
-            'detail_type'=>$this->detailTypeRepositoryInterface->find($id)
-        ]);
+        return$this->detailTypeRepositoryInterface->find($id);
     }
     public function update(UpdateDetailTypeRequest $request,$id)
     {

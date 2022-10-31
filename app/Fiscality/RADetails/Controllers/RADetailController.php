@@ -28,9 +28,7 @@ class RADetailController extends Controller
 
     public function find($id)
     {
-        return response()->json([
-            'raDetail'=>$this->raDetailRepositoryInterface->find($id)
-        ]);
+        return $this->raDetailRepositoryInterface->find($id);
     }
     public function update(UpdateRADetailRequest $request,$id)
     {

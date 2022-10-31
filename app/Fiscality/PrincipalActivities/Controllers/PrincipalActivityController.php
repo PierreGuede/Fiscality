@@ -28,9 +28,7 @@ class PrincipalActivityController extends Controller
 
     public function find($id)
     {
-        return response()->json([
-            'principalActivity'=>$this->principalActivityRepositoryInterface->find($id)
-        ]);
+        return $this->principalActivityRepositoryInterface->find($id);
     }
     public function update(UpdatePrincipalActivityRequest $request,$id)
     {

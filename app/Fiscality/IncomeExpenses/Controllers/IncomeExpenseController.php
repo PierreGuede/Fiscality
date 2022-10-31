@@ -23,20 +23,18 @@ class IncomeExpenseController extends Controller
 
     public function store(CreateIncomeExpenseRequest $request)
     {
-        $imCalculationDetail=$this->incomeExpenseRepositoryInterface->store($request->all());
-        return response()->json(["imCalculationDetail"=> $imCalculationDetail,"message"=>"Enregistrement bien effectué"]);
+        $incomeExpense=$this->incomeExpenseRepositoryInterface->store($request->all());
+        return response()->json(["incomeExpense"=> $incomeExpense,"message"=>"Enregistrement bien effectué"]);
     }
 
     public function find($id)
     {
-        return response()->json([
-            'imCalculationDetail'=>$this->incomeExpenseRepositoryInterface->find($id)
-        ]);
+        return $this->incomeExpenseRepositoryInterface->find($id);
     }
     public function update(UpdateIncomeExpenseRequest $request,$id)
     {
-        $imCalculationDetail=$this->incomeExpenseRepositoryInterface->update($request->all(),$id);
-        return response()->json(['imCalculationDetail'=>$imCalculationDetail,"message"=> "Modifié avec succès"]);
+        $incomeExpense=$this->incomeExpenseRepositoryInterface->update($request->all(),$id);
+        return response()->json(['incomeExpense'=>$incomeExpense,"message"=> "Modifié avec succès"]);
     }
 
     public function destroy($id)

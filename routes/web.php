@@ -36,9 +36,17 @@ Route::middleware('auth','hasOneRole')->group(function () {
         Route::post('company/{id}', [\App\Http\Controllers\CompanyController::class, 'update'])->name('company.update');
         Route::delete('company/{id}', [\App\Http\Controllers\CompanyController::class, 'destroy'])->name('company.delete');
     });
-    Route::get('create-company', [\App\Http\Controllers\CompanyController::class, 'create'])->name('company.enterprise');
-    Route::get('work-in-enterprise/{id}', [\App\Http\Controllers\WorkInEnterprise::class, 'show'])->name('work.show');
 
+    Route::middleware('role:cabinet|enterprise')->group(function () {
+
+    Route::get('create-company', [\App\Http\Controllers\CompanyController::class, 'create'])->name('company.enterprise');
+    Route::get('work-in-enterprise/{id}', [\App\Http\Controllers\WorkInEnterprise::class, 'index'])->name('work.show');
+    Route::post('work-in-enterprise/{id}', [\App\Http\Controllers\WorkInEnterprise::class, 'access'])->name('work.access');
+    Route::get('work-in-enterprise/{id}/actions', [\App\Http\Controllers\WorkInEnterprise::class, 'actions'])->name('work.actions');
+    Route::get('work-in-enterprise/{id}/accountResult', [\App\Http\Controllers\WorkInEnterprise::class, 'accountResult'])->name('work.accountResult');
+    Route::get('work-in-enterprise/{id}/impotcalcul', [\App\Http\Controllers\WorkInEnterprise::class, 'impotcalcul'])->name('work.impotcalcul');
+
+    });
     Route::get('users', [\App\Http\Controllers\UserController::class, 'index'])->name('users.index');
     Route::post('users', [\App\Http\Controllers\UserController::class, 'store'])->name('users.store');
     Route::get('users/{id}', [\App\Http\Controllers\UserController::class, 'find'])->name('users.find');

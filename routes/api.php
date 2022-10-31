@@ -52,11 +52,11 @@ Route::middleware('auth:sanctum')->group(function(){
     Route::put('company',["App\Fiscality\Companies\Controllers\CompanyController",'update']);
     Route::delete('company/{id}',["App\Fiscality\Companies\Controllers\CompanyController",'destroy']);
 
-    Route::get('detail-type',["App\Fiscality\DetailTypes\Controllers\DetailTypeController",'index']);
-    Route::post('detail-type',["App\Fiscality\DetailTypes\Controllers\DetailTypeController",'store']);
-    Route::get('detail-type/{id}',["App\Fiscality\DetailTypes\Controllers\DetailTypeController",'find']);
-    Route::put('detail-type/{id}',["App\Fiscality\DetailTypes\Controllers\DetailTypeController",'update']);
-    Route::delete('detail-type/{id}',["App\Fiscality\DetailTypes\Controllers\DetailTypeController",'destroy']);
+    Route::get('detail-Type',["App\Fiscality\DetailTypes\Controllers\DetailTypeController",'index']);
+    Route::post('detail-Type',["App\Fiscality\DetailTypes\Controllers\DetailTypeController",'store']);
+    Route::get('detail-Type/{id}',["App\Fiscality\DetailTypes\Controllers\DetailTypeController",'find']);
+    Route::put('detail-Type/{id}',["App\Fiscality\DetailTypes\Controllers\DetailTypeController",'update']);
+    Route::delete('detail-Type/{id}',["App\Fiscality\DetailTypes\Controllers\DetailTypeController",'destroy']);
 
     Route::get('domain',["App\Fiscality\Domains\Controllers\DomainController",'index']);
     Route::post('domain',["App\Fiscality\Domains\Controllers\DomainController",'store']);

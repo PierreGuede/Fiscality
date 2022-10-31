@@ -28,9 +28,7 @@ class DomainController extends Controller
 
     public function find($id)
     {
-        return response()->json([
-            'domain'=>$this->domainRepositoryInterface->find($id)
-        ]);
+        return $this->domainRepositoryInterface->find($id);
     }
     public function update(UpdateDomainRequest $request,$id)
     {

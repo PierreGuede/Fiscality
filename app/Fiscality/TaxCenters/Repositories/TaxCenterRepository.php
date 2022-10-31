@@ -16,30 +16,30 @@ class TaxCenterRepository implements TaxCenterRepositoryInterface
     }
     public function index()
     {
-        $taxBase=TaxCenterResource::collection($this->model->all());
+        $taxCenter=TaxCenterResource::collection($this->model->all());
         return response()->json([
-            'taxBase'=>$taxBase
+            'taxCenter'=>$taxCenter
         ]);
     }
 
     public function store(array $data):TaxCenter
     {
         try {
-            $taxBase=$this->model->create($data);
-            return $taxBase;
+            $taxCenter=$this->model->create($data);
+            return $taxCenter;
            } catch (\Throwable $th) {
             throw $th;
            }
-        return $taxBase;
+        return $taxCenter;
     }
 
 
     public function find(int $id)
     {
         try {
-            $taxBase= new TaxCenterResource($this->model->findOrFail($id));
+            $taxCenter= new TaxCenterResource($this->model->findOrFail($id));
             return response()->json([
-                'taxBase'=>$taxBase
+                'taxCenter'=>$taxCenter
             ]);
         } catch (\Throwable $th) {
             throw $th;
@@ -48,13 +48,13 @@ class TaxCenterRepository implements TaxCenterRepositoryInterface
 
     public function update(array $data,$id):TaxCenterResource
     {
-        $taxBase=$this->model->find($id);
-        $taxBase->update($taxBase);
-        return new TaxCenterResource($taxBase);
+        $taxCenter=$this->model->find($id);
+        $taxCenter->update($taxCenter);
+        return new TaxCenterResource($taxCenter);
     }
     public function destroy($id)
     {
-        $taxBase = $this->model->find($id);
-        return $taxBase->delete();
+        $taxCenter = $this->model->find($id);
+        return $taxCenter->delete();
     }
 }

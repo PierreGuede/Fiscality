@@ -8,12 +8,36 @@ use App\Fiscality\Companies\Company;
 class WorkInEnterprise extends Controller
 {
 
-    public function index()
+    public function index($id)
     {
-        //
+        $company=Company::find($id);
+        return view('admin.adminWork.typeName',compact('company'));
     }
 
+    public function actions($id)
+    {
+        $company=Company::find($id);
+        return view('admin.adminWork.choseAction',compact('company'));
+    }
+    public function accountResult($id){
+        $company=Company::find($id);
+        return view('admin.adminWork.accountResult',compact('company'));
+    }
+    public function impotcalcul($id){
+        $company=Company::find($id);
+        return view('admin.adminWork.impotcalcul',compact('company'));
+    }
+    public function access(Request $request,$id)
+    {
+        $company=Company::find($id);
+        if ($request['name'] == $company->name ) {
+            return redirect()->route('work.actions',$id);
+        }
+        else{
 
+        }
+
+    }
     public function create()
     {
         //

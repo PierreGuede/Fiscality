@@ -29,9 +29,7 @@ class TypeCompanyController extends Controller
 
     public function find($id)
     {
-        return response()->json([
-            'typeCompany'=>$this->typeCompanyRepositoryInterface->find($id)
-        ]);
+        return $this->typeCompanyRepositoryInterface->find($id);
     }
     public function update(UpdateTypeCompanyRequest $request,$id)
     {

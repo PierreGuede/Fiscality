@@ -28,9 +28,7 @@ class PackController extends Controller
 
     public function find($id)
     {
-        return response()->json([
-            'pack'=>$this->packRepositoryInterface->find($id)
-        ]);
+        return $this->packRepositoryInterface->find($id);
     }
     public function update(UpdatePackRequest $request,$id)
     {

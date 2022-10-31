@@ -29,9 +29,7 @@ class TaxBaseController extends Controller
 
     public function find($id)
     {
-        return response()->json([
-            'taxBase'=>$this->taxBaseRepositoryInterface->find($id)
-        ]);
+        return $this->taxBaseRepositoryInterface->find($id);
     }
     public function update(UpdateTaxBaseRequest $request,$id)
     {

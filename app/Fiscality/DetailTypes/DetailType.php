@@ -13,6 +13,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 class DetailType extends Model
 {
     use HasFactory;
+
     protected $fillable = [
         'name',
         'code',
@@ -23,7 +24,13 @@ class DetailType extends Model
         'base_id',
         'type_impot_id',
     ];
-
+    // public $category ,$base ,$typeImpot;
+    // public function __construct(Category $category, Base $base, TypeImpot $typeImpot)
+    // {
+    //     $this->category=$category;
+    //     $this->base=$base;
+    //     $this->typeImpot=$typeImpot;
+    // }
 
 
     public function category():BelongsTo {

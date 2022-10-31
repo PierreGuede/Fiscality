@@ -15,7 +15,9 @@
 <div
     class="flex h-screen bg-gray-50"
     :class="{ 'overflow-hidden': isSideMenuOpen }"
-    x-data="{ 'showModal': false , 'showModalConfirm':false, 'WorkEspace': false }" @keydown.escape="showModal = false"
+    x-data="{ 'showModal': false , {{-- 'showModalConfirm':false, --}} 'WorkEspace': false
+
+            }" @keydown.escape="showModal = false"
 >
     <!-- Desktop sidebar -->
     @include('layouts.navigation')

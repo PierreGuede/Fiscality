@@ -34,7 +34,7 @@
                         <th  scope="row"  class="flex space-x-4 px-6 py-4 font-medium text-gray-900 dark:text-white whitespace-nowrap">
                             <a href="{{ route('base.edit',$base->id) }}" class="text-blue-800">Editer</a>
                             <p class="text-red-800 cursor-pointer" @click="showModalConfirm = true">Supprimer</p>
-                            <section class="flex flex-wrap p-4 h-full items-center">
+{{--                             <section class="flex flex-wrap p-4 h-full items-center">
                                 <div class="overflow-auto" style="background-color: rgba(0,0,0,0.5)" x-show="showModalConfirm" :class="{ 'absolute inset-0 z-10 flex items-center justify-center': showModalConfirm }">
                                     <div class="bg-white w-11/12 md:max-w-md mx-auto rounded shadow-lg py-4 text-left px-6" x-show="showModalConfirm" @click.away="showModalConfirm = false" >
                                         <div class=" pb-3">
@@ -58,8 +58,9 @@
                                     </div>
                                 </div>
                             </section>
-                        </th>
+ --}}                        </th>
                     </tr>
+
                 @endforeach
             </tbody>
         </table>

@@ -16,30 +16,30 @@ class IncomeExpenseRepository implements IncomeExpenseRepositoryInterface
     }
     public function index()
     {
-        $imCalculationDetail=IncomeExpenseResource::collection($this->model->all());
+        $incomeExpense=IncomeExpenseResource::collection($this->model->all());
         return response()->json([
-            'imCalculationDetail'=>$imCalculationDetail
+            'incomeExpense'=>$incomeExpense
         ]);
     }
 
     public function store(array $data):IncomeExpense
     {
         try {
-            $imCalculationDetail=$this->model->create($data);
-            return $imCalculationDetail;
+            $incomeExpense=$this->model->create($data);
+            return $incomeExpense;
            } catch (\Throwable $th) {
             throw $th;
            }
-        return $imCalculationDetail;
+        return $incomeExpense;
     }
 
 
     public function find(int $id)
     {
         try {
-            $imCalculationDetail= new IncomeExpenseResource($this->model->findOrFail($id));
+            $incomeExpense= new IncomeExpenseResource($this->model->findOrFail($id));
             return response()->json([
-                'imCalculationDetail'=>$imCalculationDetail
+                'incomeExpense'=>$incomeExpense
             ]);
         } catch (\Throwable $th) {
             throw $th;
@@ -48,14 +48,14 @@ class IncomeExpenseRepository implements IncomeExpenseRepositoryInterface
 
     public function update(array $data,$id):IncomeExpenseResource
     {
-        $imCalculationDetail=$this->model->find($id);
-        $imCalculationDetail->update($imCalculationDetail);
-        return new IncomeExpenseResource($imCalculationDetail);
+        $incomeExpense=$this->model->find($id);
+        $incomeExpense->update($incomeExpense);
+        return new IncomeExpenseResource($incomeExpense);
     }
     public function destroy($id)
     {
-        $imCalculationDetail = $this->model->find($id);
-        return $imCalculationDetail->delete();
+        $incomeExpense = $this->model->find($id);
+        return $incomeExpense->delete();
         // return redirect()->back();
     }
 }

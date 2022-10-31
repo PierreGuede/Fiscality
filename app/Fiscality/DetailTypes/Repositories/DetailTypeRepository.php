@@ -25,17 +25,6 @@ class DetailTypeRepository implements DetailTypeRepositoryInterface
     public function store(array $data):DetailType
     {
 
-        /*
-            'name'=>$data['name'],
-            'code'=>$standarcode,
-            'taux'=>$data['taux'],
-            'description'=>$data['description'],
-            'article'=>$data['article'],
-            'category_id'=>$data['category_id'],
-            'base_id'=>$data['base_id'],
-            'type_impot_id'=>$data['type_impot_id'],
-        */
-        // return redirect()->route('category.index');
         try {
             $detailType=$this->model->create($data);
             return $detailType;

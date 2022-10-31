@@ -28,9 +28,7 @@ class IMItemController extends Controller
 
     public function find($id)
     {
-        return response()->json([
-            'imItem'=>$this->imItemRepositoryInterface->find($id)
-        ]);
+        return $this->imItemRepositoryInterface->find($id);
     }
     public function update(UpdateIMItemRequest $request,$id)
     {

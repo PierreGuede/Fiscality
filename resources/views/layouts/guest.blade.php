@@ -14,11 +14,7 @@
 </head>
 <body x-data="{ 'showModal': false, 'starting':true, 'buttonok':false, 'showSubCat':false}" @keydown.escape="showModal = false" x-cloak>
 
-    <div class="flex items-center min-h-screen p-6 bg-gray-50">
-        <div class="w-full flex h-full mx-auto overflow-hidden bg-white rounded-lg shadow-xl">
             {{ $slot }}
-        </div>
-    </div>
 
 
     @livewireScripts

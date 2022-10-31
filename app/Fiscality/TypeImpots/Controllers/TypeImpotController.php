@@ -22,14 +22,18 @@ class TypeImpotController extends Controller
 
     public function store(CreateTypeImpotRequest $request)
     {
-        $this->typeImpotRepositoryInterface->store($request->all());
-        return response()->json(["message"=> "success"]);
+        $typeImpot=$this->typeImpotRepositoryInterface->store($request->all());
+        return response()->json(["typeImpot"=> $typeImpot,"message"=>"Enregistrement bien effectué"]);
     }
 
+    public function find($id)
+    {
+        return $this->typeImpotRepositoryInterface->find($id);
+    }
     public function update(UpdateTypeImpotRequest $request,$id)
     {
-        $this->typeImpotRepositoryInterface->update($request->all(),$id);
-        return response()->json(["message"=> "success"]);
+        $typeImpot=$this->typeImpotRepositoryInterface->update($request->all(),$id);
+        return response()->json(['typeImpot'=>$typeImpot,"message"=> "Modifié avec succès"]);
     }
 
     public function destroy($id)
