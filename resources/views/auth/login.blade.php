@@ -54,7 +54,7 @@
 
                         <p class="text-sm text-gray-500">
                             Je n'ai pas de compte?
-                            <a href="{{ route('register ') }}"
+                            <a href="{{ route('register') }}"
                                 class="inline-block mt-4 text-sm font-medium text-center text-blue-600 hover:underline focus:outline-none focus:ring-2 focus:ring-blue-500">
                                 Créer un compte </a>
                         </p>
