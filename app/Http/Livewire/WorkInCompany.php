@@ -27,6 +27,7 @@ class WorkInCompany extends Component
     {
         $this->company = $company;
     }
+
     public function render()
     {
         $income=IncomeExpense::where('type','income')->get();
@@ -41,6 +42,7 @@ class WorkInCompany extends Component
             'im'=>$im
         ]);
     }
+
     public function increaseStep(){
         $this->resetErrorBag();
         $this->validateData();
@@ -51,6 +53,7 @@ class WorkInCompany extends Component
             }
         }
     }
+
     public function decreaseStep(){
         $this->resetErrorBag();
 
@@ -67,12 +70,15 @@ class WorkInCompany extends Component
             ]);
        }
     }
+
     public function sumIncome(){
         $this->incomeSum = array_sum($this->incomeList);
     }
+
     public function sumExpense(){
         $this->expenseSum = array_sum($this->expenseList);
     }
+
     public function saveAccountingResult($id){
         AccountingResult::create([
             'company_id'=>$id,
@@ -82,6 +88,7 @@ class WorkInCompany extends Component
         ]);
         $this->currentStep=2;
     }
+
     public function saveManualAccountingResult($id){
         AccountingResult::create([
             'company_id'=>$id,
@@ -91,25 +98,30 @@ class WorkInCompany extends Component
         ]);
         $this->currentStep=2;
     }
+
     public function returnBack(){
         $this->currentStep=2;
     }
     public function AccountResult(){
         $this->currentStep=3;
     }
+
     public function determinateAccount(){
         $this->currentStep=4;
         $this->calculIncome=1;
     }
+
     public function determinateManualAccount(){
         $this->currentStep=5;
     }
+
     public function increateIncome(){
         $this->calculIncome++;
         if ( $this->calculIncome > 3 ) {
             $this->calculIncome = 3;
         }
     }
+
     public function decreateIncome(){
         $this->calculIncome=1;
     }
@@ -118,9 +130,11 @@ class WorkInCompany extends Component
     public function impotcalcul(){
         $this->currentStep = 6;
     }
+
     public function sumItems(){
         $this->imsum = array_sum($this->imList);
     }
+
     public function GenerateItem($id,$totalProduct){
         IMCalcul::create([
             'company_id'=>$id,
@@ -130,6 +144,7 @@ class WorkInCompany extends Component
         $this->currentStep=2;
 
     }
+    
     public function company(){
 
     }
