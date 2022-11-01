@@ -1,46 +1,68 @@
 <x-guest-layout>
-    <div class="selection:bg-blue-500 selection:text-white">
-        <div class="min-h-screen bg-blue-50 flex justify-center items-center">
-          <div class="p-8 flex-1">
-            <div class="w-96 bg-white rounded-3xl mx-auto overflow-hidden shadow-xl">
-              <div class="relative h-48 bg-blue-500 rounded-bl-4xl">
-                <svg class="absolute bottom-0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
-                  <path fill="#ffffff" fill-opacity="1" d="M0,64L48,80C96,96,192,128,288,128C384,128,480,96,576,85.3C672,75,768,85,864,122.7C960,160,1056,224,1152,245.3C1248,267,1344,245,1392,234.7L1440,224L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path>
-                </svg>
-                <h2 class="text-center text-2xl font-semibold pt-10 text-blue-50"> TECIT</h2>
-              </div>
-              <div class="px-10 pt-4 pb-8 bg-white rounded-tr-4xl">
-                <h1 class="text-xl font-semibold text-gray-700">Bienvenue à nouveau !</h1>
-                <p class="text-sm text-gray-500" >Veuillez vous identifier pour continuer</p>
-                <form class="mt-12 space-y-6" action="" method="POST">
-                   <div class="relative">
-                    <input id="username" name="username" type="text" class="peer h-12 px-3 w-full border border-gray-300 rounded-sm focus:ring-blue-500/40 focus:ring-4 text-gray-900 placeholder-transparent focus:outline-none focus:border-blue-600" placeholder="john@doe.com" />
-                    <label for="username" class="absolute left-3 px-2 -top-3.5 text-gray-600 text-sm bg-white transition-all peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-400 peer-placeholder-shown:top-3 peer-focus:-top-3.5 peer-focus:text-gray-600 peer-focus:text-sm">Identifiant</label>
-                  </div>
-                  <div class="relative">
-                    <input id="email" name="email" type="email" class="peer h-12 px-3 w-full border border-gray-300 rounded-sm focus:ring-blue-500/40 focus:ring-4 text-gray-900 placeholder-transparent focus:outline-none focus:border-blue-600" placeholder="john@doe.com" />
-                    <label for="email" class="absolute left-3 px-2 -top-3.5 text-gray-600 text-sm bg-white transition-all peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-400 peer-placeholder-shown:top-3 peer-focus:-top-3.5 peer-focus:text-gray-600 peer-focus:text-sm">Email</label>
-                  </div>
+    <main class="flex w-full h-screen text-gray-700 bg-white">
+        <div class="flex items-center justify-center w-3/5 h-full ">
+            <div class="w-4/6 mx-auto space-y-6 ">
+                <h2 class="text-4xl font-bold ">TECIT</h2>
+                <h6 class="text-lg font-medium ">Mettez un text plus important à ce niveau</h6>
+                <p class="">Lorem ipsum dolor sit amet consectetur adipisicing elit. Iure natus quibusdam quo
+                    commodi tenetur, labore hic est accusantium in eligendi sit reiciendis laudantium iste culpa
+                    laboriosam exercitationem? Consectetur, esse amet!</p>
 
-                  <div class="relative">
-                    <input id="password" name="password" type="password" class="peer h-12 px-3 w-full border border-gray-300 rounded-sm focus:ring-blue-500/40 focus:ring-4 text-gray-900 placeholder-transparent focus:outline-none focus:border-blue-600" placeholder="john@doe.com" />
-                    <label for="password" class="absolute left-3 px-2 -top-3.5 text-gray-600 text-sm bg-white transition-all peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-400 peer-placeholder-shown:top-3 peer-focus:-top-3.5 peer-focus:text-gray-600 peer-focus:text-sm">Mot de passe</label>
-                  </div>
-
-
-
-                    <button class="mt-20 px-4 py-3 rounded bg-blue-500 hover:bg-blue-400 text-white font-semibold text-center block w-full focus:outline-none focus:ring focus:ring-offset-2 focus:ring-blue-500 focus:ring-opacity-80 cursor-pointer" >Connectez-vous</button>
-                </form>
-                <p class="text-sm text-gray-500">
-                  Je n'ai pas de compte?
-                <a href="#" class="mt-4 inline-block text-sm text-center font-medium text-blue-600 hover:underline focus:outline-none focus:ring-2 focus:ring-blue-500"> Créer un compte </a>
-                </p>
-                <a href="#" class="mt-1 block text-sm text-center font-medium text-blue-600 hover:underline focus:outline-none focus:ring-2 focus:ring-blue-500"> Mot de passe oublié? </a>
-
-              </div>
+                <small class="block font-semibold text-gray-400">Mettez un text de salutation ici</small>
+                <button class="px-8 py-3 font-semibold text-blue-500 border-2 border-blue-500 rounded-md">
+                    En savoir plus
+                </button>
             </div>
-          </div>
-        </div>
-      </div>
 
+
+        </div>
+        <div class="flex items-center justify-center w-2/5 bg-blue-50/40 ">
+            <div class=" w-[90%] lg:w-[75%] xl:w-2/3 w">
+                <h6 class="mb-2 text-2xl font-semibold text-gray-700">Commencez</h6>
+                <p class="mb-10 text-sm text-gray-500">L'inscription ne prend qu'une minute</p>
+                <x-auth-validation-errors :errors="$errors" />
+
+                <form method="POST" action="{{ route('register') }}" class="space-y-6">
+                    @csrf
+                    <div class="flex gap-x-4 ">
+                        <div class="mt-4">
+                            <x-input label="Nom" type="text" id="name" name="name" class="block w-full"
+                                value="{{ old('name') }}" required autofocus />
+                        </div>
+                        <div class="mt-4">
+                            <x-input label="Prénom" type="text" id="firstname" name="firstname" class="block w-full"
+                                value="{{ old('firstname') }}" required autofocus />
+                        </div>
+                    </div>
+                    <div class="mt-4">
+                        <x-input label="Email" name="email" type="email" class="block w-full"
+                            value="{{ old('email') }}" />
+                    </div>
+
+                    <div class="mt-4">
+                        <x-input label="Mot de passe" type="password" name="password" class="block w-full" required />
+                    </div>
+
+                    <div class="mt-4">
+                        <x-input label="Confirmez votre mot de passe" type="password" id="password_confirmation"
+                            name="password_confirmation" class="block w-full" required />
+                    </div>
+
+
+                    <div class="mt-4">
+                        <x-button class="block w-full">
+                            {{ __('Créer un compte') }}
+                        </x-button>
+                    </div>
+                </form>
+
+                <p class="text-sm text-center text-gray-500">
+                    J'ai déjà un compte?
+                    <a href="{{ route('login') }}"
+                        class="inline-block mt-4 text-sm font-medium text-center text-blue-600 hover:underline focus:outline-none focus:ring-2 focus:ring-blue-500">
+                        Connectez-vous </a>
+                </p>
+            </div>
+        </div>
+    </main>
 </x-guest-layout>

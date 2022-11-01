@@ -1,3 +1,4 @@
-<button {{ $attributes->merge(['type' => 'submit', 'class' => 'px-4 py-2 text-sm font-medium leading-5 text-center text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-lg active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:ring']) }}>
+<button
+    {{ $attributes->merge(['type' => 'submit', 'class' => 'block w-full px-4 py-2.5 font-semibold text-center text-white bg-blue-500 rounded cursor-pointer hover:bg-blue-400 focus:outline-none focus:ring focus:ring-offset-2 focus:ring-blue-500 focus:ring-opacity-80']) }}>
     {{ $slot }}
 </button>
