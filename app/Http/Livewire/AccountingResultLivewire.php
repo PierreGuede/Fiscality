@@ -23,12 +23,12 @@ class AccountingResultLivewire extends Component
     public  $inputs;
 
     public function addIncomeInput()
-    {   
+    {
         $this->inputs->push(['account' => '', 'name' => '','amount' => '', 'type' => 'income']);
     }
 
     public function addExpenseInput()
-    {   
+    {
         $this->inputs->push(['account' => '', 'name' => '', 'amount' => '',  'type' => 'expense']);
     }
 
@@ -59,8 +59,6 @@ class AccountingResultLivewire extends Component
     public function mount($company)
     {
         $income=IncomeExpense::where('type','income')->get();
-
-        
         $this->currentStep=1;
         $this->company = $company;
         $this->fill([
@@ -86,12 +84,12 @@ class AccountingResultLivewire extends Component
     public function determinateManualAccount(){
         $this->currentStep=3;
     }
-    public function increaseStep(){        
+    public function increaseStep(){
         $this->currentStep++;
         if($this->currentStep > $this->totalSteps){
             $this->currentStep = $this->totalSteps;
         }
-        
+
     }
     public function decreaseStep(){
         $this->resetErrorBag();
@@ -104,7 +102,7 @@ class AccountingResultLivewire extends Component
 
     public function increateIncome(){
         $validated = $this->validate();
-        
+
         if($this->calculIncome == 1) {
             $this->income_data = $this->inputs;
         }
