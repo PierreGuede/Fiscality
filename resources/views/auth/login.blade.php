@@ -38,7 +38,7 @@
                             </div>
 
                             {{-- <div class="flex text-sm">
-                                <label class="flex items-center dark:text-gray-400">
+                                <label class="flex items-center   ">
                                     <input type="checkbox" name="remember"
                                         class="text-purple-600 form-checkbox focus:border-purple-400 focus:outline-none focus:shadow-outline-purple">
                                     <span class="ml-2">{{ __('Remember me') }}</span>

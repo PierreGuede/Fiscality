@@ -189,6 +189,11 @@ return [
 
         Spatie\Permission\PermissionServiceProvider::class,
 
+        /**
+         * Laravel debug bar
+         */
+        Barryvdh\Debugbar\ServiceProvider::class,
+
         /*
          * Application Service Providers...
          */
