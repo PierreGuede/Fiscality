@@ -2,9 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
+use Illuminate\Http\Request;
 
 class VerifyEmailController extends Controller
 {
@@ -17,6 +16,7 @@ class VerifyEmailController extends Controller
     public function __invoke(EmailVerificationRequest $request)
     {
         $request->fulfill();
-        return response()->json(["message" => "Votre adresse e-mail est vérifiée"]);
+
+        return response()->json(['message' => 'Votre adresse e-mail est vérifiée']);
     }
 }

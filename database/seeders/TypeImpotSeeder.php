@@ -2,10 +2,9 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Seeder;
 use App\Fiscality\TaxCenters\TaxCenter;
 use App\Fiscality\TypeImpots\TypeImpot;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use Illuminate\Database\Seeder;
 
 class TypeImpotSeeder extends Seeder
 {
@@ -17,38 +16,36 @@ class TypeImpotSeeder extends Seeder
     public function run()
     {
         TypeImpot::create([
-            'name'=>'IS',
-            'code'=>'is'
+            'name' => 'IS',
+            'code' => 'is',
         ]);
         TypeImpot::create([
-            'name'=>'IBA',
-            'code'=>'iba'
+            'name' => 'IBA',
+            'code' => 'iba',
         ]);
         TypeImpot::create([
-            'name'=>'IRCM sur charges non déductible',
-            'code'=>'ircm_sur_charges_non_deductible'
+            'name' => 'IRCM sur charges non déductible',
+            'code' => 'ircm_sur_charges_non_deductible',
         ]);
         TypeImpot::create([
-            'name'=>'IRCM sur résulats net comptable',
-            'code'=>'ircm_sur_resulats_net_comptable'
+            'name' => 'IRCM sur résulats net comptable',
+            'code' => 'ircm_sur_resulats_net_comptable',
         ]);
 
-
-
         TaxCenter::create([
-            'name'=>'Parakou',
-            'address'=>'9CF8+FRH Ecole, Rue 218, Cotonou',
-            'code'=>'parakou',
+            'name' => 'Parakou',
+            'address' => '9CF8+FRH Ecole, Rue 218, Cotonou',
+            'code' => 'parakou',
         ]);
         TaxCenter::create([
-            'name'=>'Lokossa',
-            'address'=>'9CF8+FRG Ecole, Rue 218, Cotonou',
-            'code'=>'lokossa',
+            'name' => 'Lokossa',
+            'address' => '9CF8+FRG Ecole, Rue 218, Cotonou',
+            'code' => 'lokossa',
         ]);
         TaxCenter::create([
-            'name'=>'Cotonou',
-            'address'=>'9CF8+FGH Ecole, Rue 218, Cotonou',
-            'code'=>'cotonou',
+            'name' => 'Cotonou',
+            'address' => '9CF8+FGH Ecole, Rue 218, Cotonou',
+            'code' => 'cotonou',
         ]);
     }
 }

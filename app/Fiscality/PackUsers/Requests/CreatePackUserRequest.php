@@ -24,8 +24,8 @@ class CreatePackUserRequest extends FormRequest
     public function rules()
     {
         return [
-            'max' => ['required', 'integer','unique:packs'],
-            'name' => ['required', 'string', 'max:255','unique::packs'],
+            'max' => ['required', 'integer', 'unique:packs'],
+            'name' => ['required', 'string', 'max:255', 'unique::packs'],
 
         ];
     }

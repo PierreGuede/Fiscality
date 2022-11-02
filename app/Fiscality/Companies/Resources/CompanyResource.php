@@ -15,20 +15,20 @@ class CompanyResource extends JsonResource
     public function toArray($request)
     {
         return [
-            'id'=>$this->id,
-            'name'=>$this->name,
-            'ifu'=>$this->ifu,
-            'path'=>$this->path,
-            'rccm'=>$this->rccm,
-            'path_rccm'=>$this->patch_rccm,
-            'created_date'=>$this->created_date,
-            'email'=>$this->email,
-            'celphone'=>$this->celphone,
-            'taxCenter'=>$this->taxCenter,
-            'typeCompany'=>$this->typeCompany,
-            'domain'=>$this->domain,
-            'user'=>$this->user,
-            'status'=>'En fonction' ?? $this->status=='approuved',
+            'id' => $this->id,
+            'name' => $this->name,
+            'ifu' => $this->ifu,
+            'path' => $this->path,
+            'rccm' => $this->rccm,
+            'path_rccm' => $this->patch_rccm,
+            'created_date' => $this->created_date,
+            'email' => $this->email,
+            'celphone' => $this->celphone,
+            'taxCenter' => $this->taxCenter,
+            'typeCompany' => $this->typeCompany,
+            'domain' => $this->domain,
+            'user' => $this->user,
+            'status' => 'En fonction' ?? $this->status == 'approuved',
         ];
     }
 }

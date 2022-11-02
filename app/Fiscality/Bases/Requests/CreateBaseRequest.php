@@ -24,11 +24,12 @@ class CreateBaseRequest extends FormRequest
     public function messages()
     {
         return [
-            'name.required'=>'Le nom est requis',
-            'name.string'=>'Le nom est dois etre un texte',
-            'name.max'=>'Le nom ne est trop long',
+            'name.required' => 'Le nom est requis',
+            'name.string' => 'Le nom est dois etre un texte',
+            'name.max' => 'Le nom ne est trop long',
         ];
     }
+
     /**
      * Get the validation rules that apply to the request.
      *
@@ -37,7 +38,7 @@ class CreateBaseRequest extends FormRequest
     public function rules()
     {
         return [
-            'name'=>['required','string','max:255']
+            'name' => ['required', 'string', 'max:255'],
         ];
     }
 }

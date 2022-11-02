@@ -24,7 +24,7 @@ class CreateTaxCenterRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => ['required', 'string', 'max:255','unique:tax_centers'],
+            'name' => ['required', 'string', 'max:255', 'unique:tax_centers'],
         ];
     }
 }

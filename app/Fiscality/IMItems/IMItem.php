@@ -6,13 +6,19 @@ use App\Fiscality\Bases\Base;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
+/**
+ * @mixin IdeHelperIMItem
+ */
 class IMItem extends Model
 {
     use HasFactory;
-    protected $fillable=[
+
+    protected $fillable = [
         'name',	'base_id',
     ];
-    public function bases(){
+
+    public function bases()
+    {
         return $this->belongsTo(Base::class);
     }
 }

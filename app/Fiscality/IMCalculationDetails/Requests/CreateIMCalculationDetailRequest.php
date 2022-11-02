@@ -24,7 +24,7 @@ class CreateIMCalculationDetailRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => ['required', 'string', 'max:255','unique:i_m_calculation_details'],
+            'name' => ['required', 'string', 'max:255', 'unique:i_m_calculation_details'],
         ];
     }
 }

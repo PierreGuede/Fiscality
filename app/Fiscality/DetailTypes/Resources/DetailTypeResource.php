@@ -15,15 +15,15 @@ class DetailTypeResource extends JsonResource
     public function toArray($request)
     {
         return [
-            'id'=>$this->id,
-            'name'=>$this->name,
-            'code'=>$this->code,
-            'category'=>$this->category,
-            'base'=>$this->base,
-            'typeImpot'=>$this->typeImpot,
-            'taux'=>$this->taux,
-            'description'=>$this->description,
-            'article'=>$this->article,
+            'id' => $this->id,
+            'name' => $this->name,
+            'code' => $this->code,
+            'category' => $this->category,
+            'base' => $this->base,
+            'typeImpot' => $this->typeImpot,
+            'taux' => $this->taux,
+            'description' => $this->description,
+            'article' => $this->article,
         ];
     }
 }

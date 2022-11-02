@@ -5,10 +5,14 @@ namespace App\Fiscality\AmortizationDetails;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
+/**
+ * @mixin IdeHelperAmortizationDetails
+ */
 class AmortizationDetails extends Model
 {
     use HasFactory;
-    protected $fillable=[
+
+    protected $fillable = [
         'name',
         'value',
         'plafond',
@@ -16,6 +20,6 @@ class AmortizationDetails extends Model
         'dotation',
         'deductible_amortization',
         'date',
-        'amortization_id'
+        'amortization_id',
     ];
 }

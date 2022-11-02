@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('name')->unique();
             $table->string('description')->nullable();
             $table->integer('max');
-            $table->enum('type',['cabinet','enterprise']);
+            $table->enum('type', ['cabinet', 'enterprise']);
             $table->timestamps();
         });
     }

@@ -2,8 +2,8 @@
 
 namespace App\Fiscality\Users\Requests;
 
-use Illuminate\Validation\Rules\Password;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rules\Password;
 
 class LoginRequest extends FormRequest
 {
@@ -25,10 +25,10 @@ class LoginRequest extends FormRequest
     public function rules()
     {
         return [
-            'username' => ['required','string','regex:/\w*$/','max:255'],
-            'email'=>'required|email',
-            'remember'=>'boolean',
-            'password'=> ['required', Password::min(6)],
+            'username' => ['required', 'string', 'regex:/\w*$/', 'max:255'],
+            'email' => 'required|email',
+            'remember' => 'boolean',
+            'password' => ['required', Password::min(6)],
         ];
     }
 }

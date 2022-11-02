@@ -1,10 +1,10 @@
 <?php
 
-use App\Fiscality\Companies\Company;
-use Illuminate\Support\Facades\Schema;
-use Illuminate\Database\Schema\Blueprint;
-use Illuminate\Database\Migrations\Migration;
 use App\Fiscality\AccountingResults\AccountingResult;
+use App\Fiscality\Companies\Company;
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
@@ -20,7 +20,7 @@ return new class extends Migration
             $table->string('account');
             $table->string('name');
             $table->float('amount');
-            $table->enum('type',['income','expense']);
+            $table->enum('type', ['income', 'expense']);
             $table->foreignIdFor(AccountingResult::class)->constrained();
             $table->foreignIdFor(Company::class)->constrained();
             $table->string('code')->unique();

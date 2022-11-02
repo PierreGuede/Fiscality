@@ -2,15 +2,14 @@
 
 namespace App\Http\Controllers\Auth;
 
-use App\Models\User;
-use Illuminate\Support\Str;
-use Illuminate\Http\Request;
-use Illuminate\Validation\Rules;
 use App\Http\Controllers\Controller;
+use App\Models\User;
+use Illuminate\Auth\Events\Registered;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Auth\Events\Registered;
-use App\Providers\RouteServiceProvider;
+use Illuminate\Support\Str;
+use Illuminate\Validation\Rules;
 
 class RegisteredUserController extends Controller
 {
@@ -40,7 +39,7 @@ class RegisteredUserController extends Controller
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
         ]);
-        $username=Str::slug($request['name'].$request['firstname'].rand(0,999));
+        $username = Str::slug($request['name'].$request['firstname'].rand(0, 999));
         $user = User::create([
             'name' => $request->name,
             'firstname' => $request->firstname,
@@ -48,7 +47,7 @@ class RegisteredUserController extends Controller
             'email' => $request->email,
             'password' => Hash::make($request->password),
         ]);
-        $user->givePermissionTo('create','read','edit','delete');
+        $user->givePermissionTo('create', 'read', 'edit', 'delete');
 
         event(new Registered($user));
 

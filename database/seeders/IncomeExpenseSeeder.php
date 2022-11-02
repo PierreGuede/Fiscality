@@ -3,7 +3,6 @@
 namespace Database\Seeders;
 
 use App\Fiscality\IncomeExpenses\IncomeExpense;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
 class IncomeExpenseSeeder extends Seeder
@@ -16,44 +15,44 @@ class IncomeExpenseSeeder extends Seeder
     public function run()
     {
         IncomeExpense::create([
-            'account'=>'70',
-            'name'=>'Vente',
-            'type'=>'income',
+            'account' => '70',
+            'name' => 'Vente',
+            'type' => 'income',
         ]);
         IncomeExpense::create([
-            'account'=>'71',
-            'name'=>'Subvention d\'exploitation',
-            'type'=>'income',
+            'account' => '71',
+            'name' => 'Subvention d\'exploitation',
+            'type' => 'income',
         ]);
         IncomeExpense::create([
-            'account'=>'72',
-            'name'=>'Production immobilisée',
-            'type'=>'income',
+            'account' => '72',
+            'name' => 'Production immobilisée',
+            'type' => 'income',
         ]);
         IncomeExpense::create([
-            'account'=>'73',
-            'name'=>'Variation de stocks de biens et services produits',
-            'type'=>'income',
+            'account' => '73',
+            'name' => 'Variation de stocks de biens et services produits',
+            'type' => 'income',
         ]);
         IncomeExpense::create([
-            'account'=>'60',
-            'name'=>'Achat',
-            'type'=>'expense',
+            'account' => '60',
+            'name' => 'Achat',
+            'type' => 'expense',
         ]);
         IncomeExpense::create([
-            'account'=>'61',
-            'name'=>'Transport',
-            'type'=>'expense',
+            'account' => '61',
+            'name' => 'Transport',
+            'type' => 'expense',
         ]);
         IncomeExpense::create([
-            'account'=>'62',
-            'name'=>'Services extérieurs',
-            'type'=>'expense',
+            'account' => '62',
+            'name' => 'Services extérieurs',
+            'type' => 'expense',
         ]);
         IncomeExpense::create([
-            'account'=>'63',
-            'name'=>'Autres services extérieurs',
-            'type'=>'expense',
+            'account' => '63',
+            'name' => 'Autres services extérieurs',
+            'type' => 'expense',
         ]);
     }
 }

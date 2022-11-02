@@ -2,14 +2,17 @@
 
 namespace App\Fiscality\DetailTypes;
 
-use Illuminate\Support\Str;
 use App\Fiscality\Bases\Base;
 use App\Fiscality\Categories\Category;
 use App\Fiscality\TypeImpots\TypeImpot;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Support\Str;
 
+/**
+ * @mixin IdeHelperDetailType
+ */
 class DetailType extends Model
 {
     use HasFactory;
@@ -32,21 +35,26 @@ class DetailType extends Model
     //     $this->typeImpot=$typeImpot;
     // }
 
-
-    public function category():BelongsTo {
+    public function category(): BelongsTo
+    {
         return $this->belongsTo(Category::class);
     }
-    public function base():BelongsTo {
+
+    public function base(): BelongsTo
+    {
         return $this->belongsTo(Base::class);
     }
-    public function typeImpot(){
-        return $this->belongsTo(TypeImpot::class);;
+
+    public function typeImpot()
+    {
+        return $this->belongsTo(TypeImpot::class);
     }
 
-    protected static function boot(){
+    protected static function boot()
+    {
         parent::boot();
         static::creating(function ($model) {
-           $model->code= Str::slug(request()->type_impot_id.'_');
+            $model->code = Str::slug(request()->type_impot_id.'_');
         });
     }
 }

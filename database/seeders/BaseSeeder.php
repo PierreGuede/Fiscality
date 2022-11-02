@@ -3,7 +3,6 @@
 namespace Database\Seeders;
 
 use App\Fiscality\Bases\Base;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
 class BaseSeeder extends Seeder
@@ -16,16 +15,16 @@ class BaseSeeder extends Seeder
     public function run()
     {
         Base::create([
-            'name'=>'Benefice fiscal',
+            'name' => 'Benefice fiscal',
         ]);
         Base::create([
-            'name'=>'Produits encaissables',
+            'name' => 'Produits encaissables',
         ]);
         Base::create([
-            'name'=>'Volume',
+            'name' => 'Volume',
         ]);
         Base::create([
-            'name'=>'Benefice d\'affaire',
+            'name' => 'Benefice d\'affaire',
         ]);
     }
 }

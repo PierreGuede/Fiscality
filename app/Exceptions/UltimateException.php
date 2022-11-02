@@ -6,8 +6,7 @@ use Exception;
 
 class UltimateException extends Exception
 {
-
-    public function __construct(String $message,Int $code)
+    public function __construct(string $message, int $code)
     {
         $this->message = $message;
         $this->code = $code;
@@ -16,7 +15,8 @@ class UltimateException extends Exception
 
     public function render()
     {
-        $response = ['message'=> $this->message];
-        return response()->json($response,$this->code);
+        $response = ['message' => $this->message];
+
+        return response()->json($response, $this->code);
     }
 }

@@ -2,17 +2,18 @@
 
 namespace App\Fiscality\TypeImpots\Controllers;
 
-use App\Http\Controllers\Controller;
+use App\Fiscality\TypeImpots\Repositories\Interfaces\TypeImpotRepositoryInterface;
 use App\Fiscality\TypeImpots\Requests\CreateTypeImpotRequest;
 use App\Fiscality\TypeImpots\Requests\UpdateTypeImpotRequest;
-use App\Fiscality\TypeImpots\Repositories\Interfaces\TypeImpotRepositoryInterface;
+use App\Http\Controllers\Controller;
 
 class TypeImpotController extends Controller
 {
     public $typeImpotRepositoryInterface;
+
     public function __construct(TypeImpotRepositoryInterface $typeImpotRepositoryInterface)
     {
-        $this->typeImpotRepositoryInterface=$typeImpotRepositoryInterface;
+        $this->typeImpotRepositoryInterface = $typeImpotRepositoryInterface;
     }
 
     public function index()
@@ -22,23 +23,27 @@ class TypeImpotController extends Controller
 
     public function store(CreateTypeImpotRequest $request)
     {
-        $typeImpot=$this->typeImpotRepositoryInterface->store($request->all());
-        return response()->json(["typeImpot"=> $typeImpot,"message"=>"Enregistrement bien effectué"]);
+        $typeImpot = $this->typeImpotRepositoryInterface->store($request->all());
+
+        return response()->json(['typeImpot' => $typeImpot, 'message' => 'Enregistrement bien effectué']);
     }
 
     public function find($id)
     {
         return $this->typeImpotRepositoryInterface->find($id);
     }
-    public function update(UpdateTypeImpotRequest $request,$id)
+
+    public function update(UpdateTypeImpotRequest $request, $id)
     {
-        $typeImpot=$this->typeImpotRepositoryInterface->update($request->all(),$id);
-        return response()->json(['typeImpot'=>$typeImpot,"message"=> "Modifié avec succès"]);
+        $typeImpot = $this->typeImpotRepositoryInterface->update($request->all(), $id);
+
+        return response()->json(['typeImpot' => $typeImpot, 'message' => 'Modifié avec succès']);
     }
 
     public function destroy($id)
     {
         $this->typeImpotRepositoryInterface->destroy($id);
-        return response()->json(["message"=> "success"]);
+
+        return response()->json(['message' => 'success']);
     }
 }

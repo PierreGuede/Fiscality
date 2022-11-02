@@ -1,13 +1,13 @@
 <?php
 
-use App\Models\User;
-use App\Fiscality\Domains\Domain;
 use App\Fiscality\Companies\Company;
-use Illuminate\Support\Facades\Schema;
+use App\Fiscality\Domains\Domain;
 use App\Fiscality\TaxCenters\TaxCenter;
-use Illuminate\Database\Schema\Blueprint;
 use App\Fiscality\TypeCompanies\TypeCompany;
+use App\Models\User;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
@@ -35,7 +35,7 @@ return new class extends Migration
             $table->foreignIdFor(Company::class)->nullable()->constrained()->cascadeOnDelete();
             $table->boolean('is_active')->default(1);
             $table->boolean('is_confirmed')->default(0);
-            $table->enum('status',['approuved','rejected','pending'])->default('pending');
+            $table->enum('status', ['approuved', 'rejected', 'pending'])->default('pending');
             $table->timestamps();
         });
     }
