@@ -22,20 +22,20 @@ class RepositoryServiceProvider extends ServiceProvider
             "App\Fiscality\Users\Repositories\UserRepository"
         );
 
-       $this->app->bind(
-           "App\Fiscality\AccountingResults\Repositories\Interfaces\AccountingResultRepositoryInterface",
+        $this->app->bind(
+            "App\Fiscality\AccountingResults\Repositories\Interfaces\AccountingResultRepositoryInterface",
             "App\Fiscality\AccountingResults\Repositories\AccountingResultRepository"
         );
-       $this->app->bind(
-           "App\Fiscality\Bases\Repositories\Interfaces\BaseRepositoryInterface",
+        $this->app->bind(
+            "App\Fiscality\Bases\Repositories\Interfaces\BaseRepositoryInterface",
             "App\Fiscality\Bases\Repositories\BaseRepository"
         );
-       $this->app->bind(
-           "App\Fiscality\Categories\Repositories\Interfaces\CategoryRepositoryInterface",
+        $this->app->bind(
+            "App\Fiscality\Categories\Repositories\Interfaces\CategoryRepositoryInterface",
             "App\Fiscality\Categories\Repositories\CategoryRepository",
         );
-       $this->app->bind(
-           "App\Fiscality\Charges\Repositories\Interfaces\ChargeRepositoryInterface",
+        $this->app->bind(
+            "App\Fiscality\Charges\Repositories\Interfaces\ChargeRepositoryInterface",
             "App\Fiscality\Charges\Repositories\ChargeRepository",
         );
         $this->app->bind(
@@ -46,31 +46,31 @@ class RepositoryServiceProvider extends ServiceProvider
             "App\Fiscality\DetailTypes\Repositories\Interfaces\DetailTypeRepositoryInterface",
             "App\Fiscality\DetailTypes\Repositories\DetailTypeRepository",
         );
-       $this->app->bind(
-           "App\Fiscality\Domains\Repositories\Interfaces\DomainRepositoryInterface",
+        $this->app->bind(
+            "App\Fiscality\Domains\Repositories\Interfaces\DomainRepositoryInterface",
             "App\Fiscality\Domains\Repositories\DomainRepository",
         );
         $this->app->bind(
             "App\Fiscality\IMCalculationDetails\Repositories\Interfaces\IMCalculationDetailRepositoryInterface",
             "App\Fiscality\IMCalculationDetails\Repositories\IMCalculationDetailRepository",
         );
-       $this->app->bind(
-           "App\Fiscality\IMCalculations\Repositories\Interfaces\IMCalculationRepositoryInterface",
+        $this->app->bind(
+            "App\Fiscality\IMCalculations\Repositories\Interfaces\IMCalculationRepositoryInterface",
             "App\Fiscality\IMCalculations\Repositories\IMCalculationRepository",
         );
         $this->app->bind(
             "App\Fiscality\IMItems\Repositories\Interfaces\IMItemRepositoryInterface",
             "App\Fiscality\IMItems\Repositories\IMItemRepository",
         );
-       $this->app->bind(
-           "App\Fiscality\IncomeExpenses\Repositories\Interfaces\IncomeExpenseRepositoryInterface",
+        $this->app->bind(
+            "App\Fiscality\IncomeExpenses\Repositories\Interfaces\IncomeExpenseRepositoryInterface",
             "App\Fiscality\IncomeExpenses\Repositories\IncomeExpenseRepository",
         );
-       $this->app->bind(
+        $this->app->bind(
             "App\Fiscality\Packs\Repositories\Interfaces\PackRepositoryInterface",
             "App\Fiscality\Packs\Repositories\PackRepository"
         );
-       $this->app->bind(
+        $this->app->bind(
             "App\Fiscality\PackUsers\Repositories\Interfaces\PackUserRepositoryInterface",
             "App\Fiscality\PackUsers\Repositories\PackUserRepository"
         );
@@ -86,15 +86,15 @@ class RepositoryServiceProvider extends ServiceProvider
             "App\Fiscality\RADetails\Repositories\Interfaces\RADetailRepositoryInterface",
             "App\Fiscality\RADetails\Repositories\RADetailRepository"
         );
-       $this->app->bind(
+        $this->app->bind(
             "App\Fiscality\TaxBases\Repositories\Interfaces\TaxBaseRepositoryInterface",
             "App\Fiscality\TaxBases\Repositories\TaxBaseRepository"
         );
-       $this->app->bind(
+        $this->app->bind(
             "App\Fiscality\TaxCenters\Repositories\Interfaces\TaxCenterRepositoryInterface",
             "App\Fiscality\TaxCenters\Repositories\TaxCenterRepository"
         );
-       $this->app->bind(
+        $this->app->bind(
             "App\Fiscality\TypeCompanies\Repositories\Interfaces\TypeCompanyRepositoryInterface",
             "App\Fiscality\TypeCompanies\Repositories\TypeCompanyRepository"
         );
@@ -107,8 +107,5 @@ class RepositoryServiceProvider extends ServiceProvider
             "App\Fiscality\Amortizations\Repositories\AmortizationRepository"
         );
         // FOR IMCALCULS $this->app->bind();
-
-
     }
-
 }

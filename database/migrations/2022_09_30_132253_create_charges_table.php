@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('account');
             $table->string('name');
             $table->string('code');
-            $table->float('amount',12,3);
+            $table->float('amount', 12, 3);
             $table->softDeletes();
             $table->timestamps();
         });

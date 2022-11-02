@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
 class SendMailVerificationController extends Controller
@@ -16,6 +15,7 @@ class SendMailVerificationController extends Controller
     public function __invoke(Request $request)
     {
         $request->user()->sendEmailVerificationNotification();
-        return response()->json(["message" => "Le lien de vérification est envoyé"]);
+
+        return response()->json(['message' => 'Le lien de vérification est envoyé']);
     }
 }

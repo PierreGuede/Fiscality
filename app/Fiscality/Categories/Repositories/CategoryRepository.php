@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Fiscality\Categories\Repositories;
 
 use App\Fiscality\Categories\Category;
@@ -9,51 +10,64 @@ use Illuminate\Support\Str;
 
 class CategoryRepository implements CategoryRepositoryInterface
 {
-    public $model,$detailType,$str;
-    public function __construct(Category $model,DetailType $detailType, Str $str)
+    public $model;
+
+    public $detailType;
+
+    public $str;
+
+    public function __construct(Category $model, DetailType $detailType, Str $str)
     {
-        $this->model=$model;
-        $this->detailType=$detailType;
-        $this->str=$str;
+        $this->model = $model;
+        $this->detailType = $detailType;
+        $this->str = $str;
     }
+
     public function index()
     {
         try {
-            $category=  CategoryResource::collection($this->model->all());
+            $category = CategoryResource::collection($this->model->all());
+
             return response()->json([
-                'categories'=>$category
+                'categories' => $category,
             ]);
         } catch (\Throwable $th) {
             throw $th;
         }
     }
 
-    public function store(array $data):Category
+    public function store(array $data): Category
     {
-        $category=$this->model->create($data);
+        $category = $this->model->create($data);
+
         return $category;
     }
+
     public function find(int $id)
     {
         try {
-            $category= new CategoryResource($this->model->findOrFail($id));
+            $category = new CategoryResource($this->model->findOrFail($id));
+
             return response()->json([
-                'category'=>$category
+                'category' => $category,
             ]);
         } catch (\Throwable $th) {
             throw $th;
         }
     }
 
-    public function update(array $data,$id)
+    public function update(array $data, $id)
     {
-        $category=$this->model->find($id);
+        $category = $this->model->find($id);
         $category->update($data);
+
         return new CategoryResource($category);
     }
+
     public function destroy($id)
     {
         $category = $this->model->find($id);
+
         return $category->delete();
         // return redirect()->route('category.index');
     }

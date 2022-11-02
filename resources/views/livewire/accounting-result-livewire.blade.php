@@ -42,8 +42,8 @@
                                     <div>
                                         <div class="flex gap-x-4 ">
                                             <div class="w-12">
-                                                <x-input class="w-full" for="input_{{ $key }}_account"
-                                                    type="text" id="input_{{ $key }}_account" label='Compte'
+                                                <x-input :disabled="count($incomes) > $key" class="w-full" for="input_{{ $key }}_account"
+                                                    type="number" id="input_{{ $key }}_account" label=''
                                                     wire:model.defer="inputs.{{ $key }}.account"
                                                     placeholder="Compte" class="" required autofocus />
                                                 @error('inputs.' . $key . '.account')
@@ -56,14 +56,14 @@
                                                     type="text" id="input_{{ $key }}_name" label='Nom'
                                                     wire:model.defer="inputs.{{ $key }}.name" placeholder="Nom"
                                                     class="" required autofocus />
-                                                @error('inputs.' . $key . '.account')
+                                                @error('inputs.' . $key . '.name')
                                                     <span class="text-xs text-red-600">{{ $message }}</span>
                                                 @enderror
                                             </div>
 
                                             <div class="flex-1 w-full">
                                                 <x-input class="w-full" for="input_{{ $key }}_amount"
-                                                    type="text" id="input_{{ $key }}_amount" label='Compte'
+                                                    type="number" id="input_{{ $key }}_amount" label='Montant'
                                                     wire:model.defer="inputs.{{ $key }}.amount"
                                                     placeholder="Compte" class="" required autofocus />
                                                 @error('inputs.' . $key . '.amount')
@@ -108,7 +108,7 @@
                             </div>
                             <div class="mt-4 text-right">
                                 <button type="button" class="w-1/3 p-2 text-center text-white bg-green-500 rounded-md"
-                                    wire:click="increateIncome">Charges</button>
+                                    wire:click="nextStep">Charges</button>
                             </div>
                         </div>
                     @endif
@@ -118,25 +118,34 @@
                             @foreach ($inputs as $key => $input)
                                 <div>
                                     <div class="flex gap-x-4 ">
-
-
-                                        <div class="flex-1 w-full">
-                                            <x-input :disabled="count($expenses) > $key" for="input_{{ $key }}_name"
-                                                type="text" id="input_{{ $key }}_name" label='Nom'
-                                                wire:model.defer="inputs.{{ $key }}.name" placeholder="Nom"
-                                                class="" required autofocus />
+                                        <div class="w-12">
+                                            <x-input :disabled="count($expenses) > $key"
+                                                class="w-full" for="input_{{ $key }}_account"
+                                                 type="number" id="input_{{ $key }}_account" label=''
+                                                 wire:model.defer="inputs.{{ $key }}.account"
+                                                 placeholder="Compte" class="" required autofocus />
                                             @error('inputs.' . $key . '.account')
-                                                <span class="text-xs text-red-600">{{ $message }}</span>
+                                            <span class="text-xs text-red-600">{{ $message }}</span>
                                             @enderror
                                         </div>
 
                                         <div class="flex-1 w-full">
-                                            <x-input class="w-full" for="input_{{ $key }}_account"
-                                                type="text" id="input_{{ $key }}_account" label='Compte'
-                                                wire:model.defer="inputs.{{ $key }}.account"
-                                                placeholder="Compte" class="" required autofocus />
-                                            @error('inputs.' . $key . '.account')
-                                                <span class="text-xs text-red-600">{{ $message }}</span>
+                                            <x-input :disabled="count($expenses) > $key" for="input_{{ $key }}_name"
+                                                     type="text" id="input_{{ $key }}_name" label='Nom'
+                                                     wire:model.defer="inputs.{{ $key }}.name" placeholder="Nom"
+                                                     class="" required autofocus />
+                                            @error('inputs.' . $key . '.name')
+                                            <span class="text-xs text-red-600">{{ $message }}</span>
+                                            @enderror
+                                        </div>
+
+                                        <div class="flex-1 w-full">
+                                            <x-input class="w-full" for="input_{{ $key }}_amount"
+                                                     type="number" id="input_{{ $key }}_amount" label='Montant'
+                                                     wire:model.defer="inputs.{{ $key }}.amount"
+                                                     placeholder="Compte" class="" required autofocus />
+                                            @error('inputs.' . $key . '.amount')
+                                            <span class="text-xs text-red-600">{{ $message }}</span>
                                             @enderror
                                         </div>
 
@@ -171,10 +180,10 @@
                             <div class="mt-4 text-right">
                                 {{-- <button type="button"
                                     class="w-1/3 p-2 text-center text-white rounded-md bg-slated-500"
-                                    wire:click="decreateIncome">Produits</button> --}}
+                                    wire:click="stepBack">Produits</button> --}}
                                 <button type="button"
                                     class="w-1/3 p-2 text-center text-white bg-green-500 rounded-md"
-                                    wire:click="increateIncome">Finir</button>
+                                    wire:click="nextStep">Finir</button>
                             </div>
                         </div>
                     @endif
@@ -190,8 +199,9 @@
                     <table class="table ">
                         <thead>
                             <tr>
-                                <th>Nom</th>
                                 <th>Compte</th>
+                                <th>Nom</th>
+                                <th>Montant</th>
                             </tr>
 
                         </thead>
@@ -199,9 +209,9 @@
                         <tbody>
                             @foreach ($income_data as $value)
                                 <tr>
-                                    <td>{{ $value['name'] }}</td>
                                     <td>{{ $value['account'] }}</td>
-
+                                    <td>{{ $value['name'] }}</td>
+                                    <td>{{ $value['amount'] }}</td>
                                 </tr>
                             @endforeach
                         </tbody>
@@ -213,8 +223,9 @@
                     <table class="table ">
                         <thead>
                             <tr>
-                                <th>Nom</th>
                                 <th>Compte</th>
+                                <th>Nom</th>
+                                <th>Montant</th>
                             </tr>
 
                         </thead>
@@ -222,15 +233,15 @@
                         <tbody>
                             @foreach ($inputs as $value)
                                 <tr>
-                                    <td>{{ $value['name'] }}</td>
                                     <td>{{ $value['account'] }}</td>
-
+                                    <td>{{ $value['name'] }}</td>
+                                    <td>{{ $value['amount'] }}</td>
                                 </tr>
                             @endforeach
                         </tbody>
                     </table>
 
-                    <button wire:click='store'>Enregistrer</button>
+                    <button type="button" wire:click='store'>Enregistrer</button>
                 </section>
             @endif
         @endif

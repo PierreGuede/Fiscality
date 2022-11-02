@@ -15,11 +15,11 @@ class DomainResource extends JsonResource
     public function toArray($request)
     {
         return [
-            'id'=>$this->id,
-            'name'=>$this->name,
-            'code'=>$this->code,
-            'company'=>$this->company,
-            'principalActivity'=>$this->principalActivity,
+            'id' => $this->id,
+            'name' => $this->name,
+            'code' => $this->code,
+            'company' => $this->company,
+            'principalActivity' => $this->principalActivity,
         ];
     }
 }

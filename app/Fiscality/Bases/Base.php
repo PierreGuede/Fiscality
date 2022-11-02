@@ -8,16 +8,24 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
+/**
+ * @mixin IdeHelperBase
+ */
 class Base extends Model
 {
     use HasFactory;
-    protected $fillable=[
-        'name'
+
+    protected $fillable = [
+        'name',
     ];
-    public function detailType():HasMany{
+
+    public function detailType(): HasMany
+    {
         return $this->hasMany(DetailType::class);
     }
-    public function itemsIM():HasMany{
+
+    public function itemsIM(): HasMany
+    {
         return $this->hasMany(IMItem::class);
     }
 }

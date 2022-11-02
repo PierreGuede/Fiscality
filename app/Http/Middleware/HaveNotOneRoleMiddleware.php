@@ -16,9 +16,9 @@ class HaveNotOneRoleMiddleware
      */
     public function handle(Request $request, Closure $next)
     {
-        $user=request()->user();
+        $user = request()->user();
         if ($user->hasAnyRole(['cabinet', 'enterprise'])) {
-            abort(403,'Vous avez deja un role et une entreprise');
+            abort(403, 'Vous avez deja un role et une entreprise');
         } else {
             return $next($request);
         }

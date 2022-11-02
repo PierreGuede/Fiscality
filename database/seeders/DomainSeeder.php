@@ -2,10 +2,9 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Seeder;
 use App\Fiscality\Domains\Domain;
 use App\Fiscality\PrincipalActivities\PrincipalActivity;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use Illuminate\Database\Seeder;
 
 class DomainSeeder extends Seeder
 {
@@ -17,86 +16,85 @@ class DomainSeeder extends Seeder
     public function run()
     {
         Domain::create([
-            'name'=>'Technologie',
-            'code'=>'Technologie'
+            'name' => 'Technologie',
+            'code' => 'Technologie',
         ]);
         Domain::create([
-            'name'=>'Banque et assurance',
-            'code'=>'Banque_et_assurance'
+            'name' => 'Banque et assurance',
+            'code' => 'Banque_et_assurance',
         ]);
         Domain::create([
-            'name'=>'BTP et Matériaux de construction',
-            'code'=>'BTP_et_Matériaux_de_construction'
+            'name' => 'BTP et Matériaux de construction',
+            'code' => 'BTP_et_Matériaux_de_construction',
         ]);
         Domain::create([
-            'name'=>'Chimie et para-Chimie',
-            'code'=>'Chimie_et_para-Chimie'
+            'name' => 'Chimie et para-Chimie',
+            'code' => 'Chimie_et_para-Chimie',
         ]);
         Domain::create([
-            'name'=>'Niveaux',
-            'code'=>'Niveaux'
+            'name' => 'Niveaux',
+            'code' => 'Niveaux',
         ]);
 
         PrincipalActivity::create([
-            'name'=>'Type d\'activité 1',
-            'domain_id'=>1
+            'name' => 'Type d\'activité 1',
+            'domain_id' => 1,
         ]);
         PrincipalActivity::create([
-            'name'=>'Type d\'activité 2',
-            'domain_id'=>1
+            'name' => 'Type d\'activité 2',
+            'domain_id' => 1,
         ]);
         PrincipalActivity::create([
-            'name'=>'Type d\'activité 3',
-            'domain_id'=>1
+            'name' => 'Type d\'activité 3',
+            'domain_id' => 1,
         ]);
         PrincipalActivity::create([
-            'name'=>'Type d\'activité 4',
-            'domain_id'=>2
+            'name' => 'Type d\'activité 4',
+            'domain_id' => 2,
         ]);
         PrincipalActivity::create([
-            'name'=>'Type d\'activité 5',
-            'domain_id'=>2
+            'name' => 'Type d\'activité 5',
+            'domain_id' => 2,
         ]);
         PrincipalActivity::create([
-            'name'=>'Type d\'activité 6',
-            'domain_id'=>2
+            'name' => 'Type d\'activité 6',
+            'domain_id' => 2,
         ]);
         PrincipalActivity::create([
-            'name'=>'Type d\'activité 7',
-            'domain_id'=>3
+            'name' => 'Type d\'activité 7',
+            'domain_id' => 3,
         ]);
         PrincipalActivity::create([
-            'name'=>'Type d\'activité 8',
-            'domain_id'=>3
+            'name' => 'Type d\'activité 8',
+            'domain_id' => 3,
         ]);
         PrincipalActivity::create([
-            'name'=>'Type d\'activité 9',
-            'domain_id'=>3
+            'name' => 'Type d\'activité 9',
+            'domain_id' => 3,
         ]);
         PrincipalActivity::create([
-            'name'=>'Type d\'activité 10',
-            'domain_id'=>4
+            'name' => 'Type d\'activité 10',
+            'domain_id' => 4,
         ]);
         PrincipalActivity::create([
-            'name'=>'Type d\'activité 11',
-            'domain_id'=>4
+            'name' => 'Type d\'activité 11',
+            'domain_id' => 4,
         ]);
         PrincipalActivity::create([
-            'name'=>'Type d\'activité 12',
-            'domain_id'=>4
+            'name' => 'Type d\'activité 12',
+            'domain_id' => 4,
         ]);
         PrincipalActivity::create([
-            'name'=>'Type d\'activité 13',
-            'domain_id'=>5
+            'name' => 'Type d\'activité 13',
+            'domain_id' => 5,
         ]);
         PrincipalActivity::create([
-            'name'=>'Type d\'activité 14',
-            'domain_id'=>5
+            'name' => 'Type d\'activité 14',
+            'domain_id' => 5,
         ]);
         PrincipalActivity::create([
-            'name'=>'Type d\'activité 15',
-            'domain_id'=>5
+            'name' => 'Type d\'activité 15',
+            'domain_id' => 5,
         ]);
-
     }
 }

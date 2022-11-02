@@ -1,6 +1,7 @@
-<x-guest-layout>
-    <div class="bg-slate-800 w-10/12 mx-auto p-4">
-
+<x-company-layout>
+    <div class="w-full flex justify-center ">
+        @livewire('company.card-detail')
     </div>
 
-</x-guest-layout>
+
+</x-company-layout>

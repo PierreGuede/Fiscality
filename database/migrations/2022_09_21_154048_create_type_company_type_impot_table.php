@@ -1,10 +1,10 @@
 <?php
 
-use Illuminate\Support\Facades\Schema;
-use App\Fiscality\TypeImpots\TypeImpot;
-use Illuminate\Database\Schema\Blueprint;
 use App\Fiscality\TypeCompanies\TypeCompany;
+use App\Fiscality\TypeImpots\TypeImpot;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {

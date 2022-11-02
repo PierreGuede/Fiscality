@@ -25,11 +25,11 @@ class CreateAccountingResultRequest extends FormRequest
     {
         return [
             // 'name' => ['required', 'string', 'max:255','unique:type_impots'],
-            'name'=>[
-                'required'=>"Vous devez renseigner le nom",
-                'string'=>"Ce champ doit contenir une phrase ou un texte",
-                'max:255'=>"le nom est trop long"
-            ]
+            'name' => [
+                'required' => 'Vous devez renseigner le nom',
+                'string' => 'Ce champ doit contenir une phrase ou un texte',
+                'max:255' => 'le nom est trop long',
+            ],
         ];
     }
 }

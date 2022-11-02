@@ -3,7 +3,6 @@
 namespace Database\Seeders;
 
 use App\Fiscality\IMItems\IMItem;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
 class IMItemsSeeder extends Seeder
@@ -16,24 +15,24 @@ class IMItemsSeeder extends Seeder
     public function run()
     {
         IMItem::create([
-            'name'=>'Impot 1',
-            'base_id'=>2,
+            'name' => 'Impot 1',
+            'base_id' => 2,
         ]);
         IMItem::create([
-            'name'=>'Impot 2',
-            'base_id'=>2,
+            'name' => 'Impot 2',
+            'base_id' => 2,
         ]);
         IMItem::create([
-            'name'=>'Impot 3',
-            'base_id'=>2,
+            'name' => 'Impot 3',
+            'base_id' => 2,
         ]);
         IMItem::create([
-            'name'=>'Impot 4',
-            'base_id'=>2,
+            'name' => 'Impot 4',
+            'base_id' => 2,
         ]);
         IMItem::create([
-            'name'=>'Impot 5',
-            'base_id'=>2,
+            'name' => 'Impot 5',
+            'base_id' => 2,
         ]);
     }
 }

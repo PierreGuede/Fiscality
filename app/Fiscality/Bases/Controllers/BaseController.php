@@ -10,6 +10,7 @@ use App\Http\Controllers\Controller;
 class BaseController extends Controller
 {
     public $baseRepositoryInterface;
+
     public function __construct(BaseRepositoryInterface $baseRepositoryInterface)
     {
         $this->baseRepositoryInterface = $baseRepositoryInterface;
@@ -22,25 +23,29 @@ class BaseController extends Controller
 
     public function store(CreateBaseRequest $request)
     {
-        $base=$this->baseRepositoryInterface->store($request->all());
-        return response()->json(["base"=> $base,"message"=>"Enregistrement bien effectué"]);
+        $base = $this->baseRepositoryInterface->store($request->all());
+
+        return response()->json(['base' => $base, 'message' => 'Enregistrement bien effectué']);
     }
 
     public function find($id)
     {
         return response()->json([
-            'base'=>$this->baseRepositoryInterface->find($id)
+            'base' => $this->baseRepositoryInterface->find($id),
         ]);
     }
-    public function update(UpdateBaseRequest $request,$id)
+
+    public function update(UpdateBaseRequest $request, $id)
     {
-        $base=$this->baseRepositoryInterface->update($request->all(),$id);
-        return response()->json(['base'=>$base,"message"=> "Modifié avec succès"]);
+        $base = $this->baseRepositoryInterface->update($request->all(), $id);
+
+        return response()->json(['base' => $base, 'message' => 'Modifié avec succès']);
     }
 
     public function destroy($id)
     {
         $this->baseRepositoryInterface->destroy($id);
-        return response()->json(["message"=> "success"]);
+
+        return response()->json(['message' => 'success']);
     }
 }

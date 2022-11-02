@@ -2,23 +2,31 @@
 
 namespace App\Fiscality\Packs;
 
-use App\Models\User;
 use App\Fiscality\PackUsers\PackUser;
-use Illuminate\Database\Eloquent\Model;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
 
+/**
+ * @mixin IdeHelperPack
+ */
 class Pack extends Model
 {
     use HasFactory;
-    protected $fillable=[
+
+    protected $fillable = [
         'name',
         'description',
         'max',
     ];
-    public function user(){
-        return $this->hasManyThrough(User::class,PackUser::class);
+
+    public function user()
+    {
+        return $this->hasManyThrough(User::class, PackUser::class);
     }
-    public function theuser(){
+
+    public function theuser()
+    {
         return $this->hasMany(PackUser::class);
     }
 }

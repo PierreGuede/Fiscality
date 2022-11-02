@@ -2,8 +2,8 @@
 
 namespace App\Fiscality\IncomeExpenses\Requests;
 
-use Illuminate\Validation\Rule;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class UpdateIncomeExpenseRequest extends FormRequest
 {
@@ -25,7 +25,7 @@ class UpdateIncomeExpenseRequest extends FormRequest
     public function rules()
     {
         return [
-            'account' => ['sometimes','required', 'string', 'max:255', Rule::unique('income_expenses')->ignore($this->id)],
+            'account' => ['sometimes', 'required', 'string', 'max:255', Rule::unique('income_expenses')->ignore($this->id)],
         ];
     }
 }

@@ -2,9 +2,9 @@
 
 namespace App\Http\Middleware;
 
+use App\Fiscality\Companies\Company;
 use Closure;
 use Illuminate\Http\Request;
-use App\Fiscality\Companies\Company;
 
 class IfIsBloquedMiddleware
 {
@@ -17,8 +17,8 @@ class IfIsBloquedMiddleware
      */
     public function handle(Request $request, Closure $next)
     {
-        $user=request()->user();
-        $company=Company::whereNull('company_id')->where('user_id',$user->id)->first();
+        $user = request()->user();
+        $company = Company::whereNull('company_id')->where('user_id', $user->id)->first();
         /* if ($user->hasAnyRole(['cabinet', 'enterprise'])) {
             if ($company->is_active == 1) {
                return view('auth.bloqued');
@@ -29,11 +29,9 @@ class IfIsBloquedMiddleware
         } else {
             return $next($request);
         } */
-        if ( $user->hasAnyRole(['cabinet', 'enterprise']) && $company->status == "rejected"){
-
+        if ($user->hasAnyRole(['cabinet', 'enterprise']) && $company->status == 'rejected') {
             return view('auth.bloqued');
-        }
-        else{
+        } else {
             return $next($request);
         }
     }

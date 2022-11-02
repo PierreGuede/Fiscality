@@ -2,22 +2,30 @@
 
 namespace App\Fiscality\PackUsers;
 
-use App\Models\User;
 use App\Fiscality\Packs\Pack;
-use Illuminate\Database\Eloquent\Model;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
 
+/**
+ * @mixin IdeHelperPackUser
+ */
 class PackUser extends Model
 {
     use HasFactory;
+
     protected $fillable = [
         'pack_id',
-        'user_id'
+        'user_id',
     ];
-    public function user(){
+
+    public function user()
+    {
         return $this->belongsTo(User::class);
     }
-    public function packs(){
-        return $this->belongsTo(Pack::class,'pack_id');
+
+    public function packs()
+    {
+        return $this->belongsTo(Pack::class, 'pack_id');
     }
 }

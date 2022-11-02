@@ -13,16 +13,20 @@
         "laravel/tinker": "^2.7",
         "livewire/livewire": "^2.10",
         "mckenziearts/laravel-notify": "^2.3",
-        "spatie/laravel-permission": "^5.5"
+        "phpstan/phpstan": "^1.8",
+        "spatie/laravel-permission": "^5.5",
+        "wire-elements/modal": "^1.0"
     },
     "require-dev": {
         "barryvdh/laravel-debugbar": "^3.7",
+        "barryvdh/laravel-ide-helper": "^2.12",
         "fakerphp/faker": "^1.9.1",
-        "laravel/pint": "^1.0",
+        "laravel/pint": "^1.2",
         "laravel/sail": "^1.0.1",
         "laraveldaily/larastarters": "^2.0",
         "mockery/mockery": "^1.4.4",
         "nunomaduro/collision": "^6.1",
+        "nunomaduro/larastan": "^2.0",
         "phpunit/phpunit": "^9.5.10",
         "spatie/laravel-ignition": "^1.0"
     },

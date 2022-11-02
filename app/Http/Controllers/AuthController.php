@@ -2,15 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
+use App\Fiscality\Auth\Repositories\Interfaces\AuthRepositoryInterface;
 use App\Fiscality\Users\Requests\LoginRequest;
 use App\Fiscality\Users\Requests\RegisterRequest;
-use App\Fiscality\Auth\Repositories\Interfaces\AuthRepositoryInterface;
+use Illuminate\Http\Request;
 
 class AuthController extends Controller
 {
-
     private $authRepo;
 
     public function __construct(AuthRepositoryInterface $authRepo)
@@ -23,10 +21,11 @@ class AuthController extends Controller
      *
      * @param RegisterRequest request The request object.
      */
-    public function register(RegisterRequest $request){
-
+    public function register(RegisterRequest $request)
+    {
         $registerd = $this->authRepo->register();
-        return response()->json(["message" => "registered"]);
+
+        return response()->json(['message' => 'registered']);
     }
 
     /**
@@ -34,27 +33,30 @@ class AuthController extends Controller
      * the user and returns the user and the token
      *
      * @param Request request The request object.
-     *
      * @return The user and the token
      */
     public function login(LoginRequest $request)
     {
         $logged = $this->authRepo->login();
-        return response()->json( $logged);
-    }
 
-     /**
-     * It logs out the user.
-     */
-    public function me(){
-        $logged = $this->authRepo->me();
         return response()->json($logged);
     }
 
     /**
      * It logs out the user.
      */
-    public function logout(){
+    public function me()
+    {
+        $logged = $this->authRepo->me();
+
+        return response()->json($logged);
+    }
+
+    /**
+     * It logs out the user.
+     */
+    public function logout()
+    {
         auth()->logout();
     }
 }

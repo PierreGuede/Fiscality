@@ -3,19 +3,20 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
-use Illuminate\Support\Str;
-use App\Fiscality\Packs\Pack;
-use Laravel\Sanctum\HasApiTokens;
-use Spatie\Permission\Models\Role;
 use App\Fiscality\Companies\Company;
 use App\Fiscality\PackUsers\PackUser;
-use Spatie\Permission\Traits\HasRoles;
-use Illuminate\Notifications\Notifiable;
 use App\Fiscality\ProfileUsers\ProfileUser;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Str;
+use Laravel\Sanctum\HasApiTokens;
+use Spatie\Permission\Traits\HasRoles;
 
+/**
+ * @mixin IdeHelperUser
+ */
 class User extends Authenticatable implements MustVerifyEmail
 {
     use HasApiTokens, HasFactory, Notifiable, HasRoles;
@@ -31,7 +32,7 @@ class User extends Authenticatable implements MustVerifyEmail
         'username',
         'email',
         'password',
-        'user_id'
+        'user_id',
     ];
 
     /**
@@ -53,23 +54,31 @@ class User extends Authenticatable implements MustVerifyEmail
         'email_verified_at' => 'datetime',
     ];
 
-    public function personnel(){
+    public function personnel()
+    {
         return $this->belongsToMany(Company::class);
     }
 
-    public function createdBy(){
+    public function createdBy()
+    {
         return $this->belongsTo(User::class);
     }
+
     /**
      * If the user is an enterprise, return the company. If the user is a cabinet, return the companies
      */
-    public function company(){
-            return $this->hasMany(Company::class);
-   }
-   public function profile(){
-    return $this->hasOne(ProfileUser::class);
+    public function company()
+    {
+        return $this->hasMany(Company::class);
     }
-    public function myPack(){
+
+   public function profile()
+   {
+       return $this->hasOne(ProfileUser::class);
+   }
+
+    public function myPack()
+    {
         return $this->hasOne(PackUser::class);
     }
 
@@ -80,12 +89,13 @@ class User extends Authenticatable implements MustVerifyEmail
             return $value->name;
         }
     }
-    protected static function boot(){
+
+    protected static function boot()
+    {
         parent::boot();
         static::creating(function ($model) {
-            $model->username= Str::slug(request()->name.request()->firstname.rand(0,999));
+            $model->username = Str::slug(request()->name.request()->firstname.rand(0, 999));
             $model->password = bcrypt($model->password);
         });
     }
 }
-

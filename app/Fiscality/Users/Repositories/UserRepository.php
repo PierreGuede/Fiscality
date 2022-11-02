@@ -1,18 +1,20 @@
 <?php
+
 namespace App\Fiscality\Users\Repositories;
 
+use App\Fiscality\Users\Repositories\Interfaces\UserRepositoryInterface;
 use App\Models\User;
 use Illuminate\Support\Facades\DB;
-use App\Exceptions\UltimateException;
-use App\Fiscality\Users\Repositories\Interfaces\UserRepositoryInterface;
 
 class UserRepository implements UserRepositoryInterface
 {
-    private $model, $typeRepo;
+    private $model;
+
+    private $typeRepo;
+
     public function __construct(
         User $user,
-        )
-    {
+        ) {
         $this->model = $user;
     }
 
@@ -40,6 +42,7 @@ class UserRepository implements UserRepositoryInterface
             DB::beginTransaction();
             $user = $this->model->create($data);
             DB::commit();
+
             return $user;
         } catch (\Throwable $th) {
             DB::rollBack();
@@ -47,20 +50,22 @@ class UserRepository implements UserRepositoryInterface
         }
     }
 
-    public function update(array $data, int $id):bool
+    public function update(array $data, int $id): bool
     {
         try {
             $user = $this->find($id);
+
             return $user->update($data);
         } catch (\Throwable $th) {
             throw $th;
         }
     }
 
-    public function delete(int $id):bool
+    public function delete(int $id): bool
     {
         try {
             $user = $this->find($id);
+
             return $user->delete();
         } catch (\Throwable $th) {
             throw $th;

@@ -1,60 +1,73 @@
 <?php
+
 namespace App\Fiscality\TaxCenters\Repositories;
 
-use Illuminate\Support\Str;
-use App\Fiscality\TaxCenters\TaxCenter;
-use App\Fiscality\TaxCenters\Resources\TaxCenterResource;
 use App\Fiscality\TaxCenters\Repositories\Interfaces\TaxCenterRepositoryInterface;
+use App\Fiscality\TaxCenters\Resources\TaxCenterResource;
+use App\Fiscality\TaxCenters\TaxCenter;
+use Illuminate\Support\Str;
 
 class TaxCenterRepository implements TaxCenterRepositoryInterface
 {
-    public $model,$str,$domain;
+    public $model;
+
+    public $str;
+
+    public $domain;
+
     public function __construct(TaxCenter $model, Str $str)
     {
-        $this->model=$model;
-        $this->str=$str;
+        $this->model = $model;
+        $this->str = $str;
     }
+
     public function index()
     {
-        $taxCenter=TaxCenterResource::collection($this->model->all());
+        $taxCenter = TaxCenterResource::collection($this->model->all());
+
         return response()->json([
-            'taxCenter'=>$taxCenter
+            'taxCenter' => $taxCenter,
         ]);
     }
 
-    public function store(array $data):TaxCenter
+    public function store(array $data): TaxCenter
     {
         try {
-            $taxCenter=$this->model->create($data);
+            $taxCenter = $this->model->create($data);
+
             return $taxCenter;
-           } catch (\Throwable $th) {
+        } catch (\Throwable $th) {
             throw $th;
-           }
+        }
+
         return $taxCenter;
     }
-
 
     public function find(int $id)
     {
         try {
-            $taxCenter= new TaxCenterResource($this->model->findOrFail($id));
+            $taxCenter = new TaxCenterResource($this->model->findOrFail($id));
+
             return response()->json([
-                'taxCenter'=>$taxCenter
+                'taxCenter' => $taxCenter,
             ]);
         } catch (\Throwable $th) {
             throw $th;
         }
     }
 
-    public function update(array $data,$id):TaxCenterResource
+    public function update(array $data, $id): TaxCenterResource
     {
-        $taxCenter=$this->model->find($id);
+        $taxCenter = $this->model->find($id);
         $taxCenter->update($taxCenter);
+
         return new TaxCenterResource($taxCenter);
     }
+
     public function destroy($id)
     {
         $taxCenter = $this->model->find($id);
+
         return $taxCenter->delete();
     }
 }

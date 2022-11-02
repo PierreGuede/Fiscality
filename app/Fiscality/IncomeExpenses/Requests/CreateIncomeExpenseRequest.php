@@ -24,8 +24,8 @@ class CreateIncomeExpenseRequest extends FormRequest
     public function rules()
     {
         return [
-            'account' => ['required', 'string', 'max:255','unique:income_expenses'],
-            'name' => ['required', 'string', 'max:255','unique:income_expenses'],
+            'account' => ['required', 'string', 'max:255', 'unique:income_expenses'],
+            'name' => ['required', 'string', 'max:255', 'unique:income_expenses'],
         ];
     }
 }

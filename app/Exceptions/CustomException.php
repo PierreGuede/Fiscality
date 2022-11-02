@@ -6,12 +6,10 @@ use Exception;
 
 class CustomException extends Exception
 {
-
-    public function __construct(String $message)
+    public function __construct(string $message)
     {
         $this->message = $message;
         parent::__construct();
-
     }
 
     public function error_message()

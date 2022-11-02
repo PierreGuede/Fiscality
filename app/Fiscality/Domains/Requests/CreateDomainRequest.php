@@ -24,7 +24,7 @@ class CreateDomainRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => ['required', 'string', 'max:255','unique:domains'],
+            'name' => ['required', 'string', 'max:255', 'unique:domains'],
         ];
     }
 }

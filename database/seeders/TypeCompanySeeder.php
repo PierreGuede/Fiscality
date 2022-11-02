@@ -2,9 +2,8 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Seeder;
 use App\Fiscality\TypeCompanies\TypeCompany;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use Illuminate\Database\Seeder;
 
 class TypeCompanySeeder extends Seeder
 {
@@ -16,20 +15,20 @@ class TypeCompanySeeder extends Seeder
     public function run()
     {
         TypeCompany::create([
-            'name'=>'Personne concernée',
-            'code'=>'313600'
+            'name' => 'Personne concernée',
+            'code' => '313600',
         ]);
         TypeCompany::create([
-            'name'=>'Personne morales',
-            'code'=>'813723'
+            'name' => 'Personne morales',
+            'code' => '813723',
         ]);
         TypeCompany::create([
-            'name'=>'Etablissement stable',
-            'code'=>'395617'
+            'name' => 'Etablissement stable',
+            'code' => '395617',
         ]);
         TypeCompany::create([
-            'name'=>'Personne physique',
-            'code'=>'504536'
+            'name' => 'Personne physique',
+            'code' => '504536',
         ]);
     }
 }

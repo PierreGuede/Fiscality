@@ -16,12 +16,11 @@ class HasOneRoleMiddleware
      */
     public function handle(Request $request, Closure $next)
     {
-        $user=request()->user();
-        if ($user->hasAnyRole(['Super-Admin','cabinet', 'enterprise'])) {
+        $user = request()->user();
+        if ($user->hasAnyRole(['Super-Admin', 'cabinet', 'enterprise'])) {
             return $next($request);
         } else {
             return redirect()->route('users.enterprise');
         }
-
     }
 }

@@ -25,11 +25,11 @@ class CreateCompanyRequest extends FormRequest
     {
         return [
             'name' => ['required', 'string', 'max:255'],
-            'rccm' => ['required', 'string', 'max:14','unique:companies'],
-            'path_rccm' => ['required', 'file','mimes:pdf','max:4000'],
+            'rccm' => ['required', 'string', 'max:14', 'unique:companies'],
+            'path_rccm' => ['required', 'file', 'mimes:pdf', 'max:4000'],
             'created_date' => ['required', 'string', 'max:255'],
-            'ifu' => ['required', 'integer', 'digits:12','unique:companies'],
-            'path' => ['required', 'file','mimes:pdf','max:4000'],
+            'ifu' => ['required', 'integer', 'digits:12', 'unique:companies'],
+            'path' => ['required', 'file', 'mimes:pdf', 'max:4000'],
             'email' => ['required', 'string', 'max:255'],
             'celphone' => ['required', 'string', 'max:255'],
             'centre' => ['required', 'string', 'max:255'],
