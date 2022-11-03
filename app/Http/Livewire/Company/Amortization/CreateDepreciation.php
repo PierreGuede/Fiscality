@@ -9,7 +9,7 @@ use App\Fiscality\Vehicles\Vehicle;
 use App\Http\Livewire\Company\CardDetail;
 use LivewireUI\Modal\ModalComponent;
 
-class CreateVehicle extends ModalComponent
+class CreateDepreciation extends ModalComponent
 {
     public Amortization $model;
 
@@ -34,7 +34,7 @@ class CreateVehicle extends ModalComponent
 
     public function render()
     {
-        return view('livewire.company.amortization.create-vehicle');
+        return view('livewire.company.amortization.create-depreciation');
     }
 
     public static function closeModalOnClickAway(): bool

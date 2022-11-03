@@ -1,13 +1,13 @@
 <?php
 
-namespace App\Http\Livewire\Company;
+namespace App\Http\Livewire\Company\Amortization;
 
 use App\Fiscality\Amortizations\Amortization;
 use App\Fiscality\Companies\Company;
 use App\Fiscality\Vehicles\Vehicle;
 use Livewire\Component;
 
-class CardDetail extends Component
+class VehicleCard extends Component
 {
     public Amortization $data ;
     public $counter = 0;
@@ -26,7 +26,7 @@ class CardDetail extends Component
     public function render()
     {
 
-        return view('livewire.company.card-detail');
+        return view('livewire.company.amortization.vehicle-card');
     }
 
     public function incrementCount() {

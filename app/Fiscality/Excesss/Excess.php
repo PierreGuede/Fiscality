@@ -5,10 +5,14 @@ namespace App\Fiscality\Excesss;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
+/**
+ * @mixin IdeHelperExcess
+ */
 class Excess extends Model
 {
     use HasFactory;
-    protected $fillable=[
+
+    protected $fillable = [
         'category_imo',
         'designation',
         'taux_use',
