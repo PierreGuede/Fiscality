@@ -9,13 +9,15 @@ use Livewire\Component;
 
 class ExcessCard extends Component
 {
-    public Amortization $data ;
+    public Amortization $data;
+
     public $counter = 0;
 
     public Company $company;
-    public $total_vehicle = 0;
-    protected $listeners = [ 'incrementCount' ];
 
+    public $total_vehicle = 0;
+
+    protected $listeners = ['incrementCount'];
 
     public function mount($company)
     {
@@ -25,15 +27,16 @@ class ExcessCard extends Component
 
     public function render()
     {
-
         return view('livewire.company.amortization.excess-card');
     }
 
-    public function incrementCount() {
+    public function incrementCount()
+    {
         $this->counter++;
     }
 
-    public function newExcess() {
+    public function newExcess()
+    {
         $this->total_vehicle = Excess::where('company_id', $this->company->id)->sum('deductible_amortization');
     }
 }

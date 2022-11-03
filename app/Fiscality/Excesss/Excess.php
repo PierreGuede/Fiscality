@@ -20,5 +20,7 @@ class Excess extends Model
         'ecart',
         'dotation',
         'deductible_amortization',
+        'amortization_id',
+        'company_id',
     ];
 }

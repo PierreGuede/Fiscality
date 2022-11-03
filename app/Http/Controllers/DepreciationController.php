@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Fiscality\Amortizations\Amortization;
+use App\Fiscality\Companies\Company;
 use App\Fiscality\Depreciations\Depreciation;
 use Illuminate\Http\Request;
 
@@ -16,6 +17,13 @@ class DepreciationController extends Controller
     {
         $this->model = $model;
         $this->amortisation = $amortisation;
+    }
+
+    public function index(Company $company)
+    {
+
+        $data = Depreciation::where('company_id', $company->id)->get();
+        return view('admin.amortization.depreciation-assets.index',compact('data'));
     }
 
     public function store(Request $data, $id)

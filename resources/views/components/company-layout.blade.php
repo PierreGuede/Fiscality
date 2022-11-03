@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html x-data="data" lang="en">
+<html x-data="globalData" lang="en">
 
 <head>
     <meta charset="utf-8">
@@ -12,6 +12,7 @@
     @livewireStyles
     <!-- Scripts -->
     <script src="{{ asset('js/init-alpine.js') }}"></script>
+    @notifyCss
 </head>
 
 <body class="selection:bg-blue-500 selection:text-white" x-data="{ 'showModal': false, 'starting': true, 'buttonok': false, 'showSubCat': false }" @keydown.escape="showModal = false"
@@ -19,7 +20,8 @@
 
 <div class="w-full bg-blue-50 min-h-screen">
     {{ $slot }}
-    <button wire:click="$emit('openModal', 'edit-user')">Edit User</button>
+    <x:notify-messages />
+    @notifyJs
 </div>
 
 

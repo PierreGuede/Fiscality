@@ -82,7 +82,7 @@ return [
     |
     */
 
-    'locale' => 'en',
+    'locale' => 'fr',
 
     /*
     |--------------------------------------------------------------------------
@@ -95,7 +95,7 @@ return [
     |
     */
 
-    'fallback_locale' => 'en',
+    'fallback_locale' => 'fr',
 
     /*
     |--------------------------------------------------------------------------
@@ -188,6 +188,11 @@ return [
          */
 
         Spatie\Permission\PermissionServiceProvider::class,
+
+        /*
+         * Toast notification
+         */
+        Mckenziearts\Notify\LaravelNotifyServiceProvider::class,
 
         /**
          * Laravel debug bar

@@ -2,11 +2,9 @@
 
 namespace App\Http\Livewire\Company\Amortization;
 
-use App\Fiscality\AmortizationDetails\AmortizationDetails;
 use App\Fiscality\Amortizations\Amortization;
 use App\Fiscality\Companies\Company;
 use App\Fiscality\Vehicles\Vehicle;
-use App\Http\Livewire\Company\CardDetail;
 use LivewireUI\Modal\ModalComponent;
 
 class CreateVehicle extends ModalComponent
@@ -17,8 +15,7 @@ class CreateVehicle extends ModalComponent
 
     public $company;
 
-
-    public  $data = [
+    public $data = [
         'name' => '',
         'value' => 0,
         'plafond' => 25000000,
@@ -30,7 +27,6 @@ class CreateVehicle extends ModalComponent
     {
         $this->company = $company;
     }
-
 
     public function render()
     {
@@ -47,7 +43,7 @@ class CreateVehicle extends ModalComponent
         $armortization = Amortization::create([]);
         try {
             $ecart = $this->data['value'] - $this->data['plafond'];
-            $deductibleAmortization = ((double)$this->data['dotation'] * (double)$ecart) / (double)$this->data['value'];
+            $deductibleAmortization = ((float) $this->data['dotation'] * (float) $ecart) / (float) $this->data['value'];
             Vehicle::create([
                 'name' => $this->data['name'],
                 'value' => $this->data['value'],
@@ -60,10 +56,12 @@ class CreateVehicle extends ModalComponent
                 'company_id' => $this->company->id,
             ]);
 
-            $this->emitTo( 'card-detail', 'incrementCount');
+            $this->emitTo('card-detail', 'incrementCount');
+            notify()->success('Test notification');
 
             $this->closeModal();
         } catch (\Throwable $th) {
+            notify()->error("Une erreur est survenue");
             throw $th;
         }
     }

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Fiscality\Amortizations\Amortization;
+use App\Fiscality\Companies\Company;
 use App\Fiscality\Vehicles\Vehicle;
 use Illuminate\Http\Request;
 
@@ -18,9 +19,17 @@ class VehicleController extends Controller
         $this->amortisation = $amortisation;
     }
 
+    public function index(Company $company)
+    {
+
+        $data = Vehicle::where('company_id', $company->id)->get();
+
+        return view('admin.amortization.vehicle-tourism.index',compact('data'));
+    }
+
     public function store(Request $data, $id)
     {
-            $amortization_id = $this->amortisation->find($data['amortization_id']);
+        $amortization_id = $this->amortisation->find($data['amortization_id']);
         try {
             $ecart = $data['value'] - $data['plafond'];
             $deductibleAmortization = ($data['dotation'] * $ecart) / $data['value'];

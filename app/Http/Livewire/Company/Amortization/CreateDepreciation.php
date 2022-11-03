@@ -2,11 +2,10 @@
 
 namespace App\Http\Livewire\Company\Amortization;
 
-use App\Fiscality\AmortizationDetails\AmortizationDetails;
 use App\Fiscality\Amortizations\Amortization;
 use App\Fiscality\Companies\Company;
+use App\Fiscality\Depreciations\Depreciation;
 use App\Fiscality\Vehicles\Vehicle;
-use App\Http\Livewire\Company\CardDetail;
 use LivewireUI\Modal\ModalComponent;
 
 class CreateDepreciation extends ModalComponent
@@ -17,20 +16,33 @@ class CreateDepreciation extends ModalComponent
 
     public $company;
 
+    public $data = [
+        'category_imo' => '',
+        'designation' => '',
+        'taux_use' => 0,
+        'taux_recommended' => 0,
+        'dotation' => 0,
+        //        'ecart' => 0,
+        //        'deductible_amortization' => 0,
+    ];
 
-    public  $data = [
-        'name' => '',
-        'value' => 0,
-        'plafond' => 25000000,
-        'dotation' => '',
-        'date' => '',
+    public $rules = [
+        'data.category_imo' => 'required|min:1',
+        'data.designation' => 'required|min:1',
+        'data.dotation' => 'required|numeric|min:1',
+    ];
+
+    public $messages = [
+        'data.category_imo.required' => 'champ obligatoire',
+        'data.designation.required' => 'champ obligatoire',
+        'data.dotation.required' => 'champ obligatoire',
+
     ];
 
     public function mount(Company $company)
     {
         $this->company = $company;
     }
-
 
     public function render()
     {
@@ -44,23 +56,19 @@ class CreateDepreciation extends ModalComponent
 
     public function save()
     {
+        $this->validate();
+        
         $armortization = Amortization::create([]);
         try {
-            $ecart = $this->data['value'] - $this->data['plafond'];
-            $deductibleAmortization = ((double)$this->data['dotation'] * (double)$ecart) / (double)$this->data['value'];
-            Vehicle::create([
-                'name' => $this->data['name'],
-                'value' => $this->data['value'],
-                'plafond' => $this->data['plafond'],
-                'ecart' => $ecart,
+            $amortisationDetails =  Depreciation::create([
+                'category_imo' => $this->data['category_imo'],
+                'designation' => $this->data['designation'],
                 'dotation' => $this->data['dotation'],
-                'deductible_amortization' => $deductibleAmortization,
-                'date' => $this->data['date'],
                 'amortization_id' => $armortization->id,
                 'company_id' => $this->company->id,
             ]);
 
-            $this->emitTo( 'card-detail', 'incrementCount');
+//            $this->emitTo( 'card-detail', 'incrementCount');
 
             $this->closeModal();
         } catch (\Throwable $th) {

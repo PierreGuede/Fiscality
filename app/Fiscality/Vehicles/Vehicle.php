@@ -14,7 +14,8 @@ class Vehicle extends Model
 {
     use HasFactory;
 
-    protected $table = "vehicless";
+    protected $table = 'vehicless';
+
     protected $fillable = [
         'name',
         'value',
@@ -24,7 +25,7 @@ class Vehicle extends Model
         'deductible_amortization',
         'date',
         'amortization_id',
-        'company_id'
+        'company_id',
     ];
 
     public function amortization(): BelongsTo

@@ -2,12 +2,10 @@
 
 namespace App\Http\Livewire\Company\Amortization;
 
-use App\Fiscality\AmortizationDetails\AmortizationDetails;
 use App\Fiscality\Amortizations\Amortization;
 use App\Fiscality\Companies\Company;
 use App\Fiscality\Excesss\Excess;
 use App\Fiscality\Vehicles\Vehicle;
-use App\Http\Livewire\Company\CardDetail;
 use LivewireUI\Modal\ModalComponent;
 
 class CreateExcess extends ModalComponent
@@ -18,32 +16,41 @@ class CreateExcess extends ModalComponent
 
     public $company;
 
-
-    public  $data = [
+    public $data = [
         'category_imo' => '',
         'designation' => '',
         'taux_use' => 0,
         'taux_recommended' => 0,
         'dotation' => 0,
-//        'ecart' => 0,
-//        'deductible_amortization' => 0,
+        //        'ecart' => 0,
+        //        'deductible_amortization' => 0,
     ];
 
-    public  $rules = [
-        'category_imo' => 'required|min:1',
-        'designation' => 'required|min:1',
-        'dotation' => 'required|min:',
-        'taux_use' => 'required|numeric',
-        'taux_recommended' => 'required|numeric',
+    public $rules = [
+        'data.category_imo' => 'required|min:1',
+        'data.designation' => 'required|min:1',
+        'data.dotation' => 'required|numeric|min:1',
+        'data.taux_use' => 'required|numeric|between:0.01,100',
+        'data.taux_recommended' => 'required|numeric|between:0.1,100',
     ];
 
+    public $messages = [
+        'data.category_imo.required' => 'champ obligatoire',
+        'data.designation.required' => 'champ obligatoire',
+        'data.dotation.required' => 'champ obligatoire',
+        'data.taux_use.required' => 'champ obligatoire',
+        'data.taux_use.numeric' => 'invalid',
+        'data.taux_use.between' => 'invalid',
+        'data.taux_recommended.required' => 'champ obligatoire',
+        'data.taux_recommended.numeric' => 'invalid',
+        'data.taux_recommended.between' => 'invalid',
 
+    ];
 
     public function mount(Company $company)
     {
         $this->company = $company;
     }
-
 
     public function render()
     {
@@ -57,28 +64,23 @@ class CreateExcess extends ModalComponent
 
     public function save()
     {
+        $this->validate();
+
         $armortization = Amortization::create([]);
-        try {
-            $ecart = (double)$this->data['taux_use'] - $this->data['taux_recommended'];
-            $deductibleAmortization = ((double)$this->data['dotation'] * (double)$ecart) / (double)$this->data['taux_use'];
-            $amortisationDetails = Excess::create([
-                'category_imo' => $this->data['category_imo'],
-                'designation' => $this->data['designation'],
-                'taux_use' => $this->data['taux_use'],
-                'taux_recommended' => $this->data['taux_recommended'],
-                'ecart' => $ecart,
-                'dotation' => $this->data['dotation'],
-                'deductible_amortization' => $deductibleAmortization,
-                'amortization_id' => $armortization->id,
-                'company_id' => $this->company->id,
-            ]);
+        $ecart = (float) $this->data['taux_use'] - (float) $this->data['taux_recommended'];
+        $deductibleAmortization = ((float) $this->data['dotation'] * (float) $ecart) / (float) $this->data['taux_use'];
+        Excess::create([
+            'category_imo' => $this->data['category_imo'],
+            'designation' => $this->data['designation'],
+            'taux_use' => $this->data['taux_use'],
+            'taux_recommended' => $this->data['taux_recommended'],
+            'ecart' => $ecart,
+            'dotation' => $this->data['dotation'],
+            'deductible_amortization' => $deductibleAmortization,
+            'amortization_id' => $armortization->id,
+            'company_id' => $this->company->id,
+        ]);
 
-
-//            $this->emitTo( 'card-detail', 'incrementCount');
-
-            $this->closeModal();
-        } catch (\Throwable $th) {
-            throw $th;
-        }
+        $this->closeModal();
     }
 }

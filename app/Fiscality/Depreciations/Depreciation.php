@@ -11,4 +11,12 @@ use Illuminate\Database\Eloquent\Model;
 class Depreciation extends Model
 {
     use HasFactory;
+
+    protected $fillable = [
+        'category_imo',
+        'designation',
+        'dotation',
+        'amortization_id',
+        'company_id'
+    ];
 }
