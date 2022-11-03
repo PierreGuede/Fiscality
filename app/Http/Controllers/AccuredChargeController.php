@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Fiscality\Companies\Company;
+use App\Models\AccuredChargeCompany;
 use App\Fiscality\AccuredCharges\AccuredCharge;
 
 class AccuredChargeController extends Controller
@@ -21,16 +22,32 @@ class AccuredChargeController extends Controller
     }
     public function provision($id){
         $company=Company::find($id);
-        return view('admin.adminWork.provision',[
-            'company'=>$company
-        ]);
+
+        $cahrgesCompany=AccuredChargeCompany::where('type','provision')->where('company_id',$company->id)->where('date',date('Y'))->first();
+        if($cahrgesCompany ==null){
+            return view('admin.adminWork.provision',[
+                'company'=>$company
+            ]);
+        }
+        else {
+            return redirect()->back()->withErrors(['msg' => 'Vous avez deja créé un cette année']);
+        }
+
     }
 
     public function expenseProvisioned($id){
         $company=Company::find($id);
-        return view('admin.adminWork.expenseProvisioned',[
-            'company'=>$company
-        ]);
+        $cahrgesCompany=AccuredChargeCompany::where('type','charges')->where('company_id',$company->id)->where('date',date('Y'))->first();
+        if($cahrgesCompany ==null){
+
+            return view('admin.adminWork.expenseProvisioned',[
+                'company'=>$company
+            ]);
+        }
+        else {
+            return redirect()->back()->withErrors(['msg' => 'Vous avez deja créé un cette année']);
+        }
+
     }
 
     public function store(Request $data,$id)

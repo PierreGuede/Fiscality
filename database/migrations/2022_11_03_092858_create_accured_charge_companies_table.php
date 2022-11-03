@@ -21,7 +21,7 @@ return new class extends Migration
             $table->string('type');
             $table->integer('amount');
             $table->foreignIdFor(Company::class)->nullable()->constrained();
-            $table->date('date');
+            $table->year('date');
             $table->timestamps();
         });
     }

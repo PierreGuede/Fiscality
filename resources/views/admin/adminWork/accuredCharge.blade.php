@@ -1,5 +1,8 @@
 <x-guest-layout>
     <div class="bg-slate-800 w-10/12 mx-auto p-4">
+        @if($errors->any())
+        <h4>{{$errors->first()}}</h4>
+        @endif
         <h1 class="text-xl">LES PROVISIONS ET CHARGES PROVISIONNEES {{ $company->name }}</h1>
         <div class="space-y-2">
             <div

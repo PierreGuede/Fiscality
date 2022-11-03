@@ -5,7 +5,7 @@
                 <div>
                     <div class="flex gap-x-4 ">
                         <div class="w-12">
-                            <x-input class="w-full" for="input_{{ $key }}_compte"
+                            <x-input :disabled="count($charges) > $key" class="w-full" for="input_{{ $key }}_compte"
                                 type="text" id="input_{{ $key }}_compte" label='Compte'
                                 wire:model.defer="inputs.{{ $key }}.compte"
                                 placeholder="Compte" class="" required autofocus />
@@ -19,7 +19,7 @@
                                 type="text" id="input_{{ $key }}_designation" label='Nom'
                                 wire:model.defer="inputs.{{ $key }}.designation" placeholder="Nom"
                                 class="" required autofocus />
-                            @error('inputs.' . $key . '.compte')
+                            @error('inputs.' . $key . '.designation')
                                 <span class="text-xs text-red-600">{{ $message }}</span>
                             @enderror
                         </div>
