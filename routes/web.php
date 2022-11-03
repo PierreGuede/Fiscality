@@ -45,6 +45,10 @@ Route::middleware('auth','hasOneRole')->group(function () {
     Route::get('work-in-enterprise/{id}/actions', [\App\Http\Controllers\WorkInEnterprise::class, 'actions'])->name('work.actions');
     Route::get('work-in-enterprise/{id}/accountResult', [\App\Http\Controllers\WorkInEnterprise::class, 'accountResult'])->name('work.accountResult');
     Route::get('work-in-enterprise/{id}/impotcalcul', [\App\Http\Controllers\WorkInEnterprise::class, 'impotcalcul'])->name('work.impotcalcul');
+    Route::get('work-in-enterprise/{id}/amortization', [\App\Http\Controllers\AmortizationController::class, 'index'])->name('work.amortization');
+    Route::get('work-in-enterprise/{id}/accured-charge', [\App\Http\Controllers\AccuredChargeController::class, 'index'])->name('work.accuredCharge');
+    Route::get('work-in-enterprise/{id}/accured-charge/provision', [\App\Http\Controllers\AccuredChargeController::class, 'provision'])->name('work.provision');
+    Route::get('work-in-enterprise/{id}/accured-charge/provisioned-expense', [\App\Http\Controllers\AccuredChargeController::class, 'expenseProvisioned'])->name('work.expenseProvisioned');
 
     });
     Route::get('users', [\App\Http\Controllers\UserController::class, 'index'])->name('users.index');

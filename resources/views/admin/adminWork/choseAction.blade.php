@@ -13,10 +13,10 @@
                         <p class="p-2 "> Faire mon Resultat Fiscal </p>
                     </div>
                     <div class="cursor-pointer text-center p-2 bg-slated-500 rounded-md hover:ring-4 hover:border-slated-500 hover:ring-slated-500/50 ring-offset-1 transition duration-200">
-                        <p class="p-2 "> Calculer mes amortissements </p>
+                        <a href="{{ route('work.amortization',$company->id) }}" class="p-2 "> Calculer mes amortissements </a>
                     </div>
                     <div class="cursor-pointer text-center p-2 bg-slated-500 rounded-md hover:ring-4 hover:border-slated-500 hover:ring-slated-500/50 ring-offset-1 transition duration-200">
-                        <p class="p-2 "> Calculer les Provision et charges  provisionnelles </p>
+                        <a href="{{ route('work.accuredCharge',$company->id) }}" class="p-2 "> Calculer les Provision et charges  provisionnelles </a>
                     </div>
                     <div class="cursor-pointer text-center p-2 bg-slated-500 rounded-md hover:ring-4 hover:border-slated-500 hover:ring-slated-500/50 ring-offset-1 transition duration-200">
                         <p class="p-2 "> Voir les Autres réintégration </p>

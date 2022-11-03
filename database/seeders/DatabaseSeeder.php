@@ -4,16 +4,17 @@ namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
-use Database\Seeders\IMItemsSeeder;
 use Illuminate\Database\Seeder;
 use Database\Seeders\BaseSeeder;
 use Database\Seeders\PackSeeder;
 use Database\Seeders\RoleSeeder;
 use Database\Seeders\DomainSeeder;
+use Database\Seeders\IMItemsSeeder;
 use Database\Seeders\CategorySeeder;
 use Database\Seeders\TypeImpotSeeder;
 use Database\Seeders\PermissionSeeder;
 use Database\Seeders\TypeCompanySeeder;
+use Database\Seeders\AccuredChargeSeeder;
 use Database\Seeders\IncomeExpenseSeeder;
 
 class DatabaseSeeder extends Seeder
@@ -36,6 +37,7 @@ class DatabaseSeeder extends Seeder
         $this->call(BaseSeeder::class);
         $this->call(CategorySeeder::class);
         $this->call(IMItemsSeeder::class);
+        $this->call(AccuredChargeSeeder::class);
         \App\Models\User::factory()->create([
             'name' => 'Test',
             'firstname'=>'User',
