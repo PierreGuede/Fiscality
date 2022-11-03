@@ -13,9 +13,11 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('amortizations', function (Blueprint $table) {
+        Schema::create('accured_charges', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
+            $table->string('compte')->nullable();
+            $table->string('designation');
+            $table->string('type');
             $table->timestamps();
         });
     }
@@ -27,6 +29,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('amortizations');
+        Schema::dropIfExists('accured_charges');
     }
 };

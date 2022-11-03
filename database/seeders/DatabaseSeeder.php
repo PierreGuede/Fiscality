@@ -26,6 +26,7 @@ class DatabaseSeeder extends Seeder
         $this->call(BaseSeeder::class);
         $this->call(CategorySeeder::class);
         $this->call(IMItemsSeeder::class);
+        $this->call(AccuredChargeSeeder::class);
         \App\Models\User::factory()->create([
             'name' => 'Test',
             'firstname' => 'User',

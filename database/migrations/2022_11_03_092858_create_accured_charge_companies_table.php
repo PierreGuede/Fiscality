@@ -1,5 +1,6 @@
 <?php
 
+use App\Fiscality\Companies\Company;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -13,9 +14,14 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('amortizations', function (Blueprint $table) {
+        Schema::create('accured_charge_companies', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
+            $table->string('compte')->nullable();
+            $table->string('designation');
+            $table->string('type');
+            $table->integer('amount');
+            $table->foreignIdFor(Company::class)->nullable()->constrained();
+            $table->date('date');
             $table->timestamps();
         });
     }
@@ -27,6 +33,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('amortizations');
+        Schema::dropIfExists('accured_charge_companies');
     }
 };
