@@ -28,7 +28,7 @@ class ExpenseProvisionedLivewire extends Component
         $this->fill([
             'inputs' => collect($charges),
         ]);
-    }
+    } 
 
 
     public function render()
