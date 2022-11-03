@@ -26,11 +26,12 @@
 
 
 
-                    <a href="" class="relative p-8 flex flex-col items-center justify-center border-2 border-[#6EDDDD] hover:shadow-[0px_8px_15px_-10px_#8FBCFF] hover:shadow-[#6EDDDD] rounded-md">
+                    <a href="{{ route('work.accuredCharge',$company->id) }}" class="relative p-8 flex flex-col items-center justify-center border-2 border-[#6EDDDD] hover:shadow-[0px_8px_15px_-10px_#8FBCFF] hover:shadow-[#6EDDDD] rounded-md">
                         <div class="absolute bg-[#6EDDDD] w-3/5 -top-0.5 h-1.5 rounded-b-md"></div>
 
                         <h2 class="text-[#2B417B] text-center">Provisions et charges provisionnées</h2>
                     </a>
+
                     <div class="relative p-8 flex flex-col items-center justify-center border-2 border-[#FF8FAA] hover:shadow-[0px_8px_15px_-10px_#8FBCFF] hover:shadow-[#FF8FAA] rounded-md">
                         <div class="absolute bg-[#FF8FAA] w-3/5 -top-0.5 h-1.5 rounded-b-md"></div>
 
@@ -43,15 +44,6 @@
                         <h2 class="text-[#2B417B]">Ticket</h2>
                     </div>
 
-                    <div class="cursor-pointer text-center p-2 bg-slated-500 rounded-md hover:ring-4 hover:border-slated-500 hover:ring-slated-500/50 ring-offset-1 transition duration-200">
-                        <a href="{{ route('work.amortization',$company->id) }}" class="p-2 "> Calculer mes amortissements </a>
-                    </div>
-                    <div class="cursor-pointer text-center p-2 bg-slated-500 rounded-md hover:ring-4 hover:border-slated-500 hover:ring-slated-500/50 ring-offset-1 transition duration-200">
-                        <a href="{{ route('work.accuredCharge',$company->id) }}" class="p-2 "> Calculer les Provision et charges  provisionnelles </a>
-                    </div>
-                    <div class="cursor-pointer text-center p-2 bg-slated-500 rounded-md hover:ring-4 hover:border-slated-500 hover:ring-slated-500/50 ring-offset-1 transition duration-200">
-                        <p class="p-2 "> Voir les Autres réintégration </p>
-                    </div>
                 </div>
             </section>
     </div>
