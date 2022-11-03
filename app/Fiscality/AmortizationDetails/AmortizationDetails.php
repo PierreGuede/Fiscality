@@ -12,6 +12,8 @@ class AmortizationDetails extends Model
 {
     use HasFactory;
 
+    protected $table = 'amortization_details';
+
     protected $fillable = [
         'name',
         'value',

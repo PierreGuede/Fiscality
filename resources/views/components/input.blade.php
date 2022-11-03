@@ -7,6 +7,6 @@
     ]) !!}
         placeholder="john@doe.com" />
     <label for="{{ $name }}"
-        class="absolute left-3 px-2 -top-3.5 text-gray-600 text-sm bg-white transition-all peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-400 peer-placeholder-shown:top-2 peer-focus:-top-3.5 peer-focus:text-gray-600 peer-focus:text-sm">
+        class="absolute left-3 px-2 -top-2.5 text-gray-600 text-xs bg-white transition-all peer-placeholder-shown:text-sm peer-placeholder-shown:text-gray-400 peer-placeholder-shown:top-2.5 peer-focus:-top-2.5 peer-focus:text-gray-600 peer-focus:text-xs">
         {{ $label }} </label>
 </div>

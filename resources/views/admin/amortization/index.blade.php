@@ -1,0 +1,14 @@
+<x-company-layout>
+    <div class="w-full flex flex-col justify-center ">
+
+        <div class=" w-auto mx-auto" >
+            <h2 class="text-2xl font-semibold text-gray-700 py-4" >Amortissement</h2>
+            @livewire('company.amortization.vehicle-card', ['company' => $company])
+            @livewire('company.amortization.excess-card', ['company' => $company])
+            @livewire('company.amortization.depreciation-card', ['company' => $company])
+        </div>
+
+    </div>
+
+
+</x-company-layout>

@@ -1,13 +1,13 @@
 <?php
 
-namespace App\Http\Livewire\Company;
+namespace App\Http\Livewire\Company\Amortization;
 
 use App\Fiscality\Amortizations\Amortization;
 use App\Fiscality\Companies\Company;
-use App\Fiscality\Vehicles\Vehicle;
+use App\Fiscality\Depreciations\Depreciation;
 use Livewire\Component;
 
-class CardDetail extends Component
+class DepreciationCard extends Component
 {
     public Amortization $data;
 
@@ -22,12 +22,12 @@ class CardDetail extends Component
     public function mount($company)
     {
         $this->company = $company;
-        $this->total_vehicle = Vehicle::where('company_id', $this->company->id)->sum('deductible_amortization');
+        $this->total_vehicle = Depreciation::where('company_id', $this->company->id)->sum('dotation');
     }
 
     public function render()
     {
-        return view('livewire.company.card-detail');
+        return view('livewire.company.amortization.depreciation-card');
     }
 
     public function incrementCount()
@@ -35,8 +35,8 @@ class CardDetail extends Component
         $this->counter++;
     }
 
-    public function newVehicle()
+    public function newDepreciation()
     {
-        $this->total_vehicle = Vehicle::where('company_id', $this->company->id)->sum('deductible_amortization');
+        $this->total_vehicle = Depreciation::where('company_id', $this->company->id)->sum('deductible_amortization');
     }
 }

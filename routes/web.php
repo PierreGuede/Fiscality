@@ -38,14 +38,17 @@ Route::middleware('auth', 'hasOneRole')->group(function () {
     });
 
     Route::middleware('role:cabinet|enterprise')->group(function () {
+        Route::get('create-company', [\App\Http\Controllers\CompanyController::class, 'create'])->name('company.enterprise');
+        Route::get('work-in-enterprise/{id}', [\App\Http\Controllers\WorkInEnterprise::class, 'index'])->name('work.show');
+        Route::post('work-in-enterprise/{id}', [\App\Http\Controllers\WorkInEnterprise::class, 'access'])->name('work.access');
+        Route::get('work-in-enterprise/{id}/actions', [\App\Http\Controllers\WorkInEnterprise::class, 'actions'])->name('work.actions');
+        Route::get('work-in-enterprise/{id}/account-result', [\App\Http\Controllers\WorkInEnterprise::class, 'accountResult'])->name('work.accountResult');
+        Route::get('work-in-enterprise/{id}/impot-calcul', [\App\Http\Controllers\WorkInEnterprise::class, 'impotcalcul'])->name('work.impotcalcul');
+        Route::get('work-in-enterprise/{company}/amortization', [\App\Fiscality\AmortizationDetails\Controllers\AmortizationDetailsController::class, 'index'])->name('amortization');
+        Route::get('work-in-enterprise/{company}/amortization/tourism-cars', [\App\Http\Controllers\VehicleController::class, 'index'])->name('amortization.tourism-cars');
+        Route::get('work-in-enterprise/{company}/amortization/amortization-excess', [ \App\Http\Controllers\ExcessController::class , 'index'])->name('amortization.amortization-excess');
+        Route::get('work-in-enterprise/{company}/amortization/depreciation-assets', [ \App\Http\Controllers\DepreciationController::class , 'index'])->name('amortization.depreciation-assets');
 
-    Route::get('create-company', [\App\Http\Controllers\CompanyController::class, 'create'])->name('company.enterprise');
-    Route::get('work-in-enterprise/{id}', [\App\Http\Controllers\WorkInEnterprise::class, 'index'])->name('work.show');
-    Route::post('work-in-enterprise/{id}', [\App\Http\Controllers\WorkInEnterprise::class, 'access'])->name('work.access');
-    Route::get('work-in-enterprise/{id}/actions', [\App\Http\Controllers\WorkInEnterprise::class, 'actions'])->name('work.actions');
-    Route::get('work-in-enterprise/{id}/accountResult', [\App\Http\Controllers\WorkInEnterprise::class, 'accountResult'])->name('work.accountResult');
-    Route::get('work-in-enterprise/{id}/impotcalcul', [\App\Http\Controllers\WorkInEnterprise::class, 'impotcalcul'])->name('work.impotcalcul');
-    Route::get('work-in-enterprise/{id}/amortization', [\App\Http\Controllers\AmortizationController::class, 'index'])->name('work.amortization');
     Route::get('work-in-enterprise/{id}/accured-charge', [\App\Http\Controllers\AccuredChargeController::class, 'index'])->name('work.accuredCharge');
     Route::get('work-in-enterprise/{id}/accured-charge/provision', [\App\Http\Controllers\AccuredChargeController::class, 'provision'])->name('work.provision');
     Route::get('work-in-enterprise/{id}/accured-charge/provisioned-expense', [\App\Http\Controllers\AccuredChargeController::class, 'expenseProvisioned'])->name('work.expenseProvisioned');

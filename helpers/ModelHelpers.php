@@ -54,9 +54,16 @@ namespace App\Fiscality\Amortizations{
     /**
      * App\Fiscality\Amortizations\Amortization
      *
+     * @property int $id
+     * @property \Illuminate\Support\Carbon|null $created_at
+     * @property \Illuminate\Support\Carbon|null $updated_at
+     *
      * @method static \Illuminate\Database\Eloquent\Builder|Amortization newModelQuery()
      * @method static \Illuminate\Database\Eloquent\Builder|Amortization newQuery()
      * @method static \Illuminate\Database\Eloquent\Builder|Amortization query()
+     * @method static \Illuminate\Database\Eloquent\Builder|Amortization whereCreatedAt($value)
+     * @method static \Illuminate\Database\Eloquent\Builder|Amortization whereId($value)
+     * @method static \Illuminate\Database\Eloquent\Builder|Amortization whereUpdatedAt($value)
      */
     class IdeHelperAmortization
     {
@@ -210,6 +217,37 @@ namespace App\Fiscality\Companies{
     }
 }
 
+namespace App\Fiscality\Depreciations{
+    /**
+     * App\Fiscality\Depreciations\Depreciation
+     *
+     * @property int $id
+     * @property string $category_imo
+     * @property string $designation
+     * @property string $dotation
+     * @property int $amortization_id
+     * @property int $company_id
+     * @property \Illuminate\Support\Carbon|null $created_at
+     * @property \Illuminate\Support\Carbon|null $updated_at
+     *
+     * @method static \Illuminate\Database\Eloquent\Builder|Depreciation newModelQuery()
+     * @method static \Illuminate\Database\Eloquent\Builder|Depreciation newQuery()
+     * @method static \Illuminate\Database\Eloquent\Builder|Depreciation query()
+     * @method static \Illuminate\Database\Eloquent\Builder|Depreciation whereAmortizationId($value)
+     * @method static \Illuminate\Database\Eloquent\Builder|Depreciation whereCategoryImo($value)
+     * @method static \Illuminate\Database\Eloquent\Builder|Depreciation whereCompanyId($value)
+     * @method static \Illuminate\Database\Eloquent\Builder|Depreciation whereCreatedAt($value)
+     * @method static \Illuminate\Database\Eloquent\Builder|Depreciation whereDesignation($value)
+     * @method static \Illuminate\Database\Eloquent\Builder|Depreciation whereDotation($value)
+     * @method static \Illuminate\Database\Eloquent\Builder|Depreciation whereId($value)
+     * @method static \Illuminate\Database\Eloquent\Builder|Depreciation whereUpdatedAt($value)
+     * @mixin \Eloquent
+     */
+    class IdeHelperDepreciation
+    {
+    }
+}
+
 namespace App\Fiscality\DetailTypes{
     /**
      * App\Fiscality\DetailTypes\DetailType
@@ -275,6 +313,45 @@ namespace App\Fiscality\Domains{
      * @method static \Illuminate\Database\Eloquent\Builder|Domain whereUpdatedAt($value)
      */
     class IdeHelperDomain
+    {
+    }
+}
+
+namespace App\Fiscality\Excesss{
+    /**
+     * App\Fiscality\Excesss\Excess
+     *
+     * @property int $id
+     * @property string $category_imo
+     * @property string $designation
+     * @property string $taux_use
+     * @property string $taux_recommended
+     * @property string $ecart
+     * @property string $dotation
+     * @property string $deductible_amortization
+     * @property int $amortization_id
+     * @property int $company_id
+     * @property \Illuminate\Support\Carbon|null $created_at
+     * @property \Illuminate\Support\Carbon|null $updated_at
+     *
+     * @method static \Illuminate\Database\Eloquent\Builder|Excess newModelQuery()
+     * @method static \Illuminate\Database\Eloquent\Builder|Excess newQuery()
+     * @method static \Illuminate\Database\Eloquent\Builder|Excess query()
+     * @method static \Illuminate\Database\Eloquent\Builder|Excess whereAmortizationId($value)
+     * @method static \Illuminate\Database\Eloquent\Builder|Excess whereCategoryImo($value)
+     * @method static \Illuminate\Database\Eloquent\Builder|Excess whereCompanyId($value)
+     * @method static \Illuminate\Database\Eloquent\Builder|Excess whereCreatedAt($value)
+     * @method static \Illuminate\Database\Eloquent\Builder|Excess whereDeductibleAmortization($value)
+     * @method static \Illuminate\Database\Eloquent\Builder|Excess whereDesignation($value)
+     * @method static \Illuminate\Database\Eloquent\Builder|Excess whereDotation($value)
+     * @method static \Illuminate\Database\Eloquent\Builder|Excess whereEcart($value)
+     * @method static \Illuminate\Database\Eloquent\Builder|Excess whereId($value)
+     * @method static \Illuminate\Database\Eloquent\Builder|Excess whereTauxRecommended($value)
+     * @method static \Illuminate\Database\Eloquent\Builder|Excess whereTauxUse($value)
+     * @method static \Illuminate\Database\Eloquent\Builder|Excess whereUpdatedAt($value)
+     * @mixin \Eloquent
+     */
+    class IdeHelperExcess
     {
     }
 }
@@ -658,6 +735,22 @@ namespace App\Fiscality\TypeImpots{
      * @method static \Illuminate\Database\Eloquent\Builder|TypeImpot whereUpdatedAt($value)
      */
     class IdeHelperTypeImpot
+    {
+    }
+}
+
+namespace App\Fiscality\Vehicles{
+    /**
+     * App\Fiscality\Vehicles\Vehicle
+     *
+     * @property-read \App\Fiscality\Amortizations\Amortization $amortization
+     *
+     * @method static \Illuminate\Database\Eloquent\Builder|Vehicle newModelQuery()
+     * @method static \Illuminate\Database\Eloquent\Builder|Vehicle newQuery()
+     * @method static \Illuminate\Database\Eloquent\Builder|Vehicle query()
+     * @mixin \Eloquent
+     */
+    class IdeHelperVehicle
     {
     }
 }
