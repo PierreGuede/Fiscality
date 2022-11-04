@@ -57,10 +57,10 @@ class CreateDepreciation extends ModalComponent
     public function save()
     {
         $this->validate();
-        
+
         $armortization = Amortization::create([]);
         try {
-            $amortisationDetails =  Depreciation::create([
+            $amortisationDetails = Depreciation::create([
                 'category_imo' => $this->data['category_imo'],
                 'designation' => $this->data['designation'],
                 'dotation' => $this->data['dotation'],
@@ -68,7 +68,7 @@ class CreateDepreciation extends ModalComponent
                 'company_id' => $this->company->id,
             ]);
 
-//            $this->emitTo( 'card-detail', 'incrementCount');
+            $this->emit('newDepreciation');
 
             $this->closeModal();
         } catch (\Throwable $th) {

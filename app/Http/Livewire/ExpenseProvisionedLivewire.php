@@ -2,11 +2,9 @@
 
 namespace App\Http\Livewire;
 
-use Carbon\Carbon;
-use Livewire\Component;
-use Illuminate\Support\Collection;
-use App\Models\AccuredChargeCompany;
 use App\Fiscality\AccuredCharges\AccuredCharge;
+use App\Models\AccuredChargeCompany;
+use Livewire\Component;
 
 class ExpenseProvisionedLivewire extends Component
 {
@@ -16,8 +14,9 @@ class ExpenseProvisionedLivewire extends Component
 
     public function addProvisionInput()
     {
-        $this->inputs->push(['compte' => '', 'designation' => '','amount' => '', 'type' => 'charges']);
+        $this->inputs->push(['compte' => '', 'designation' => '', 'amount' => '', 'type' => 'charges']);
     }
+
     public function removeInput($key)
     {
         $this->inputs->pull($key);
@@ -39,40 +38,41 @@ class ExpenseProvisionedLivewire extends Component
 
     ];
 
-    public function mount($company){
-        $this->company=$company;
-        $charges=AccuredCharge::where('type','charges')->get();
+    public function mount($company)
+    {
+        $this->company = $company;
+        $charges = AccuredCharge::where('type', 'charges')->get();
         $this->fill([
             'inputs' => collect($charges),
         ]);
     }
 
-
     public function render()
     {
-        $charges=AccuredCharge::where('type','charges')->get();
-            return view('livewire.expense-provisioned-livewire',[
-                'charges'=>$charges
-            ]);
+        $charges = AccuredCharge::where('type', 'charges')->get();
+
+        return view('livewire.expense-provisioned-livewire', [
+            'charges' => $charges,
+        ]);
     }
+
     public function submit()
     {
         $this->validate();
     }
 
-
-    public function store(){
+    public function store()
+    {
         $this->submit();
         foreach ($this->inputs as  $value) {
             AccuredChargeCompany::create([
-                'compte'=>$value['compte'],
-                'designation'=>$value['designation'],
-                'type'=>$value['type'],
-                'amount'=>$value['amount'],
-                'company_id'=>$this->company->id,
-                'date'=>date('Y'),
+                'compte' => $value['compte'],
+                'designation' => $value['designation'],
+                'type' => $value['type'],
+                'amount' => $value['amount'],
+                'company_id' => $this->company->id,
+                'date' => date('Y'),
             ]);
         }
     }
-
 }

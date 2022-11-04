@@ -11,8 +11,6 @@ class CreateVehicle extends ModalComponent
 {
     public Amortization $model;
 
-    public Vehicle $amortisation;
-
     public $company;
 
     public $data = [
@@ -56,12 +54,11 @@ class CreateVehicle extends ModalComponent
                 'company_id' => $this->company->id,
             ]);
 
-            $this->emitTo('card-detail', 'incrementCount');
-            notify()->success('Test notification');
+            $this->emit('newVehicle');
 
             $this->closeModal();
         } catch (\Throwable $th) {
-            notify()->error("Une erreur est survenue");
+            notify()->error('Une erreur est survenue');
             throw $th;
         }
     }

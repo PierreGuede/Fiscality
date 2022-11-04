@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use App\Fiscality\Companies\Company;
 use App\Fiscality\Amortizations\Amortization;
+use App\Fiscality\Companies\Company;
+use Illuminate\Http\Request;
 
 class AmortizationController extends Controller
 {
@@ -15,8 +15,9 @@ class AmortizationController extends Controller
      */
     public function index($id)
     {
-        $company=Company::find($id);
-        return view('admin.adminWork.amortization',compact('company'));
+        $company = Company::find($id);
+
+        return view('admin.adminWork.amortization', compact('company'));
     }
 
     /**
