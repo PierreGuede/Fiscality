@@ -5,6 +5,7 @@ namespace Database\Seeders;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
 use Illuminate\Database\Seeder;
+use Database\Seeders\OtherReinstatementSeeder;
 
 class DatabaseSeeder extends Seeder
 {
@@ -27,6 +28,7 @@ class DatabaseSeeder extends Seeder
         $this->call(CategorySeeder::class);
         $this->call(IMItemsSeeder::class);
         $this->call(AccuredChargeSeeder::class);
+        $this->call(OtherReinstatementSeeder::class);
         \App\Models\User::factory()->create([
             'name' => 'Test',
             'firstname' => 'User',
