@@ -17,7 +17,7 @@ class VehicleCard extends Component
 
     public $total_vehicle = 0;
 
-    protected $listeners = ['incrementCount'];
+    protected $listeners = ['newVehicle'];
 
     public function mount($company)
     {

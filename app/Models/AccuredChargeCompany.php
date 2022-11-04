@@ -8,7 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class AccuredChargeCompany extends Model
 {
     use HasFactory;
-    protected $fillable=[
+
+    protected $fillable = [
         'compte',
         'designation',
         'type',
