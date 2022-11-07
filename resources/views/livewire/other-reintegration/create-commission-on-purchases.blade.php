@@ -40,6 +40,9 @@
                             <div class="col-span-1">
                                 <x-input type="number" label="" id="delay_condition" name=""
                                          value="{{ old('delay_condition') }}" class="block w-full" required autofocus/>
+                                @error('inputs.' . $key . '.account')
+                                <span class="text-xs text-red-600">{{ $message }}</span>
+                                @enderror
                             </div>
 
 
@@ -71,7 +74,7 @@
                         </div>
 
                         <div class="col-span-1">
-                            <button class=" hover:bg-red-100 p-1.5 rounded-md ">
+                            <button type="button" wire:click="remove( {{ $key  }} )"  class=" hover:bg-red-100 p-1.5 rounded-md ">
                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                                      stroke-width="1.5"
                                      stroke="currentColor"
@@ -84,6 +87,19 @@
                     </div>
                 @endforeach
 
+                <div>
+
+                    <button type="button" wire:click="add"
+                            class="flex items-center justify-center px-4 py-2.5 text-sm text-blue-600 cursor-pointer focus:outline-none hover:bg-blue-100 rounded-sm ">
+                        <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"
+                             xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd"
+                                  d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-11a1 1 0 10-2 0v2H7a1 1 0 100 2h2v2a1 1 0 102 0v-2h2a1 1 0 100-2h-2V7z"
+                                  clip-rule="evenodd"></path>
+                        </svg>
+                        <p class="ml-2">Ajouter</p>
+                    </button>
+                </div>
             </div>
         </div>
     </div>
