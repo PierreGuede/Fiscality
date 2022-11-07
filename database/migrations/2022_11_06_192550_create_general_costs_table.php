@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('general_costs', function (Blueprint $table) {
             $table->id();
             $table->float("total_amount");
-            $table->foreignIdFor(Company::class)->constrained();
+            $table->foreignIdFor(\App\Fiscality\Companies\Company::class)->constrained();
             $table->timestamps();
         });
     }

@@ -8,6 +8,11 @@
 
     @livewire('other-reintegration.create-financial-cost')
     @livewire('other-reintegration.create-commission-on-purchases')
+    @livewire('other-reintegration.create-redevance')
+    @livewire('other-reintegration.create-assistance-cost')
+    @livewire('other-reintegration.create-state-donation')
+    @livewire('other-reintegration.create-advertising-gift')
+    @livewire('other-reintegration.create-excess-rent')
 
     <div class=" grid grid-cols-12 divide-x-2 divide-blue-500 border-2 border-blue-500 border-b-0  ">
         <p class="col-span-6 my-auto px-2">Charges ne se rapportant pas à l'exercice (et non provisionnées)</p>
@@ -104,7 +109,7 @@
             <p class="text-center text-gray-700 font-semibold " >0</p>
         </div>
         <div class="col-span-2">
-            <button  class=" focus:outline-none focus:ring-2 focus:ring-blue-200 focus-within:ring-2 w-full text-sm  flex  items-center justify-center px-4 py-2 text-blue-50 bg-blue-500 hover:bg-blue-400 gap-x-2 font-semibold" >
+            <button type="button" onclick="Livewire.emitTo('other-reintegration.create-redevance', 'openASide')"  class=" focus:outline-none focus:ring-2 focus:ring-blue-200 focus-within:ring-2 w-full text-sm  flex  items-center justify-center px-4 py-2 text-blue-50 bg-blue-500 hover:bg-blue-400 gap-x-2 font-semibold" >
                 <svg class="stroke-2 stroke-blue-50 w-6 w-6 " xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" >
                     <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v6m3-3H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z" />
                 </svg>
@@ -123,7 +128,7 @@
             <p class="text-center text-gray-700 font-semibold " >0</p>
         </div>
         <div class="col-span-2">
-            <button  class=" focus:outline-none focus:ring-2 focus:ring-blue-200 focus-within:ring-2 w-full text-sm  flex  items-center justify-center px-4 py-2 text-blue-50 bg-blue-500 hover:bg-blue-400 gap-x-2 font-semibold" >
+            <button type="button" onclick="Livewire.emitTo('other-reintegration.create-assistance-cost', 'openASide')"  class=" focus:outline-none focus:ring-2 focus:ring-blue-200 focus-within:ring-2 w-full text-sm  flex  items-center justify-center px-4 py-2 text-blue-50 bg-blue-500 hover:bg-blue-400 gap-x-2 font-semibold" >
                 <svg class="stroke-2 stroke-blue-50 w-6 w-6 " xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" >
                     <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v6m3-3H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z" />
                 </svg>
@@ -155,7 +160,7 @@
             <p class="text-center text-gray-700 font-semibold " >0</p>
         </div>
         <div class="col-span-2">
-            <button  class=" focus:outline-none focus:ring-2 focus:ring-blue-200 focus-within:ring-2 w-full text-sm  flex  items-center justify-center px-4 py-2 text-blue-50 bg-blue-500 hover:bg-blue-400 gap-x-2 font-semibold" >
+            <button type="button" onclick="Livewire.emitTo('other-reintegration.create-state-donation', 'openASide')"  class=" focus:outline-none focus:ring-2 focus:ring-blue-200 focus-within:ring-2 w-full text-sm  flex  items-center justify-center px-4 py-2 text-blue-50 bg-blue-500 hover:bg-blue-400 gap-x-2 font-semibold" >
                 <svg class="stroke-2 stroke-blue-50 w-6 w-6 " xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" >
                     <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v6m3-3H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z" />
                 </svg>
@@ -174,7 +179,7 @@
             <p class="text-center text-gray-700 font-semibold " >0</p>
         </div>
         <div class="col-span-2">
-            <button  class=" focus:outline-none focus:ring-2 focus:ring-blue-200 focus-within:ring-2 w-full text-sm  flex  items-center justify-center px-4 py-2 text-blue-50 bg-blue-500 hover:bg-blue-400 gap-x-2 font-semibold" >
+            <button type="button" onclick="Livewire.emitTo('other-reintegration.create-advertising-gift', 'openASide')"  class=" focus:outline-none focus:ring-2 focus:ring-blue-200 focus-within:ring-2 w-full text-sm  flex  items-center justify-center px-4 py-2 text-blue-50 bg-blue-500 hover:bg-blue-400 gap-x-2 font-semibold" >
                 <svg class="stroke-2 stroke-blue-50 w-6 w-6 " xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" >
                     <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v6m3-3H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z" />
                 </svg>
@@ -297,7 +302,7 @@
             <p class="text-center text-gray-700 font-semibold " >0</p>
         </div>
         <div class="col-span-2">
-            <button  class=" focus:outline-none focus:ring-2 focus:ring-blue-200 focus-within:ring-2 w-full text-sm  flex  items-center justify-center px-4 py-2 text-blue-50 bg-blue-500 hover:bg-blue-400 gap-x-2 font-semibold" >
+            <button type="button" onclick=" Livewire.emitTo('other-reintegration.create-excess-rent', 'openASide')"  class=" focus:outline-none focus:ring-2 focus:ring-blue-200 focus-within:ring-2 w-full text-sm  flex  items-center justify-center px-4 py-2 text-blue-50 bg-blue-500 hover:bg-blue-400 gap-x-2 font-semibold" >
                 <svg class="stroke-2 stroke-blue-50 w-6 w-6 " xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" >
                     <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v6m3-3H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z" />
                 </svg>

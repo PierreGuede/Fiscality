@@ -18,7 +18,7 @@ return new class extends Migration
             $table->float("reintegrate_excedent");
             $table->float("deduction_limite");
             $table->float("total_amount");
-            $table->foreignIdFor(Company::class)->constrained();
+            $table->foreignIdFor(\App\Fiscality\Companies\Company::class)->constrained();
             $table->timestamps();
         });
     }
