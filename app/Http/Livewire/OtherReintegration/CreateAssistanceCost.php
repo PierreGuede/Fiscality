@@ -3,15 +3,16 @@
 namespace App\Http\Livewire\OtherReintegration;
 
 use App\Fiscality\Companies\Company;
+use App\Fiscality\GeneralCosts\GeneralCost;
 use App\Fiscality\IncomeExpenses\IncomeExpense;
 use Livewire\Component;
 
-class CreateCommissionOnPurchases extends Component
+class CreateAssistanceCost extends Component
 {
 
     public bool  $open_a_side = false;
     public string  $response = 'no';
-    public $redevances;
+    public  $general_cost;
 
     public $inputs;
 
@@ -44,19 +45,19 @@ class CreateCommissionOnPurchases extends Component
 
     public function mount(Company $company) {
 
-        $this->redevances = [];
+        $this->general_cost = GeneralCost::whereCompanyId($company->id)->get();
         $this->currentStep = 1;
         $this->company = $company;
         $this->fill([
-            'inputs' => collect($this->redevances),
+            'inputs' => collect($this->general_cost),
         ]);
     }
 
     public function render()
     {
 
-        $this->redevances = [];
-        return view('livewire.other-reintegration.create-commission-on-purchases');
+        $this->commission_on_purchase = [];
+        return view('livewire.other-reintegration.create-assistance-cost');
     }
 
     public function openASide() {

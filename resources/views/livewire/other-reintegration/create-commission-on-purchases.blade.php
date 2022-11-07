@@ -32,6 +32,7 @@
 
                 </div>
 
+                <div class="space-y-3" >
 
                 @foreach($inputs as  $key => $value)
                     <div class="flex gap-x-2 items-center ">
@@ -86,6 +87,7 @@
                         </div>
                     </div>
                 @endforeach
+                </div>
 
                 <div>
 

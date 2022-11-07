@@ -19,7 +19,7 @@ return new class extends Migration
             $table->float("general_cost");
             $table->float("limit_deduction");
             $table->float("reintegrate_amount");
-            $table->foreignIdFor(Company::class)->constrained();
+            $table->foreignIdFor(\App\Fiscality\Companies\Company::class)->constrained();
             $table->timestamps();
         });
     }
