@@ -74,11 +74,11 @@ Route::middleware('auth', 'role:Super-Admin|cabinet|enterprise')->group(function
     Route::post('role/{id}', [\App\Http\Controllers\RoleController::class, 'update'])->name('role.update');
     Route::delete('role/{id}', [\App\Http\Controllers\RoleController::class, 'destroy'])->name('role.delete');
 
-    Route::get('Permission', [\App\Http\Controllers\PermissionController::class, 'index'])->name('permission.index');
-    Route::post('Permission', [\App\Http\Controllers\PermissionController::class, 'store'])->name('permission.store');
-    Route::get('Permission/{id}', [\App\Http\Controllers\PermissionController::class, 'edit'])->name('permission.edit');
-    Route::post('Permission/{id}', [\App\Http\Controllers\PermissionController::class, 'update'])->name('permission.update');
-    Route::delete('Permission/{id}', [\App\Http\Controllers\PermissionController::class, 'destroy'])->name('permission.delete');
+    Route::get('permission', [\App\Http\Controllers\PermissionController::class, 'index'])->name('permission.index');
+    Route::post('permission', [\App\Http\Controllers\PermissionController::class, 'store'])->name('permission.store');
+    Route::get('permission/{id}', [\App\Http\Controllers\PermissionController::class, 'edit'])->name('permission.edit');
+    Route::post('permission/{id}', [\App\Http\Controllers\PermissionController::class, 'update'])->name('permission.update');
+    Route::delete('permission/{id}', [\App\Http\Controllers\PermissionController::class, 'destroy'])->name('permission.delete');
 });
 
 Route::middleware('auth', 'role:Super-Admin')->group(function () {

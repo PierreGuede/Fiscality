@@ -11,4 +11,5 @@ class TaxResultController extends Controller
     public function index() {
         return view('admin.tax-result.index');
     }
+
 }

@@ -12,6 +12,9 @@ Alpine.start();
 
 
 Alpine.data('globalData', () => ({
+
+    response: 'yes',
+
     /**
      *
      * @param  date string

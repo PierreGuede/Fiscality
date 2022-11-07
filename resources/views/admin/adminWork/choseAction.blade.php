@@ -1,5 +1,5 @@
 <x-company-layout>
-    <div class=" max-w-3xl w-full mx-auto p-4 h-screen">
+    <div  class=" max-w-3xl w-full mx-auto p-4 h-screen">
             <section class=" mt-6 w-full p-4 h-full flex items-center justify-center  ">
                 <div class="grid gap-4 grid-cols-3 grid-rows-2 my-auto">
 {{--                    <div class="cursor-pointer text-center p-2 bg-slated-500 rounded-md hover:ring-4 hover:border-slated-500 hover:ring-slated-500/50 ring-offset-1 transition duration-200">--}}
@@ -30,11 +30,11 @@
                         <h2 class="text-[#2B417B] text-center">Provisions et charges provisionnées</h2>
                     </a>
 
-                    <div class="relative p-8 flex flex-col items-center justify-center border-2 border-[#FCC18A] hover:shadow-[0px_8px_15px_-10px_#8FBCFF] hover:shadow-[#FCC18A] rounded-md">
+                    <a href="" class="relative p-8 flex flex-col items-center justify-center border-2 border-[#FCC18A] hover:shadow-[0px_8px_15px_-10px_#8FBCFF] hover:shadow-[#FCC18A] rounded-md">
                         <div class="absolute bg-[#FCC18A] w-3/5 -top-0.5 h-1.5 rounded-b-md"></div>
 
                         <h2 class="text-[#2B417B]">Autre Réintégrations</h2>
-                    </div>
+                    </a>
 
                     <a class="relative p-8 flex flex-col items-center justify-center border-2 border-[#FF8FAA] hover:shadow-[0px_8px_15px_-10px_#8FBCFF] hover:shadow-[#FF8FAA] rounded-md">
                         <div class="absolute bg-[#FF8FAA] w-3/5 -top-0.5 h-1.5 rounded-b-md"></div>

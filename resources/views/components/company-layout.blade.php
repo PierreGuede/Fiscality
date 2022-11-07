@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html x-data="globalData" lang="en">
+<html lang="en">
 
 <head>
     <meta charset="utf-8">
