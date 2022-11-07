@@ -8,4 +8,13 @@ use Illuminate\Database\Eloquent\Model;
 class CommissionOnPurchaseDetail extends Model
 {
     use HasFactory;
+    protected $fillable=[
+        "Account",
+        "designation",
+        "total",
+        "amount_commission",
+        "limit",
+        "no_deductible_amount",
+        "commission_on_purchase_id",
+    ];
 }

@@ -1,5 +1,6 @@
 <?php
 
+use App\Fiscality\Redevances\Redevance;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -15,6 +16,10 @@ return new class extends Migration
     {
         Schema::create('redevance_details', function (Blueprint $table) {
             $table->id();
+            $table->integer("account");
+            $table->string("designation");
+            $table->integer("amount");
+            $table->foreignIdFor(Redevance::class)->constrained();
             $table->timestamps();
         });
     }

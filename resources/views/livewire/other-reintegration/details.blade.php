@@ -7,7 +7,8 @@
     </div>
 
     @livewire('other-reintegration.create-financial-cost')
-    @livewire('other-reintegration.create-commission-on-purchases')
+    {{-- @livewire('other-reintegration.create-commission-on-purchases') --}}
+    <livewire:other-reintegration.create-commission-on-purchases :company='$company'>
 
     <div class=" grid grid-cols-12 divide-x-2 divide-blue-500 border-2 border-blue-500 border-b-0  ">
         <p class="col-span-6 my-auto px-2">Charges ne se rapportant pas à l'exercice (et non provisionnées)</p>

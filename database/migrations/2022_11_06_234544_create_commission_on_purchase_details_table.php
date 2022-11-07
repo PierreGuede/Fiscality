@@ -1,5 +1,6 @@
 <?php
 
+use App\Fiscality\CommissionOnPurchases\CommissionOnPurchase;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -17,10 +18,11 @@ return new class extends Migration
             $table->id();
             $table->integer("Account");
             $table->string("designation");
-            $table->integer("total");
+            $table->float("total");
             $table->float("amount_commission");
             $table->float("limit");
             $table->float("no_deductible_amount");
+            $table->foreignIdFor(CommissionOnPurchase::class)->constrained();
             $table->timestamps();
         });
     }

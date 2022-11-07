@@ -15,10 +15,7 @@ return new class extends Migration
     {
         Schema::create('redevances', function (Blueprint $table) {
             $table->id();
-            $table->integer("Account");
-            $table->string("designation");
-            $table->integer("amount");
-            $table->integer("turnover");
+            $table->integer("total_renumeration");
             $table->float("deduction_limit");
             $table->float("amount_reintegrated");
             $table->timestamps();
