@@ -81,6 +81,8 @@ class CreateExcess extends ModalComponent
             'company_id' => $this->company->id,
         ]);
 
+        $this->emit('newExcess');
+
         $this->closeModal();
     }
 }

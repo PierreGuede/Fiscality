@@ -5,13 +5,31 @@
 @import "tailwindcss/utilities";
 
 
-    input::-webkit-outer-spin-button,
-    input::-webkit-inner-spin-button {
-        -webkit-appearance: none;
-        margin: 0;
-    }
+:root{
+    --gray: #C4C4C4;
+}
 
-    /* Firefox */
-    input[type=number] {
-        -moz-appearance: textfield;
-    }
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+    -moz-appearance: textfield;
+}
+
+
+.grid-container  {
+    display: grid;
+    grid-template-columns: 4fr 4fr 2fr;
+}
+
+.grid-container > .element {
+    width: 100%;
+    padding: 1.2em 1em;
+    font-size: 1.4rem;
+    font-weight: 600;
+    border: 2px solid var(--gray);
+}

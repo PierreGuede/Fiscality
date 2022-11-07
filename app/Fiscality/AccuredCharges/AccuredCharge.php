@@ -8,9 +8,10 @@ use Illuminate\Database\Eloquent\Model;
 class AccuredCharge extends Model
 {
     use HasFactory;
-    protected $fillable=[
+
+    protected $fillable = [
         'compte',
         'designation',
-        'type'
+        'type',
     ];
 }

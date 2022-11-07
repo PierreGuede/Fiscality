@@ -15,14 +15,14 @@ class ExcessCard extends Component
 
     public Company $company;
 
-    public $total_vehicle = 0;
+    public $total = 0;
 
-    protected $listeners = ['incrementCount'];
+    protected $listeners = ['newExcess'];
 
     public function mount($company)
     {
         $this->company = $company;
-        $this->total_vehicle = Excess::where('company_id', $this->company->id)->sum('deductible_amortization');
+        $this->total = Excess::where('company_id', $this->company->id)->sum('deductible_amortization');
     }
 
     public function render()
@@ -37,6 +37,6 @@ class ExcessCard extends Component
 
     public function newExcess()
     {
-        $this->total_vehicle = Excess::where('company_id', $this->company->id)->sum('deductible_amortization');
+        $this->total = Excess::where('company_id', $this->company->id)->sum('deductible_amortization');
     }
 }

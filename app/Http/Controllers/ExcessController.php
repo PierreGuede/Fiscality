@@ -21,9 +21,9 @@ class ExcessController extends Controller
 
     public function index(Company $company)
     {
-
         $data = Excess::where('company_id', $company->id)->get();
-        return view('admin.amortization.amortization-excess.index',compact('data'));
+
+        return view('admin.amortization.amortization-excess.index', compact('data'));
     }
 
     public function store(Request $data, $id)

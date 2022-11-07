@@ -15,14 +15,14 @@ class DepreciationCard extends Component
 
     public Company $company;
 
-    public $total_vehicle = 0;
+    public $total = 0;
 
-    protected $listeners = ['incrementCount'];
+    protected $listeners = ['newDepreciation'];
 
     public function mount($company)
     {
         $this->company = $company;
-        $this->total_vehicle = Depreciation::where('company_id', $this->company->id)->sum('dotation');
+        $this->total = Depreciation::where('company_id', $this->company->id)->sum('dotation');
     }
 
     public function render()
@@ -30,13 +30,8 @@ class DepreciationCard extends Component
         return view('livewire.company.amortization.depreciation-card');
     }
 
-    public function incrementCount()
-    {
-        $this->counter++;
-    }
-
     public function newDepreciation()
     {
-        $this->total_vehicle = Depreciation::where('company_id', $this->company->id)->sum('deductible_amortization');
+        $this->total = Depreciation::where('company_id', $this->company->id)->sum('dotation');
     }
 }

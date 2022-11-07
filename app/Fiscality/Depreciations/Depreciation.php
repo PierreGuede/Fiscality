@@ -17,6 +17,6 @@ class Depreciation extends Model
         'designation',
         'dotation',
         'amortization_id',
-        'company_id'
+        'company_id',
     ];
 }
