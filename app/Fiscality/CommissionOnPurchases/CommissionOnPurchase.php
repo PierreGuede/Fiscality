@@ -11,4 +11,8 @@ use Illuminate\Database\Eloquent\Model;
 class CommissionOnPurchase extends Model
 {
     use HasFactory;
+    protected $fillable=[
+        'renseigned_commission',
+        'company_id',
+    ];
 }

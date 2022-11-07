@@ -13,8 +13,11 @@ class CreateCommissionOnPurchases extends Component
     public string  $response = 'no';
     public $redevances;
 
+    public $commission_on_purchase ;
+    public $company;
     public $inputs;
-
+    public $total_limit;
+    public $total_deduction;
     protected $listeners = ['openASide', 'closeASide'];
 
     protected $rules = [
@@ -33,7 +36,7 @@ class CreateCommissionOnPurchases extends Component
 
     public function add(): void
     {
-        $this->inputs->push(['account' => '', 'name' => '', 'amount' => '', 'type' => 'income']);
+        $this->inputs->push(["Account"=>'', "designation"=>'', "total"=>'', "amount_commission"=>'', "limit"=>'', "no_deductible_amount"=>'',]);
     }
 
     public function remove($key): void
@@ -42,7 +45,7 @@ class CreateCommissionOnPurchases extends Component
     }
 
 
-    public function mount(Company $company) {
+    public function mount( $company) {
 
         $this->redevances = [];
         $this->currentStep = 1;
@@ -56,6 +59,7 @@ class CreateCommissionOnPurchases extends Component
     {
 
         $this->redevances = [];
+        $this->commission_on_purchase = [];
         return view('livewire.other-reintegration.create-commission-on-purchases');
     }
 
@@ -66,4 +70,35 @@ class CreateCommissionOnPurchases extends Component
     public function closeASide() {
         $this->open_a_side = false;
     }
+
+    public function store()
+    {
+        // $this->validate();
+        // $commision=CommissionOnPurchase::create([
+        //     'renseigned_commission'
+        // ])
+        $total=[];
+        foreach ($this->inputs as $value) {
+            array_push($total,$value['total']);
+        }
+        $total_sum=array_sum($total);
+       $commission_create= CommissionOnPurchase::create([
+            'renseigned_commission'=>$total_sum,
+            'company_id'=>$this->company->id
+        ]);
+        foreach ($this->inputs as $value) {
+            $this->total_limit=$value['total']*0.05;
+            $this->total_deduction=$value["amount_commission"]-$this->total_limit;
+            CommissionOnPurchaseDetail::create([
+                'Account'=>$value['Account'],
+                'designation'=>$value['designation'],
+                'total'=>$value['total'],
+                'amount_commission'=>$value['amount_commission'],
+                'limit'=>$this->total_limit,
+                'no_deductible_amount'=>$this->total_deduction,
+                'commission_on_purchase_id'=>$commission_create->id,
+            ]);
+        }
+    }
+
 }
