@@ -57,6 +57,9 @@ Route::middleware('auth', 'hasOneRole')->group(function () {
         Route::get('work-in-enterprise/{id}/accured-charge', [\App\Http\Controllers\AccuredChargeController::class, 'index'])->name('work.accuredCharge');
         Route::get('work-in-enterprise/{id}/accured-charge/provision', [\App\Http\Controllers\AccuredChargeController::class, 'provision'])->name('work.provision');
         Route::get('work-in-enterprise/{id}/accured-charge/provisioned-expense', [\App\Http\Controllers\AccuredChargeController::class, 'expenseProvisioned'])->name('work.expenseProvisioned');
+
+        Route::get('work-in-enterprise/{id}/other-reintegration/commission-purchase', [\App\Http\Controllers\CommissionOnPurchaseController::class, 'index'])->name('work.commissionPurchase');
+
     });
     Route::get('users', [\App\Http\Controllers\UserController::class, 'index'])->name('users.index');
     Route::post('users', [\App\Http\Controllers\UserController::class, 'store'])->name('users.store');

@@ -2,12 +2,17 @@
 
 namespace App\Http\Controllers;
 
-use App\Fiscality\CommissionOnPurchaseDetails\CommissionOnPurchaseDetail;
-use App\Fiscality\CommissionOnPurchases\CommissionOnPurchase;
 use Illuminate\Http\Request;
+use App\Fiscality\Companies\Company;
+use App\Fiscality\CommissionOnPurchases\CommissionOnPurchase;
+use App\Fiscality\CommissionOnPurchaseDetails\CommissionOnPurchaseDetail;
 
 class CommissionOnPurchaseController extends Controller
 {
+    public function index($id){
+        $company=Company::find($id);
+        return view();
+    }
     public function store(Request $request,$id){
 
             $limit_deduction=$request["total"]*0.05;
