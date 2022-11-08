@@ -10,7 +10,7 @@
             <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/>
         </svg>
     </button>
-    <div x-data="{ lib_condition_response: 'yes', delay_condition_response: 'yes' }"
+    <div x-data="{ arrayLimit:[] }"
          class="relative overflow-y-auto w-11/12 bg-white h-full ml-auto  px-12">
         <h2 class="text-2xl font-bold text-gray-7002 py-8">Commission sur achats (facturés par des résidents et des
             étrangers)</h2>
@@ -82,7 +82,7 @@
                                 <x-input disabled class="w-full" for="input_{{ $key }}_limit"
                                 type="number" id="input_{{ $key }}_limit"
                                 wire:model.defer="inputs.{{ $key }}.limit"
-                                placeholder="Limite de déduction" class="" required autofocus />
+                                placeholder="Limite de déduction" class="" x-model="arrayLimit[{{ $key }}]"  required autofocus />
                                 @error('inputs.' . $key . '.limit')
                                 <span class="text-xs text-red-600">{{ $message }}</span>
                                 @enderror
