@@ -11,4 +11,6 @@ use Illuminate\Database\Eloquent\Model;
 class RedevanceDetail extends Model
 {
     use HasFactory;
+
+    protected $fillable = ['account', 'designation', 'amount'];
 }

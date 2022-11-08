@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('excess_rents', function (Blueprint $table) {
             $table->id();
-            
+
             $table->timestamps();
         });
     }

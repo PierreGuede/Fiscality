@@ -16,9 +16,9 @@ return new class extends Migration
     {
         Schema::create('redevance_details', function (Blueprint $table) {
             $table->id();
-            $table->integer("account");
-            $table->string("designation");
-            $table->integer("amount");
+            $table->integer('account');
+            $table->string('designation');
+            $table->integer('amount');
             $table->foreignIdFor(Redevance::class)->constrained();
             $table->timestamps();
         });

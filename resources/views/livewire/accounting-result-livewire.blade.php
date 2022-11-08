@@ -1,29 +1,29 @@
-<div>
+<div  >
     <form>
-        @if ($currentStep == 1)
-            <div class="">
-                <svg wire:click="returnBack" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                    stroke-width="1.5" stroke="currentColor"
-                    class="w-8 h-8 p-2 transition duration-200 bg-white rounded-full hover:shadow-md">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M9 15L3 9m0 0l6-6M3 9h12a6 6 0 010 12h-3" />
-                </svg>
+{{--        @if ($currentStep == 1)--}}
+{{--            <div class="">--}}
+{{--                <svg wire:click="returnBack" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"--}}
+{{--                    stroke-width="1.5" stroke="currentColor"--}}
+{{--                    class="w-8 h-8 p-2 transition duration-200 bg-white rounded-full hover:shadow-md">--}}
+{{--                    <path stroke-linecap="round" stroke-linejoin="round" d="M9 15L3 9m0 0l6-6M3 9h12a6 6 0 010 12h-3" />--}}
+{{--                </svg>--}}
 
-            </div>
-            <div class="space-y-2">
-                <div
-                    class="p-2 text-center transition duration-200 rounded-md cursor-pointer bg-slated-500 hover:ring-4 hover:border-slated-500 hover:ring-slated-500/50 ring-offset-1">
-                    <p class="p-2 text-white" wire:click="determinateManualAccount"> Faire mon Resultat comptable
-                        manuellement</p>
-                </div>
-                <div
-                    class="p-2 text-center transition duration-200 rounded-md cursor-pointer bg-slated-500 hover:ring-4 hover:border-slated-500 hover:ring-slated-500/50 ring-offset-1">
-                    <p class="p-2 text-white" wire:click="determinateAccount">Determiner mon resultat comptable </p>
-                </div>
-            </div>
-        @endif
+{{--            </div>--}}
+{{--            <div class="space-y-2">--}}
+{{--                <div--}}
+{{--                    class="p-2 text-center transition duration-200 rounded-md cursor-pointer bg-gray-500 hover:ring-4 hover:border-gray-500 hover:ring-gray-500/50 ring-offset-1">--}}
+{{--                    <p class="p-2 text-white" wire:click="determinateManualAccount"> Faire mon Resultat comptable--}}
+{{--                        manuellement</p>--}}
+{{--                </div>--}}
+{{--                <div--}}
+{{--                    class="p-2 text-center transition duration-200 rounded-md cursor-pointer bg-gray-500 hover:ring-4 hover:border-gray-500 hover:ring-gray-500/50 ring-offset-1">--}}
+{{--                    <p class="p-2 text-white" wire:click="determinateAccount">Determiner mon resultat comptable </p>--}}
+{{--                </div>--}}
+{{--            </div>--}}
+{{--        @endif--}}
 
 
-        @if ($currentStep == 2)
+{{--        @if ($currentStep == 2)--}}
             <div class="">
                 <svg wire:click="returnBack" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                     stroke-width="1.5" stroke="currentColor"
@@ -67,7 +67,7 @@
                                                     wire:model.defer="inputs.{{ $key }}.amount"
                                                     placeholder="Compte" class="" required autofocus />
                                                 @error('inputs.' . $key . '.amount')
-                                                    <span class="text-xs text-red-600">{{ $message }}</span>
+{{--                                                    <span class="text-xs text-red-600">{{ $message }}</span>--}}
                                                 @enderror
                                             </div>
 
@@ -179,7 +179,7 @@
                             </div>
                             <div class="mt-4 text-right">
                                 {{-- <button type="button"
-                                    class="w-1/3 p-2 text-center text-white rounded-md bg-slated-500"
+                                    class="w-1/3 p-2 text-center text-white rounded-md bg-gray-500"
                                     wire:click="stepBack">Produits</button> --}}
                                 <button type="button"
                                     class="w-1/3 p-2 text-center text-white bg-green-500 rounded-md"
@@ -190,7 +190,7 @@
                 </section>
 
             </div>
-            @if ($calculIncome == 3)
+{{--            @if ($calculIncome == 3)--}}
                 <section class="items-center inline w-10/12 p-4 mx-auto">
 
                     <h4 class="text-3xl font-semibold text-gray-700">
@@ -243,7 +243,7 @@
 
                     <button type="button" wire:click='store'>Enregistrer</button>
                 </section>
-            @endif
-        @endif
+{{--            @endif--}}
+{{--        @endif--}}
     </form>
 </div>

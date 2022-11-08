@@ -20,7 +20,7 @@ class AccuredChargeController extends Controller
     {
         $company = Company::find($id);
 
-        return view('admin.adminWork.accuredCharge', compact('company'));
+        return view('admin.tax-result.accured-charge.index', compact('company'));
     }
 
     public function provision($id)

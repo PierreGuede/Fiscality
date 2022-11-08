@@ -16,7 +16,7 @@ return new class extends Migration
     {
         Schema::create('commission_on_purchases', function (Blueprint $table) {
             $table->id();
-            $table->float("renseigned_commission");
+            $table->float('renseigned_commission');
             $table->foreignIdFor(Company::class)->constrained();
             $table->timestamps();
         });

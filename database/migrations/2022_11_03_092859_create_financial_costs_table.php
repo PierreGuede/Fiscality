@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('financial_costs', function (Blueprint $table) {
             $table->id();
-            $table->string("");
+            $table->string('');
             $table->timestamps();
         });
     }

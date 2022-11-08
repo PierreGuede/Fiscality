@@ -7,17 +7,13 @@ use Illuminate\Http\Request;
 
 class WorkInEnterprise extends Controller
 {
-    public function index($id)
+    public function index( Company $company)
     {
-        $company = Company::find($id);
-
         return view('admin.adminWork.typeName', compact('company'));
     }
 
-    public function actions($id)
+    public function actions(Company $company)
     {
-        $company = Company::find($id);
-
         return view('admin.adminWork.choseAction', compact('company'));
     }
 
@@ -25,17 +21,13 @@ class WorkInEnterprise extends Controller
      * @param $id
      * @return  \Illuminate\Contracts\View\View|\Illuminate\Contracts\View\Factory
      */
-    public function accountResult($id)
+    public function accountResult(Company $company)
     {
-        $company = Company::find($id);
-
         return view('admin.adminWork.accountResult', compact('company'));
     }
 
-    public function impotcalcul($id)
+    public function impotcalcul(Company $company)
     {
-        $company = Company::find($id);
-
         return view('admin.adminWork.impotcalcul', compact('company'));
     }
 
@@ -45,6 +37,7 @@ class WorkInEnterprise extends Controller
         if ($request['name'] == $company->name) {
             return redirect()->route('work.actions', $id);
         } else {
+            return redirect()->route('dashboard');
         }
     }
 
@@ -58,11 +51,9 @@ class WorkInEnterprise extends Controller
         //
     }
 
-    public function show(Company $id)
+    public function show(Company $company)
     {
-        return view('admin.adminWork.workInEnterprise', [
-            'company' => $id,
-        ]);
+        return view('admin.adminWork.workInEnterprise', compact('company'));
     }
 
     public function edit(Company $company)

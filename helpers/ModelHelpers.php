@@ -499,6 +499,23 @@ namespace App\Fiscality\Excesss{
 	class IdeHelperExcess {}
 }
 
+namespace App\Fiscality\FinancialCosts{
+/**
+ * App\Fiscality\FinancialCosts\FinancialCost
+ *
+ * @property int $id
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @method static \Illuminate\Database\Eloquent\Builder|FinancialCost newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|FinancialCost newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|FinancialCost query()
+ * @method static \Illuminate\Database\Eloquent\Builder|FinancialCost whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|FinancialCost whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|FinancialCost whereUpdatedAt($value)
+ */
+	class IdeHelperFinancialCost {}
+}
+
 namespace App\Fiscality\GeneralCostDetails{
 /**
  * App\Fiscality\GeneralCostDetails\GeneralCostDetail
@@ -1010,7 +1027,6 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|AccuredChargeCompany whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|AccuredChargeCompany whereType($value)
  * @method static \Illuminate\Database\Eloquent\Builder|AccuredChargeCompany whereUpdatedAt($value)
- * @mixin \Eloquent
  */
 	class IdeHelperAccuredChargeCompany {}
 }

@@ -1,9 +1,8 @@
 <?php
 
-use App\Fiscality\Companies\Company;
-use Illuminate\Support\Facades\Schema;
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
@@ -16,10 +15,10 @@ return new class extends Migration
     {
         Schema::create('assistance_costs', function (Blueprint $table) {
             $table->id();
-            $table->float("fat_amount");
-            $table->float("general_cost");
-            $table->float("limit_deduction");
-            $table->float("reintegrate_amount");
+            $table->float('fat_amount');
+            $table->float('general_cost');
+            $table->float('limit_deduction');
+            $table->float('reintegrate_amount');
             $table->foreignIdFor(\App\Fiscality\Companies\Company::class)->constrained();
             $table->timestamps();
         });
