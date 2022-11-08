@@ -10,11 +10,11 @@
             <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/>
         </svg>
     </button>
-    <div x-data="{ lib_condition_response: 'yes', delay_condition_response: 'yes' }"
+    <div x-data="{  array_of_amount: [], turnover: 0 }"
          class="relative overflow-y-auto w-1/2 bg-white h-full ml-auto  px-12">
         <h2 class="text-2xl font-bold text-gray-7002 py-8">Redevances</h2>
 
-        <div class="">
+        <form class="">
             <div class=" ml-6 mt-4 space-y-4">
                 <div class="grid grid-cols-12 gap-x-4">
                     <h5 class="py-1 text-sm font-semibold text-gray-700 col-span-2">Compte </h5>
@@ -25,32 +25,45 @@
                 </div>
 
 
-                <div class="space-y-3" >
+                <div class="space-y-3">
 
+                    <span class="text-xl text-gray-700 " x-text="JSON.stringify(inputs)"></span>
                     @foreach($inputs as  $key => $value)
-                        <div class="flex gap-x-2 items-center ">
+                        <div   class="flex gap-x-2 items-center ">
 
                             <div class="grid grid-cols-12 gap-x-4">
                                 <div class="col-span-2">
-                                    <x-input type="number" label="" id="delay_condition" name=""
-                                             value="{{ old('delay_condition') }}" class="block w-full" required
+                                    <x-input   type="number" label="" for="input_{{ $key }}_account"
+                                             id="input_{{ $key }}_account" name="inputs.{{ $key }}.account"
+                                             class="block w-full" required
+                                             wire:model.defer="inputs.{{ $key }}.account"
                                              autofocus/>
-                                    {{--                                @error('inputs.' . $key . '.account')--}}
-                                    {{--                                <span class="text-xs text-red-600">{{ $message }}</span>--}}
-                                    {{--                                @enderror--}}
+                                    @error('inputs.' . $key . '.account')
+                                    <span class="text-xs text-red-600">{{ $message }}</span>
+                                    @enderror
                                 </div>
 
 
                                 <div class="col-span-7">
-                                    <x-input type="number" label="" id="delay_condition" name=""
-                                             value="{{ old('delay_condition') }}" class="block w-full" required
+                                    <x-input type="text" label="" for="input_{{ $key }}_designation"
+                                             id="input_{{ $key }}_designation" name="inputs.{{ $key }}.designation"
+                                             class="block w-full" required
+                                             wire:model.defer="inputs.{{ $key }}.designation"
                                              autofocus/>
+                                    @error('inputs.' . $key . '.designation')
+                                    <span class="text-xs text-red-600">{{ $message }}</span>
+                                    @enderror
                                 </div>
 
                                 <div class="col-span-3">
-                                    <x-input type="number" label="" id="delay_condition" name=""
-                                             value="{{ old('delay_condition') }}" class="block w-full" required
+                                    <x-input x-model=" array_of_amount[{{ $key  }}]" type="number" label="" for="input_{{ $key }}_amount"
+                                             id="input_{{ $key }}_amount" name="inputs.{{ $key }}.amount"
+                                              class="block w-full" required
+                                             wire:model.defer="inputs.{{ $key }}.amount"
                                              autofocus/>
+                                    @error('inputs.' . $key . '.amount')
+                                        <span class="text-xs text-red-600">{{ $message }}</span>
+                                    @enderror
                                 </div>
 
 
@@ -71,6 +84,7 @@
                         </div>
                     @endforeach
                 </div>
+                <p class="text-xl text-gray-700 font-semibold" x-text="value" ></p>
 
                 <div>
                     <button type="button" wire:click="add"
@@ -86,20 +100,25 @@
                 </div>
 
                 <div>
-                    <x-input type="number" label="Total des rémunations" id="delay_condition" name=""
-                             value="{{ old('delay_condition') }}" class="block w-full" required autofocus/>
+                    <x-input :disabled="true" type="number" label="Total des rémunations" id="remu" name="avl"
+                          x-bind:value=" array_of_amount.length > 0 ? array_of_amount.reduce((acc, next) => Number(acc) + Number(next)  , 0) : 0"   class="block w-full" required autofocus/>
                 </div>
 
                 <div class="mt-2 space-y-3 ">
-                    <x-input type="number" label="Chiffre d'affaires" id="delay_condition" name=""
-                             value="{{ old('delay_condition') }}" class="block w-full" required autofocus/>
-                    <x-input type="number" label="Limite de déduction" id="delay_condition" name=""
-                             value="{{ old('delay_condition') }}" class="block w-full" required autofocus/>
+                    <x-input x-model="turnover" type="number" label="Chiffre d'affaires" id="turnover" name="turnover"
+                             value="{{ old('turnover') }}" class="block w-full" required autofocus/>
+                    <x-input  type="number" label="Limite de déduction" id="delay_condition" name=""
+                             x-bind:value="turnover * 0.05" class="block w-full" required autofocus/>
                     <x-input type="number" label="Montant à réintégrer" id="delay_condition" name=""
-                             value="{{ old('delay_condition') }}" class="block w-full" required autofocus/>
+                             x-bind:value="array_of_amount.length > 0 ? array_of_amount.reduce((acc, next) => Number(acc) + Number(next)  , 0) - (turnover * 0.05) : 0" class="block w-full" required autofocus/>
                 </div>
 
             </div>
-        </div>
+
+            <div class="flex justify-end mt-4" >
+                <x-button> Enregistrer </x-button>
+            </div>
+        </form>
     </div>
+
 </div>

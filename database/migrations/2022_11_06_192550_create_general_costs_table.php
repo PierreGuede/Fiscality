@@ -1,9 +1,8 @@
 <?php
 
-use App\Fiscality\Companies\Company;
-use Illuminate\Support\Facades\Schema;
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
@@ -16,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('general_costs', function (Blueprint $table) {
             $table->id();
-            $table->float("total_amount");
+            $table->float('total_amount');
             $table->foreignIdFor(\App\Fiscality\Companies\Company::class)->constrained();
             $table->timestamps();
         });

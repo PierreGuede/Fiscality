@@ -4,15 +4,15 @@ namespace App\Http\Livewire\OtherReintegration;
 
 use App\Fiscality\Companies\Company;
 use App\Fiscality\GeneralCosts\GeneralCost;
-use App\Fiscality\IncomeExpenses\IncomeExpense;
 use Livewire\Component;
 
 class CreateAdvertisingGift extends Component
 {
-
     public bool  $open_a_side = false;
+
     public string  $response = 'no';
-    public  $general_cost;
+
+    public $general_cost;
 
     public $inputs;
 
@@ -42,9 +42,8 @@ class CreateAdvertisingGift extends Component
         $this->inputs->pull($key);
     }
 
-
-    public function mount(Company $company) {
-
+    public function mount(Company $company)
+    {
         $this->general_cost = GeneralCost::whereCompanyId($company->id)->get();
         $this->currentStep = 1;
         $this->company = $company;
@@ -55,16 +54,18 @@ class CreateAdvertisingGift extends Component
 
     public function render()
     {
-
         $this->commission_on_purchase = [];
+
         return view('livewire.other-reintegration.create-advertising-gift');
     }
 
-    public function openASide() {
+    public function openASide()
+    {
         $this->open_a_side = true;
     }
 
-    public function closeASide() {
+    public function closeASide()
+    {
         $this->open_a_side = false;
     }
 }

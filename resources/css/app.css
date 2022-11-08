@@ -35,3 +35,10 @@ input[type=number] {
     font-weight: 600;
     border: 2px solid var(--gray);
 }
+
+
+.nav--link__collapse {
+    box-shadow: 7px 19px 19px -4px rgba(0,0,0,0.18) inset;
+    -webkit-box-shadow: 7px 19px 19px -4px rgba(0,0,0,0.18) inset;
+    -moz-box-shadow: 7px 19px 19px -4px rgba(0,0,0,0.18) inset;
+}

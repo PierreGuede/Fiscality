@@ -16,12 +16,12 @@ return new class extends Migration
     {
         Schema::create('commission_on_purchase_details', function (Blueprint $table) {
             $table->id();
-            $table->integer("Account");
-            $table->string("designation");
-            $table->float("total");
-            $table->float("amount_commission");
-            $table->float("limit");
-            $table->float("no_deductible_amount");
+            $table->integer('Account');
+            $table->string('designation');
+            $table->float('total');
+            $table->float('amount_commission');
+            $table->float('limit');
+            $table->float('no_deductible_amount');
             $table->foreignIdFor(CommissionOnPurchase::class)->constrained();
             $table->timestamps();
         });

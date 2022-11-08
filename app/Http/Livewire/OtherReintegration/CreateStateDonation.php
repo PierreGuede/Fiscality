@@ -4,18 +4,20 @@ namespace App\Http\Livewire\OtherReintegration;
 
 use App\Fiscality\Companies\Company;
 use App\Fiscality\GeneralCosts\GeneralCost;
-use App\Fiscality\IncomeExpenses\IncomeExpense;
 use Livewire\Component;
 
 class CreateStateDonation extends Component
 {
-
     public bool  $open_a_side = false;
+
     public string  $response = 'no';
+
     public $company;
-    public  $general_cost;
+
+    public $general_cost;
 
     public $first_inputs;
+
     public $second_inputs;
 
     protected $listeners = ['openASide', 'closeASide'];
@@ -44,7 +46,6 @@ class CreateStateDonation extends Component
         $this->first_inputs->pull($key);
     }
 
-
     public function addToSecondInput(): void
     {
         $this->second_inputs->push(['account' => '', 'name' => '', 'amount' => '', 'type' => 'income']);
@@ -55,9 +56,8 @@ class CreateStateDonation extends Component
         $this->second_inputs->pull($key);
     }
 
-
-    public function mount(Company $company) {
-
+    public function mount(Company $company)
+    {
         $this->general_cost = GeneralCost::whereCompanyId($company->id)->get();
         $this->company = $company;
         $this->fill([
@@ -68,16 +68,18 @@ class CreateStateDonation extends Component
 
     public function render()
     {
-
         $this->commission_on_purchase = [];
+
         return view('livewire.other-reintegration.create-state-donation');
     }
 
-    public function openASide() {
+    public function openASide()
+    {
         $this->open_a_side = true;
     }
 
-    public function closeASide() {
+    public function closeASide()
+    {
         $this->open_a_side = false;
     }
 }

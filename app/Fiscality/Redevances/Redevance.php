@@ -11,4 +11,6 @@ use Illuminate\Database\Eloquent\Model;
 class Redevance extends Model
 {
     use HasFactory;
+
+    protected $fillable = ['Account', 'designation', 'amount', 'turnover', 'deduction_limit', 'amount_reintegrated'];
 }
