@@ -20,6 +20,7 @@ return new class extends Migration
             $table->float('total_incomes');
             $table->float('total_expenses');
             $table->float('ar_value');
+            $table->enum('status',['false','true']);
             $table->timestamps();
         });
     }

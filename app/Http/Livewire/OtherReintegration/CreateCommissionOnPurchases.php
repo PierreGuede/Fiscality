@@ -78,10 +78,7 @@ class CreateCommissionOnPurchases extends Component
 
     public function store()
     {
-        // $this->validate();
-        // $commision=CommissionOnPurchase::create([
-        //     'renseigned_commission'
-        // ])
+
         $total = [];
         foreach ($this->inputs as $value) {
             array_push($total, $value['total']);

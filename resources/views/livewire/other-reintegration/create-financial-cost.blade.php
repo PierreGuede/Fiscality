@@ -36,7 +36,7 @@
                 </div>
 
                 <div x-show="lib_condition_response == 'yes'" class="mt-5" >
-                    <x-input type="text" label="Montant à réintégrer" id="lib_condition" name="lib_condition"
+                    <x-input type="text" label="Montant à réintégrer" id="lib_condition"  wire:model.defer="lib_condition" name="lib_condition"
                              value="{{ old('lib_condition') }}" class="block w-full" required autofocus />
                 </div>
                 <div x-show="lib_condition_response == 'no'" class="mt-5" >
@@ -65,7 +65,7 @@
                 </div>
 
                 <div x-show="delay_condition_response == 'yes'" class="mt-5" >
-                    <x-input type="text" label="Montants des intérêts déduits sur les fonds non remboursés sur plus de cinq ans" id="delay_condition" name="delay_condition"
+                    <x-input type="text" label="Montants des intérêts déduits sur les fonds non remboursés sur plus de cinq ans" id="delay_condition" wire:model.defer="delay_condition" name="delay_condition"
                              value="{{ old('delay_condition') }}" class="block w-full" required autofocus />
                 </div>
                 <div x-show="delay_condition_response == 'no'" class="mt-5" >
@@ -82,25 +82,25 @@
                 <p>c)</p> <p> Conditions sur les taux d'intérêt </p>
             </div>
             <div class=" gap-x-3 -mr-6  mt-4 space-y-4 ">
-                <x-input type="text" label="Montant des apports en compte (veuillez renseigner ceux non pris en compte au niveau de b)" id="delay_condition" name="delay_condition"
+                <x-input type="text" label="Montant des apports en compte (veuillez renseigner ceux non pris en compte au niveau de b)" id="delay_condition" wire:model.defer="inputs.amount_contribution"
+                        name="delay_condition" value="{{ old('delay_condition') }}" class="block w-full" required autofocus />
+
+                <x-input type="number"  label="Montant des intérêts comptabilisés (veuillez  renseigner ceux non pris en compte au niveau de b)" id="delay_condition" wire:model.defer="inputs.amount_interest_recorded"
+                        name="" value="{{ old('delay_condition') }}" class="block w-full" required autofocus />
+
+                <x-input type="number"  label="Taux d'intérêt pratiqué" id="delay_condition" name="" wire:model.defer="inputs.interest_rate_charged"
                          value="{{ old('delay_condition') }}" class="block w-full" required autofocus />
 
-                <x-input type="number"  label="Montant des intérêts comptabilisés (veuillez  renseigner ceux non pris en compte au niveau de b)" id="delay_condition" name=""
+                <x-input type="number"  label="Taux d'intérêt de la BCEAO de l'année" id="delay_condition" name="" wire:model.defer="inputs.bceao_interest_rate_for_the_year"
                          value="{{ old('delay_condition') }}" class="block w-full" required autofocus />
 
-                <x-input type="number"  label="Taux d'intérêt pratiqué" id="delay_condition" name=""
+                <x-input type="number"  label="Surplus de taux pratiqué" id="delay_condition" name="" wire:model.defer="inputs.excess_rate_charged"
                          value="{{ old('delay_condition') }}" class="block w-full" required autofocus />
 
-                <x-input type="number"  label="Taux d'intérêt de la BCEAO de l'année" id="delay_condition" name=""
+                <x-input type="number"  label="Montant à réintégrer" id="delay_condition" name="" wire:model.defer="inputs.amount_added_back"
                          value="{{ old('delay_condition') }}" class="block w-full" required autofocus />
 
-                <x-input type="number"  label="Surplus de taux pratiqué" id="delay_condition" name=""
-                         value="{{ old('delay_condition') }}" class="block w-full" required autofocus />
-
-                <x-input type="number"  label="Montant à réintégrer" id="delay_condition" name=""
-                         value="{{ old('delay_condition') }}" class="block w-full" required autofocus />
-
-                <x-input type="number"  label="Intérêt sur comptes courants associés non déductible" id="delay_condition" name=""
+                <x-input type="number"  label="Intérêt sur comptes courants associés non déductible" id="delay_condition" name="" wire:model.defer="inputs.non_deductible_interest"
                          value="{{ old('delay_condition') }}" class="block w-full" required autofocus />
             </div>
         </div>
@@ -111,33 +111,39 @@
                 <p>2.</p> <p> Conditions applicables à tous les intérêts</p>
             </div>
             <div class=" ml-6 mt-4 space-y-4" >
-                <x-input type="number"  label="Montant total des intérêts à comptabilisés" id="delay_condition" name=""
+                <x-input type="number"  label="Montant total des intérêts à comptabilisés" id="delay_condition" wire:model="inputs.amount_of_interest_recorded" name="amount_of_interest_recorded"
                      value="{{ old('delay_condition') }}" class="block w-full" required autofocus />
 
-                <x-input type="number"  label="Montant des intérêts non déductibles sur comptes courants" id="delay_condition" name=""
+                <x-input type="number"  label="Montant des intérêts non déductibles sur comptes courants" id="delay_condition" wire:model="inputs.non_deductible_interest_amount" name="non_deductible_interest_amount"
                          value="{{ old('delay_condition') }}" class="block w-full" required autofocus />
 
-                <x-input type="number"  label="Montant des intérêts déductibles" id="delay_condition" name=""
+                <x-input type="number"  label="Montant des intérêts déductibles" id="delay_condition" name="" wire:model="inputs.deductible_interest_amount"
                          value="{{ old('delay_condition') }}" class="block w-full" required autofocus />
 
-                <x-input type="number"  label="Réslultat avant impôt" id="delay_condition" name=""
+                <x-input type="number"  label="Réslultat avant impôt" id="delay_condition" name="" wire:model="inputs.profit_before_tax"
                          value="{{ old('delay_condition') }}" class="block w-full" required autofocus />
 
-                <x-input type="number"  label="Dotations aux amortissements" id="delay_condition" name=""
+                <x-input type="number"  label="Interet comptabilisé" id="delay_condition" name="" wire:model="inputs.interest_accrued"
                          value="{{ old('delay_condition') }}" class="block w-full" required autofocus />
 
-                <x-input type="number"  label="Dotations aux provisions" id="delay_condition" name=""
+                <x-input type="number"  label="Dotations aux amortissements" id="delay_condition" name="" wire:model="inputs.depreciation_and_amortization"
                          value="{{ old('delay_condition') }}" class="block w-full" required autofocus />
 
-                <x-input type="number"  label="Base de calcul" id="delay_condition" name=""
+                <x-input type="number"  label="Dotations aux provisions" id="delay_condition" name="" wire:model="inputs.allocations_to_provisions"
                          value="{{ old('delay_condition') }}" class="block w-full" required autofocus />
 
-                <x-input type="number"  label="Plafond de déductibilité" id="delay_condition" name=""
+                <x-input type="number"  label="Base de calcul" id="delay_condition" name="" wire:model="inputs.calculation_base"
                          value="{{ old('delay_condition') }}" class="block w-full" required autofocus />
 
-                <x-input type="number"  label="Montant à réintégrer" id="delay_condition" name=""
+                <x-input type="number"  label="Plafond de déductibilité" id="delay_condition" name="" wire:model="inputs.deductibility_limit"
+                         value="{{ old('delay_condition') }}" class="block w-full" required autofocus />
+
+                <x-input type="number"  label="Montant à réintégrer" id="delay_condition" name="" wire:model="inputs.amount_reintegrate"
                          value="{{ old('delay_condition') }}" class="block w-full" required autofocus />
             </div>
+        </div>
+        <div class="mt-4 flex justify-end  " >
+            <x-button type="button" wire:click="store" >Enregistrer</x-button>
         </div>
     </div>
 </div>

@@ -17,7 +17,10 @@ return new class extends Migration
         Schema::create('financial_cost_interests', function (Blueprint $table) {
             $table->id();
             $table->double('amount_reintegrated');
-            $table->double('interest_rate')->nullable();
+            $table->double('amount_contribution')->nullable();
+            $table->double('amount_interest_recorded')->nullable();
+            $table->double('interest_rate_charged')->nullable();
+            $table->double('bceao_interest_rate_for_the_year')->nullable();
             $table->double('maximum_rate')->nullable();
             $table->double('rate_surplus')->nullable();
             $table->foreignIdFor(FinancialCost::class)->constrained();
