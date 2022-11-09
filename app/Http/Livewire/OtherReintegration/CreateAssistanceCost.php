@@ -77,7 +77,6 @@ class CreateAssistanceCost extends Component
         $this->open_a_side = false;
     }
     public function store(){
-        // dd($this->inputsAssistance['fat_amount']);
         $total = [];
         foreach ($this->inputs as $key => $value) {
             array_push($total, $value['amount']);
