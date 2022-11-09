@@ -15,10 +15,10 @@ return new class extends Migration
     {
         Schema::create('assistance_costs', function (Blueprint $table) {
             $table->id();
-            $table->float('fat_amount');
-            $table->float('general_cost');
-            $table->float('limit_deduction');
-            $table->float('reintegrate_amount');
+            $table->double('fat_amount');
+            $table->double('general_cost');
+            $table->double('limit_deduction');
+            $table->double('reintegrate_amount');
             $table->foreignIdFor(\App\Fiscality\Companies\Company::class)->constrained();
             $table->timestamps();
         });

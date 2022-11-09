@@ -11,4 +11,8 @@ use Illuminate\Database\Eloquent\Model;
 class GeneralCost extends Model
 {
     use HasFactory;
+    protected $fillable=[
+        'total_amount',
+        'company_id',
+    ];
 }

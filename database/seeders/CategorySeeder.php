@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use App\Fiscality\Categories\Category;
 use App\Fiscality\DetailTypes\DetailType;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Str;
 
 class CategorySeeder extends Seeder
 {
@@ -17,15 +18,15 @@ class CategorySeeder extends Seeder
     {
         Category::create([
             'name' => 'Taux d\'impôt',
-            'code' => 'Taux_impôt',
+            'code' => Str::slug('Taux impôt','_'),
         ]);
         Category::create([
             'name' => 'Impot minimum',
-            'code' => 'Impot_minimum',
+            'code' => Str::slug('Impot minimum','_'),
         ]);
         Category::create([
             'name' => 'Minimum Forfaitaire',
-            'code' => 'Minimum_Forfaitaire',
+            'code' => Str::slug('Minimum_Forfaitaire','_'),
         ]);
 
         DetailType::create([

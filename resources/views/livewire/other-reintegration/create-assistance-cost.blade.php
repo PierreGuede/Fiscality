@@ -10,7 +10,7 @@
             <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/>
         </svg>
     </button>
-    <div x-data="{ lib_condition_response: 'yes', delay_condition_response: 'yes' }"
+    <div x-data="{ lib_condition_response: 'yes', delay_condition_response: 'yes' , arrayLimit:[],sum:'' }"
          class="relative overflow-y-auto w-1/2 bg-white h-full ml-auto  px-12">
         <h2 class="text-2xl font-bold text-gray-7002 py-8">Frais d'assistance</h2>
 
@@ -32,26 +32,27 @@
                     @foreach($inputs as  $key => $value)
                         <div class="flex gap-x-2 items-center ">
 
-                            <div class="grid grid-cols-12 gap-x-4">
+                            <div class="grid grid-cols-12 gap-x-4 space-y-2">
                                 <div class="col-span-2">
-                                    <x-input type="number" label="" id="delay_condition" name=""
-                                             value="{{ old('delay_condition') }}" class="block w-full" required
-                                             autofocus/>
-                                    {{--                                @error('inputs.' . $key . '.account')--}}
-                                    {{--                                <span class="text-xs text-red-600">{{ $message }}</span>--}}
-                                    {{--                                @enderror--}}
+                                    <x-input :disabled="count($general_cost) > $key"
+                                        class="w-full" for="input_{{ $key }}_account"
+                                         type="number" id="input_{{ $key }}_account"
+                                         wire:model.defer="inputs.{{ $key }}.account"
+                                          class="" required autofocus />
+
                                 </div>
 
 
                                 <div class="col-span-7">
-                                    <x-input type="number" label="" id="delay_condition" name=""
-                                             value="{{ old('delay_condition') }}" class="block w-full" required
-                                             autofocus/>
+                                    <x-input :disabled="count($general_cost) > $key" for="input_{{ $key }}_name"
+                                        type="text" id="input_{{ $key }}_name"
+                                        wire:model.defer="inputs.{{ $key }}.name"
+                                        class="" required autofocus />
                                 </div>
 
                                 <div class="col-span-3">
-                                    <x-input type="number" label="" id="delay_condition" name=""
-                                             value="{{ old('delay_condition') }}" class="block w-full" required
+                                    <x-input type="number" label="" id="delay_condition" name="" wire:model.defer="inputs.{{ $key }}.amount"
+                                             value="{{ old('delay_condition') }}" class="block w-full" required x-model="arrayLimit[{{ $key }}]"
                                              autofocus/>
                                 </div>
 
@@ -91,14 +92,28 @@
             </div>
 
             <div class="mt-2 space-y-3 ">
-                <x-input type="number" label="Montant des FAT" id="delay_condition" name=""
-                         value="{{ old('delay_condition') }}" class="block w-full" required autofocus/>
-                <x-input type="number" label="Limite de déduction" id="delay_condition" name=""
-                         value="{{ old('delay_condition') }}" class="block w-full" required autofocus/>
-                <x-input type="number" label="Montant à réintégrer" id="delay_condition" name=""
-                         value="{{ old('delay_condition') }}" class="block w-full" required autofocus/>
+                <p class="text-sm text-gray-400">Total Frais généraux</p>
+                <p class="w-full h-10 p-2 px-3 text-gray-900 placeholder-transparent border border-gray-300 rounded-sm peer focus:ring-blue-500/40 focus:ring-4 focus:outline-none align-center focus:border-blue-600"  x-text="arrayLimit.reduce(function (x, y) {
+                    return Number(x) + Number(y);
+                }, 0);">
+                <x-input type="number" label="Montant des FAT" id="delay_condition" name="" wire:model.defer="inputsAssistance.fat_amount" x-model="sum"
+                          class="block w-full" required autofocus/>
+                {{-- <x-input type="number" label="Limite de déduction" id="delay_condition" name="" wire:model.defer="inputsAssistance.limit_deduction"
+                         value="{{ old('delay_condition') }}" class="block w-full" required autofocus/> --}}
+                <p class="text-sm text-gray-400">Limite de déduction</p>
+                <p class="w-full h-10 p-2 px-3 text-gray-900 placeholder-transparent border border-gray-300 rounded-sm peer focus:ring-blue-500/40 focus:ring-4 focus:outline-none align-center focus:border-blue-600"  x-text="arrayLimit.reduce(function (x, y) {
+                    return (Number(x) + Number(y))*0.5;
+                }, 0);">
+
+                <p class="text-sm text-gray-400">Montant à réintéger</p>
+                <p class="w-full h-10 p-2 px-3 text-gray-900 placeholder-transparent border border-gray-300 rounded-sm peer focus:ring-blue-500/40 focus:ring-4 focus:outline-none align-center focus:border-blue-600"  x-text="arrayLimit.reduce(function (x, y) {
+                    return Number(sum)-((Number(x) + Number(y))*0.5);
+                }, 0);">
             </div>
 
+            <div class="mt-4 flex justify-end  " >
+                <x-button type="button" wire:click="store" >Enregistrer</x-button>
+            </div>
         </form>
     </div>
 </div>
