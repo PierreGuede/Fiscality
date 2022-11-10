@@ -4,7 +4,6 @@ namespace App\Http\Livewire\OtherReintegration;
 
 use App\Fiscality\Companies\Company;
 use App\Fiscality\ExcessRents\ExcessRent;
-use App\Fiscality\GeneralCosts\GeneralCost;
 use Livewire\Component;
 
 class CreateExcessRent extends Component
@@ -14,9 +13,13 @@ class CreateExcessRent extends Component
     public Company $company;
 
     public $rent_amount;
+
     public $rental_period_year;
+
     public $annual_deduction_limit = 6_250_000;
+
     public $applicable_deduction_limit;
+
     public $amount_rent_reintegrated;
 
     protected $listeners = ['openASide', 'closeASide'];
@@ -37,7 +40,6 @@ class CreateExcessRent extends Component
 //        'rental_period_year' => 'required|min:1',
 //        'annual_deduction_limit' => 'required|min:1',
 //    ];
-
 
     public function mount(Company $company)
     {
@@ -65,9 +67,10 @@ class CreateExcessRent extends Component
         $this->open_a_side = false;
     }
 
-    public function save() {
-        $applicable_deduction_limit = $this->annual_deduction_limit * $this->rental_period_year/365;
-        $amount_rent_reintegrated =  $this->rent_amount - $applicable_deduction_limit;
+    public function save()
+    {
+        $applicable_deduction_limit = $this->annual_deduction_limit * $this->rental_period_year / 365;
+        $amount_rent_reintegrated = $this->rent_amount - $applicable_deduction_limit;
 
         ExcessRent::create([
             'rent_amount' => $this->rent_amount,
@@ -75,7 +78,7 @@ class CreateExcessRent extends Component
             'annual_deduction_limit' => $this->annual_deduction_limit,
             'applicable_deduction_limit' => $applicable_deduction_limit,
             'amount_rent_reintegrated' => $amount_rent_reintegrated,
-            'company_id' => $this->company->id
+            'company_id' => $this->company->id,
         ]);
 
         $this->closeASide();

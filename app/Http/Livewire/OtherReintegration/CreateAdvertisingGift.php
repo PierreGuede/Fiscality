@@ -5,7 +5,6 @@ namespace App\Http\Livewire\OtherReintegration;
 use App\Fiscality\AdvertisingGiftDetails\AdvertisingGiftDetail;
 use App\Fiscality\AdvertisingGifts\AdvertisingGift;
 use App\Fiscality\Companies\Company;
-use App\Fiscality\GeneralCosts\GeneralCost;
 use Illuminate\Support\Collection;
 use Livewire\Component;
 
@@ -16,6 +15,7 @@ class CreateAdvertisingGift extends Component
     public Company $company;
 
     public $inputs;
+
     public $turnover;
 
     protected $listeners = ['openASide', 'closeASide'];
@@ -87,10 +87,9 @@ class CreateAdvertisingGift extends Component
 
     public function save()
     {
-
         $total_amount = $this->processDataTotalAmount($this->inputs);
-        $limit_deduction = (float)$this->turnover * (3/1000);
-        $surplus_reintegrated = (float)$total_amount - $limit_deduction;
+        $limit_deduction = (float) $this->turnover * (3 / 1000);
+        $surplus_reintegrated = (float) $total_amount - $limit_deduction;
 
         $advertising_gift = AdvertisingGift::create([
             'total_amount' => $total_amount,
@@ -104,8 +103,8 @@ class CreateAdvertisingGift extends Component
             AdvertisingGiftDetail::create([
                 'advertising_gift_id' => $advertising_gift->id,
                 'company_id' => $this->company->id,
-                'name'=> $this->inputs[$i]['name'],
-                'amount'=>$this->inputs[$i]['amount'],
+                'name' => $this->inputs[$i]['name'],
+                'amount' => $this->inputs[$i]['amount'],
             ]);
         }
 

@@ -2,9 +2,9 @@
 
 namespace App\Http\Livewire\OtherReintegration;
 
-use Livewire\Component;
-use App\Fiscality\CommissionOnPurchases\CommissionOnPurchase;
 use App\Fiscality\CommissionOnPurchaseDetails\CommissionOnPurchaseDetail;
+use App\Fiscality\CommissionOnPurchases\CommissionOnPurchase;
+use Livewire\Component;
 
 class CreateCommissionOnPurchases extends Component
 {

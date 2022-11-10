@@ -2,7 +2,6 @@
 
 namespace App\Http\Livewire\AccuredCharge;
 
-use App\Fiscality\AccountingResults\AccountingResult;
 use App\Fiscality\Amortizations\Amortization;
 use App\Fiscality\Companies\Company;
 use App\Models\AccuredChargeCompany;
@@ -22,7 +21,7 @@ class ExpenseProvisionedCard extends Component
     public function mount($company)
     {
         $this->company = $company;
-        $this->total = AccuredChargeCompany::where('type', 'charges')->whereCompanyId($this->company->id)->whereYear( 'created_at',Carbon::now()->year)->first();
+        $this->total = AccuredChargeCompany::where('type', 'charges')->whereCompanyId($this->company->id)->whereYear('created_at', Carbon::now()->year)->first();
     }
 
     public function render()
@@ -32,6 +31,6 @@ class ExpenseProvisionedCard extends Component
 
     public function refreshExpenseProvision()
     {
-        $this->total = AccuredChargeCompany::where('type', 'charges')->whereCompanyId( $this->company->id)->whereYear( Carbon::now()->year)->first();
+        $this->total = AccuredChargeCompany::where('type', 'charges')->whereCompanyId($this->company->id)->whereYear(Carbon::now()->year)->first();
     }
 }

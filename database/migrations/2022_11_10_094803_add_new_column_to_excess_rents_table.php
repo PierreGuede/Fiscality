@@ -21,6 +21,4 @@ return new class extends Migration
             $table->decimal('amount_rent_reintegrated');
         });
     }
-
-
 };

@@ -17,6 +17,4 @@ return new class extends Migration
             $table->foreignIdFor(\App\Fiscality\Companies\Company::class)->constrained();
         });
     }
-
-
 };

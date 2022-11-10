@@ -18,6 +18,6 @@ class ExcessRent extends Model
         'annual_deduction_limit',
         'applicable_deduction_limit',
         'amount_rent_reintegrated',
-        'company_id'
+        'company_id',
     ];
 }
