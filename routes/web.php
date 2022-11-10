@@ -49,6 +49,7 @@ Route::middleware('auth', 'hasOneRole')->group(function () {
         Route::get('work-in-enterprise/{company}/tax-result/account-result', [\App\Http\Controllers\AccountResultController::class, 'index'])->name('tax-result.account-result');
         Route::get('work-in-enterprise/{company}/tax-result/non-deductible-charge', [\App\Http\Controllers\NonDeductibleChargeController::class, 'index'])->name('tax-result.non-deductible-charge');
         Route::get('work-in-enterprise/{company}/tax-result/deduction', [\App\Http\Controllers\DeductionController::class, 'index'])->name('tax-result.deduction');
+        Route::post('work-in-enterprise/{company}/tax-result/deduction', [\App\Http\Controllers\DeductionController::class, 'store'])->name('tax-result.deduction.store');
 
         Route::get('work-in-enterprise/{company}/tax-result/amortization', [\App\Fiscality\AmortizationDetails\Controllers\AmortizationDetailsController::class, 'index'])->name('amortization');
         Route::get('work-in-enterprise/{company}/tax-result/amortization/tourism-cars', [\App\Http\Controllers\VehicleController::class, 'index'])->name('amortization.tourism-cars');
