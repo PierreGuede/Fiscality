@@ -3,6 +3,8 @@
 namespace App\Http\Livewire\OtherReintegration;
 
 use Livewire\Component;
+use App\Fiscality\CommissionOnPurchases\CommissionOnPurchase;
+use App\Fiscality\CommissionOnPurchaseDetails\CommissionOnPurchaseDetail;
 
 class CreateCommissionOnPurchases extends Component
 {
@@ -101,5 +103,6 @@ class CreateCommissionOnPurchases extends Component
                 'commission_on_purchase_id' => $commission_create->id,
             ]);
         }
+        $this->closeASide();
     }
 }

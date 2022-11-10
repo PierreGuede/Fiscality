@@ -62,7 +62,7 @@ class CreateFinancialCost extends Component
         $rate_surplus=$this->inputs['interest_rate_charged']-$maximum_rate;
         $amount_reintegrated=($this->inputs['amount_interest_recorded']*$rate_surplus)/$this->inputs['interest_rate_charged'];
         $deductible_interest_amount=$this->inputs['amount_of_interest_recorded']-$amount_reintegrated;
-        $calculation_base= array_sum(array ($this->inputs['profit_before_tax'],
+        $calculation_base= array_sum(array ($this->rc->ar_value,
                                             $this->inputs['interest_accrued'],
                                             $this->inputs['depreciation_and_amortization'],
                                             $this->inputs['allocations_to_provisions']));
@@ -89,10 +89,10 @@ class CreateFinancialCost extends Component
 
         FinancialCostInterest::create([
             'amount_reintegrated'=>$amount_reintegrated,
-            'amount_contribution'=>$this->inputs['amount_interest_recorded'],
-            'amount_interest_recorded'=>$this->inputs['interest_rate_charged'],
-            'interest_rate_charged'=>$this->inputs['bceao_interest_rate_for_the_year'],
-            'bceao_interest_rate_for_the_year'=>$this->inputs['excess_rate_charged'],
+            'amount_contribution'=>$this->inputs['amount_contribution'],
+            'amount_interest_recorded'=>$this->inputs['amount_interest_recorded'],
+            'interest_rate_charged'=>$this->inputs['interest_rate_charged'],
+            'bceao_interest_rate_for_the_year'=>$this->inputs['bceao_interest_rate_for_the_year'],/* excess_rate_charged */
             'maximum_rate'=>$maximum_rate,
             'rate_surplus'=>$rate_surplus,
             'financial_cost_id'=>$financialCost->id
@@ -111,5 +111,6 @@ class CreateFinancialCost extends Component
             'amount_reintegrate'=>$reintegrate_amount > 0 ? $reintegrate_amount : '0',
             'financial_cost_id'=>$financialCost->id
         ]);
+        $this->closeASide();
     }
 }
