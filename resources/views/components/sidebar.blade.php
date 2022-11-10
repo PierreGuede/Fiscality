@@ -91,11 +91,11 @@
                                 </svg>
                                 <span class="line-clamp-1">Provisions et charges provisionnées</span>
                             </a>
-                            <a  href=" {{ route('tax-result.deduction', $company->id)  }} "  :class=" {{ request()->routeIs('tax-result.deduction')  }} ? 'bg-blue-500' :''  " class="mt-2 flex h-10 w-full items-center rounded px-3 hover:bg-blue-500 gap-x-2" >
+                            <a  href=" {{ route('tax-result.non-deductible-charge', $company->id)  }} "  :class=" {{ request()->routeIs('tax-result.deduction')  }} ? 'bg-blue-500' :''  " class="mt-2 flex h-10 w-full items-center rounded px-3 hover:bg-blue-500 gap-x-2" >
                                 <svg class="h-4 w-4  stroke-current shrink-0" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">--}}
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
                                 </svg>
-                                <span class="line-clamp-1" >Amortissement sur biens qui ne sont pas directement liés à l'exploitation</span>
+                                <span class="line-clamp-1" >Autre réintégration</span>
                             </a>
                         </div>
 

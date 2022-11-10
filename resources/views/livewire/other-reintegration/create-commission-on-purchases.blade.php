@@ -128,8 +128,8 @@
                         <p class="ml-2">Ajouter</p>
                     </button>
                 </div>
-                <div class=" w-full align-center">
-                    <x-button wire:click='store' class=" tp-2 bg-blue-500 w-1/3  hover:bg-blue-600 rounded-sm" >Enregistrer</x-button>
+                <div class=" ">
+                    <x-button wire:click='store' class=" mt-8 bg-blue-500 ml-auto  hover:bg-blue-600 rounded-sm" >Enregistrer</x-button>
                 </div>
 
             </div>

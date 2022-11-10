@@ -253,11 +253,15 @@ namespace App\Fiscality\CommissionOnPurchaseDetails{
  * @property float $no_deductible_amount
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property int $company_id
+ * @property int $commission_on_purchase_id
  * @method static \Illuminate\Database\Eloquent\Builder|CommissionOnPurchaseDetail newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|CommissionOnPurchaseDetail newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|CommissionOnPurchaseDetail query()
  * @method static \Illuminate\Database\Eloquent\Builder|CommissionOnPurchaseDetail whereAccount($value)
  * @method static \Illuminate\Database\Eloquent\Builder|CommissionOnPurchaseDetail whereAmountCommission($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|CommissionOnPurchaseDetail whereCommissionOnPurchaseId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|CommissionOnPurchaseDetail whereCompanyId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|CommissionOnPurchaseDetail whereCreatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|CommissionOnPurchaseDetail whereDesignation($value)
  * @method static \Illuminate\Database\Eloquent\Builder|CommissionOnPurchaseDetail whereId($value)
@@ -594,11 +598,23 @@ namespace App\Fiscality\FinancialCosts{
  * @property int $id
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property string $name
+ * @property int $total_amount_reintegrated
+ * @property int $interest_amount_reintegrated
+ * @property int $condition_amount_reintegrated
+ * @property int $company_id
+ * @property string $date
  * @method static \Illuminate\Database\Eloquent\Builder|FinancialCost newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|FinancialCost newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|FinancialCost query()
+ * @method static \Illuminate\Database\Eloquent\Builder|FinancialCost whereCompanyId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|FinancialCost whereConditionAmountReintegrated($value)
  * @method static \Illuminate\Database\Eloquent\Builder|FinancialCost whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|FinancialCost whereDate($value)
  * @method static \Illuminate\Database\Eloquent\Builder|FinancialCost whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|FinancialCost whereInterestAmountReintegrated($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|FinancialCost whereName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|FinancialCost whereTotalAmountReintegrated($value)
  * @method static \Illuminate\Database\Eloquent\Builder|FinancialCost whereUpdatedAt($value)
  */
 	class IdeHelperFinancialCost {}
@@ -1300,6 +1316,18 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|GuruStateDonationDetail whereUpdatedAt($value)
  */
 	class IdeHelperGuruStateDonationDetail {}
+}
+
+namespace App\Models{
+/**
+ * App\Models\OtherReintegration
+ *
+ * @method static \Illuminate\Database\Eloquent\Builder|OtherReintegration newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|OtherReintegration newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|OtherReintegration query()
+ * @mixin \Eloquent
+ */
+	class IdeHelperOtherReintegration {}
 }
 
 namespace App\Models{

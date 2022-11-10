@@ -20,5 +20,6 @@ class CommissionOnPurchaseDetail extends Model
         'limit',
         'no_deductible_amount',
         'commission_on_purchase_id',
+        'company_id',
     ];
 }

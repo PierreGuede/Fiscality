@@ -10,8 +10,6 @@ class CreateCommissionOnPurchases extends Component
 {
     public bool  $open_a_side = false;
 
-    public string  $response = 'no';
-
     public $redevances;
 
     public $commission_on_purchase;
@@ -92,6 +90,7 @@ class CreateCommissionOnPurchases extends Component
         foreach ($this->inputs as $value) {
             $this->total_limit = $value['total'] * 0.05;
             $this->total_deduction = $value['amount_commission'] - $this->total_limit;
+
             CommissionOnPurchaseDetail::create([
                 'Account' => $value['Account'],
                 'designation' => $value['designation'],
@@ -100,6 +99,7 @@ class CreateCommissionOnPurchases extends Component
                 'limit' => $this->total_limit,
                 'no_deductible_amount' => $this->total_deduction,
                 'commission_on_purchase_id' => $commission_create->id,
+                'company_id' => $this->company->id,
             ]);
         }
         $this->closeASide();

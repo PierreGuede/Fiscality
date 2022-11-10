@@ -1,6 +1,5 @@
 <?php
 
-use App\Fiscality\Companies\Company;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -16,12 +15,6 @@ return new class extends Migration
     {
         Schema::create('financial_costs', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->integer('total_amount_reintegrated');
-            $table->integer('interest_amount_reintegrated');
-            $table->integer('condition_amount_reintegrated');
-            $table->foreignIdFor(Company::class)->constrained();
-            $table->year('date');
             $table->timestamps();
         });
     }

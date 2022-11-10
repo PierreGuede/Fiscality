@@ -22,7 +22,7 @@ return new class extends Migration
             $table->float('amount_commission');
             $table->float('limit');
             $table->float('no_deductible_amount');
-            $table->foreignIdFor(CommissionOnPurchase::class)->constrained();
+//            $table->foreignIdFor(CommissionOnPurchase::class)->constrained();
             $table->timestamps();
         });
     }
