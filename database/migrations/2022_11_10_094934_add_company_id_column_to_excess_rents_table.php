@@ -13,19 +13,10 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('excess_rents', function (Blueprint $table) {
-            $table->id();
-            $table->timestamps();
+        Schema::table('excess_rents', function (Blueprint $table) {
+            $table->foreignIdFor(\App\Fiscality\Companies\Company::class)->constrained();
         });
     }
 
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
-    public function down()
-    {
-        Schema::dropIfExists('excess_rents');
-    }
+
 };

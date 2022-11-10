@@ -11,4 +11,6 @@ use Illuminate\Database\Eloquent\Model;
 class AdvertisingGiftDetail extends Model
 {
     use HasFactory;
+
+    protected $fillable = ['advertising_gift_id', 'company_id', 'name', 'amount'];
 }

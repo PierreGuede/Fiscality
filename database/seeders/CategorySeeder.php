@@ -18,15 +18,15 @@ class CategorySeeder extends Seeder
     {
         Category::create([
             'name' => 'Taux d\'impôt',
-            'code' => Str::slug('Taux impôt','_'),
+            'code' => Str::slug('Taux impôt', '_'),
         ]);
         Category::create([
             'name' => 'Impot minimum',
-            'code' => Str::slug('Impot minimum','_'),
+            'code' => Str::slug('Impot minimum', '_'),
         ]);
         Category::create([
             'name' => 'Minimum Forfaitaire',
-            'code' => Str::slug('Minimum_Forfaitaire','_'),
+            'code' => Str::slug('Minimum_Forfaitaire', '_'),
         ]);
 
         DetailType::create([

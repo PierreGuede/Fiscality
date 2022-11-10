@@ -80,7 +80,6 @@ class CreateCommissionOnPurchases extends Component
 
     public function store()
     {
-
         $total = [];
         foreach ($this->inputs as $value) {
             array_push($total, $value['total']);

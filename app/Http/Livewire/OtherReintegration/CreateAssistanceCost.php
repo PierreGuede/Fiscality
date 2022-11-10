@@ -3,7 +3,6 @@
 namespace App\Http\Livewire\OtherReintegration;
 
 use App\Fiscality\AssistanceCosts\AssistanceCost;
-use App\Fiscality\Companies\Company;
 use App\Fiscality\GeneralCostDetails\GeneralCostDetail;
 use App\Fiscality\GeneralCosts\GeneralCost;
 use App\Fiscality\IncomeExpenses\IncomeExpense;
@@ -51,8 +50,8 @@ class CreateAssistanceCost extends Component
 
     public function mount($company)
     {
-        $expense=IncomeExpense::where('type','expense')->where('id','!=','5')->get();
-        $this->general_cost =$expense;
+        $expense = IncomeExpense::where('type', 'expense')->where('id', '!=', '5')->get();
+        $this->general_cost = $expense;
         $this->currentStep = 1;
         $this->company = $company;
         $this->fill([
@@ -76,32 +75,34 @@ class CreateAssistanceCost extends Component
     {
         $this->open_a_side = false;
     }
-    public function store(){
+
+    public function store()
+    {
         $total = [];
         foreach ($this->inputs as $key => $value) {
             array_push($total, $value['amount']);
         }
         $total_sum = array_sum($total);
-        $generalCost=GeneralCost::create([
-            'total_amount'=>$total_sum,
-            'company_id'=>$this->company->id
+        $generalCost = GeneralCost::create([
+            'total_amount' => $total_sum,
+            'company_id' => $this->company->id,
         ]);
         foreach ($this->inputs as $key => $value) {
             GeneralCostDetail::create([
-                'compte'=>$value['account'],
-                'designation'=>$value['name'],
-                'amount'=>$value['amount'],
-                'general_cost_id'=>$generalCost->id
+                'compte' => $value['account'],
+                'designation' => $value['name'],
+                'amount' => $value['amount'],
+                'general_cost_id' => $generalCost->id,
             ]);
         }
 
-            AssistanceCost::create([
-                'fat_amount'=>$this->inputsAssistance['fat_amount'],
-                'general_cost'=>$total_sum,
-                'limit_deduction'=>($total_sum)*0.5,
-                'reintegrate_amount'=>$this->inputsAssistance['fat_amount'] - (($total_sum)*0.5),
-                'company_id'=>$this->company->id
+        AssistanceCost::create([
+            'fat_amount' => $this->inputsAssistance['fat_amount'],
+            'general_cost' => $total_sum,
+            'limit_deduction' => ($total_sum) * 0.5,
+            'reintegrate_amount' => $this->inputsAssistance['fat_amount'] - (($total_sum) * 0.5),
+            'company_id' => $this->company->id,
 
-            ]);
+        ]);
     }
 }

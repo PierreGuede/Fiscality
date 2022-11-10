@@ -11,7 +11,8 @@ use Illuminate\Database\Eloquent\Model;
 class GeneralCostDetail extends Model
 {
     use HasFactory;
-    protected $fillable=[
+
+    protected $fillable = [
         'compte',
         'designation',
         'amount',

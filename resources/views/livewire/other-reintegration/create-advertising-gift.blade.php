@@ -10,11 +10,11 @@
             <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/>
         </svg>
     </button>
-    <div x-data="{ lib_condition_response: 'yes', delay_condition_response: 'yes' }"
+    <div x-data="{ total_advertising_gift: [], turnover: 0 }"
          class="relative overflow-y-auto w-1/2 bg-white h-full ml-auto  px-12">
         <h2 class="text-2xl font-bold text-gray-7002 py-8">Cadeaux à caractère publicitaire</h2>
 
-        <form class="">
+        <form wire:submit.prevent="save">
             <div class=" ml-6 mt-4 space-y-4 ">
                 <div class="grid grid-cols-12 gap-x-4">
                     <h5 class="py-1 text-sm font-semibold text-gray-700 col-span-7">Intitulé </h5>
@@ -29,13 +29,24 @@
                                 <div class="col-span-7">
                                     <x-input type="number" label="" id="delay_condition" name=""
                                              value="{{ old('delay_condition') }}" class="block w-full" required
-                                             autofocus/>
+                                             autofocus
+                                             type="text" id="input_{{ $key }}_name" label='Nom'
+                                             wire:model.defer="inputs.{{ $key }}.name"
+                                             placeholder="Nom"
+                                             class="" required autofocus/>
+                                    @error('inputs.' . $key . '.name')
+                                    <span class="text-xs text-red-600">{{ $message }}</span>
+                                    @enderror
                                 </div>
 
                                 <div class="col-span-3">
-                                    <x-input type="number" label="" id="delay_condition" name=""
-                                             value="{{ old('delay_condition') }}" class="block w-full" required
-                                             autofocus/>
+                                    <x-input class="w-full" for="input_{{ $key }}_amount"
+                                             type="number" id="input_{{ $key }}_amount" label='Montant'
+                                             x-model="total_advertising_gift[{{ $key  }}]"  wire:model.defer="inputs.{{ $key }}.amount"
+                                             placeholder="Compte" class="" required autofocus/>
+                                    @error('inputs.' . $key . '.amount')
+                                    <span class="text-xs text-red-600">{{ $message }}</span>
+                                    @enderror
                                 </div>
                             </div>
 
@@ -70,12 +81,18 @@
             </div>
 
             <div class="mt-2 space-y-3 ">
-                <x-input type="number" label="Chiffre d'affaires" id="delay_condition" name=""
-                         value="{{ old('delay_condition') }}" class="block w-full" required autofocus/>
-                <x-input type="number" label="Limite de déduction" id="delay_condition" name=""
-                         value="{{ old('delay_condition') }}" class="block w-full" required autofocus/>
-                <x-input type="number" label="Excédent à réintégrer" id="delay_condition" name=""
-                         value="{{ old('delay_condition') }}" class="block w-full" required autofocus/>
+                <x-input :disabled="true" type="number" step="any" label="Total des articles publicitaires" id="total_amount" name=""
+                         x-bind:value=" total_advertising_gift.reduce((acc,next) => Number(acc) + Number(next), 0) "
+                         class="block w-full" required autofocus/>
+                <x-input type="number" label="Chiffre d'affaires" step="any" id="turnover" name="turnover"
+                         x-model="turnover"
+                       wire:model.defer="turnover"  value="{{ old('delay_condition') }}" class="block w-full" required autofocus/>
+                <x-input :disabled="true" type="number" step="any" label="Limite de déduction" id="delay_condition" name=""
+                        wire:model.defer="deduction_limit"
+                         x-bind:value="turnover * (3/1000)" class="block w-full" required autofocus/>
+                <x-input :disabled="true" type="number" step="any" label="Excédent à réintégrer" id="delay_condition" name=""
+                        wire:model.defer="surplus_reintegrated"
+                         x-bind:value="total_advertising_gift.reduce((acc,next) => Number(acc) + Number(next), 0) - turnover * (3/1000)" class="block w-full" required autofocus/>
             </div>
 
             <div class="mt-4 flex justify-end  " >

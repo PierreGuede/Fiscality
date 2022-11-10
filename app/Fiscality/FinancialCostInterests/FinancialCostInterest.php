@@ -11,14 +11,15 @@ use Illuminate\Database\Eloquent\Model;
 class FinancialCostInterest extends Model
 {
     use HasFactory;
-    protected $fillable =[
+
+    protected $fillable = [
         'amount_reintegrated',
-'amount_contribution',
-'amount_interest_recorded',
-'interest_rate_charged',
-'bceao_interest_rate_for_the_year',
-'maximum_rate',
-'rate_surplus',
-'financial_cost_id',
+        'amount_contribution',
+        'amount_interest_recorded',
+        'interest_rate_charged',
+        'bceao_interest_rate_for_the_year',
+        'maximum_rate',
+        'rate_surplus',
+        'financial_cost_id',
     ];
 }
