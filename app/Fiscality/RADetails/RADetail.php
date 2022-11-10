@@ -14,6 +14,7 @@ class RADetail extends Model
 
     protected $fillable = [
         'account',
+        'type',
         'name',
         'amount',
         'company_id',

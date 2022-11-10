@@ -23,7 +23,7 @@ class DepreciationController extends Controller
     {
         $data = Depreciation::where('company_id', $company->id)->get();
 
-        return view('admin.amortization.depreciation-assets.index', compact('data'));
+        return view('admin.amortization.depreciation-assets.index', compact('data', 'company'));
     }
 
     public function store(Request $data, $id)

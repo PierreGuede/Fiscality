@@ -12,5 +12,5 @@ class Redevance extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['Account', 'designation', 'amount', 'turnover', 'deduction_limit', 'amount_reintegrated'];
+    protected $fillable = ['Account', 'designation', 'amount', 'turnover', 'deduction_limit', 'amount_reintegrated', 'company_id'];
 }

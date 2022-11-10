@@ -20,7 +20,9 @@
 </head>
 
 <body class="antialiased">
-    @livewire('income-expense')
+{{--    @livewire('income-expense')--}}
+
+    <h1>Home</h1>
 
 </body>
 @livewireScripts
