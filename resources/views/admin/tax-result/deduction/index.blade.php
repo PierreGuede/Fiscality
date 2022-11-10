@@ -1,6 +1,60 @@
 <x-company-layout :company="$company" >
-    <h1 class="text-xl font-semibold text-gray-700 ml-4">LES PROVISIONS ET CHARGES PROVISIONNEES {{ $company->name }}</h1>
-     @livewire('other-reintegration.details', ['company' => $company])
+    <h1 class="text-xl font-semibold text-gray-700 ml-4">LES DEDUCTION DE :{{-- LES PROVISIONS ET CHARGES PROVISIONNEES --}} {{ $company->name }}</h1>
+     {{-- @livewire('other-reintegration.details', ['company' => $company]) --}}
+    <form method="POST" action="{{ route('tax-result.deduction.store',$company->id) }}">
+        @csrf
+        <div class=" ml-6 mt-4 space-y-4" x-data="">
+            <div class="space-x-4" >
+
+                   <div class="space-y-4">
+                        <div>
+                            <div class="flex gap-x-2 items-center  ">
+                                <div class="grid grid-cols-12 gap-x-2 ml-4">
+                                    <div class="col-span-4">
+                                        <x-input type="text" value="Produit des titres émis  par l'état Béninois"   id="delay_condition" name="name[]"
+                                             class="block w-full" required autofocus x-model="" />
+                                    </div>
+                                    <div class="col-span-2">
+                                        <x-input type="number" label="Montant net RCM"   id="delay_condition" name="rcm_net_amount[]"
+                                             class="block w-full" required autofocus x-model=""/>
+                                    </div>
+                                    <div class="col-span-2">
+                                        <x-input type="number" label="Taux" value="100"   id="delay_condition" name="rate[]"
+                                             class="block w-full" required autofocus x-model=""/>
+                                    </div>
+                                    <div class="col-span-3">
+                                        <x-input type="number" label="deductible_amount" disabled   id="delay_condition"
+                                             class="block w-full" required autofocus x-model=""/>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div>
+                            <div class="flex gap-x-2 items-center  ">
+                                <div class="grid grid-cols-12 gap-x-2 ml-4">
+                                    <div class="col-span-4">
+                                        <x-input type="text" value="Autre réintégration"   id="delay_condition" name="name[]"
+                                             class="block w-full" required autofocus x-model="" />
+                                    </div>
+                                    <div class="col-span-2">
+                                        <x-input type="number" label="Montant net RCM"   id="delay_condition" name="rcm_net_amount[]"
+                                             class="block w-full" required autofocus x-model=""/>
+                                    </div>
+                                    <div class="col-span-2">
+                                        <x-input type="number" label="Taux" value="70"   id="delay_condition" name="rate[]"
+                                             class="block w-full" required autofocus x-model=""/>
+                                    </div>
+                                    <div class="col-span-3">
+                                        <x-input type="number" label="deductible_amount" disabled   id="delay_condition"
+                                             class="block w-full" required autofocus x-model=""/>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
 
                     <div class="mt-4">
                         <p class="text-xl font-bold">TOTAL DES PRODUITS FINANCIERS</p>
