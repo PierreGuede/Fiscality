@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 
 class WorkInEnterprise extends Controller
 {
-    public function index( Company $company)
+    public function index(Company $company)
     {
         return view('admin.adminWork.typeName', compact('company'));
     }

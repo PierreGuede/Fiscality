@@ -1,5 +1,5 @@
-<x-company-layout>
-    <div class="w-full bg-blue-100 min-h-screen" >
+<x-company-layout :company="$company">
+    <div class="w-full  min-h-screen" >
         <div class="max-w-5xl w-full mx-auto">
             <h5 class="text-lg font-semibold text-gray-500 py-5 " >Amortissement sur biens qui ne sont pas directement liés à l'exploitation</h5>
             <table class="w-full" >

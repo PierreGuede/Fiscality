@@ -16,12 +16,12 @@ return new class extends Migration
     {
         Schema::create('financial_costs', function (Blueprint $table) {
             $table->id();
-            $table->string("name");
-            $table->integer("total_amount_reintegrated");
-            $table->integer("interest_amount_reintegrated");
-            $table->integer("condition_amount_reintegrated");
+            $table->string('name');
+            $table->integer('total_amount_reintegrated');
+            $table->integer('interest_amount_reintegrated');
+            $table->integer('condition_amount_reintegrated');
             $table->foreignIdFor(Company::class)->constrained();
-            $table->year("date");
+            $table->year('date');
             $table->timestamps();
         });
     }

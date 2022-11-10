@@ -14,7 +14,7 @@
          class="relative overflow-y-auto w-1/2 bg-white h-full ml-auto  px-12">
         <h2 class="text-2xl font-bold text-gray-7002 py-8">Redevances</h2>
 
-        <form class="">
+        <form class="" wire:submit.prevent="save">
             <div class=" ml-6 mt-4 space-y-4">
                 <div class="grid grid-cols-12 gap-x-4">
                     <h5 class="py-1 text-sm font-semibold text-gray-700 col-span-2">Compte </h5>
@@ -33,7 +33,7 @@
 
                             <div class="grid grid-cols-12 gap-x-4">
                                 <div class="col-span-2">
-                                    <x-input   type="number" label="" for="input_{{ $key }}_account"
+                                    <x-input  :disabled=" count($guru_redevance) > $key  "  type="number" label="" for="input_{{ $key }}_account"
                                              id="input_{{ $key }}_account" name="inputs.{{ $key }}.account"
                                              class="block w-full" required
                                              wire:model.defer="inputs.{{ $key }}.account"
@@ -45,7 +45,7 @@
 
 
                                 <div class="col-span-7">
-                                    <x-input type="text" label="" for="input_{{ $key }}_designation"
+                                    <x-input :disabled=" count($guru_redevance) > $key  " type="text" label="" for="input_{{ $key }}_designation"
                                              id="input_{{ $key }}_designation" name="inputs.{{ $key }}.designation"
                                              class="block w-full" required
                                              wire:model.defer="inputs.{{ $key }}.designation"
@@ -56,7 +56,7 @@
                                 </div>
 
                                 <div class="col-span-3">
-                                    <x-input x-model=" array_of_amount[{{ $key  }}]" type="number" label="" for="input_{{ $key }}_amount"
+                                    <x-input  x-model=" array_of_amount[{{ $key  }}]" type="number" label="" for="input_{{ $key }}_amount"
                                              id="input_{{ $key }}_amount" name="inputs.{{ $key }}.amount"
                                               class="block w-full" required
                                              wire:model.defer="inputs.{{ $key }}.amount"
@@ -100,16 +100,16 @@
                 </div>
 
                 <div>
-                    <x-input :disabled="true" type="number" label="Total des rémunations" id="remu" name="avl"
+                    <x-input :disabled="true" wire:model.defer="total_amount" type="number" step="0.01" label="Total des rémunations" id="remu" name="avl"
                           x-bind:value=" array_of_amount.length > 0 ? array_of_amount.reduce((acc, next) => Number(acc) + Number(next)  , 0) : 0"   class="block w-full" required autofocus/>
                 </div>
 
                 <div class="mt-2 space-y-3 ">
-                    <x-input x-model="turnover" type="number" label="Chiffre d'affaires" id="turnover" name="turnover"
+                    <x-input x-model="turnover" wire:model.defer="turnover" type="number" step="0.01" label="Chiffre d'affaires" id="turnover" name="turnover"
                              value="{{ old('turnover') }}" class="block w-full" required autofocus/>
-                    <x-input  type="number" label="Limite de déduction" id="delay_condition" name=""
-                             x-bind:value="turnover * 0.05" class="block w-full" required autofocus/>
-                    <x-input type="number" label="Montant à réintégrer" id="delay_condition" name=""
+                    <x-input  type="number" wire:model.defer="deduction_limit" step="0.01" label="Limite de déduction" id="delay_condition" name=""
+                             x-bind:value="turnover * 0.05" class="block w-full" step="0.01" required autofocus/>
+                    <x-input type="number" wire:model.defer="amount_reintegrated" step="0.01" label="Montant à réintégrer" id="reintegration_amount" name=""
                              x-bind:value="array_of_amount.length > 0 ? array_of_amount.reduce((acc, next) => Number(acc) + Number(next)  , 0) - (turnover * 0.05) : 0" class="block w-full" required autofocus/>
                 </div>
 

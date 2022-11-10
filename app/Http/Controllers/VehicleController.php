@@ -23,7 +23,7 @@ class VehicleController extends Controller
     {
         $data = Vehicle::where('company_id', $company->id)->get();
 
-        return view('admin.amortization.vehicle-tourism.index', compact('data'));
+        return view('admin.amortization.vehicle-tourism.index', compact('data', 'company'));
     }
 
     public function store(Request $data, $id)

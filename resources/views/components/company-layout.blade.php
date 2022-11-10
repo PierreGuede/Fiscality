@@ -17,7 +17,7 @@
     @notifyCss
 </head>
 
-<body class="selection:bg-blue-500 selection:text-white" x-data="{ 'showModal': false, 'starting': true, 'buttonok': false, 'showSubCat': false }" @keydown.escape="showModal = false"
+<body class="selection:bg-blue-500 font-sans selection:text-white" x-data="{ 'showModal': false, 'starting': true, 'buttonok': false, 'showSubCat': false }" @keydown.escape="showModal = false"
       x-cloak>
 
 <div class="w-full flex bg-blue-50 max-h-screen overflow-hidden min-h-screen">
@@ -28,7 +28,7 @@
 {{--    <div class="border-2 border-red-500" >--}}
 
 {{--@dd($company)--}}
-        <div class="p-6 overflow-y-auto w-full" >
+        <div class="p-6 overflow-y-auto w-full  " >
     {{ $slot }}
         </div>
 {{--    </div>--}}

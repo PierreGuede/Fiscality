@@ -10,7 +10,7 @@
     @livewire('other-reintegration.create-commission-on-purchases', ['company' => $company ])
     @livewire('other-reintegration.create-redevance', ['company' => $company ])
     @livewire('other-reintegration.create-assistance-cost', ['company' => $company ])
-    @livewire('other-reintegration.create-state-donation', ['company' => $company ])
+    @livewire('other-reintegration.create-donation-grant-contributions', ['company' => $company ])
     @livewire('other-reintegration.create-advertising-gift', ['company' => $company ])
     @livewire('other-reintegration.create-excess-rent', ['company' => $company ])
 
@@ -163,7 +163,7 @@
                       value="{{ old('username') }}" class="w-full " required autofocus />
         </div>
         <div class="col-span-1 mx-auto my-auto">
-            <button type="button" onclick="Livewire.emitTo('other-reintegration.create-state-donation', 'openASide')" class="focus:outline-none hover:bg-blue-100 p-1.5 rounded-md" >
+            <button type="button" onclick="Livewire.emitTo('other-reintegration.create-donation-grant-contributions', 'openASide')" class="focus:outline-none hover:bg-blue-100 p-1.5 rounded-md" >
                 <svg class="stroke-2 stroke-blue-500 w-6 w-6 " xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" >
                     <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v6m3-3H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z" />
                 </svg>

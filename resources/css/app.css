@@ -5,6 +5,10 @@
 @import "tailwindcss/utilities";
 
 
+body {
+    font-family: 'Poppins';
+}
+
 :root{
     --gray: #C4C4C4;
 }
