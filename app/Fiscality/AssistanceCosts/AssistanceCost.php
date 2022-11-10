@@ -11,7 +11,8 @@ use Illuminate\Database\Eloquent\Model;
 class AssistanceCost extends Model
 {
     use HasFactory;
-    protected $fillable =[
+
+    protected $fillable = [
         'fat_amount',
         'general_cost',
         'limit_deduction',

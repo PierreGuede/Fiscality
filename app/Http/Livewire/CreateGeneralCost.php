@@ -2,8 +2,8 @@
 
 namespace App\Http\Livewire;
 
-use Livewire\Component;
 use App\Fiscality\Companies\Company;
+use Livewire\Component;
 
 class CreateGeneralCost extends Component
 {
@@ -55,7 +55,6 @@ class CreateGeneralCost extends Component
     {
         return view('livewire.create-general-cost');
     }
-
 
     public function openASide()
     {

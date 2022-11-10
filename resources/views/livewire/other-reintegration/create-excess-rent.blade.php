@@ -10,11 +10,11 @@
             <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/>
         </svg>
     </button>
-    <div x-data="{ lib_condition_response: 'yes', delay_condition_response: 'yes' }"
+    <div x-data="{ rent_amount: 0 , rental_period_year: 0, annual_deduction_limit: {{ $annual_deduction_limit  }} }"
          class="relative overflow-y-auto w-1/2 bg-white h-full ml-auto  px-12">
         <h2 class="text-2xl font-bold text-gray-7002 py-8">Surplus des loyers (Véhicule)</h2>
 
-        <form class="">
+        <form class="" wire:submit.prevent="save">
             <div class=" ml-6 mt-4 space-y-4 ">
                 <div class="grid grid-cols-12 gap-x-4">
                     <h5 class="py-1 text-sm font-semibold text-gray-700 col-span-7">Intitulé </h5>
@@ -23,14 +23,20 @@
             </div>
 
             <div class="mt-2 space-y-3 ">
-                <x-input type="number" label="Montant des loyers(Véhicule de tourisme)" id="delay_condition" name=""
+                <x-input type="number" label="Montant des loyers(Véhicule de tourisme)" step="any" id="delay_condition" name=""
+                         wire:model.defer="rent_amount"  x-model="rent_amount"
                          value="{{ old('delay_condition') }}" class="block w-full" required autofocus/>
-                <x-input type="number" label="Durée de location au titre de l'annnée (en jour)" id="delay_condition" name=""
+                <x-input type="number" label="Durée de location au titre de l'annnée (en jour)" step="any" id="delay_condition" name=""
+                         wire:model.defer="rental_period_year"  x-model="rental_period_year"
                          value="{{ old('delay_condition') }}" class="block w-full" required autofocus/>
-                <x-input type="number" label="Limite de déduction" id="delay_condition" name=""
+                <x-input type="number" label="Limite de déduction" step="any" id="delay_condition" name=""
+                         wire:model.defer="annual_deduction_limit"  x-model="annual_deduction_limit"
                          value="{{ old('delay_condition') }}" class="block w-full" required autofocus/>
-                <x-input type="number" label="Montant des loyers réintégrer" id="delay_condition" name=""
-                         value="{{ old('delay_condition') }}" class="block w-full" required autofocus/>
+                <x-input :disabled="true" type="number" step="any" label="Limite de déduction" id="delay_condition" name=""
+                         wire:model.defer="annual_deduction_limit"
+                         x-bind:value="annual_deduction_limit * rental_period_year/365" class="block w-full" required autofocus/>
+                <x-input :disabled="true" type="number" label="Montant des loyers réintégrer" step="any" id="delay_condition" name=""
+                         x-bind:value="rent_amount - annual_deduction_limit * rental_period_year/365" class="block w-full" required autofocus/>
             </div>
 
             <div class="mt-4 flex justify-end  " >

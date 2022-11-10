@@ -11,4 +11,6 @@ use Illuminate\Database\Eloquent\Model;
 class AdvertisingGift extends Model
 {
     use HasFactory;
+
+    protected $fillable = ['turnover', 'total_amount', 'deduction_limit', 'surplus_reintegrated', 'company_id'];
 }

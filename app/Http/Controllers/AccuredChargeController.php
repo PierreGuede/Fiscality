@@ -16,36 +16,34 @@ class AccuredChargeController extends Controller
         $this->model = $model;
     }
 
-    public function index($id)
+    public function index(Company $company)
     {
-        $company = Company::find($id);
-
-        return view('admin.tax-result.accured-charge.index', compact('company'));
+        return view('admin.adminWork.accuredCharge', compact('company'));
     }
 
-    public function provision($id)
+    public function provision(Company $company)
     {
-        $company = Company::find($id);
 
         $cahrgesCompany = AccuredChargeCompany::where('type', 'provision')->where('company_id', $company->id)->where('date', date('Y'))->first();
         if ($cahrgesCompany == null) {
-            return view('admin.adminWork.provision', [
-                'company' => $company,
-            ]);
+
+            notify()->success('Provision ont été ajouté avec succès !');
+            return view('admin.adminWork.provision', compact('company'));
         } else {
+            notify()->error('Vous avez deja créé un cette année');
             return redirect()->back()->withErrors(['msg' => 'Vous avez deja créé un cette année']);
         }
     }
 
-    public function expenseProvisioned($id)
+    public function expenseProvisioned(Company $company)
     {
-        $company = Company::find($id);
         $cahrgesCompany = AccuredChargeCompany::where('type', 'charges')->where('company_id', $company->id)->where('date', date('Y'))->first();
         if ($cahrgesCompany == null) {
-            return view('admin.adminWork.expenseProvisioned', [
-                'company' => $company,
-            ]);
+            notify()->success('Provision ont été ajouté avec succès !');
+
+            return view('admin.adminWork.expenseProvisioned',compact('company'));
         } else {
+            notify()->error('Vous avez deja créé un cette année');
             return redirect()->back()->withErrors(['msg' => 'Vous avez deja créé un cette année']);
         }
     }
