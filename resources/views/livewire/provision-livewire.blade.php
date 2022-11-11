@@ -5,7 +5,7 @@
                 <div class="flex gap-x-4 ">
                     <div class="w-12">
                         <x-input :disabled="count($provision) > $key" class="w-full" for="input_{{ $key }}_compte"
-                            type="text" id="input_{{ $key }}_compte" label='Compte'
+                            type="text" id="input_{{ $key }}_compte" label=''
                             wire:model.defer="inputs.{{ $key }}.compte"
                             placeholder="Compte" class="" required autofocus />
                         @error('inputs.' . $key . '.compte')

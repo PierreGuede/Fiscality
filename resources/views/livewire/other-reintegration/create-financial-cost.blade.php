@@ -86,16 +86,22 @@
 
 
         {{--        Questiion C--}}
-        <div class="ml-6 mt-4 mb-4 " >
+        <div class="ml-6 my-6 " >
             <div class="flex gap-x-3 ">
                 <p>c)</p> <p> Conditions sur les taux d'intérêt </p>
             </div>
             <div class=" gap-x-3 -mr-6  mt-4 space-y-4 ">
-                <x-input type="text" label="Montant des apports en compte (veuillez renseigner ceux non pris en compte au niveau de b)" id="delay_condition" wire:model.defer="inputs.amount_contribution"
+                <div>
+                <x-input type="text" label="Montant des apports en compte" id="delay_condition" wire:model.defer="inputs.amount_contribution"
                         name="delay_condition" value="{{ old('delay_condition') }}" class="block w-full" required autofocus />
+                    <small class="text-gray-500 font-semibold" >Veuillez renseigner ceux non pris en compte au niveau de b</small>
+                </div>
 
-                <x-input type="number"  label="Montant des intérêts comptabilisés (veuillez  renseigner ceux non pris en compte au niveau de b)" id="delay_condition" wire:model.defer="inputs.amount_interest_recorded" x-model="amount_interest_recorded"
+                <div>
+                <x-input type="number"  label="Montant des intérêts comptabilisés" id="delay_condition" wire:model.defer="inputs.amount_interest_recorded" x-model="amount_interest_recorded"
                         name="" value="{{ old('delay_condition') }}" class="block w-full" required autofocus />
+                    <small class="text-gray-500 font-semibold" >Veuillez renseigner ceux non pris en compte au niveau de b</small>
+                </div>
 
                 <x-input type="number"  label="Taux d'intérêt pratiqué" id="delay_condition" name="" wire:model.defer="inputs.interest_rate_charged" x-model="interest_rate_charged"
                          value="{{ old('delay_condition') }}" class="block w-full" required autofocus />
@@ -103,7 +109,7 @@
                 <x-input type="number"  label="Taux d'intérêt de la BCEAO de l'année" id="delay_condition" name="" wire:model.defer="inputs.bceao_interest_rate_for_the_year"
                          value="4" class="block w-full" required autofocus x-model="bceaoRate"/>
 
-                <p class="text-sm text-gray-400">Taux maximum</p>
+                        <p class="text-sm text-gray-400">Taux maximum</p>
                 <p class="w-full h-10 p-2 px-3 text-gray-900 placeholder-transparent border border-gray-300 rounded-sm peer focus:ring-blue-500/40 focus:ring-4 focus:outline-none align-center focus:border-blue-600"  x-text="bceaoRate*0.03">
 
                 <p class="text-sm text-gray-400">Surplus de taux pratiqué</p>

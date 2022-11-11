@@ -47,16 +47,16 @@ Route::middleware('auth', 'hasOneRole')->group(function () {
 
         Route::get('work-in-enterprise/{company}/tax-result', [\App\Http\Controllers\TaxResultController::class, 'index'])->name('tax-result');
         Route::get('work-in-enterprise/{company}/tax-result/account-result', [\App\Http\Controllers\AccountResultController::class, 'index'])->name('tax-result.account-result');
-        Route::get('work-in-enterprise/{company}/tax-result/non-deductible-charge', [\App\Http\Controllers\NonDeductibleChargeController::class, 'index'])->name('tax-result.non-deductible-charge');
+        Route::get('work-in-enterprise/{company}/tax-result/non-deductible-charge', [\App\Http\Controllers\NonDeductibleChargeController::class, 'index'])->name('tax-result.reintegration.non-deductible-charge');
         Route::get('work-in-enterprise/{company}/tax-result/deduction', [\App\Http\Controllers\DeductionController::class, 'index'])->name('tax-result.deduction');
         Route::post('work-in-enterprise/{company}/tax-result/deduction', [\App\Http\Controllers\DeductionController::class, 'store'])->name('tax-result.deduction.store');
 
-        Route::get('work-in-enterprise/{company}/tax-result/amortization', [\App\Fiscality\AmortizationDetails\Controllers\AmortizationDetailsController::class, 'index'])->name('amortization');
+        Route::get('work-in-enterprise/{company}/tax-result/amortization', [\App\Fiscality\AmortizationDetails\Controllers\AmortizationDetailsController::class, 'index'])->name('tax-result.reintegration.amortization');
         Route::get('work-in-enterprise/{company}/tax-result/amortization/tourism-cars', [\App\Http\Controllers\VehicleController::class, 'index'])->name('amortization.tourism-cars');
         Route::get('work-in-enterprise/{company}/tax-result/amortization/amortization-excess', [\App\Http\Controllers\ExcessController::class, 'index'])->name('amortization.amortization-excess');
         Route::get('work-in-enterprise/{company}/tax-result/amortization/depreciation-assets', [\App\Http\Controllers\DepreciationController::class, 'index'])->name('amortization.depreciation-assets');
 
-        Route::get('work-in-enterprise/{company}/accured-charge', [\App\Http\Controllers\AccuredChargeController::class, 'index'])->name('work.accuredCharge');
+        Route::get('work-in-enterprise/{company}/accured-charge', [\App\Http\Controllers\AccuredChargeController::class, 'index'])->name('tax-result.reintegration.accured-charge');
         Route::get('work-in-enterprise/{company}/accured-charge/provision', [\App\Http\Controllers\AccuredChargeController::class, 'provision'])->name('work.provision');
         Route::get('work-in-enterprise/{company}/accured-charge/provisioned-expense', [\App\Http\Controllers\AccuredChargeController::class, 'expenseProvisioned'])->name('work.expenseProvisioned');
         Route::get('work-in-enterprise/{company}/other-reintegration', [\App\Http\Controllers\OtherReintegrationController::class, 'index'])->name('work.other-reintegration');

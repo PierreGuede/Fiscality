@@ -117,8 +117,6 @@ class CreateIncome extends ModalComponent
      */
     public function save()
     {
-//        dd($this->inputs);
-
         $this->validate();
 
         $total_data = $this->processDataTotalAmount($this->inputs);
@@ -129,19 +127,20 @@ class CreateIncome extends ModalComponent
             $accounting_result = AccountingResult::create([
                 'total_incomes' => $total_data,
                 'total_expenses' => 0,
-                'ar_value' => $total_data + 0,
+                'ar_value' => $total_data - 0,
                 'company_id' => $this->company->id,
             ]);
             $this->processData($this->inputs, $accounting_result);
         } else {
             $exist->total_incomes = $total_data;
-            $exist->ar_value = $exist->ar_value + $total_data;
+            $exist->ar_value =  (float)$total_data - (float)$exist->total_expenses;
             $this->processData($this->inputs, $exist);
 
             $exist->save();
         }
 
         $this->emit('refreshIncome');
+        $this->emit('refreshTotalCard');
 
         $this->closeModal();
 

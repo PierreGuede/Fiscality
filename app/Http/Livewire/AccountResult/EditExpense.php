@@ -133,7 +133,7 @@ class EditExpense extends ModalComponent
             $this->processData($this->inputs, $accounting_result);
         } else {
             $exist->total_expenses = $total_data;
-            $exist->ar_value = $exist->total_incomes + $total_data;
+            $exist->ar_value = $exist->total_incomes - $exist->total_expenses;
             $this->processData($this->inputs, $exist);
             $exist->save();
         }

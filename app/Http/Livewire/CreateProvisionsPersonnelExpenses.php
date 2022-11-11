@@ -2,8 +2,8 @@
 
 namespace App\Http\Livewire;
 
-use Livewire\Component;
 use App\Models\AccuredChargeCompany;
+use Livewire\Component;
 
 class CreateProvisionsPersonnelExpenses extends Component
 {

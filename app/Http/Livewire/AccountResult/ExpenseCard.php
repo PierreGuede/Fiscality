@@ -31,6 +31,6 @@ class ExpenseCard extends Component
 
     public function refreshExpense()
     {
-        $this->total = AccountingResult::whereCompanyId($this->company->id)->whereDate('created_at', Carbon::now()->year)->first();
+        $this->total = AccountingResult::whereCompanyId($this->company->id)->whereYear('created_at', Carbon::now()->year)->first();
     }
 }

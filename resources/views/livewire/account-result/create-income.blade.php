@@ -1,6 +1,7 @@
-<div class="py-10 px-10 w-full " >
-    <div>
-        <h5 class="text-base text-gray-600 font-semibold" >Produits</h5>
+<div x-data="{ total_income: [] }" class="py-10 px-10 w-full " >
+    <div x-data="globalData" class="flex justify-between" >
+        <h5 class="text-base text-gray-600 font-semibold" >Produits </h5>
+        <p class="text-xl font-semibold text-blue-900"  x-text="formatNumber(sumArray(total_income))"></p>
     </div>
 
     <form class="mt-10 space-y-3" wire:submit.prevent="save">
@@ -33,6 +34,7 @@
                         <div class="flex-1 w-full">
                             <x-input class="w-full" for="input_{{ $key }}_amount"
                                      type="number" id="input_{{ $key }}_amount" label='Montant'
+                                     x-model="total_income[{{ $key  }}]"
                                      wire:model.defer="inputs.{{ $key }}.amount"
                                      placeholder="Compte" class="" required autofocus/>
                             @error('inputs.' . $key . '.amount')

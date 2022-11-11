@@ -81,6 +81,8 @@ class CreateExcessRent extends Component
             'company_id' => $this->company->id,
         ]);
 
+        $this->emit('refresh');
+
         $this->closeASide();
     }
 }

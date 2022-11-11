@@ -10,7 +10,7 @@
         <h6 class="py-1.5 border-b-2 border-blue-50" >Montant</h6>
         @if(!is_null($total))
             <p class="my-auto" >
-                {{$total['total_expenses']}}
+                {{$total['amount']}}
             </p>
         @endif
 

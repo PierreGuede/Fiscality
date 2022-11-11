@@ -1,6 +1,7 @@
-<div>
+<div  >
 
-        @livewire('total-card', ['company' => $company])
+        @livewire('total-card', ['total' => $total])
+    <span x-text="response" ></span>
     <div class="mb-6">
         <select x-model="$wire.state"
                 class="w-4/12 px-3 py-2 rounded-sm focus:outline-none focus:ring-4 focus:ring-blue-500/20 border border-gray-300"

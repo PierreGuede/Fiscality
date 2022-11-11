@@ -15,7 +15,7 @@
         <h2 class="text-2xl font-bold text-gray-7002 py-8">Cadeaux à caractère publicitaire</h2>
 
         <form wire:submit.prevent="save">
-            <div class=" ml-6 mt-4 space-y-4 ">
+            <div class="  mt-4 space-y-4 ">
                 <div class="grid grid-cols-12 gap-x-4">
                     <h5 class="py-1 text-sm font-semibold text-gray-700 col-span-7">Intitulé </h5>
                     <h5 class="py-1 text-sm font-semibold text-gray-700 col-span-3">Montant </h5>
@@ -51,6 +51,8 @@
                             </div>
 
                             <div class="col-span-1">
+
+{{--                                @if()--}}
                                 <button type="button" wire:click="remove( {{ $key  }} )"
                                         class=" hover:bg-red-100 p-1.5 rounded-md ">
                                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"

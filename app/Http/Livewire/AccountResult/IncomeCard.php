@@ -14,7 +14,7 @@ class IncomeCard extends Component
 
     public Company $company;
 
-    public $total = 0;
+    public $total;
 
     protected $listeners = ['refreshIncome'];
 
@@ -31,6 +31,7 @@ class IncomeCard extends Component
 
     public function refreshIncome()
     {
-        $this->total = AccountingResult::whereCompanyId($this->company->id)->whereDate('created_at', Carbon::now()->year)->first();
+        $this->total =  AccountingResult::whereCompanyId($this->company->id)->whereYear('created_at', Carbon::now()->year)->first();
+
     }
 }

@@ -111,7 +111,7 @@ class CreateRedevance extends Component
             'turnover' => (float) $this->turnover,
             'deduction_limit' => (float) $this->turnover * 0.05,
             'amount_reintegrated' => $amount_reintegrate,
-            'company' => $this->company->id,
+            'company_id' => $this->company->id,
         ]);
 
         for ($i = 0; $i < count($this->inputs); $i++) {
@@ -123,6 +123,8 @@ class CreateRedevance extends Component
                 'company_id' => $this->company->id,
             ]);
         }
+
+        $this->emit('refresh');
 
         notify()->success('Redevances créées avec succès!');
         $this->closeASide();

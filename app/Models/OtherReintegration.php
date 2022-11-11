@@ -12,6 +12,8 @@ class OtherReintegration extends Model
 {
     use HasFactory;
 
+    protected $table = 'other_reintegration';
+
     protected $fillable = [
         'expense_not_related',
         'unjustfified_expense',
@@ -34,6 +36,7 @@ class OtherReintegration extends Model
         'variation_conversation_gap',
         'excess_rent',
         'other_non_deductible_expenses',
+        'total_amount',
         'company_id',
     ];
 }

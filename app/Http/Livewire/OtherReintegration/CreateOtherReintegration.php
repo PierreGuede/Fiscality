@@ -19,6 +19,8 @@ class CreateOtherReintegration extends Component
 
     public $expense_not_related;
 
+    public $state = 'create';
+
     public $unjustfified_expense;
 
     public $remuneration_not_subject_withholding_tax;
@@ -103,6 +105,11 @@ class CreateOtherReintegration extends Component
         return view('livewire.other-reintegration.create-other-reintegration');
     }
 
+    public function update()
+    {
+        $this->state = 'create';
+    }
+
     public function save()
     {
         $data = [
@@ -127,10 +134,9 @@ class CreateOtherReintegration extends Component
             'variation_conversation_gap' => $this->variation_conversation_gap,
             'excess_rent' => $this->excess_rent,
             'other_non_deductible_expenses' => $this->other_non_deductible_expenses,
-            'company_id' => $this->company->id,
         ];
 
-        dd($data);
+
 
         OtherReintegration::create([
             'expense_not_related' => $this->expense_not_related,
@@ -154,8 +160,13 @@ class CreateOtherReintegration extends Component
             'variation_conversation_gap' => $this->variation_conversation_gap,
             'excess_rent' => $this->excess_rent,
             'other_non_deductible_expenses' => $this->other_non_deductible_expenses,
+            'total_amount' => array_sum($data),
             'company_id' => $this->company->id,
         ]);
+
+        notify()->success('Enregistrer avec succès');
+
+        $this->state = 'update';
     }
 
         public function refreshFinancialCost()

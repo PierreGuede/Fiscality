@@ -13,15 +13,10 @@ class TotalCard extends Component
 
     public Company $company;
 
-    public function mount(Company $company)
+    public function mount( $total)
     {
-        $this->company = $company;
+        $this->total = $total;
 
-        $account_result = AccountingResult::whereCompanyId($this->company->id)->whereYear('created_at', Carbon::now()->year)->first();
-
-        $this->fill([
-            'total' => is_null($account_result) ? 0 : $account_result->ar_value,
-        ]);
     }
 
     public function render()
@@ -29,9 +24,5 @@ class TotalCard extends Component
         return view('livewire.total-card');
     }
 
-    public function refreshTotalCard()
-    {
-        $account_result = AccountingResult::whereCompanyId($this->company->id)->whereYear(Carbon::now()->year)->first();
-        $this->total = is_null($account_result) ? 0 : $account_result->ar_value;
-    }
+
 }

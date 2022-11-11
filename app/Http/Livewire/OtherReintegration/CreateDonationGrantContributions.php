@@ -148,6 +148,8 @@ class CreateDonationGrantContributions extends Component
             ]);
         }
 
+        $this->emit('refresh');
+
 //            $this->commit();
         $this->closeASide();
 //        } catch (\Exception $e) {

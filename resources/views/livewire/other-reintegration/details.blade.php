@@ -31,7 +31,7 @@
             Charges non justifiés par des factures normalisées
         </p>
         <div class="col-span-3 ">
-            <x-input  type="text" label="" id="username" name="username"
+            <x-input :disabled="$state== 'update'"  type="text" label="" id="username" name="username"
                       value="{{ old('username') }}" class="w-full " required autofocus />
         </div>
         <div class="col-span-2">
@@ -60,13 +60,14 @@
                       value="{{ old('username') }}" class="w-full " required autofocus />
         </div>
         <div class="col-span-1 mx-auto my-auto ">
+            @if($state == 'create')
             <button onclick=" Livewire.emitTo('other-reintegration.create-financial-cost', 'openASide')"  class="focus:outline-none hover:bg-blue-100 p-1.5 rounded-md" >
                 <svg class="  stroke-2 stroke-blue-50 w-6 w-6 stroke-blue-500 " xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" >
                     <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v6m3-3H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z" />
                 </svg>
 
             </button>
-
+            @endif
         </div>
     </div>
 

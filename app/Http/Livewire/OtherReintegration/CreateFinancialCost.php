@@ -13,6 +13,8 @@ class CreateFinancialCost extends Component
 {
     public $financialCost;
 
+    public $rate = 4;
+
     public $inputs;
 
     public $company;
@@ -77,10 +79,22 @@ class CreateFinancialCost extends Component
 
         FinancialCostInterest::create([
             'amount_reintegrated' => ! empty($this->lib_condition) ? $this->lib_condition : 0,
+            'amount_contribution' => 0,
+            'amount_interest_recorded' => 0,
+            'interest_rate_charged' => 0,
+            'bceao_interest_rate_for_the_year' => 0, /* excess_rate_charged */
+            'maximum_rate' => 0,
+            'rate_surplus' => 0,
             'financial_cost_id' => $financialCost->id,
         ]);
         FinancialCostInterest::create([
             'amount_reintegrated' => ! empty($this->delay_condition) ? $this->delay_condition : 0,
+            'amount_contribution' => 0,
+            'amount_interest_recorded' => 0,
+            'interest_rate_charged' => 0,
+            'bceao_interest_rate_for_the_year' => 0, /* excess_rate_charged */
+            'maximum_rate' => 0,
+            'rate_surplus' => 0,
             'financial_cost_id' => $financialCost->id,
 
         ]);
@@ -109,6 +123,9 @@ class CreateFinancialCost extends Component
             'amount_reintegrate' => $reintegrate_amount > 0 ? $reintegrate_amount : '0',
             'financial_cost_id' => $financialCost->id,
         ]);
+
+        $this->emit('refresh');
+
         $this->closeASide();
     }
 }

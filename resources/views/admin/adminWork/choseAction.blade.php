@@ -19,13 +19,13 @@
                         <h2 class="text-[#2B417B] text-center ">Résultat Comptable</h2>
                     </a>
 
-                    <a href="{{ route('amortization', $company->id)  }}" class="relative p-8 flex flex-col items-center justify-center border-2 border-[#8FBCFF] hover:shadow-[0px_8px_15px_-10px_#8FBCFF] hover:shadow-[#8FBCFF] rounded-md">
+                    <a href="{{ route('tax-result.reintegration.amortization', $company->id)  }}" class="relative p-8 flex flex-col items-center justify-center border-2 border-[#8FBCFF] hover:shadow-[0px_8px_15px_-10px_#8FBCFF] hover:shadow-[#8FBCFF] rounded-md">
                         <div class="absolute bg-[#8FBCFF] w-3/5 -top-0.5 h-1.5 rounded-b-md"></div>
 
                         <h2 class="text-[#2B417B]">Amortissements</h2>
                     </a>
 
-                    <a href="{{ route('work.accuredCharge',$company->id) }}" class="relative p-8 flex flex-col items-center justify-center border-2 border-[#6EDDDD] hover:shadow-[0px_8px_15px_-10px_#8FBCFF] hover:shadow-[#6EDDDD] rounded-md">
+                    <a href="{{ route('tax-result.reintegration.accured-charge',$company->id) }}" class="relative p-8 flex flex-col items-center justify-center border-2 border-[#6EDDDD] hover:shadow-[0px_8px_15px_-10px_#8FBCFF] hover:shadow-[#6EDDDD] rounded-md">
                         <div class="absolute bg-[#6EDDDD] w-3/5 -top-0.5 h-1.5 rounded-b-md"></div>
 
                         <h2 class="text-[#2B417B] text-center">Provisions et charges provisionnées</h2>

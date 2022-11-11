@@ -79,19 +79,19 @@
 
                         <div x-show=" child_expanded " class="relative pl-6  " x-collapse >
                             <div class="absolute h-full w-px bg-blue-400  left-[12px]  " > </div>
-                            <a   href="{{ route('amortization',$company->id) }}" :class=" {{ request()->routeIs('tax-result.amortization')  }} ? 'bg-blue-500' :''  " class="mt-2 flex h-10 w-full items-center rounded px-3 hover:bg-blue-500 gap-x-2" >
+                            <a   href="{{ route('tax-result.reintegration.amortization',$company->id) }}" :class=" {{ request()->routeIs('tax-result.reintegration.amortization')  }} ? 'bg-blue-500' :''  " class="mt-2 flex h-10 w-full items-center rounded px-3 hover:bg-blue-500 gap-x-2" >
                                 <svg class="h-4 w-4  stroke-current shrink-0" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">--}}
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
                                 </svg>
                                 <span class=" line-clamp-1" >Amortissement</span>
                             </a>
-                            <a href="{{ route('work.accuredCharge',$company->id) }}" :class=" {{ request()->routeIs('tax-result.accuredCharge')  }} ? 'bg-blue-500' :''  "  class="mt-2 flex h-10 w-full items-center rounded px-3 hover:bg-blue-500 gap-x-2" >
+                            <a href="{{ route('tax-result.reintegration.accured-charge',$company->id) }}" :class=" {{ request()->routeIs('tax-result.tax-result.accured-charge')  }} ? 'bg-blue-500' :''  "  class="mt-2 flex h-10 w-full items-center rounded px-3 hover:bg-blue-500 gap-x-2" >
                                 <svg class="h-4 w-4  stroke-current shrink-0" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">--}}
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
                                 </svg>
                                 <span class="line-clamp-1">Provisions et charges provisionnées</span>
                             </a>
-                            <a  href=" {{ route('tax-result.non-deductible-charge', $company->id)  }} "  :class=" {{ request()->routeIs('tax-result.deduction')  }} ? 'bg-blue-500' :''  " class="mt-2 flex h-10 w-full items-center rounded px-3 hover:bg-blue-500 gap-x-2" >
+                            <a  href=" {{ route('tax-result.reintegration.non-deductible-charge', $company->id)  }} "  :class=" {{ request()->routeIs('tax-result.deduction')  }} ? 'bg-blue-500' :''  " class="mt-2 flex h-10 w-full items-center rounded px-3 hover:bg-blue-500 gap-x-2" >
                                 <svg class="h-4 w-4  stroke-current shrink-0" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">--}}
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
                                 </svg>
@@ -114,6 +114,22 @@
                 <svg class="h-6 w-6 stroke-current shrink-0" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
                 </svg>
+                <span x-show="openSidebar" class="ml-2 text-sm font-medium transition-all line-clamp-1 ">Frais de siège </span>
+
+                <div class="absolute scale-0 group-hover:scale-100 transition-all duration-300 -right-full translate-x-8 w-full bg-gray-700 text-white text-sm py-1.5 px-2.5 rounded-md " >
+                    <div class="relative " >
+
+                        <p>Frais de siège</p>
+
+                        <span class=" absolute top-1/2 -translate-y-1/2 -translate-x-1/2 -left-6  bg-gray-700 rounded-full w-3 h-3 block rotate-90 origin-center  " >  </span>
+                    </div>
+                </div>
+            </a>
+
+            <a    :class="!openSidebar && 'justify-center'" class=" group relative mt-2 flex h-12 w-full items-center rounded px-3 hover:bg-blue-700" href="#">
+                <svg class="h-6 w-6 stroke-current shrink-0" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
+                </svg>
                 <span x-show="openSidebar" class="ml-2 text-sm font-medium transition-all line-clamp-1 ">Document</span>
 
                 <div class="absolute scale-0 group-hover:scale-100 transition-all duration-300 -right-full translate-x-8 w-full bg-gray-700 text-white text-sm py-1.5 px-2.5 rounded-md " >
@@ -125,6 +141,7 @@
                     </div>
                 </div>
             </a>
+
 
 
         </div>
