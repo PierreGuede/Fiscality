@@ -12,6 +12,9 @@ class RADetail extends Model
 {
     use HasFactory;
 
+    public const INCOME = 'income';
+    public const EXPENSE = 'expense';
+
     protected $fillable = [
         'account',
         'type',

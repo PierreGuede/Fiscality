@@ -42,11 +42,13 @@ Route::middleware('auth', 'hasOneRole')->group(function () {
         Route::get('work-in-enterprise/{company}', [\App\Http\Controllers\WorkInEnterprise::class, 'index'])->name('work.show');
         Route::post('work-in-enterprise/{company}', [\App\Http\Controllers\WorkInEnterprise::class, 'access'])->name('work.access');
         Route::get('work-in-enterprise/{company}/actions', [\App\Http\Controllers\WorkInEnterprise::class, 'actions'])->name('work.actions');
-        Route::get('work-in-enterprise/{company}/account-result', [\App\Http\Controllers\WorkInEnterprise::class, 'accountResult'])->name('work.accountResult');
+//        Route::get('work-in-enterprise/{company}/account-result', [\App\Http\Controllers\WorkInEnterprise::class, 'accountResult'])->name('work.accountResult');
         Route::get('work-in-enterprise/{company}/impot-calcul', [\App\Http\Controllers\WorkInEnterprise::class, 'impotcalcul'])->name('work.impotcalcul');
 
         Route::get('work-in-enterprise/{company}/tax-result', [\App\Http\Controllers\TaxResultController::class, 'index'])->name('tax-result');
         Route::get('work-in-enterprise/{company}/tax-result/account-result', [\App\Http\Controllers\AccountResultController::class, 'index'])->name('tax-result.account-result');
+        Route::get('work-in-enterprise/{company}/tax-result/account-result/income', [\App\Http\Controllers\AccountResultController::class, 'income'])->name('tax-result.account-result.income');
+        Route::get('work-in-enterprise/{company}/tax-result/account-result/expense', [\App\Http\Controllers\AccountResultController::class, 'expense'])->name('tax-result.account-result.expense');
         Route::get('work-in-enterprise/{company}/tax-result/non-deductible-charge', [\App\Http\Controllers\NonDeductibleChargeController::class, 'index'])->name('tax-result.reintegration.non-deductible-charge');
         Route::get('work-in-enterprise/{company}/tax-result/deduction', [\App\Http\Controllers\DeductionController::class, 'index'])->name('tax-result.deduction');
         Route::post('work-in-enterprise/{company}/tax-result/deduction', [\App\Http\Controllers\DeductionController::class, 'store'])->name('tax-result.deduction.store');
@@ -62,6 +64,10 @@ Route::middleware('auth', 'hasOneRole')->group(function () {
         Route::get('work-in-enterprise/{company}/other-reintegration', [\App\Http\Controllers\OtherReintegrationController::class, 'index'])->name('work.other-reintegration');
 
         Route::get('work-in-enterprise/{company}/other-reintegration/commission-purchase', [\App\Http\Controllers\CommissionOnPurchaseController::class, 'index'])->name('work.commissionPurchase');
+
+        Route::get('work-in-enterprise/{company}/head-office-costs', [\App\Http\Controllers\HeadOfficeCostController::class, 'index'])->name('head-office-costs');
+
+
     });
     Route::get('users', [\App\Http\Controllers\UserController::class, 'index'])->name('users.index');
     Route::post('users', [\App\Http\Controllers\UserController::class, 'store'])->name('users.store');

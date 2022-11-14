@@ -8,7 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class DeductionDetail extends Model
 {
     use HasFactory;
-    protected $fillable=[
+
+    protected $fillable = [
         'name',
         'rcm_net_amount',
         'rate',

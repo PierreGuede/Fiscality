@@ -1,9 +1,8 @@
 <?php
 
-use App\Fiscality\Companies\Company;
-use Illuminate\Support\Facades\Schema;
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
@@ -14,10 +13,11 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('deductions', function (Blueprint $table) {
+        Schema::create('financial_product', function (Blueprint $table) {
             $table->id();
-            $table->double('total_product_amount');
-            $table->foreignIdFor(Company::class)->constrained();
+            $table->decimal('net_ircm_amount', 15, 2);
+            $table->decimal('rate', 15, 2);
+            $table->decimal('amount_deduct', 15, 2);
             $table->timestamps();
         });
     }
@@ -29,6 +29,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('deductions');
+        Schema::dropIfExists('financial_product');
     }
 };

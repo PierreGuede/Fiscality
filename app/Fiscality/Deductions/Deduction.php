@@ -8,8 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class Deduction extends Model
 {
     use HasFactory;
-    protected $fillable=[
+
+    protected $fillable = [
         'total_product_amount',
-        'company_id'
+        'company_id',
     ];
 }

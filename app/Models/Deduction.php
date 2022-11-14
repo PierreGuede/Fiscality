@@ -11,9 +11,12 @@ class Deduction extends Model
 
     protected $table = 'deduction';
 
-    protected $fillable = ['reversals_provisions',
-        'financial_product',
-        'total_fiancial_product',
+    protected $fillable = [
+        'reversals_provisions',
+        'total_financial_product',
         'capital_gain',
-        'currency_transaction_change', ];
+        'currency_transaction_change',
+        'total_deduction',
+        'company_id',
+    ];
 }

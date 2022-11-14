@@ -144,7 +144,6 @@ class CreateExpense extends ModalComponent
         $this->emit('refreshExpense');
         $this->emit('refreshTotalCard');
 
-
         $this->closeModal();
 
 //        return route('work.accountResult');

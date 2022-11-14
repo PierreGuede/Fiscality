@@ -133,7 +133,7 @@ class CreateIncome extends ModalComponent
             $this->processData($this->inputs, $accounting_result);
         } else {
             $exist->total_incomes = $total_data;
-            $exist->ar_value =  (float)$total_data - (float)$exist->total_expenses;
+            $exist->ar_value = (float) $total_data - (float) $exist->total_expenses;
             $this->processData($this->inputs, $exist);
 
             $exist->save();

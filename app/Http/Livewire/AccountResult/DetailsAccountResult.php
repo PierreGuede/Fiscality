@@ -12,6 +12,7 @@ class DetailsAccountResult extends Component
     public Company $company;
 
     public string $state = 'user_calculate_result';
+
     public $total = 0;
 
     public $total_incomes_expenses;
@@ -39,7 +40,7 @@ class DetailsAccountResult extends Component
         AccountingResult::create([
             'total_incomes' => 0,
             'total_expenses' => 0,
-            'ar_value' => (float)$this->total_incomes_expenses,
+            'ar_value' => (float) $this->total_incomes_expenses,
             'company_id' => $this->company->id,
         ]);
 
@@ -48,7 +49,7 @@ class DetailsAccountResult extends Component
 
     public function refreshTotalCard()
     {
-        $account_result = AccountingResult::whereCompanyId($this->company->id)->whereYear(Carbon::now()->year)->first();
-        $this->total = is_null($account_result) ? 0 : $account_result->ar_value;
+//        $account_result = AccountingResult::whereCompanyId($this->company->id)->whereYear(Carbon::now()->year)->first();
+//        $this->total = is_null($account_result) ? 0 : $account_result->ar_value;
     }
 }

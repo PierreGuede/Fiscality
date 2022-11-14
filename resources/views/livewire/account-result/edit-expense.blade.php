@@ -1,6 +1,9 @@
 <div class="py-10 px-10 w-full " >
-    <div>
+    <div x-data="globalData" class="flex justify-between" >
         <h5 class="text-base text-gray-600 font-semibold" >Charges</h5>
+
+        <h5 class="text-base text-gray-600 font-semibold" x-text="formatNumber(sumArray(expense_sum))" ></h5>
+
     </div>
 
     <form class="mt-10 space-y-3" wire:submit.prevent="save">
@@ -33,6 +36,7 @@
                         <div class="flex-1 w-full">
                             <x-input class="w-full" for="input_{{ $key }}_amount"
                                      type="number" id="input_{{ $key }}_amount" label='Montant'
+                                     x-model="expense_sum[{{ $key  }}]"
                                      wire:model.defer="inputs.{{ $key }}.amount"
                                      placeholder="Compte" class="" required autofocus/>
                             @error('inputs.' . $key . '.amount')

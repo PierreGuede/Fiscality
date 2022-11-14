@@ -39,7 +39,7 @@
             @if(!is_null($total))
 
 
-            <a href="{{ route('amortization.tourism-cars', $company->id)  }}" class=" group w-full flex text-sm  items-center justify-center px-4 py-2 text-blue-500 bg-blue-100 hover:bg-blue-500 hover:text-blue-50 gap-x-2 font-semibold" >
+            <a href="{{ route('tax-result.account-result.expense', $company->id)  }}" class=" group w-full flex text-sm  items-center justify-center px-4 py-2 text-blue-500 bg-blue-100 hover:bg-blue-500 hover:text-blue-50 gap-x-2 font-semibold" >
                 <svg class="stroke-2 stroke-blue-500 group-hover:stroke-blue-50 w-6 w-6 " xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" >
                     <path stroke-linecap="round" stroke-linejoin="round" d="M2.036 12.322a1.012 1.012 0 010-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178z" />
                     <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />

@@ -136,8 +136,6 @@ class CreateOtherReintegration extends Component
             'other_non_deductible_expenses' => $this->other_non_deductible_expenses,
         ];
 
-
-
         OtherReintegration::create([
             'expense_not_related' => $this->expense_not_related,
             'unjustfified_expense' => $this->unjustfified_expense,

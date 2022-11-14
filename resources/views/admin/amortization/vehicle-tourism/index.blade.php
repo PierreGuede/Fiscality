@@ -1,6 +1,6 @@
 <x-company-layout :company="$company" >
     <div class="w-full  min-h-screen" >
-        <h5 class="text-lg font-semibold text-gray-500 " >Véhicule de tourisme</h5>
+        <h5 class="text-2xl font-semibold text-gray-700 " >Vehicule de tourismes</h5>
         <div class="max-w-5xl w-full mx-auto">
             <table class="w-full" >
                 <thead class="bg-transparent uppercase py-2 text-gray-600" >
