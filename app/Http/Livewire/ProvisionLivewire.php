@@ -14,7 +14,7 @@ class ProvisionLivewire extends Component
 
     public function addProvisionInput()
     {
-        $this->inputs->push(['compte' => '', 'designation' => '', 'amount' => '', 'type' => 'provision']);
+        $this->inputs->push(['compte' => '', 'designation' => '', 'amount' => '', 'type' => AccuredChargeCompany::PROVISION]);
     }
 
     public function removeInput($key)
@@ -75,6 +75,6 @@ class ProvisionLivewire extends Component
             ]);
         }
 
-        return redirect()->route('work.accuredCharge', $this->company->id);
+        return redirect()->route('tax-result.reintegration.accured-charge', $this->company->id);
     }
 }

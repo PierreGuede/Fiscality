@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Fiscality\AccuredCharges\AccuredCharge;
 use App\Fiscality\Companies\Company;
 use App\Models\AccuredChargeCompany;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class AccuredChargeController extends Controller
@@ -37,7 +38,7 @@ class AccuredChargeController extends Controller
 
     public function expenseProvisioned(Company $company)
     {
-        $cahrgesCompany = AccuredChargeCompany::where('type', 'charges')->where('company_id', $company->id)->where('date', date('Y'))->first();
+        $cahrgesCompany = AccuredChargeCompany::where('type', AccuredChargeCompany::EXPENSE_PROVISIONED)->whereCompanyId( $company->id)->whereYear('created_at', Carbon::now()->year)->first();
         if ($cahrgesCompany == null) {
             notify()->success('Provision ont été ajouté avec succès !');
 

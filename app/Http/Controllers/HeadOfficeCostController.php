@@ -10,6 +10,4 @@ class HeadOfficeCostController extends Controller
     {
         return view('admin.head-office-costs.index', compact('company'));
     }
-
-
 }

@@ -13,6 +13,6 @@ class HeadOfficeCostDetail extends Model
         'name',
         'amount',
         'company_id',
-        'head_office_cost_id'
+        'head_office_cost_id',
     ];
 }

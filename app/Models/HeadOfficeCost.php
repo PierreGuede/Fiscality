@@ -9,7 +9,8 @@ class HeadOfficeCost extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['account_result',
+    protected $fillable = [
+        'account_result',
         'total_reintegration',
         'total_deduction',
         'taxable_income_before_restatement_head_office_costs',

@@ -13,6 +13,7 @@ class EditVehicle extends ModalComponent
     public Amortization $model;
 
     public $company;
+
     public Vehicle $vehicle;
 
     public $data = [
@@ -26,14 +27,13 @@ class EditVehicle extends ModalComponent
     public function mount(Company $company)
     {
         $this->company = $company;
-        $this->vehicle = Vehicle::whereCompanyId($company->id)->whereYear('created_at',Carbon::now()->year)->first();
+        $this->vehicle = Vehicle::whereCompanyId($company->id)->whereYear('created_at', Carbon::now()->year)->first();
 
         $this->data['name'] = $this->vehicle->name;
         $this->data['value'] = $this->vehicle->value;
         $this->data['plafond'] = $this->vehicle->plafond;
         $this->data['dotation'] = $this->vehicle->dotation;
         $this->data['date'] = $this->vehicle->date;
-
     }
 
     public function render()

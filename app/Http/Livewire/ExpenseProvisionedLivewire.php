@@ -14,7 +14,7 @@ class ExpenseProvisionedLivewire extends Component
 
     public function addProvisionInput()
     {
-        $this->inputs->push(['compte' => '', 'designation' => '', 'amount' => '', 'type' => 'charges']);
+        $this->inputs->push(['compte' => '', 'designation' => '', 'amount' => '', 'type' => AccuredChargeCompany::EXPENSE_PROVISIONED]);
     }
 
     public function removeInput($key)
@@ -74,5 +74,6 @@ class ExpenseProvisionedLivewire extends Component
                 'date' => date('Y'),
             ]);
         }
+        return redirect()->route('tax-result.reintegration.accured-charge', $this->company->id);
     }
 }

@@ -13,16 +13,17 @@ class AccountResultController extends Controller
         return view('admin.tax-result.account-result.index', compact('company'));
     }
 
-
     public function expense(Company $company)
     {
         $expense = RADetail::whereType(RADetail::EXPENSE)->whereCompanyId($company->id)->whereYear('created_at', Carbon::now()->year)->get();
+
         return view('admin.tax-result.account-result.expense.index', compact('expense', 'company'));
     }
 
     public function income(Company $company)
     {
         $income = RADetail::whereType(RADetail::INCOME)->whereCompanyId($company->id)->whereYear('created_at', Carbon::now()->year)->get();
-        return view('admin.tax-result.account-result.income.index', compact('income','company'));
+
+        return view('admin.tax-result.account-result.income.index', compact('income', 'company'));
     }
 }
