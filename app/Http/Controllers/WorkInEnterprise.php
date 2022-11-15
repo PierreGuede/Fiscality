@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Fiscality\Companies\Company;
 use Illuminate\Http\Request;
+use App\Fiscality\Companies\Company;
+use App\Fiscality\AccountingResults\AccountingResult;
 
 class WorkInEnterprise extends Controller
 {
@@ -23,7 +24,9 @@ class WorkInEnterprise extends Controller
      */
     public function accountResult(Company $company)
     {
-        return view('admin.adminWork.accountResult', compact('company'));
+        $accountingresult=AccountingResult::where('company_id',$company->id)->where('date',date('Y'))->first();
+
+        return view('admin.adminWork.accountResult', compact('company','accountingresult'));
     }
 
     public function impotcalcul(Company $company)
