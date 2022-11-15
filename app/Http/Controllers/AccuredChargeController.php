@@ -18,7 +18,8 @@ class AccuredChargeController extends Controller
 
     public function index(Company $company)
     {
-        return view('admin.adminWork.accuredCharge', compact('company'));
+        $total=AccuredChargeCompany::where('company_id',$company->id)->sum('amount');
+        return view('admin.adminWork.accuredCharge', compact('company','total'));
     }
 
     public function provision(Company $company)

@@ -31,7 +31,9 @@ class DetailsAccountResult extends Component
 
     public function render()
     {
-        return view('livewire.account-result.details-account-result');
+        $account_result = AccountingResult::whereCompanyId($this->company->id)->whereYear('created_at', Carbon::now()->year)->first();
+
+        return view('livewire.account-result.details-account-result',compact('account_result'));
     }
 
     public function save()

@@ -1,6 +1,5 @@
 <x-company-layout :company="$company" >
-    <h1 class="text-xl font-semibold text-gray-700 ml-4">LES DEDUCTION DE :{{-- LES PROVISIONS ET CHARGES PROVISIONNEES --}} {{ $company->name }}</h1>
-     {{-- @livewire('other-reintegration.details', ['company' => $company]) --}}
+    <h1 class="text-xl font-semibold text-gray-700 ml-4">LES DEDUCTION DE : {{ $company->name }}</h1>
     <form method="POST" action="{{ route('tax-result.deduction.store',$company->id) }}">
         @csrf
         <div class=" ml-6 mt-4 space-y-4" x-data="">
