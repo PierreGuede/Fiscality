@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Fiscality\Amortizations\Amortization;
-use App\Fiscality\Companies\Company;
-use App\Fiscality\Excesss\Excess;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
+use App\Fiscality\Excesss\Excess;
+use App\Fiscality\Companies\Company;
+use App\Fiscality\Amortizations\Amortization;
 
 class ExcessController extends Controller
 {
@@ -48,5 +49,23 @@ class ExcessController extends Controller
         } catch (\Throwable $th) {
             throw $th;
         }
+    }
+
+    public function edit(Company $company, Excess $excess){
+        return view ('admin.amortization.amortization-excess.modify',compact('company','excess'));
+    }
+    public function update(Company $company,$excess, Request $request){
+        $request->validate([
+            'category_imo' => ['sometimes', 'required', 'string', 'max:255', Rule::unique('excesses')->ignore($excess)],
+            'designation' => ['sometimes', 'required', 'string', 'max:255', Rule::unique('excesses')->ignore($excess)],
+            'taux_use' => ['sometimes', 'required', 'string', 'max:255', Rule::unique('excesses')->ignore($excess)],
+            'taux_recommended' => ['sometimes', 'required', 'string', 'max:255', Rule::unique('excesses')->ignore($excess)],
+            'ecart' => ['sometimes', 'required', 'string', 'max:255', Rule::unique('excesses')->ignore($excess)],
+            'dotation' => ['sometimes', 'required', 'string', 'max:255', Rule::unique('excesses')->ignore($excess)],
+            'deductible_amortization' => ['sometimes', 'required', 'string', 'max:255', Rule::unique('excesses')->ignore($excess)],
+        ]);
+        $update=Excess::find($excess);
+        $update->update($request->all());
+        return redirect()->route('amortization.amortization-excess',$company);
     }
 }

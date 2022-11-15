@@ -17,16 +17,16 @@
         <div class="mt-auto ">
             @if($total_vehicle > 0)
                 <button
-                    onclick="Livewire.emit('openModal', 'company.amortization.edit-vehicle', {{ json_encode([ "company" => $company ]) }})"
+                    onclick="Livewire.emit('openModal', 'company.amortization.create-vehicle', {{ json_encode([ "company" => $company ]) }})"
                     class="w-full text-sm border-b-2 border-blue-50 flex  items-center justify-center px-4 py-2 text-blue-50 bg-blue-500 hover:bg-blue-400 gap-x-2 font-semibold">
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="stroke-2 stroke-blue-50 group-hover:stroke-blue-500 w-5 w-5">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L10.582 16.07a4.5 4.5 0 01-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 011.13-1.897l8.932-8.931zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0115.75 21H5.25A2.25 2.25 0 013 18.75V8.25A2.25 2.25 0 015.25 6H10" />
+                    <svg class="stroke-2 stroke-blue-50 w-6 w-6 " xmlns="http://www.w3.org/2000/svg" fill="none"
+                        viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                            d="M12 9v6m3-3H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z"/>
                     </svg>
 
-
-                    <span>Modifier</span>
+                    <span>Ajouter</span>
                 </button>
-
                 <a href="{{ route('amortization.tourism-cars', $company->id)  }}"
                    class=" group w-full flex text-sm  items-center justify-center px-4 py-2 text-blue-500 bg-blue-100 hover:bg-blue-500 hover:text-blue-50 gap-x-2 font-semibold">
                     <svg class="stroke-2 stroke-blue-500 group-hover:stroke-blue-50 w-6 w-6 "
