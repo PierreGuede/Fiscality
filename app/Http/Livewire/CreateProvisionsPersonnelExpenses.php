@@ -13,6 +13,17 @@ class CreateProvisionsPersonnelExpenses extends Component
 
     public $inputs;
 
+    public function addProvisionInput()
+    {
+        $this->inputs->push(['compte' => '', 'designation' => '', 'amount' => '', 'type' => 'personal-expense']);
+    }
+
+
+    public function removeInput($key)
+    {
+        $this->inputs->pull($key);
+    }
+
     protected $rules = [
         'inputs.*.compte' => 'required|distinct|integer',
         'inputs.*.designation' => 'required',
@@ -62,6 +73,6 @@ class CreateProvisionsPersonnelExpenses extends Component
             ]);
         }
 
-        return redirect()->route('work.accuredCharge', $this->company->id);
+        return redirect()->route('tax-result.reintegration.accured-charge', $this->company->id);
     }
 }

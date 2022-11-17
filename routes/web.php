@@ -66,7 +66,16 @@ Route::middleware('auth', 'hasOneRole')->group(function () {
 
         Route::get('work-in-enterprise/{company}/accured-charge', [\App\Http\Controllers\AccuredChargeController::class, 'index'])->name('tax-result.reintegration.accured-charge');
         Route::get('work-in-enterprise/{company}/accured-charge/provision', [\App\Http\Controllers\AccuredChargeController::class, 'provision'])->name('work.provision');
+        Route::get('work-in-enterprise/{company}/accured-charge/provision/details', [\App\Http\Controllers\AccuredChargeCompanyController::class, 'indexProvision'])->name('work.provision.details');
+        Route::get('work-in-enterprise/{company}/accured-charge/provision/details/{accuredChargeCompany}', [\App\Http\Controllers\AccuredChargeCompanyController::class, 'editProvision'])->name('work.provision.edit');
         Route::get('work-in-enterprise/{company}/accured-charge/provisioned-expense', [\App\Http\Controllers\AccuredChargeController::class, 'expenseProvisioned'])->name('work.expenseProvisioned');
+        Route::get('work-in-enterprise/{company}/accured-charge/provisioned-expense/details', [\App\Http\Controllers\AccuredChargeCompanyController::class, 'indexExpenseProvisionned'])->name('work.expenseProvisioned.details');
+        Route::get('work-in-enterprise/{company}/accured-charge/provisioned-expense/details/{accuredChargeCompany}', [\App\Http\Controllers\AccuredChargeCompanyController::class, 'editExpenseProvisionned'])->name('work.expenseProvisioned.edit');
+        Route::put('work-in-enterprise/{company}/accured-charge/provisioned-expense/provision/update/{accuredChargeCompany}', [\App\Http\Controllers\AccuredChargeCompanyController::class, 'update'])->name('work.accuredCharge.update');
+        Route::get('work-in-enterprise/{company}/accured-charge/personnal-expense', [\App\Http\Controllers\AccuredChargeController::class, 'personalExpense'])->name('work.personalExpense');
+        Route::get('work-in-enterprise/{company}/accured-charge/personnal-expense/details', [\App\Http\Controllers\AccuredChargeCompanyController::class, 'indexPersonnalExpense'])->name('work.personnalExpense.details');
+        Route::get('work-in-enterprise/{company}/accured-charge/personnal-expense/details/{accuredChargeCompany}', [\App\Http\Controllers\AccuredChargeCompanyController::class, 'editPersonnalExpense'])->name('work.personnalExpense.edit');
+
         Route::get('work-in-enterprise/{company}/other-reintegration', [\App\Http\Controllers\OtherReintegrationController::class, 'index'])->name('work.other-reintegration');
 
         Route::get('work-in-enterprise/{company}/other-reintegration/commission-purchase', [\App\Http\Controllers\CommissionOnPurchaseController::class, 'index'])->name('work.commissionPurchase');

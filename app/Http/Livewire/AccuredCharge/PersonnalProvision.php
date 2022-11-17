@@ -21,7 +21,7 @@ class PersonnalProvision extends Component
     public function mount($company)
     {
         $this->company = $company;
-        $this->total = AccuredChargeCompany::where('type', 'provision')->whereCompanyId($this->company->id)->whereYear('created_at', Carbon::now()->year)->first();
+        $this->total = AccuredChargeCompany::where('type', 'personal-expense')->whereCompanyId($this->company->id)->whereYear('created_at', Carbon::now()->year)->sum('amount');
     }
 
     public function render()
@@ -31,6 +31,6 @@ class PersonnalProvision extends Component
 
     public function refreshProvision()
     {
-        $this->total = AccuredChargeCompany::where('type', 'provision')->whereCompanyId($this->company->id)->whereYear(Carbon::now()->year)->first();
+        $this->total = AccuredChargeCompany::where('type', 'personal-expense')->whereCompanyId($this->company->id)->whereYear(Carbon::now()->year)->sum('amount');
     }
 }
