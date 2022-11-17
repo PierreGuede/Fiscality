@@ -14,6 +14,7 @@ class DonationGrantContribution extends Model
 
     protected $fillable = [
         'turnover',
+        'limit',
         'thousandth_turnover',
         'total_state_donation',
         'surplus_state_donation',

@@ -74,6 +74,7 @@ class ExpenseProvisionedLivewire extends Component
                 'date' => date('Y'),
             ]);
         }
+
         return redirect()->route('tax-result.reintegration.accured-charge', $this->company->id);
     }
 }

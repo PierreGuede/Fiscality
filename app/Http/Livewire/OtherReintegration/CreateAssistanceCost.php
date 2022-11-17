@@ -40,7 +40,7 @@ class CreateAssistanceCost extends Component
 
     public function add(): void
     {
-        $this->inputs->push(['account' => '', 'name' => '', 'amount' => '', 'type' => 'income']);
+        $this->inputs->push(['account' => '', 'name' => '', 'amount' => '']);
     }
 
     public function remove($key): void
@@ -52,7 +52,6 @@ class CreateAssistanceCost extends Component
     {
         $expense = IncomeExpense::where('type', 'expense')->where('id', '!=', '5')->get();
         $this->general_cost = $expense;
-        $this->currentStep = 1;
         $this->company = $company;
         $this->fill([
             'inputs' => collect($this->general_cost),
@@ -89,10 +88,11 @@ class CreateAssistanceCost extends Component
         ]);
         foreach ($this->inputs as $key => $value) {
             GeneralCostDetail::create([
-                'compte' => $value['account'],
-                'designation' => $value['name'],
+                'account' => $value['account'],
+                'name' => $value['name'],
                 'amount' => $value['amount'],
                 'general_cost_id' => $generalCost->id,
+                'company_id' => $this->company->id,
             ]);
         }
 

@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Fiscality\Amortizations\Amortization;
+use App\Fiscality\Companies\Company;
+use App\Fiscality\Depreciations\Depreciation;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
-use App\Fiscality\Companies\Company;
-use App\Fiscality\Amortizations\Amortization;
-use App\Fiscality\Depreciations\Depreciation;
 
 class DepreciationController extends Controller
 {
@@ -45,18 +45,21 @@ class DepreciationController extends Controller
         }
     }
 
-    public function edit(Company $company, Depreciation $depreciation){
-        return view ('admin.amortization.depreciation-assets.modify',compact('company','depreciation'));
+    public function edit(Company $company, Depreciation $depreciation)
+    {
+        return view('admin.amortization.depreciation-assets.modify', compact('company', 'depreciation'));
     }
 
-    public function update(Company $company,$depreciation, Request $request){
+    public function update(Company $company, $depreciation, Request $request)
+    {
         $request->validate([
             'category_imo' => ['sometimes', 'required', 'string', 'max:255', Rule::unique('depreciations')->ignore($depreciation)],
             'designation' => ['sometimes', 'required', 'string', 'max:255', Rule::unique('depreciations')->ignore($depreciation)],
             'dotation' => ['sometimes', 'required', 'string', 'max:255', Rule::unique('depreciations')->ignore($depreciation)],
         ]);
-        $update=Depreciation::find($depreciation);
+        $update = Depreciation::find($depreciation);
         $update->update($request->all());
-        return redirect()->route('amortization.depreciation-assets',$company);
+
+        return redirect()->route('amortization.depreciation-assets', $company);
     }
 }

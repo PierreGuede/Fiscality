@@ -11,9 +11,9 @@ class AccountResultController extends Controller
 {
     public function index(Company $company)
     {
-        $accountingresult=AccountingResult::where('company_id',$company->id)->where('date',date('Y'))->first();
+        $accountingresult = AccountingResult::whereCompanyId($company->id)->whereYear('created_at', Carbon::now()->year)->first();
 
-        return view('admin.tax-result.account-result.index', compact('company','accountingresult'));
+        return view('admin.tax-result.account-result.index', compact('company', 'accountingresult'));
     }
 
     public function expense(Company $company)

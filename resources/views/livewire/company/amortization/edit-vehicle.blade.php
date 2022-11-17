@@ -3,7 +3,6 @@
         <h5 class="text-base text-gray-600 font-semibold" >Véhicule de Toursime</h5>
     </div>
 
-@dump($data)
     <form x-data="{ value: {{ $data['value']  }}, plafond: {{ $data['plafond']  }}, dotation: {{ $data['dotation'] }} }" class="mt-10 space-y-5" wire:submit.prevent="save">
         <x-input wire:model.defer="data.name" type="text" label="Véhicules concernés" id="name" name="name"
                  value="{{ old('name') }}" class="block w-full" required autofocus />

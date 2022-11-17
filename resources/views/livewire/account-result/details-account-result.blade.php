@@ -1,7 +1,6 @@
 <div  >
 
     @if ($account_result!=null)
-    <h1 class="text-md font-semibold text-gray-700 ">Détail de l'année: {{ date('Y') }}</h1>
         @livewire('total-card', ['total' => $total])
     <span x-text="response" ></span>
     <div class="mb-6">

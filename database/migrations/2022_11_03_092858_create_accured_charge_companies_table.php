@@ -18,7 +18,7 @@ return new class extends Migration
             $table->id();
             $table->string('compte')->nullable();
             $table->string('designation');
-            $table->enum('type',['expense_provisioned', 'personnal_provision', 'provision']);
+            $table->enum('type', ['expense_provisioned', 'personnal_provision', 'provision']);
             $table->integer('amount');
             $table->foreignIdFor(Company::class)->nullable()->constrained();
             $table->year('date');

@@ -26,8 +26,7 @@ Alpine.data('globalData', () => ({
      * @param  date string
      */
     formatDate(date) {
-        // return dayjs(date).local('fr').format('DD MMM YYYY')
-        return 'Test'
+        return dayjs(date).local('fr').format('DD MMM YYYY')
     },
 
     /**

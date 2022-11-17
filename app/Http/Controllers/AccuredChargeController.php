@@ -19,8 +19,9 @@ class AccuredChargeController extends Controller
 
     public function index(Company $company)
     {
-        $total=AccuredChargeCompany::where('company_id',$company->id)->sum('amount');
-        return view('admin.adminWork.accuredCharge', compact('company','total'));
+        $total = AccuredChargeCompany::where('company_id', $company->id)->sum('amount');
+
+        return view('admin.adminWork.accuredCharge', compact('company', 'total'));
     }
 
     public function provision(Company $company)
@@ -39,7 +40,7 @@ class AccuredChargeController extends Controller
 
     public function expenseProvisioned(Company $company)
     {
-        $cahrgesCompany = AccuredChargeCompany::where('type', AccuredChargeCompany::EXPENSE_PROVISIONED)->whereCompanyId( $company->id)->whereYear('created_at', Carbon::now()->year)->first();
+        $cahrgesCompany = AccuredChargeCompany::where('type', AccuredChargeCompany::EXPENSE_PROVISIONED)->whereCompanyId($company->id)->whereYear('created_at', Carbon::now()->year)->first();
         if ($cahrgesCompany == null) {
             notify()->success('Provision ont été ajouté avec succès !');
 

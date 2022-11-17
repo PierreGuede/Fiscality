@@ -120,6 +120,7 @@ class CreateDonationGrantContributions extends Component
 
         $donation_grant_contribution = DonationGrantContribution::create([
             'turnover' => (float) $this->turnover,
+            'limit' => $this->limit,
             'thousandth_turnover' => (float) $this->turnover * (1 / 1000),
             'total_state_donation' => $total_state_donation,
             'surplus_state_donation' => $surplus_state_donation,

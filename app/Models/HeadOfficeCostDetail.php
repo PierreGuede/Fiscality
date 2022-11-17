@@ -9,6 +9,10 @@ class HeadOfficeCostDetail extends Model
 {
     use HasFactory;
 
+    protected $casts = [
+        'amount' => 'float',
+    ];
+
     protected $fillable = ['account',
         'name',
         'amount',

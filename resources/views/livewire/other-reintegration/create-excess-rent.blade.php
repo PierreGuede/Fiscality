@@ -15,13 +15,6 @@
         <h2 class="text-2xl font-bold text-gray-7002 py-8">Surplus des loyers (Véhicule)</h2>
 
         <form class="" wire:submit.prevent="save">
-            <div class=" ml-6 mt-4 space-y-4 ">
-                <div class="grid grid-cols-12 gap-x-4">
-                    <h5 class="py-1 text-sm font-semibold text-gray-700 col-span-7">Intitulé </h5>
-                    <h5 class="py-1 text-sm font-semibold text-gray-700 col-span-3">Montant </h5>
-                </div>
-            </div>
-
             <div class="mt-2 space-y-3 ">
                 <x-input type="number" label="Montant des loyers(Véhicule de tourisme)" step="any" id="delay_condition" name=""
                          wire:model.defer="rent_amount"  x-model="rent_amount"

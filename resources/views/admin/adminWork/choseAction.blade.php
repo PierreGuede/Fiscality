@@ -13,11 +13,11 @@
 {{--                        <a href="{{ route('amortization', $company->id)  }}" class="p-2 "> Calculer mes amortissements </a>--}}
 {{--                    </div>--}}
 
-                    <a href="{{ route('work.accountResult',$company->id) }}" class="relative  p-8 flex flex-col items-center justify-center border-2 border-[#A68FFF] hover:shadow-[0px_8px_15px_-10px_#8FBCFF] hover:shadow-[#A68FFF] rounded-md">
-                        <div class="absolute bg-[#A68FFF] w-3/5 -top-0.5 h-1.5 rounded-b-md"></div>
+{{--                    <a href="{{ route('work.accountResult',$company->id) }}" class="relative  p-8 flex flex-col items-center justify-center border-2 border-[#A68FFF] hover:shadow-[0px_8px_15px_-10px_#8FBCFF] hover:shadow-[#A68FFF] rounded-md">--}}
+{{--                        <div class="absolute bg-[#A68FFF] w-3/5 -top-0.5 h-1.5 rounded-b-md"></div>--}}
 
-                        <h2 class="text-[#2B417B] text-center ">Résultat Comptable</h2>
-                    </a>
+{{--                        <h2 class="text-[#2B417B] text-center ">Résultat Comptable</h2>--}}
+{{--                    </a>--}}
 
                     <a href="{{ route('tax-result.reintegration.amortization', $company->id)  }}" class="relative p-8 flex flex-col items-center justify-center border-2 border-[#8FBCFF] hover:shadow-[0px_8px_15px_-10px_#8FBCFF] hover:shadow-[#8FBCFF] rounded-md">
                         <div class="absolute bg-[#8FBCFF] w-3/5 -top-0.5 h-1.5 rounded-b-md"></div>

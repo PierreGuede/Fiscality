@@ -3,7 +3,8 @@
 
         <div class=" w-2/5 " >
             <h2 class="text-2xl font-semibold text-gray-700 py-4" >Frais de siège</h2>
-            @livewire('create-head-office-cost', ['company' => $company])
+
+            @livewire('head-office-cost.index-head-office-cost', ['company' => $company])
         </div>
 
     </div>

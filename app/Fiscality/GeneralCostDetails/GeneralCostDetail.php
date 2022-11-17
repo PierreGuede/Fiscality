@@ -13,9 +13,10 @@ class GeneralCostDetail extends Model
     use HasFactory;
 
     protected $fillable = [
-        'compte',
-        'designation',
+        'account',
+        'name',
         'amount',
         'general_cost_id',
+        'company_id',
     ];
 }

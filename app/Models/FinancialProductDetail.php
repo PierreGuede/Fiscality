@@ -11,7 +11,7 @@ class FinancialProductDetail extends Model
 
     public const INCOME = 'income_securities_issued';
 
-    public const OTHER = 'income_securities_issued';
+    public const OTHER = 'other_product_rcm';
 
     protected $fillable = ['net_ircm_amount', 'rate', 'amount_deduct', 'type', 'financial_product_id', 'company_id'];
 }

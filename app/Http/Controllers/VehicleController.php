@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Fiscality\Amortizations\Amortization;
+use App\Fiscality\Companies\Company;
+use App\Fiscality\Vehicles\Vehicle;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
-use App\Fiscality\Vehicles\Vehicle;
-use App\Fiscality\Companies\Company;
-use App\Fiscality\Amortizations\Amortization;
 
 class VehicleController extends Controller
 {
@@ -51,11 +51,13 @@ class VehicleController extends Controller
         }
     }
 
-    public function edit(Company $company, Vehicle $vehicle){
-        return view ('admin.amortization.vehicle-tourism.modify',compact('company','vehicle'));
+    public function edit(Company $company, Vehicle $vehicle)
+    {
+        return view('admin.amortization.vehicle-tourism.modify', compact('company', 'vehicle'));
     }
 
-    public function update(Company $company,$vehicle, Request $request){
+    public function update(Company $company, $vehicle, Request $request)
+    {
         $request->validate([
             'name' => ['sometimes', 'required', 'string', 'max:255', Rule::unique('vehicless')->ignore($vehicle)],
             'value' => ['sometimes', 'required', 'string', 'max:255', Rule::unique('vehicless')->ignore($vehicle)],
@@ -65,8 +67,9 @@ class VehicleController extends Controller
             'deductible_amortization' => ['sometimes', 'required', 'string', 'max:255', Rule::unique('vehicless')->ignore($vehicle)],
             'date' => ['sometimes', 'required', 'string', 'max:255', Rule::unique('vehicless')->ignore($vehicle)],
         ]);
-        $update=Vehicle::find($vehicle);
+        $update = Vehicle::find($vehicle);
         $update->update($request->all());
-        return redirect()->route('amortization.tourism-cars',$company);
+
+        return redirect()->route('amortization.tourism-cars', $company);
     }
 }
