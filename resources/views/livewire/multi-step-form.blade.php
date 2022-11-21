@@ -1,6 +1,6 @@
 <div>
-    <x-auth-validation-errors :errors="$errors"  class="fixed top-2 right-5 w-1/3 bg-gray-200 border-l-4 rounded-md border-red-800 p-4 text-black"/>
-
+{{--    <x-auth-validation-errors :errors="$errors"  class="fixed top-2 right-5 w-1/3 bg-gray-200 border-l-4 rounded-md border-red-800 p-4 text-black"/>--}}
+    <x-notifications position="top-left" />
 
     <form wire:submit.prevent="company" {{-- method="POST" action="{{ route('company.store') }}" enctype="multipart/form-data" --}}>
         {{-- Step 1 --}}
@@ -19,22 +19,22 @@
                     <section class=" p-4 h-full items-center">
                         <div class="mt-4">
                             <x-label for="name" :value="__('Domaine d\'activités')"/>
-                            <select wire:change="findActivity" wire:model="domain_id" class="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:border-primary-300 focus:ring focus:ring-primary-200 focus:ring-opacity-50 focus-within:text-primary-600">
+                            <x-native-select wire:change="findActivity" wire:model="domain_id" class="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:border-primary-300 focus:ring focus:ring-primary-200 focus:ring-opacity-50 focus-within:text-primary-600">
                                 <option value=""></option>
                                 @foreach ($domain as $domain)
                                     <option  value="{{ $domain->id }}">{{ $domain->name }}</option>
                                 @endforeach
-                            </select>
+                            </x-native-select>
                         </div>
                     @if (count($principalActivity) > 0)
                         <div class="mt-4">
                             <x-label for="name" :value="__('Activité principale')"/>
-                            <select  wire:model="activity_id" class="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:border-primary-300 focus:ring focus:ring-primary-200 focus:ring-opacity-50 focus-within:text-primary-600">
+                            <x-native-select  wire:model="activity_id" class="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:border-primary-300 focus:ring focus:ring-primary-200 focus:ring-opacity-50 focus-within:text-primary-600">
                                 <option value="" selected >Choisir</option>
                                 @foreach ($principalActivity as $principalActivity)
                                     <option  value="{{ $principalActivity->id }}">{{ $principalActivity->name }}</option>
                                 @endforeach
-                            </select>
+                            </x-native-select>
                         </div>
                     @endif
                     </section>
@@ -65,21 +65,21 @@
                 <div class="flex space-x-2" >
                     <div class="mt-4 w-1/2">
                         <x-label id="centre" :value="__('Centre des impôts gestionnaire')"  />
-                        <select  wire:model="tax_center_id" class="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:border-primary-300 focus:ring focus:ring-primary-200 focus:ring-opacity-50 focus-within:text-primary-600"  {{-- name="type_company_id" --}}>
+                        <x-native-select  wire:model="tax_center_id" class="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:border-primary-300 focus:ring focus:ring-primary-200 focus:ring-opacity-50 focus-within:text-primary-600"  {{-- name="type_company_id" --}}>
                             <option value=""></option>
                             @foreach ($taxCenter as $taxCenter)
                                 <option value="{{ $taxCenter->id }}">{{ $taxCenter->name }}</option>
                             @endforeach
-                        </select>
+                        </x-native-select>
                     </div>
                     <div class="mt-4 w-1/2">
                         <x-label for="name" :value="__('Type entreprise')"/>
-                        <select  wire:model="type_company_id" class="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:border-primary-300 focus:ring focus:ring-primary-200 focus:ring-opacity-50 focus-within:text-primary-600"  {{-- name="type_company_id" --}}>
+                        <x-native-select  wire:model="type_company_id" class="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:border-primary-300 focus:ring focus:ring-primary-200 focus:ring-opacity-50 focus-within:text-primary-600"  {{-- name="type_company_id" --}}>
                             <option value=""></option>
                             @foreach ($type as $type)
                                 <option value="{{ $type->id }}">{{ $type->name }}</option>
                             @endforeach
-                        </select>
+                        </x-native-select>
                     </div>
                 </div>
             </section>
@@ -112,13 +112,13 @@
                         <div class="">
                                <span>{{ $typeCat->name }}</span>
 
-                               <select wire:model="sub_category_id.{{ $typeCat->id }}" class="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:border-primary-300 focus:ring focus:ring-primary-200 focus:ring-opacity-50 focus-within:text-primary-600">
+                               <x-native-select wire:model="sub_category_id.{{ $typeCat->id }}" class="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:border-primary-300 focus:ring focus:ring-primary-200 focus:ring-opacity-50 focus-within:text-primary-600">
                                    <option value=""></option>
                                    @foreach ($typeCat->detailType as $subCat)
                                         <option value="{{ $subCat->id }}">{{ $subCat->name }}</option>
                                    @endforeach
 
-                               </select>
+                               </x-native-select>
                             {{-- <input type="checkbox" wire:model="category_id" id="" value="{{ $typeCat->id }}" > --}}
                         </div>
                         @endforeach
@@ -194,6 +194,7 @@
                         <x-label for="rccm" :value="__('RCCM')"/>
                         <x-input  wire:model="rccm" {{-- name="rccm" --}}
                         type="text"
+                                  label="RCCM"
                         class="block w-full"
                         value="{{ old('rccm') }}"/>
                     </div>

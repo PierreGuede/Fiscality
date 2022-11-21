@@ -4,7 +4,6 @@ namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use App\Fiscality\Companies\Company;
-use App\Fiscality\PackUsers\PackUser;
 use App\Fiscality\ProfileUsers\ProfileUser;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -77,9 +76,9 @@ class User extends Authenticatable implements MustVerifyEmail
        return $this->hasOne(ProfileUser::class);
    }
 
-    public function myPack()
+    public function subscription()
     {
-        return $this->hasOne(PackUser::class);
+        return $this->hasOne(Subscription::class);
     }
 
     public function getAccount()

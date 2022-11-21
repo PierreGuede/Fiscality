@@ -16,13 +16,14 @@
         "mckenziearts/laravel-notify": "^2.3",
         "phpstan/phpstan": "^1.8",
         "spatie/laravel-permission": "^5.5",
-        "wire-elements/modal": "^1.0"
+        "wire-elements/modal": "^1.0",
+        "wireui/wireui": "^1.17"
     },
     "require-dev": {
         "barryvdh/laravel-debugbar": "^3.7",
         "barryvdh/laravel-ide-helper": "^2.12",
         "fakerphp/faker": "^1.9.1",
-        "laravel-lang/lang": "^12.1",
+        "laravel-lang/lang": "^12.3",
         "laravel/pint": "^1.2",
         "laravel/sail": "^1.0.1",
         "laraveldaily/larastarters": "^2.0",

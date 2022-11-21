@@ -46,3 +46,7 @@ input[type=number] {
     -webkit-box-shadow: 7px 19px 19px -4px rgba(0,0,0,0.18) inset;
     -moz-box-shadow: 7px 19px 19px -4px rgba(0,0,0,0.18) inset;
 }
+
+.filepond--credits {
+    display: none;
+}

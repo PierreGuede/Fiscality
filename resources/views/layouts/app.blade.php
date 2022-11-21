@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html x-data="data" lang="en">
+<html lang="en">
 
 <head>
     <meta charset="utf-8">
@@ -9,31 +9,34 @@
     <title>{{ config('app.name', 'Laravel') }}</title>
 
     @vite(['resources/css/app.css', 'resources/js/app.js'])
+    @livewireStyles
     <!-- Scripts -->
     <script src="{{ asset('js/init-alpine.js') }}"></script>
+    @notifyCss
 </head>
 
-<body>
-    <div class="flex h-screen bg-gray-50" :class="{ 'overflow-hidden': isSideMenuOpen }" x-data="{ 'showModal': false, 'showModalConfirm': false, 'WorkEspace': false }"
-        @keydown.escape="showModal = false">
-        <!-- Desktop sidebar -->
-        @include('layouts.navigation')
-        <!-- Mobile sidebar -->
-        <!-- Backdrop -->
-        @include('layouts.navigation-mobile')
-        <div class="flex flex-col flex-1 w-full">
-            @include('layouts.top-menu')
-            <main class="h-full overflow-y-auto">
-                <div class="container px-6 mx-auto ">
-                    <h2 class="my-6 text-2xl font-semibold text-gray-700">
-                        {{ $header }}
-                    </h2>
+<body class="selection:bg-blue-500 font-sans selection:text-white" x-data="{ 'showModal': false, 'starting': true, 'buttonok': false, 'showSubCat': false }" @keydown.escape="showModal = false"
+      x-cloak>
 
-                    {{ $slot }}
-                </div>
-            </main>
-        </div>
+<div class="w-full flex bg-blue-50 max-h-screen overflow-hidden min-h-screen">
+
+    <div class="  " >
+        <x-app-sidebar  />
     </div>
+    {{--    <div class="border-2 border-red-500" >--}}
+
+    {{--@dd($company)--}}
+    <div class="p-6 overflow-y-auto w-full  " >
+        {{ $slot }}
+    </div>
+    {{--    </div>--}}
+    <x:notify-messages />
+    @notifyJs
+</div>
+
+
+@livewire('livewire-ui-modal')
+@livewireScripts
 </body>
 
 </html>

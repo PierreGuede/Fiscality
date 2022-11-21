@@ -22,7 +22,10 @@ Route::prefix('auth')->group(function () {
     ->middleware(['auth:sanctum', 'throttle:6,1'])->name('verification.send');
 });
 
-Route::middleware('auth:sanctum')->group(function () {
+    Route::get('/towns', function (){
+        return \App\Models\Town::all();
+    })->name('api.towns');
+Route::prefix('api')->middleware('auth:sanctum')->group(function () {
     Route::get('/user', ["App\Http\Controllers\AuthController", 'me']);
 
     Route::get('accounting-result', ["App\Fiscality\AccountingResults\Controllers\AccountingResultController", 'index']);

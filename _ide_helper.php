@@ -18493,6 +18493,47 @@
      
 }
 
+    namespace WireUi\Facades { 
+            /**
+     * 
+     *
+     */ 
+        class WireUi {
+                    /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function component($name)
+        {
+                        /** @var \WireUi\Wireui $instance */
+                        return $instance->component($name);
+        }
+                    /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function components()
+        {
+                        /** @var \WireUi\Wireui $instance */
+                        return $instance->components();
+        }
+                    /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function directives()
+        {
+                        /** @var \WireUi\Wireui $instance */
+                        return $instance->directives();
+        }
+         
+    }
+     
+}
+
     namespace Illuminate\Http { 
             /**
      * 
@@ -18674,6 +18715,16 @@
         public static function wire($name)
         {
                         return \Illuminate\View\ComponentAttributeBag::wire($name);
+        }
+                    /**
+         * 
+         *
+         * @see \WireUi\Providers\WireUiServiceProvider::registerMacros()
+         * @static 
+         */ 
+        public static function wireModifiers()
+        {
+                        return \Illuminate\View\ComponentAttributeBag::wireModifiers();
         }
          
     }
@@ -22500,6 +22551,7 @@ namespace  {
             class Livewire extends \Livewire\Livewire {}
             class Notify extends \Mckenziearts\Notify\Facades\LaravelNotify {}
             class Flare extends \Spatie\LaravelIgnition\Facades\Flare {}
+            class WireUi extends \WireUi\Facades\WireUi {}
      
 }
 

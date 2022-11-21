@@ -31,12 +31,19 @@ class CreateFinancialCost extends Component
     public string  $response = 'no';
 
     public $bceao_interest_rate_for_the_year;
+
     public $interest_rate_charged;
+
     public $amount_interest_recorded;
+
     public $amount_of_interest_recorded;
+
     public $interest_accrued;
+
     public $depreciation_and_amortization;
+
     public $allocations_to_provisions;
+
     public $amount_contribution;
 
     protected $listeners = ['openASide', 'closeASide'];
@@ -45,7 +52,7 @@ class CreateFinancialCost extends Component
     {
         $this->financialCost = [];
         $this->company = $company;
-        $this->rc = AccountingResult::whereCompanyId( $this->company->id)->whereYear('created_at', Carbon::now()->year)->first();
+        $this->rc = AccountingResult::whereCompanyId($this->company->id)->whereYear('created_at', Carbon::now()->year)->first();
         $this->fill([
             'inputs' => collect($this->financialCost),
         ]);

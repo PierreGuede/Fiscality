@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "d403dcc30c3e5f63721d4a503c622f15",
+    "content-hash": "3108b1389593f5d01f93be062ac99ab1",
     "packages": [
         {
             "name": "brick/math",
@@ -6056,6 +6056,80 @@
                 "source": "https://github.com/wire-elements/modal/tree/1.0.7"
             },
             "time": "2022-07-05T12:40:12+00:00"
+        },
+        {
+            "name": "wireui/wireui",
+            "version": "v1.17.6",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/wireui/wireui.git",
+                "reference": "ae56a97113937c0b96b53356eba1abe49d91240e"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/wireui/wireui/zipball/ae56a97113937c0b96b53356eba1abe49d91240e",
+                "reference": "ae56a97113937c0b96b53356eba1abe49d91240e",
+                "shasum": ""
+            },
+            "require": {
+                "laravel/framework": "^8.83|^9.16",
+                "livewire/livewire": "^2.10",
+                "php": "^8.0|^8.1"
+            },
+            "require-dev": {
+                "friendsofphp/php-cs-fixer": "^3.9",
+                "mockery/mockery": "^1.5",
+                "orchestra/testbench": "^6.0|^7.6",
+                "orchestra/testbench-dusk": "^6.0|^7.6",
+                "pestphp/pest": "^1.21",
+                "pestphp/pest-plugin-livewire": "^1.0",
+                "pestphp/pest-plugin-mock": "^1.0",
+                "phpunit/phpunit": "^9.5",
+                "psy/psysh": "@stable"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "WireUi\\Providers\\WireUiServiceProvider"
+                    ],
+                    "aliases": []
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "WireUi\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Pedro Henrique",
+                    "email": "pedrolivertwd@gmail.com"
+                }
+            ],
+            "description": "TallStack components",
+            "keywords": [
+                "blade components",
+                "laravel components",
+                "livewire components",
+                "livewire-ui",
+                "wireui"
+            ],
+            "support": {
+                "issues": "https://github.com/wireui/wireui/issues",
+                "source": "https://github.com/wireui/wireui/tree/v1.17.6"
+            },
+            "funding": [
+                {
+                    "url": "https://github.com/PH7-Jack",
+                    "type": "github"
+                }
+            ],
+            "time": "2022-11-15T23:37:50+00:00"
         }
     ],
     "packages-dev": [
@@ -6621,16 +6695,16 @@
         },
         {
             "name": "laravel-lang/lang",
-            "version": "12.1.4",
+            "version": "12.3.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Laravel-Lang/lang.git",
-                "reference": "3b5693254f615a65febb9c9599e3b9c6cbb1a957"
+                "reference": "db14afb73d160fdfd6e3511a1a4cde5d1ea3f0ff"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Laravel-Lang/lang/zipball/3b5693254f615a65febb9c9599e3b9c6cbb1a957",
-                "reference": "3b5693254f615a65febb9c9599e3b9c6cbb1a957",
+                "url": "https://api.github.com/repos/Laravel-Lang/lang/zipball/db14afb73d160fdfd6e3511a1a4cde5d1ea3f0ff",
+                "reference": "db14afb73d160fdfd6e3511a1a4cde5d1ea3f0ff",
                 "shasum": ""
             },
             "require": {
@@ -6692,7 +6766,7 @@
                     "type": "open_collective"
                 }
             ],
-            "time": "2022-10-30T09:25:55+00:00"
+            "time": "2022-11-16T21:07:24+00:00"
         },
         {
             "name": "laravel/pint",

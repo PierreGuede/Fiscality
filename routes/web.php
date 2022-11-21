@@ -20,8 +20,12 @@ Route::get('/', function () {
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'hasOneRole'])->name('dashboard');
+Route::middleware('auth')->group(function () {
+    Route::get('setup-account', [\App\Http\Controllers\UserController::class, 'enterprise'])->name('users.enterprise');
 
-Route::get('infoProfile', [\App\Http\Controllers\UserController::class, 'enterprise'])->name('users.enterprise')->middleware(['auth']);
+    Route::post('upload', [\App\Http\Controllers\UploadController::class, 'store']);
+    Route::delete('upload', [\App\Http\Controllers\UploadController::class, 'delete']);
+});
 require __DIR__.'/auth.php';
 
 Route::post('company', [\App\Http\Controllers\CompanyController::class, 'store'])->name('company.store');

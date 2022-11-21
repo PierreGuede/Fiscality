@@ -1,3 +1,7 @@
+import globalData from "./globalData.js";
+
+Alpine.start();
+
 document.addEventListener('alpine:init', () => {
     Alpine.data('data', () => ({
         isProfileMenuOpen: false,
@@ -27,4 +31,6 @@ document.addEventListener('alpine:init', () => {
             this.isMultiLevelMenuOpen = !this.isMultiLevelMenuOpen
         }
     }))
+
+    Alpine.data('globalData', globalData);
 })

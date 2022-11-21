@@ -10,10 +10,11 @@ use App\Fiscality\TaxCenters\TaxCenter;
 use App\Fiscality\TypeCompanies\TypeCompany;
 use Livewire\Component;
 use Livewire\WithFileUploads;
+use WireUi\Traits\Actions;
 
 class MultiStepForm extends Component
 {
-    use WithFileUploads;
+    use WithFileUploads, Actions;
 
     public $name;
 
@@ -89,11 +90,17 @@ class MultiStepForm extends Component
             $this->validate([
                 'domain_id' => ['required'],
                 'activity_id' => ['required'],
+            ], [
+                'domain_id.required' => 'champ obligatoire',
+                'activity_id.required' => 'champ obligatoire',
             ]);
         } elseif ($this->currentStep == 2) {
             $this->validate([
                 'tax_center_id' => ['required'],
                 'type_company_id' => ['required'],
+            ], [
+                'tax_center_id' => 'champ obligatoire',
+                'type_company_id' => 'champ obligatoire',
             ]);
         } elseif ($this->currentStep == 3) {
         }

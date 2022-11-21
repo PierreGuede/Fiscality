@@ -20,6 +20,7 @@ namespace App\Fiscality\AccountingResults{
      * @property float $ar_value
      * @property \Illuminate\Support\Carbon|null $created_at
      * @property \Illuminate\Support\Carbon|null $updated_at
+     * @property string $date
      *
      * @method static \Illuminate\Database\Eloquent\Builder|AccountingResult newModelQuery()
      * @method static \Illuminate\Database\Eloquent\Builder|AccountingResult newQuery()
@@ -27,6 +28,7 @@ namespace App\Fiscality\AccountingResults{
      * @method static \Illuminate\Database\Eloquent\Builder|AccountingResult whereArValue($value)
      * @method static \Illuminate\Database\Eloquent\Builder|AccountingResult whereCompanyId($value)
      * @method static \Illuminate\Database\Eloquent\Builder|AccountingResult whereCreatedAt($value)
+     * @method static \Illuminate\Database\Eloquent\Builder|AccountingResult whereDate($value)
      * @method static \Illuminate\Database\Eloquent\Builder|AccountingResult whereId($value)
      * @method static \Illuminate\Database\Eloquent\Builder|AccountingResult whereTotalExpenses($value)
      * @method static \Illuminate\Database\Eloquent\Builder|AccountingResult whereTotalIncomes($value)
@@ -47,10 +49,12 @@ namespace App\Fiscality\AccuredCharges{
      * @property string $type
      * @property \Illuminate\Support\Carbon|null $created_at
      * @property \Illuminate\Support\Carbon|null $updated_at
+     * @property int $company_id
      *
      * @method static \Illuminate\Database\Eloquent\Builder|AccuredCharge newModelQuery()
      * @method static \Illuminate\Database\Eloquent\Builder|AccuredCharge newQuery()
      * @method static \Illuminate\Database\Eloquent\Builder|AccuredCharge query()
+     * @method static \Illuminate\Database\Eloquent\Builder|AccuredCharge whereCompanyId($value)
      * @method static \Illuminate\Database\Eloquent\Builder|AccuredCharge whereCompte($value)
      * @method static \Illuminate\Database\Eloquent\Builder|AccuredCharge whereCreatedAt($value)
      * @method static \Illuminate\Database\Eloquent\Builder|AccuredCharge whereDesignation($value)
@@ -391,6 +395,43 @@ namespace App\Fiscality\Companies{
     }
 }
 
+namespace App\Fiscality\DeductionDetails{
+    /**
+     * App\Fiscality\DeductionDetails\DeductionDetail
+     *
+     * @method static \Illuminate\Database\Eloquent\Builder|DeductionDetail newModelQuery()
+     * @method static \Illuminate\Database\Eloquent\Builder|DeductionDetail newQuery()
+     * @method static \Illuminate\Database\Eloquent\Builder|DeductionDetail query()
+     */
+    class IdeHelperDeductionDetail
+    {
+    }
+}
+
+namespace App\Fiscality\Deductions{
+    /**
+     * App\Fiscality\Deductions\Deduction
+     *
+     * @property int $id
+     * @property float $total_product_amount
+     * @property int $company_id
+     * @property \Illuminate\Support\Carbon|null $created_at
+     * @property \Illuminate\Support\Carbon|null $updated_at
+     *
+     * @method static \Illuminate\Database\Eloquent\Builder|Deduction newModelQuery()
+     * @method static \Illuminate\Database\Eloquent\Builder|Deduction newQuery()
+     * @method static \Illuminate\Database\Eloquent\Builder|Deduction query()
+     * @method static \Illuminate\Database\Eloquent\Builder|Deduction whereCompanyId($value)
+     * @method static \Illuminate\Database\Eloquent\Builder|Deduction whereCreatedAt($value)
+     * @method static \Illuminate\Database\Eloquent\Builder|Deduction whereId($value)
+     * @method static \Illuminate\Database\Eloquent\Builder|Deduction whereTotalProductAmount($value)
+     * @method static \Illuminate\Database\Eloquent\Builder|Deduction whereUpdatedAt($value)
+     */
+    class IdeHelperDeduction
+    {
+    }
+}
+
 namespace App\Fiscality\Depreciations{
     /**
      * App\Fiscality\Depreciations\Depreciation
@@ -626,25 +667,33 @@ namespace App\Fiscality\FinancialCostInterests{
     /**
      * App\Fiscality\FinancialCostInterests\FinancialCostInterest
      *
+     * @property string|null $bceao_interest_rate_for_the_year
      * @property int $id
-     * @property float $amount_reintegrated
-     * @property float|null $interest_rate
-     * @property float|null $maximum_rate
-     * @property float|null $rate_surplus
+     * @property string $amount_reintegrated
+     * @property string|null $interest_rate_charged
+     * @property string|null $maximum_rate
+     * @property string|null $rate_surplus
      * @property int $financial_cost_id
      * @property \Illuminate\Support\Carbon|null $created_at
      * @property \Illuminate\Support\Carbon|null $updated_at
+     * @property string|null $amount_contribution
+     * @property string|null $amount_interest_recorded
+     * @property string $type
      *
      * @method static \Illuminate\Database\Eloquent\Builder|FinancialCostInterest newModelQuery()
      * @method static \Illuminate\Database\Eloquent\Builder|FinancialCostInterest newQuery()
      * @method static \Illuminate\Database\Eloquent\Builder|FinancialCostInterest query()
+     * @method static \Illuminate\Database\Eloquent\Builder|FinancialCostInterest whereAmountContribution($value)
+     * @method static \Illuminate\Database\Eloquent\Builder|FinancialCostInterest whereAmountInterestRecorded($value)
      * @method static \Illuminate\Database\Eloquent\Builder|FinancialCostInterest whereAmountReintegrated($value)
+     * @method static \Illuminate\Database\Eloquent\Builder|FinancialCostInterest whereBceaoInterestRateForTheYear($value)
      * @method static \Illuminate\Database\Eloquent\Builder|FinancialCostInterest whereCreatedAt($value)
      * @method static \Illuminate\Database\Eloquent\Builder|FinancialCostInterest whereFinancialCostId($value)
      * @method static \Illuminate\Database\Eloquent\Builder|FinancialCostInterest whereId($value)
-     * @method static \Illuminate\Database\Eloquent\Builder|FinancialCostInterest whereInterestRate($value)
+     * @method static \Illuminate\Database\Eloquent\Builder|FinancialCostInterest whereInterestRateCharged($value)
      * @method static \Illuminate\Database\Eloquent\Builder|FinancialCostInterest whereMaximumRate($value)
      * @method static \Illuminate\Database\Eloquent\Builder|FinancialCostInterest whereRateSurplus($value)
+     * @method static \Illuminate\Database\Eloquent\Builder|FinancialCostInterest whereType($value)
      * @method static \Illuminate\Database\Eloquent\Builder|FinancialCostInterest whereUpdatedAt($value)
      */
     class IdeHelperFinancialCostInterest
@@ -689,22 +738,24 @@ namespace App\Fiscality\GeneralCostDetails{
      * App\Fiscality\GeneralCostDetails\GeneralCostDetail
      *
      * @property int $id
-     * @property int $compte
-     * @property string $designation
+     * @property int $account
+     * @property string $name
      * @property int $amount
      * @property int $general_cost_id
      * @property \Illuminate\Support\Carbon|null $created_at
      * @property \Illuminate\Support\Carbon|null $updated_at
+     * @property int|null $company_id
      *
      * @method static \Illuminate\Database\Eloquent\Builder|GeneralCostDetail newModelQuery()
      * @method static \Illuminate\Database\Eloquent\Builder|GeneralCostDetail newQuery()
      * @method static \Illuminate\Database\Eloquent\Builder|GeneralCostDetail query()
+     * @method static \Illuminate\Database\Eloquent\Builder|GeneralCostDetail whereAccount($value)
      * @method static \Illuminate\Database\Eloquent\Builder|GeneralCostDetail whereAmount($value)
-     * @method static \Illuminate\Database\Eloquent\Builder|GeneralCostDetail whereCompte($value)
+     * @method static \Illuminate\Database\Eloquent\Builder|GeneralCostDetail whereCompanyId($value)
      * @method static \Illuminate\Database\Eloquent\Builder|GeneralCostDetail whereCreatedAt($value)
-     * @method static \Illuminate\Database\Eloquent\Builder|GeneralCostDetail whereDesignation($value)
      * @method static \Illuminate\Database\Eloquent\Builder|GeneralCostDetail whereGeneralCostId($value)
      * @method static \Illuminate\Database\Eloquent\Builder|GeneralCostDetail whereId($value)
+     * @method static \Illuminate\Database\Eloquent\Builder|GeneralCostDetail whereName($value)
      * @method static \Illuminate\Database\Eloquent\Builder|GeneralCostDetail whereUpdatedAt($value)
      */
     class IdeHelperGeneralCostDetail
@@ -923,6 +974,26 @@ namespace App\Fiscality\Packs{
     }
 }
 
+namespace App\Fiscality\PersonelExpenses{
+    /**
+     * App\Fiscality\PersonelExpenses\PersonnelExpense
+     *
+     * @property int $id
+     * @property \Illuminate\Support\Carbon|null $created_at
+     * @property \Illuminate\Support\Carbon|null $updated_at
+     *
+     * @method static \Illuminate\Database\Eloquent\Builder|PersonnelExpense newModelQuery()
+     * @method static \Illuminate\Database\Eloquent\Builder|PersonnelExpense newQuery()
+     * @method static \Illuminate\Database\Eloquent\Builder|PersonnelExpense query()
+     * @method static \Illuminate\Database\Eloquent\Builder|PersonnelExpense whereCreatedAt($value)
+     * @method static \Illuminate\Database\Eloquent\Builder|PersonnelExpense whereId($value)
+     * @method static \Illuminate\Database\Eloquent\Builder|PersonnelExpense whereUpdatedAt($value)
+     */
+    class IdeHelperPersonnelExpense
+    {
+    }
+}
+
 namespace App\Fiscality\PrincipalActivities{
     /**
      * App\Fiscality\PrincipalActivities\PrincipalActivity
@@ -954,9 +1025,9 @@ namespace App\Fiscality\ProfileUsers{
      *
      * @property int $id
      * @property string $ifu
-     * @property string $path
+     * @property string $ifu_file
      * @property string $rccm
-     * @property string $path_rccm
+     * @property string $rccm_file
      * @property string $born_day
      * @property int $user_id
      * @property string|null $deleted_at
@@ -972,9 +1043,9 @@ namespace App\Fiscality\ProfileUsers{
      * @method static \Illuminate\Database\Eloquent\Builder|ProfileUser whereDeletedAt($value)
      * @method static \Illuminate\Database\Eloquent\Builder|ProfileUser whereId($value)
      * @method static \Illuminate\Database\Eloquent\Builder|ProfileUser whereIfu($value)
-     * @method static \Illuminate\Database\Eloquent\Builder|ProfileUser wherePath($value)
-     * @method static \Illuminate\Database\Eloquent\Builder|ProfileUser wherePathRccm($value)
+     * @method static \Illuminate\Database\Eloquent\Builder|ProfileUser whereIfuFile($value)
      * @method static \Illuminate\Database\Eloquent\Builder|ProfileUser whereRccm($value)
+     * @method static \Illuminate\Database\Eloquent\Builder|ProfileUser whereRccmFile($value)
      * @method static \Illuminate\Database\Eloquent\Builder|ProfileUser whereUpdatedAt($value)
      * @method static \Illuminate\Database\Eloquent\Builder|ProfileUser whereUserId($value)
      */
@@ -1280,6 +1351,38 @@ namespace App\Models{
 
 namespace App\Models{
     /**
+     * App\Models\Deduction
+     *
+     * @property int $id
+     * @property string $reversals_provisions
+     * @property int $company_id
+     * @property \Illuminate\Support\Carbon|null $created_at
+     * @property \Illuminate\Support\Carbon|null $updated_at
+     * @property string $total_financial_product
+     * @property string $capital_gain
+     * @property string $currency_transaction_change
+     * @property string $total_deduction
+     *
+     * @method static \Illuminate\Database\Eloquent\Builder|Deduction newModelQuery()
+     * @method static \Illuminate\Database\Eloquent\Builder|Deduction newQuery()
+     * @method static \Illuminate\Database\Eloquent\Builder|Deduction query()
+     * @method static \Illuminate\Database\Eloquent\Builder|Deduction whereCapitalGain($value)
+     * @method static \Illuminate\Database\Eloquent\Builder|Deduction whereCompanyId($value)
+     * @method static \Illuminate\Database\Eloquent\Builder|Deduction whereCreatedAt($value)
+     * @method static \Illuminate\Database\Eloquent\Builder|Deduction whereCurrencyTransactionChange($value)
+     * @method static \Illuminate\Database\Eloquent\Builder|Deduction whereId($value)
+     * @method static \Illuminate\Database\Eloquent\Builder|Deduction whereReversalsProvisions($value)
+     * @method static \Illuminate\Database\Eloquent\Builder|Deduction whereTotalDeduction($value)
+     * @method static \Illuminate\Database\Eloquent\Builder|Deduction whereTotalFinancialProduct($value)
+     * @method static \Illuminate\Database\Eloquent\Builder|Deduction whereUpdatedAt($value)
+     */
+    class IdeHelperDeduction
+    {
+    }
+}
+
+namespace App\Models{
+    /**
      * App\Models\DonationGiftDetail
      *
      * @property int $id
@@ -1322,6 +1425,7 @@ namespace App\Models{
      * @property string $surplus_state_donation
      * @property string $surplus_state
      * @property string $total_donation_gift
+     * @property string $limit
      *
      * @method static \Illuminate\Database\Eloquent\Builder|DonationGrantContribution newModelQuery()
      * @method static \Illuminate\Database\Eloquent\Builder|DonationGrantContribution newQuery()
@@ -1329,6 +1433,7 @@ namespace App\Models{
      * @method static \Illuminate\Database\Eloquent\Builder|DonationGrantContribution whereCompanyId($value)
      * @method static \Illuminate\Database\Eloquent\Builder|DonationGrantContribution whereCreatedAt($value)
      * @method static \Illuminate\Database\Eloquent\Builder|DonationGrantContribution whereId($value)
+     * @method static \Illuminate\Database\Eloquent\Builder|DonationGrantContribution whereLimit($value)
      * @method static \Illuminate\Database\Eloquent\Builder|DonationGrantContribution whereSurplusState($value)
      * @method static \Illuminate\Database\Eloquent\Builder|DonationGrantContribution whereSurplusStateDonation($value)
      * @method static \Illuminate\Database\Eloquent\Builder|DonationGrantContribution whereThousandthTurnover($value)
@@ -1362,6 +1467,66 @@ namespace App\Models{
      * @method static \Illuminate\Database\Eloquent\Builder|DonationsGift whereUpdatedAt($value)
      */
     class IdeHelperDonationsGift
+    {
+    }
+}
+
+namespace App\Models{
+    /**
+     * App\Models\FinancialProduct
+     *
+     * @property int $id
+     * @property \Illuminate\Support\Carbon|null $created_at
+     * @property \Illuminate\Support\Carbon|null $updated_at
+     * @property string $total_other_product_rcm
+     * @property string $total_income_securities_issued
+     * @property string $total_financial_product_amount
+     * @property int $company_id
+     *
+     * @method static \Illuminate\Database\Eloquent\Builder|FinancialProduct newModelQuery()
+     * @method static \Illuminate\Database\Eloquent\Builder|FinancialProduct newQuery()
+     * @method static \Illuminate\Database\Eloquent\Builder|FinancialProduct query()
+     * @method static \Illuminate\Database\Eloquent\Builder|FinancialProduct whereCompanyId($value)
+     * @method static \Illuminate\Database\Eloquent\Builder|FinancialProduct whereCreatedAt($value)
+     * @method static \Illuminate\Database\Eloquent\Builder|FinancialProduct whereId($value)
+     * @method static \Illuminate\Database\Eloquent\Builder|FinancialProduct whereTotalFinancialProductAmount($value)
+     * @method static \Illuminate\Database\Eloquent\Builder|FinancialProduct whereTotalIncomeSecuritiesIssued($value)
+     * @method static \Illuminate\Database\Eloquent\Builder|FinancialProduct whereTotalOtherProductRcm($value)
+     * @method static \Illuminate\Database\Eloquent\Builder|FinancialProduct whereUpdatedAt($value)
+     */
+    class IdeHelperFinancialProduct
+    {
+    }
+}
+
+namespace App\Models{
+    /**
+     * App\Models\FinancialProductDetail
+     *
+     * @property int $id
+     * @property string $net_ircm_amount
+     * @property string $rate
+     * @property string $amount_deduct
+     * @property string $type
+     * @property \Illuminate\Support\Carbon|null $created_at
+     * @property \Illuminate\Support\Carbon|null $updated_at
+     * @property int $company_id
+     * @property int $financial_product_id
+     *
+     * @method static \Illuminate\Database\Eloquent\Builder|FinancialProductDetail newModelQuery()
+     * @method static \Illuminate\Database\Eloquent\Builder|FinancialProductDetail newQuery()
+     * @method static \Illuminate\Database\Eloquent\Builder|FinancialProductDetail query()
+     * @method static \Illuminate\Database\Eloquent\Builder|FinancialProductDetail whereAmountDeduct($value)
+     * @method static \Illuminate\Database\Eloquent\Builder|FinancialProductDetail whereCompanyId($value)
+     * @method static \Illuminate\Database\Eloquent\Builder|FinancialProductDetail whereCreatedAt($value)
+     * @method static \Illuminate\Database\Eloquent\Builder|FinancialProductDetail whereFinancialProductId($value)
+     * @method static \Illuminate\Database\Eloquent\Builder|FinancialProductDetail whereId($value)
+     * @method static \Illuminate\Database\Eloquent\Builder|FinancialProductDetail whereNetIrcmAmount($value)
+     * @method static \Illuminate\Database\Eloquent\Builder|FinancialProductDetail whereRate($value)
+     * @method static \Illuminate\Database\Eloquent\Builder|FinancialProductDetail whereType($value)
+     * @method static \Illuminate\Database\Eloquent\Builder|FinancialProductDetail whereUpdatedAt($value)
+     */
+    class IdeHelperFinancialProductDetail
     {
     }
 }
@@ -1468,12 +1633,130 @@ namespace App\Models{
 
 namespace App\Models{
     /**
+     * App\Models\HeadOfficeCost
+     *
+     * @property int $id
+     * @property int $company_id
+     * @property string $account_result
+     * @property string $total_reintegration
+     * @property string $total_deduction
+     * @property string $taxable_income_before_restatement_head_office_costs
+     * @property string $basis_calculating_deduction_limit
+     * @property string $deductible_head_office_costs
+     * @property string $non_deductible_head_office_costs
+     * @property \Illuminate\Support\Carbon|null $created_at
+     * @property \Illuminate\Support\Carbon|null $updated_at
+     *
+     * @method static \Illuminate\Database\Eloquent\Builder|HeadOfficeCost newModelQuery()
+     * @method static \Illuminate\Database\Eloquent\Builder|HeadOfficeCost newQuery()
+     * @method static \Illuminate\Database\Eloquent\Builder|HeadOfficeCost query()
+     * @method static \Illuminate\Database\Eloquent\Builder|HeadOfficeCost whereAccountResult($value)
+     * @method static \Illuminate\Database\Eloquent\Builder|HeadOfficeCost whereBasisCalculatingDeductionLimit($value)
+     * @method static \Illuminate\Database\Eloquent\Builder|HeadOfficeCost whereCompanyId($value)
+     * @method static \Illuminate\Database\Eloquent\Builder|HeadOfficeCost whereCreatedAt($value)
+     * @method static \Illuminate\Database\Eloquent\Builder|HeadOfficeCost whereDeductibleHeadOfficeCosts($value)
+     * @method static \Illuminate\Database\Eloquent\Builder|HeadOfficeCost whereId($value)
+     * @method static \Illuminate\Database\Eloquent\Builder|HeadOfficeCost whereNonDeductibleHeadOfficeCosts($value)
+     * @method static \Illuminate\Database\Eloquent\Builder|HeadOfficeCost whereTaxableIncomeBeforeRestatementHeadOfficeCosts($value)
+     * @method static \Illuminate\Database\Eloquent\Builder|HeadOfficeCost whereTotalDeduction($value)
+     * @method static \Illuminate\Database\Eloquent\Builder|HeadOfficeCost whereTotalReintegration($value)
+     * @method static \Illuminate\Database\Eloquent\Builder|HeadOfficeCost whereUpdatedAt($value)
+     */
+    class IdeHelperHeadOfficeCost
+    {
+    }
+}
+
+namespace App\Models{
+    /**
+     * App\Models\HeadOfficeCostDetail
+     *
+     * @property int $id
+     * @property int $account
+     * @property string $name
+     * @property float $amount
+     * @property int $company_id
+     * @property int $head_office_cost_id
+     * @property \Illuminate\Support\Carbon|null $created_at
+     * @property \Illuminate\Support\Carbon|null $updated_at
+     *
+     * @method static \Illuminate\Database\Eloquent\Builder|HeadOfficeCostDetail newModelQuery()
+     * @method static \Illuminate\Database\Eloquent\Builder|HeadOfficeCostDetail newQuery()
+     * @method static \Illuminate\Database\Eloquent\Builder|HeadOfficeCostDetail query()
+     * @method static \Illuminate\Database\Eloquent\Builder|HeadOfficeCostDetail whereAccount($value)
+     * @method static \Illuminate\Database\Eloquent\Builder|HeadOfficeCostDetail whereAmount($value)
+     * @method static \Illuminate\Database\Eloquent\Builder|HeadOfficeCostDetail whereCompanyId($value)
+     * @method static \Illuminate\Database\Eloquent\Builder|HeadOfficeCostDetail whereCreatedAt($value)
+     * @method static \Illuminate\Database\Eloquent\Builder|HeadOfficeCostDetail whereHeadOfficeCostId($value)
+     * @method static \Illuminate\Database\Eloquent\Builder|HeadOfficeCostDetail whereId($value)
+     * @method static \Illuminate\Database\Eloquent\Builder|HeadOfficeCostDetail whereName($value)
+     * @method static \Illuminate\Database\Eloquent\Builder|HeadOfficeCostDetail whereUpdatedAt($value)
+     */
+    class IdeHelperHeadOfficeCostDetail
+    {
+    }
+}
+
+namespace App\Models{
+    /**
      * App\Models\OtherReintegration
+     *
+     * @property int $id
+     * @property string $expense_not_related
+     * @property string $unjustfified_expense
+     * @property string $remuneration_not_subject_withholding_tax
+     * @property string $financial_cost
+     * @property string $commission_on_purchase
+     * @property string $redevance
+     * @property string $accountind_financial_technical_assistance_costs
+     * @property string $donation_grant_contribution
+     * @property string $advertising_gift
+     * @property string $sumptuary_expenses
+     * @property string $occult_remuneration
+     * @property string $motor_vehicle_tax
+     * @property string $income_tax
+     * @property string $fines_penalities
+     * @property string $past_assets
+     * @property string $other_non_deductible_expense
+     * @property string $variation_conversation_gap
+     * @property string $excess_rent
+     * @property string $other_non_deductible_expenses
+     * @property int $company_id
+     * @property \Illuminate\Support\Carbon|null $created_at
+     * @property \Illuminate\Support\Carbon|null $updated_at
+     * @property string $commission_insurance_broker
+     * @property string $interest_paid
+     * @property string $total_amount
      *
      * @method static \Illuminate\Database\Eloquent\Builder|OtherReintegration newModelQuery()
      * @method static \Illuminate\Database\Eloquent\Builder|OtherReintegration newQuery()
      * @method static \Illuminate\Database\Eloquent\Builder|OtherReintegration query()
-     * @mixin \Eloquent
+     * @method static \Illuminate\Database\Eloquent\Builder|OtherReintegration whereAccountindFinancialTechnicalAssistanceCosts($value)
+     * @method static \Illuminate\Database\Eloquent\Builder|OtherReintegration whereAdvertisingGift($value)
+     * @method static \Illuminate\Database\Eloquent\Builder|OtherReintegration whereCommissionInsuranceBroker($value)
+     * @method static \Illuminate\Database\Eloquent\Builder|OtherReintegration whereCommissionOnPurchase($value)
+     * @method static \Illuminate\Database\Eloquent\Builder|OtherReintegration whereCompanyId($value)
+     * @method static \Illuminate\Database\Eloquent\Builder|OtherReintegration whereCreatedAt($value)
+     * @method static \Illuminate\Database\Eloquent\Builder|OtherReintegration whereDonationGrantContribution($value)
+     * @method static \Illuminate\Database\Eloquent\Builder|OtherReintegration whereExcessRent($value)
+     * @method static \Illuminate\Database\Eloquent\Builder|OtherReintegration whereExpenseNotRelated($value)
+     * @method static \Illuminate\Database\Eloquent\Builder|OtherReintegration whereFinancialCost($value)
+     * @method static \Illuminate\Database\Eloquent\Builder|OtherReintegration whereFinesPenalities($value)
+     * @method static \Illuminate\Database\Eloquent\Builder|OtherReintegration whereId($value)
+     * @method static \Illuminate\Database\Eloquent\Builder|OtherReintegration whereIncomeTax($value)
+     * @method static \Illuminate\Database\Eloquent\Builder|OtherReintegration whereInterestPaid($value)
+     * @method static \Illuminate\Database\Eloquent\Builder|OtherReintegration whereMotorVehicleTax($value)
+     * @method static \Illuminate\Database\Eloquent\Builder|OtherReintegration whereOccultRemuneration($value)
+     * @method static \Illuminate\Database\Eloquent\Builder|OtherReintegration whereOtherNonDeductibleExpense($value)
+     * @method static \Illuminate\Database\Eloquent\Builder|OtherReintegration whereOtherNonDeductibleExpenses($value)
+     * @method static \Illuminate\Database\Eloquent\Builder|OtherReintegration wherePastAssets($value)
+     * @method static \Illuminate\Database\Eloquent\Builder|OtherReintegration whereRedevance($value)
+     * @method static \Illuminate\Database\Eloquent\Builder|OtherReintegration whereRemunerationNotSubjectWithholdingTax($value)
+     * @method static \Illuminate\Database\Eloquent\Builder|OtherReintegration whereSumptuaryExpenses($value)
+     * @method static \Illuminate\Database\Eloquent\Builder|OtherReintegration whereTotalAmount($value)
+     * @method static \Illuminate\Database\Eloquent\Builder|OtherReintegration whereUnjustfifiedExpense($value)
+     * @method static \Illuminate\Database\Eloquent\Builder|OtherReintegration whereUpdatedAt($value)
+     * @method static \Illuminate\Database\Eloquent\Builder|OtherReintegration whereVariationConversationGap($value)
      */
     class IdeHelperOtherReintegration
     {
@@ -1512,6 +1795,58 @@ namespace App\Models{
 
 namespace App\Models{
     /**
+     * App\Models\Subscription
+     *
+     * @property int $id
+     * @property int $user_id
+     * @property int $pack_id
+     * @property string $ref_payment
+     * @property \Illuminate\Support\Carbon|null $created_at
+     * @property \Illuminate\Support\Carbon|null $updated_at
+     * @property-read \App\Fiscality\Packs\Pack $packs
+     * @property-read \App\Models\User $user
+     *
+     * @method static \Illuminate\Database\Eloquent\Builder|Subscription newModelQuery()
+     * @method static \Illuminate\Database\Eloquent\Builder|Subscription newQuery()
+     * @method static \Illuminate\Database\Eloquent\Builder|Subscription query()
+     * @method static \Illuminate\Database\Eloquent\Builder|Subscription whereCreatedAt($value)
+     * @method static \Illuminate\Database\Eloquent\Builder|Subscription whereId($value)
+     * @method static \Illuminate\Database\Eloquent\Builder|Subscription wherePackId($value)
+     * @method static \Illuminate\Database\Eloquent\Builder|Subscription whereRefPayment($value)
+     * @method static \Illuminate\Database\Eloquent\Builder|Subscription whereUpdatedAt($value)
+     * @method static \Illuminate\Database\Eloquent\Builder|Subscription whereUserId($value)
+     */
+    class IdeHelperSubscription
+    {
+    }
+}
+
+namespace App\Models{
+    /**
+     * App\Models\TemporaryFile
+     *
+     * @property int $id
+     * @property string $folder
+     * @property string $filename
+     * @property \Illuminate\Support\Carbon|null $created_at
+     * @property \Illuminate\Support\Carbon|null $updated_at
+     *
+     * @method static \Illuminate\Database\Eloquent\Builder|TemporaryFile newModelQuery()
+     * @method static \Illuminate\Database\Eloquent\Builder|TemporaryFile newQuery()
+     * @method static \Illuminate\Database\Eloquent\Builder|TemporaryFile query()
+     * @method static \Illuminate\Database\Eloquent\Builder|TemporaryFile whereCreatedAt($value)
+     * @method static \Illuminate\Database\Eloquent\Builder|TemporaryFile whereFilename($value)
+     * @method static \Illuminate\Database\Eloquent\Builder|TemporaryFile whereFolder($value)
+     * @method static \Illuminate\Database\Eloquent\Builder|TemporaryFile whereId($value)
+     * @method static \Illuminate\Database\Eloquent\Builder|TemporaryFile whereUpdatedAt($value)
+     */
+    class IdeHelperTemporaryFile
+    {
+    }
+}
+
+namespace App\Models{
+    /**
      * App\Models\User
      *
      * @property int $id
@@ -1529,7 +1864,6 @@ namespace App\Models{
      * @property-read \Illuminate\Database\Eloquent\Collection|\App\Fiscality\Companies\Company[] $company
      * @property-read int|null $company_count
      * @property-read User|null $createdBy
-     * @property-read \App\Fiscality\PackUsers\PackUser|null $myPack
      * @property-read \Illuminate\Notifications\DatabaseNotificationCollection|\Illuminate\Notifications\DatabaseNotification[] $notifications
      * @property-read int|null $notifications_count
      * @property-read \Illuminate\Database\Eloquent\Collection|\Spatie\Permission\Models\Permission[] $permissions
@@ -1539,6 +1873,7 @@ namespace App\Models{
      * @property-read \App\Fiscality\ProfileUsers\ProfileUser|null $profile
      * @property-read \Illuminate\Database\Eloquent\Collection|\Spatie\Permission\Models\Role[] $roles
      * @property-read int|null $roles_count
+     * @property-read \App\Models\Subscription|null $subscription
      * @property-read \Illuminate\Database\Eloquent\Collection|\Laravel\Sanctum\PersonalAccessToken[] $tokens
      * @property-read int|null $tokens_count
      *

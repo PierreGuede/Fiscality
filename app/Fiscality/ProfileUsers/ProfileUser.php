@@ -15,9 +15,9 @@ class ProfileUser extends Model
 
     protected $fillable = [
         'ifu',
-        'path',
+        'ifu_file',
         'rccm',
-        'path_rccm',
+        'rccm_file',
         'born_day',
         'user_id',
     ];

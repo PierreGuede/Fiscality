@@ -1,5 +1,5 @@
-<x-guest-layout>
-    <div class="bg-slate-800 w-full mx-auto p-4">
+<x-app-layout>
+    <div class="w-full mx-auto p-4">
 
         {{-- <x-auth-validation-errors :errors="$errors"/> --}}
         @livewire('multi-step-form')
@@ -10,4 +10,4 @@
         </form>
 
     </div>
-</x-guest-layout>
+</x-app-layout>

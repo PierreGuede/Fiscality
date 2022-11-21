@@ -5,6 +5,9 @@ namespace App\Fiscality\DeductionDetails;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
+/**
+ * @mixin IdeHelperDeductionDetail
+ */
 class DeductionDetail extends Model
 {
     use HasFactory;

@@ -82,7 +82,7 @@ class CompanyController extends Controller
     {
         $company = $this->model->where('user_id', request()->user()->id)->get();
 
-        if (count($company) < request()->user()->myPack->packs->max) {
+        if (count($company) < request()->user()->subscription->packs->max) {
             $type = $this->typeCompany->all();
             $typeCat = $this->category->all();
             $domain = $this->domain->all();

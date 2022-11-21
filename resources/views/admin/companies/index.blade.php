@@ -8,17 +8,17 @@
         <div class="flex p-2">
             <div class="w-4/5">
                 Liste <span
-                    class="text-blue-800">({{ count($company) . ' entreprise créé | restant:' . (Auth::user()->myPack->packs->max - count($company)) }})</span>
+                    class="text-blue-800">({{ count($company) . ' entreprise créé | restant:' . (Auth::user()->subscription->packs->max - count($company)) }})</span>
             </div>
             @hasrole('cabinet')
-                <div class="items-center w-1/5 text-center">
-                    @if (count($company) < Auth::user()->myPack->packs->max)
-                        <a href="{{ route('company.enterprise') }}" type="button"
-                            class="px-4 py-2 font-bold text-white bg-green-500 border border-gray-500 rounded-md">Creer une
-                            Entreprise</a>
-                    @else
-                    @endif
-                </div>
+            <div class="items-center w-1/5 text-center">
+                @if (count($company) < Auth::user()->subscription->packs->max)
+                    <a href="{{ route('company.enterprise') }}" type="button"
+                       class="px-4 py-2 font-bold text-white bg-green-500 border border-gray-500 rounded-md">Creer une
+                        Entreprise</a>
+                @else
+                @endif
+            </div>
             @endrole
         </div>
         <table class="w-full p-2 text-sm text-left text-gray-500 ">

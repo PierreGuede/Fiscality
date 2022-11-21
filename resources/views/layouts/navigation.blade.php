@@ -9,8 +9,8 @@
             @elseif ($role->name == 'cabinet')
                 <p class="text-sm mx-auto w-10/12 cursor-pointer" @click="toggleworkToggle">Compte: Cabinet</p>
                 <p class="text-sm text-blue-800 mx-auto w-10/12 cursor-default">Abonnement:
-                    {{ Auth::user()->myPack->packs->name }}</p>
-                {{-- @dump(Auth::user()->myPack->packs->name) --}}
+                    {{ Auth::user()->subscription->packs->max }}</p>
+                {{-- @dump(Auth::user()->subscription->packs->max) --}}
                 <div class=" bg-white shadow-lg z-10 absolute ml-6 w-52 shadow-gray-400" x-show="workToggle">
                     <span class="m-2 text-sm">Espace de travail</span>
                     <ul class="space-y-2 w-full p-1">
