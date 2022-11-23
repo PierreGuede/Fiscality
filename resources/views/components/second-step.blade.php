@@ -1,19 +1,5 @@
 <div
-    x-init="
-        FilePond.registerPlugin(FilePondPluginFileValidateType, FilePondPluginFileValidateSize);
 
-        FilePond.setOptions({
-            allowMultiple: false,
-{{--            maxFiles: 1,--}}
-                acceptedFileTypes: ['application/pdf'],
-                allowFileTypeValidation: true,
-                labelFileTypeNotAllowed: 'Veuillez téléverser un PDF',
-                allowFileSizeValidation: true,
-                maxFileSize: '1MB',
-                labelMaxFileSizeExceeded: 'Fichier trop grand',
-                labelMaxFileSize: 'La taille maximum est 1MB'
-        });
-        "
     class="max-w-lg" >
     <h5 class="text-gray-500">Choisissez un mode de gestion</h5>
     <p class="text-lg font-semibold text-gray-700">Mettons un petit detail ici</p>

@@ -16,11 +16,11 @@
     ]) }}>
         @if ($options->isNotEmpty())
             @if ($placeholder)
-                <option value="">{{ $placeholder }}</option>
+                <option class="px-1.5 py-2.5 " value="">{{ $placeholder }}</option>
             @endif
 
             @forelse ($options as $key => $option)
-                <option value="{{ $getOptionValue($key, $option) }}"
+                <option class="px-1.5 py-2.5 " value="{{ $getOptionValue($key, $option) }}"
                     @if(data_get($option, 'disabled', false)) disabled @endif>
                     {{ $getOptionLabel($option) }}
                 </option>

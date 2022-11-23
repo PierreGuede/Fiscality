@@ -1,4 +1,4 @@
-import globalData from "./globalData.js";
+// import globalData from "./globalData.js";
 
 Alpine.start();
 
@@ -32,5 +32,5 @@ document.addEventListener('alpine:init', () => {
         }
     }))
 
-    Alpine.data('globalData', globalData);
+    // Alpine.data('globalData', globalData);
 })

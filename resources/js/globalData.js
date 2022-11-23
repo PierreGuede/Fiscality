@@ -1,10 +1,33 @@
 
+import * as FilePond from 'filepond';
+import FilePondPluginFileValidateType from 'filepond-plugin-file-validate-type';
+import FilePondPluginFileEncode from 'filepond-plugin-file-encode';
+import FilePondPluginFileValidateSize from 'filepond-plugin-file-validate-size';
+
 const globalData =  () => ({
 
     response: 'yes',
 
     init(){
         console.log('Init Alpinejs')
+        this.filepondConf();
+    },
+
+    filepondConf(){
+        FilePond.registerPlugin(FilePondPluginFileValidateType, FilePondPluginFileValidateSize);
+
+
+        FilePond.setOptions({
+            allowMultiple: false,
+                    // maxFiles: 1,
+        acceptedFileTypes: ['application/pdf'],
+            allowFileTypeValidation: true,
+            labelFileTypeNotAllowed: 'Veuillez téléverser un PDF',
+            allowFileSizeValidation: true,
+            maxFileSize: '1MB',
+            labelMaxFileSizeExceeded: 'Fichier trop grand',
+            labelMaxFileSize: 'La taille maximum est 1MB'
+    });
     },
 
     /**
@@ -13,7 +36,7 @@ const globalData =  () => ({
      */
     handlePayment(amount= 0){
         openKkiapayWidget({
-            amount:"1",
+            amount: amount+'',
             position:"center",
             callback:"",
             theme:"#0095ff",

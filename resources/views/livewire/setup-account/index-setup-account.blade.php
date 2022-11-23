@@ -74,14 +74,4 @@
         </div>
     </form>
 
-
-{{--    @push('scripts')--}}
-{{--        <script amount="@js($price)"--}}
-{{--                position="center"--}}
-{{--                theme="#0095ff"--}}
-{{--                sandbox="true"--}}
-{{--                key="cfa29b803b5611edafa2d398c4589a54"--}}
-{{--                src="https://cdn.kkiapay.me/k.js"></script>--}}
-{{--    @endpush--}}
-
 </main>

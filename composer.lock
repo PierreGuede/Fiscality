@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "3108b1389593f5d01f93be062ac99ab1",
+    "content-hash": "ee4e158a99216ac7c3f09259e1823dc0",
     "packages": [
         {
             "name": "brick/math",
@@ -5786,6 +5786,74 @@
                 "source": "https://github.com/tijsverkoyen/CssToInlineStyles/tree/2.2.5"
             },
             "time": "2022-09-12T13:28:28+00:00"
+        },
+        {
+            "name": "vildanbina/livewire-wizard",
+            "version": "v1.2.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/vildanbina/livewire-wizard.git",
+                "reference": "9316645d2f1850cec7ca6cff18b6d92d948ba59f"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/vildanbina/livewire-wizard/zipball/9316645d2f1850cec7ca6cff18b6d92d948ba59f",
+                "reference": "9316645d2f1850cec7ca6cff18b6d92d948ba59f",
+                "shasum": ""
+            },
+            "require": {
+                "livewire/livewire": "^2.0",
+                "php": "^8.0|^8.1",
+                "spatie/laravel-package-tools": "^1.9",
+                "wireui/wireui": "^1.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Vildanbina\\LivewireWizard\\LivewireWizardServiceProvider"
+                    ],
+                    "aliases": {
+                        "LivewireWizard": "Vildanbina\\LivewireWizard\\Facades\\LivewireWizard"
+                    }
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Vildanbina\\LivewireWizard\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Vildan Bina",
+                    "email": "vildanbina@gmail.com",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Laravel Livewire Wizard (Multi-Step Form) component",
+            "homepage": "https://github.com/vildanbina/livewire-wizard",
+            "keywords": [
+                "form",
+                "laravel",
+                "livewire",
+                "multi-steps",
+                "wizard"
+            ],
+            "support": {
+                "issues": "https://github.com/vildanbina/livewire-wizard/issues",
+                "source": "https://github.com/vildanbina/livewire-wizard/tree/v1.2.3"
+            },
+            "funding": [
+                {
+                    "url": "https://github.com/vildanbina",
+                    "type": "github"
+                }
+            ],
+            "time": "2022-10-24T17:14:16+00:00"
         },
         {
             "name": "vlucas/phpdotenv",

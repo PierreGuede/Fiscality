@@ -25,6 +25,26 @@ const globalData =  () => ({
 
     /**
      *
+     * @param companyName string
+     */
+    handleCompanyAccess(companyName) {
+        window.$wireui.confirmDialog({
+            title: 'Vérification',
+            description: `Vous êtes sur le point d'accéder à l'espace de travail de ${companyName}  . Veuillez renseigner son nom tel quel pour confirmer l'accès à cet espace de travail.`,
+            icon: 'question',
+            accept: {
+                label: 'Confirmer',
+                method: 'save',
+                params: 'name',
+            },
+            reject: {
+                label: 'Annuler',
+            }
+        },1)
+    }
+
+    /**
+     *
      * @param  date string
      */
     formatDate(date) {

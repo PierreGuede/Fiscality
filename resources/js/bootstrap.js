@@ -1,8 +1,8 @@
 import _ from 'lodash';
-import Alpine from 'alpinejs';
+// import Alpine from 'alpinejs';
 
 window._ = _;
-window.Alpine = Alpine;
+// window.Alpine = Alpine;
 
 
 /**

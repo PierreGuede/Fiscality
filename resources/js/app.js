@@ -1,77 +1,76 @@
 import './bootstrap';
-// import './input';
+import Alpine from 'alpinejs';
 
+window.Alpine = Alpine;
 
 import dayjs from "dayjs";
 import 'dayjs/locale/fr';
 import focus from '@alpinejs/focus'
 import collapse from '@alpinejs/collapse'
-import { sumBy} from "lodash";
+import {sumBy} from "lodash";
 import * as FilePond from 'filepond';
 import FilePondPluginFileValidateType from 'filepond-plugin-file-validate-type';
 import FilePondPluginFileEncode from 'filepond-plugin-file-encode';
 import FilePondPluginFileValidateSize from 'filepond-plugin-file-validate-size';
+import globalData from "./globalData";
 
 FilePond.registerPlugin(FilePondPluginFileValidateType, FilePondPluginFileEncode, FilePondPluginFileValidateSize);
 
-
-// Get a reference to all the file input element
-// const ifuElement = document.querySelector('input[data-name="ifu"]');
-// const rccmElement = document.querySelector('input[data-name="rccm"]');
+// const paymentButton = document.querySelector('#payment');
+// const price = document.querySelector('#price');
 //
-// FilePond.create(ifuElement, {
-//     name: 'ifu_file',
-//     acceptedFileTypes: ['application/pdf'],
-//     allowFileTypeValidation: true,
-//     labelFileTypeNotAllowed: 'Veuillez téléverser un PDF',
-//     allowFileSizeValidation: true,
-//     maxFileSize: '1MB',
-//     labelMaxFileSizeExceeded: 'Fichier trop grand',
-//     labelMaxFileSize: 'La taille maximum est 1MB'
-// });
 //
-//  FilePond.create(rccmElement, {
-//      name: 'rccm_file',
-//      acceptedFileTypes: ['application/pdf'],
-//      allowFileTypeValidation: true,
-//      labelFileTypeNotAllowed: 'Veuillez téléverser un PDF',
-//      allowFileSizeValidation: true,
-//      maxFileSize: '1MB',
-//      labelMaxFileSizeExceeded: 'Fichier trop grand',
-//      labelMaxFileSize: 'La taille maximum est 1MB'
-//  });
+// if (paymentButton != undefined && price != undefined) {
 //
-// FilePond.setOptions({
-//     server: {
-//         url: '/upload',
-//         headers: {
-//             'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
-//         }
-//     },
-//     allowMultiple: true,
-// })
-
-const paymentButton = document.querySelector('#payment');
-const price = document.querySelector('#price');
-
-
-// paymentButton.addEventListener('click', (evt) => {
+//     paymentButton.addEventListener('click', (evt) => {
+//         console.log(price.attributes['value'].value);
 //         openKkiapayWidget({
-//             amount:'' +price.attributes['value'].value,
-//             position:"center",
-//             callback:"",
-//             theme:"#0095ff",
+//             amount: '' + price.attributes['value'].value,
+//             position: "center",
+//             callback: "",
+//             theme: "#0095ff",
 //             sandbox: "true",
-//             key:"cfa29b803b5611edafa2d398c4589a54",
+//             key: "cfa29b803b5611edafa2d398c4589a54",
 //
 //         })
-// })
+//     })
+//
+// }
+    addSuccessListener(response => {
+        Livewire.emit('save', response.transactionId);
+    });
+Alpine.data('globalData', globalData);
 
 
-// addSuccessListener(response => {
-//     Livewire.emit('save', response.transactionId);
-// });
+Alpine.data('data', () => ({
+    isProfileMenuOpen: false,
+    workToggle:false,
+    // handlePayment() {
+    //
+    // },
+    toggleworkToggle() {
+        this.workToggle = !this.workToggle
+    },
+    toggleProfileMenu() {
+        this.isProfileMenuOpen = !this.isProfileMenuOpen
+    },
 
+    closeProfileMenu() {
+        this.isProfileMenuOpen = false
+    },
 
+    isSideMenuOpen: false,
+    toggleSideMenu() {
+        this.isSideMenuOpen = !this.isSideMenuOpen
+    },
 
+    closeSideMenu() {
+        this.isSideMenuOpen = false
+    },
+
+    isMultiLevelMenuOpen: false,
+    toggleMultiLevelMenu() {
+        this.isMultiLevelMenuOpen = !this.isMultiLevelMenuOpen
+    }
+}))
 
