@@ -15,6 +15,16 @@ class EditFinancialCost extends Component
 
     public $rate = 4;
 
+    public $financialCostId;
+
+    public $inputsliberation_condition;
+
+    public $inputsdelay_condition;
+
+    public $inputsrate_condition;
+
+    public $inputsFinancialCondition;
+
     public $inputs;
 
     public $company;
@@ -33,6 +43,12 @@ class EditFinancialCost extends Component
 
     public function mount($company)
     {
+        $this->inputsliberation_condition=FinancialCostInterest::where('type','liberation_condition')->whereYear('created_at', date('Y'))->first();
+
+        $this->inputsdelay_condition=FinancialCostInterest::where('type','delay_condition')->whereYear('created_at', date('Y'))->first();
+
+        $this->inputsrate_condition=FinancialCostInterest::where('type','rate_condition')->whereYear('created_at', date('Y'))->first();
+        $this->inputsFinancialCondition=FinancialCostCondition::whereCompanyId($company->id)->whereYear('created_at',date('Y'))->first();
         $this->financialCost = [];
         $this->company = $company;
         $this->rc = AccountingResult::where('company_id', $this->company->id)->first();
@@ -68,16 +84,8 @@ class EditFinancialCost extends Component
             $this->inputs['allocations_to_provisions'], ]);
         $deductibility_limit = $calculation_base * 0.3;
         $reintegrate_amount = $deductible_interest_amount - $deductibility_limit;
-        $financialCost = FinancialCost::create([
-            'name' => Str::slug('Frais financier de la compagnie '.$this->company->name, '_'),
-            'total_amount_reintegrated' => array_sum([$reintegrate_amount ? $reintegrate_amount < 0 : 0, max([$amount_reintegrated, $this->lib_condition, $this->delay_condition])]),
-            'condition_amount_reintegrated' => $reintegrate_amount ? $reintegrate_amount < 0 : 0,
-            'interest_amount_reintegrated' => max([$amount_reintegrated, $this->lib_condition, $this->delay_condition]),
-            'date' => date('Y'),
-            'company_id' => $this->company->id,
-        ]);
-
-        FinancialCostInterest::create([
+        
+        $this->inputsliberation_condition->update([
             'amount_reintegrated' => ! empty($this->lib_condition) ? $this->lib_condition : 0,
             'amount_contribution' => 0,
             'amount_interest_recorded' => 0,
@@ -85,9 +93,8 @@ class EditFinancialCost extends Component
             'bceao_interest_rate_for_the_year' => 0, /* excess_rate_charged */
             'maximum_rate' => 0,
             'rate_surplus' => 0,
-            'financial_cost_id' => $financialCost->id,
         ]);
-        FinancialCostInterest::create([
+        $this->inputsdelay_condition->update([
             'amount_reintegrated' => ! empty($this->delay_condition) ? $this->delay_condition : 0,
             'amount_contribution' => 0,
             'amount_interest_recorded' => 0,
@@ -95,11 +102,10 @@ class EditFinancialCost extends Component
             'bceao_interest_rate_for_the_year' => 0, /* excess_rate_charged */
             'maximum_rate' => 0,
             'rate_surplus' => 0,
-            'financial_cost_id' => $financialCost->id,
 
         ]);
 
-        FinancialCostInterest::create([
+        $this->inputsrate_condition->update([
             'amount_reintegrated' => $amount_reintegrated,
             'amount_contribution' => $this->inputs['amount_contribution'],
             'amount_interest_recorded' => $this->inputs['amount_interest_recorded'],
@@ -107,10 +113,9 @@ class EditFinancialCost extends Component
             'bceao_interest_rate_for_the_year' => $this->inputs['bceao_interest_rate_for_the_year'], /* excess_rate_charged */
             'maximum_rate' => $maximum_rate,
             'rate_surplus' => $rate_surplus,
-            'financial_cost_id' => $financialCost->id,
         ]);
 
-        FinancialCostCondition::create([
+        $this->inputsFinancialCondition->update([
             'amount_of_interest_recorded' => $this->inputs['amount_of_interest_recorded'],
             'non_deductible_interest_amount' => $amount_reintegrated,
             'deductible_interest_amount' => $deductible_interest_amount,
@@ -121,7 +126,6 @@ class EditFinancialCost extends Component
             'calculation_base' => $calculation_base,
             'deductibility_limit' => $deductibility_limit,
             'amount_reintegrate' => $reintegrate_amount > 0 ? $reintegrate_amount : '0',
-            'financial_cost_id' => $financialCost->id,
         ]);
 
         $this->emit('refresh');

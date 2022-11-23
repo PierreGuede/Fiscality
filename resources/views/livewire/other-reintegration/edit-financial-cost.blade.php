@@ -10,15 +10,16 @@
 
         </button>
     <div x-data="{ lib_condition_response: 'yes', delay_condition_response: 'yes',
-                     bceaoRate:4,
-                     rate_surplus:0,
-                     interest_rate_charged:'',
-                     amount_interest_recorded:'',
-                     amount_reintegrated:'0',
-                     amount_of_interest_recorded:'',
-                     depreciation_and_amortization:'',
-                     allocations_to_provisions:'',
-                     calculation_base:'' }"  class="relative overflow-y-auto w-1/2 bg-white h-full ml-auto  px-12" >
+                     amount_contribution:{{ $inputsrate_condition->amount_contribution }},
+                     bceaoRate:{{ $inputsrate_condition->bceao_interest_rate_for_the_year }},
+                     rate_surplus:{{ $inputsrate_condition->rate_surplus }},
+                     interest_rate_charged:{{ $inputsrate_condition->interest_rate_charged }},
+                     amount_interest_recorded:{{ $inputsrate_condition->amount_interest_recorded }},
+                     amount_reintegrated:{{ $inputsrate_condition->amount_reintegrated }},
+                     amount_of_interest_recorded:{{ $inputsFinancialCondition->amount_of_interest_recorded }},
+                     depreciation_and_amortization:{{ $inputsFinancialCondition->depreciation_and_amortization }},
+                     allocations_to_provisions:{{ $inputsFinancialCondition->allocations_to_provisions }},
+                     calculation_base:{{ $inputsFinancialCondition->calculation_base }} }"  class="relative overflow-y-auto w-1/2 bg-white h-full ml-auto  px-12" >
         <h2 class="text-2xl font-bold text-gray-7002 py-8">Frais financier</h2>
 
 
@@ -92,7 +93,7 @@
             </div>
             <div class=" gap-x-3 -mr-6  mt-4 space-y-4 ">
                 <div>
-                <x-input type="text" label="Montant des apports en compte" id="delay_condition" wire:model.defer="inputs.amount_contribution"
+                <x-input type="text" label="Montant des apports en compte" id="delay_condition" wire:model.defer="inputs.amount_contribution" x-model="amount_contribution"
                         name="delay_condition" value="{{ old('delay_condition') }}" class="block w-full" required autofocus />
                     <small class="text-gray-500 font-semibold" >Veuillez renseigner ceux non pris en compte au niveau de b</small>
                 </div>

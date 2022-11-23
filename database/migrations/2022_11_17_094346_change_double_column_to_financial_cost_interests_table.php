@@ -18,7 +18,7 @@ return new class extends Migration
             $table->decimal('amount_contribution', 15, 2)->nullable()->change();
             $table->decimal('amount_interest_recorded', 15, 2)->nullable()->change();
             $table->decimal('interest_rate_charged', 15, 2)->nullable()->change();
-            $table->decimal('bceao_interest_rate_for_the_year', 15, 2)->nullable()->change();
+            $table->decimal('bceao_interest_rate_for_the_year', 15, 2)->nullable();
             $table->decimal('maximum_rate', 15, 2)->nullable()->change();
             $table->decimal('rate_surplus', 15, 2)->nullable()->change();
         });

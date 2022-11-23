@@ -29,6 +29,10 @@ class WorkInEnterprise extends Controller
         return view('admin.adminWork.accountResult', compact('company', 'accountingresult'));
     }
 
+    public function total(Company $company){
+        return view ('admin');
+    }
+
     public function impotcalcul(Company $company)
     {
         return view('admin.adminWork.impotcalcul', compact('company'));

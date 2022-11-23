@@ -19,6 +19,8 @@ class DetailFinancialCost extends Component
 
     public $inputs;
 
+    public $inputsFinancialCondition;
+
     public $company;
 
     public $lib_condition;
@@ -31,6 +33,11 @@ class DetailFinancialCost extends Component
 
     public string  $response = 'no';
 
+    public $inputsliberation_condition;
+
+    public $inputsdelay_condition;
+
+    public $inputsrate_condition;
 
 
     public $bceao_interest_rate_for_the_year;
@@ -46,6 +53,13 @@ class DetailFinancialCost extends Component
 
     public function mount($company)
     {
+        $this->inputsliberation_condition=FinancialCostInterest::where('type','liberation_condition')->whereYear('created_at', date('Y'))->first();
+
+        $this->inputsdelay_condition=FinancialCostInterest::where('type','delay_condition')->whereYear('created_at', date('Y'))->first();
+
+        $this->inputsrate_condition=FinancialCostInterest::where('type','rate_condition')->whereYear('created_at', date('Y'))->first();
+        $this->inputsFinancialCondition=FinancialCostCondition::whereCompanyId($company->id)->whereYear('created_at',date('Y'))->first();
+
         $this->financialCost = [];
         $this->company = $company;
         $this->accounting_result = AccountingResult::whereCompanyId( $this->company->id)->whereYear('created_at', Carbon::now()->year)->first();
