@@ -2,7 +2,6 @@
 
 namespace App\Http\Livewire\Cabinet;
 
-use Livewire\Component;
 use LivewireUI\Modal\ModalComponent;
 
 class CreateRole extends ModalComponent

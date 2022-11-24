@@ -18,8 +18,11 @@ class MultiStepForm extends Component
     use WithFileUploads, Actions;
 
     public const FIRST_STEP = 1;
+
     public const SECOND_STEP = 2;
+
     public const THRID_STEP = 3;
+
     public const FOUTH_STEP = 4;
 
     public $name;
@@ -59,7 +62,7 @@ class MultiStepForm extends Component
     {
 //        $this->currentStep = 1;
         $this->fill([
-            'currentStep' => self::FIRST_STEP
+            'currentStep' => self::FIRST_STEP,
         ]);
     }
 
@@ -164,7 +167,8 @@ class MultiStepForm extends Component
 
             DB::commit();
 
-           notify()->success('Entreprise créée avec succès!');
+            notify()->success('Entreprise créée avec succès!');
+
             return redirect()->route('company.index');
         } catch (\Throwable $th) {
             $this->notification()->error(

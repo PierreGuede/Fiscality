@@ -60,7 +60,7 @@ class User extends Authenticatable implements MustVerifyEmail
 
     public function createdBy()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class,'user_id');
     }
 
     /**
@@ -69,6 +69,14 @@ class User extends Authenticatable implements MustVerifyEmail
     public function company()
     {
         return $this->hasMany(Company::class);
+    }
+
+    /**
+     *
+     */
+    public function getWorkspaceCompany()
+    {
+        return $this->belongsToMany(Company::class);
     }
 
    public function profile()
@@ -89,12 +97,12 @@ class User extends Authenticatable implements MustVerifyEmail
         }
     }
 
-    protected static function boot()
-    {
-        parent::boot();
-        static::creating(function ($model) {
-            $model->username = Str::slug(request()->name.request()->firstname.rand(0, 999));
-            $model->password = bcrypt($model->password);
-        });
-    }
+//    protected static function boot()
+//    {
+//        parent::boot();
+//        static::creating(function ($model) {
+////            $model->username = Str::slug(request()->name.request()->firstname.rand(0, 999));
+//            $model->password = bcrypt($model->password);
+//        });
+//    }
 }

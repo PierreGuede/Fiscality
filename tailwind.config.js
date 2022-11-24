@@ -14,7 +14,12 @@ module.exports = {
 
         './vendor/wireui/wireui/resources/**/*.blade.php',
         './vendor/wireui/wireui/ts/**/*.ts',
-        './vendor/wireui/wireui/src/View/**/*.php'
+        './vendor/wireui/wireui/src/View/**/*.php',
+
+        // PowerGrid
+        './app/Http/Livewire/**/*Table.php',
+        './vendor/power-components/livewire-powergrid/resources/views/**/*.php',
+        './vendor/power-components/livewire-powergrid/src/Themes/Tailwind.php'
 
     ],
 
@@ -209,5 +214,8 @@ module.exports = {
         borderColor: ["focus", "hover"],
         boxShadow: ["focus"],
     },
-    plugins: [require("@tailwindcss/forms"), require('@tailwindcss/line-clamp')],
+    plugins: [
+        require("@tailwindcss/forms")({strategy: 'class'}),
+        require('@tailwindcss/line-clamp')
+    ],
 };

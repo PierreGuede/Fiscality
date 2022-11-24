@@ -4,6 +4,7 @@ import FilePondPluginFileValidateType from 'filepond-plugin-file-validate-type';
 import FilePondPluginFileEncode from 'filepond-plugin-file-encode';
 import FilePondPluginFileValidateSize from 'filepond-plugin-file-validate-size';
 
+
 const globalData =  () => ({
 
     response: 'yes',
@@ -28,6 +29,26 @@ const globalData =  () => ({
             labelMaxFileSizeExceeded: 'Fichier trop grand',
             labelMaxFileSize: 'La taille maximum est 1MB'
     });
+    },
+
+    /**
+     *
+     * @param companyName string
+     */
+    handleCompanyAccess(companyName) {
+        window.$wireui.confirmDialog({
+            title: 'Vérification',
+            description: `Vous êtes sur le point d'accéder à l'espace de travail de ${companyName}  . Veuillez renseigner son nom tel quel pour confirmer l'accès à cet espace de travail.`,
+            icon: 'question',
+            accept: {
+                label: 'Confirmer',
+                method: 'save',
+                params: 'name',
+            },
+            reject: {
+                label: 'Annuler',
+            }
+        },1)
     },
 
     /**

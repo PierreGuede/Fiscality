@@ -1,9 +1,15 @@
 <div class="max-w-lg" >
-    <h5 class="text-gray-500">Choisissez un mode de gestion</h5>
-    <p class="text-lg font-semibold text-gray-700">Mettons un petit detail ici</p>
+{{--    <h5 class="text-gray-500">Choisissez un mode de gestion</h5>--}}
+{{--    <p class="text-lg font-semibold text-gray-700">Mettons un petit detail ici</p>--}}
 
     <div class="mt-6 space-y-4">
         {{--        Type de gestion--}}
+
+
+        <div class="mt-4" >
+            <x-input type="text" label="Raison sociale" id="social_reason" name="social_reason"
+                 value="{{ old('ifu') }}" class="block w-full" required autofocus />
+        </div>
 
         <x-datetime-picker
             label=""

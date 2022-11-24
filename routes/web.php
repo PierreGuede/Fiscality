@@ -21,7 +21,7 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'hasOneRole'])->name('dashboard');
 Route::middleware('auth')->group(function () {
-    Route::get('setup-account', [\App\Http\Controllers\UserController::class, 'enterprise'])->name('users.enterprise');
+    Route::get('setup-account', [\App\Http\Controllers\UserController::class, 'enterprise'])->name('users.enterprise')->middleware('haveNotOneRole');
 
     Route::post('upload', [\App\Http\Controllers\UploadController::class, 'store']);
     Route::delete('upload', [\App\Http\Controllers\UploadController::class, 'delete']);
@@ -32,7 +32,7 @@ Route::post('company', [\App\Http\Controllers\CompanyController::class, 'store']
 
 Route::middleware('auth', 'hasOneRole')->group(function () {
     Route::view('about', 'about')->name('about');
-    Route::middleware('role:Super-Admin|cabinet|enterprise')->group(function () {
+    Route::middleware('hasOneRole')->group(function () {
         Route::get('company', [\App\Http\Controllers\CompanyController::class, 'index'])->name('company.index');
         Route::get('company/{id}', [\App\Http\Controllers\CompanyController::class, 'edit'])->name('company.edit');
         Route::get('company/downlad-ifu/{id}', [\App\Http\Controllers\CompanyController::class, 'downloadIfu'])->name('company.downladIFU');
@@ -41,7 +41,7 @@ Route::middleware('auth', 'hasOneRole')->group(function () {
         Route::delete('company/{id}', [\App\Http\Controllers\CompanyController::class, 'destroy'])->name('company.delete');
     });
 
-    Route::middleware('role:cabinet|enterprise')->group(function () {
+            Route::middleware('hasOneRole')->group(function () {
         Route::get('create-company', [\App\Http\Controllers\CompanyController::class, 'create'])->name('company.enterprise');
         Route::get('work-in-enterprise/{company}', [\App\Http\Controllers\WorkInEnterprise::class, 'index'])->name('work.show');
         Route::post('work-in-enterprise/{company}', [\App\Http\Controllers\WorkInEnterprise::class, 'access'])->name('work.access');

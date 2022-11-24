@@ -14,6 +14,7 @@ class ProfileUser extends Model
     use HasFactory;
 
     protected $fillable = [
+        'social_reason',
         'ifu',
         'ifu_file',
         'rccm',

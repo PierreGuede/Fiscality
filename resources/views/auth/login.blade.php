@@ -15,7 +15,8 @@
                         <h1 class="text-xl font-semibold text-gray-700">Bienvenue à nouveau !</h1>
                         <p class="text-sm text-gray-500">Veuillez vous identifier pour continuer</p>
 
-                        <x-auth-validation-errors :errors="$errors" />
+{{--                        <x-auth-validation-errors :errors="$errors" />--}}
+                        <x-errors />
 
                         <form method="POST" action="{{ route('login') }}" class="mt-6 space-y-6">
                             @csrf
@@ -23,18 +24,21 @@
                             <div class="mt-4">
                                 <x-input type="text" label="Username" id="username" name="username"
                                     value="{{ old('username') }}" class="block w-full" required autofocus />
+                                @error('username') <small> {{ $messsage }} </small> @enderror
                             </div>
 
                             <!-- Input[ype="email"] -->
                             <div class="mt-4">
                                 <x-input type="email" label="Email" id="email" name="email"
                                     value="{{ old('email') }}" class="block w-full" required autofocus />
+                                @error('email') <small> {{ $messsage }} </small> @enderror
                             </div>
 
                             <!-- Input[ype="password"] -->
                             <div class="mt-4">
                                 <x-input type="password" label="Mot de passe" id="password" name="password"
                                     class="block w-full" />
+                                @error('password') <small> {{ $messsage }} </small> @enderror
                             </div>
 
                             {{-- <div class="flex text-sm">

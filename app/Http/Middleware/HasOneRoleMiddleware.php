@@ -17,7 +17,8 @@ class HasOneRoleMiddleware
     public function handle(Request $request, Closure $next)
     {
         $user = request()->user();
-        if ($user->hasAnyRole(['Super-Admin', 'cabinet', 'enterprise'])) {
+        $role= \DB::table('model_has_roles')->where('model_id',$user->id)->first();
+        if ($role != null) {
             return $next($request);
         } else {
             return redirect()->route('users.enterprise');

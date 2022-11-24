@@ -16,6 +16,7 @@ class IndexSetupAccount extends Component
 
     public $step = 1;
 
+    public $social_reason;
     public $ifu;
 
     public $rccm;
@@ -105,6 +106,7 @@ class IndexSetupAccount extends Component
         $rccm_file_path = $this->rccm_file->storeAs('RCCM', $rccm_filename, 'public');
 
         ProfileUser::create([
+            'social_reason'=> $this->social_reason,
             'ifu' => $this->ifu,
             'ifu_file' => $ifu_file_path,
             'rccm' => $this->rccm,

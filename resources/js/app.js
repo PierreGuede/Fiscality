@@ -14,6 +14,9 @@ import FilePondPluginFileEncode from 'filepond-plugin-file-encode';
 import FilePondPluginFileValidateSize from 'filepond-plugin-file-validate-size';
 import globalData from "./globalData";
 
+import './../../vendor/power-components/livewire-powergrid/dist/powergrid'
+
+
 FilePond.registerPlugin(FilePondPluginFileValidateType, FilePondPluginFileEncode, FilePondPluginFileValidateSize);
 
 // const paymentButton = document.querySelector('#payment');

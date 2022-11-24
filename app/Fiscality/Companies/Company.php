@@ -25,6 +25,7 @@ class Company extends Model
         'social_reason',
         'created_date',
         'ifu',
+        'logo',
         'path',
         'rccm',
         'path_rccm',

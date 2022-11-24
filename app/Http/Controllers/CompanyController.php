@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Fiscality\Categories\Category;
 use App\Fiscality\Companies\Company;
-use App\Fiscality\Companies\Repositories\Interfaces\CompanyRepositoryInterface;
 use App\Fiscality\Companies\Requests\CreateCompanyRequest;
 use App\Fiscality\Companies\Requests\UpdateCompanyRequest;
 use App\Fiscality\Domains\Domain;
