@@ -22,4 +22,8 @@ class TaxResultController extends Controller
     {
         return view('admin.tax-result.deduction.index', compact('company'));
     }
+    public function totalTaxableIncomeBeforeHeadOfficeExpenses(Company $company)
+    {
+        return view('admin.tax-result.total-tax-result',compact('company'));
+    }
 }

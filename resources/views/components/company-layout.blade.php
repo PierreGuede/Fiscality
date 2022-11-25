@@ -18,6 +18,7 @@
     @notifyCss
     <!-- Scripts -->
     @wireUiScripts
+    
     <script src="{{ asset('js/init-alpine.js') }}" defer></script>
 </head>
 
