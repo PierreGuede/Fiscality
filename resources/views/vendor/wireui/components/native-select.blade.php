@@ -10,6 +10,7 @@
     @endif
 
     <select {{ $attributes->class([
+//            'w-full h-10 px-3 text-gray-900 placeholder-transparent border border-gray-300 rounded-sm  focus:ring-blue-500/40 focus:ring-4 focus:outline-none focus:border-blue-600',
         $defaultClasses(),
         $errorClasses() =>  $errors->has($name),
         $colorClasses() => !$errors->has($name),

@@ -18,8 +18,9 @@ module.exports = {
 
         // PowerGrid
         './app/Http/Livewire/**/*Table.php',
+        './app/Http/Livewire/PowergridThemes/*.php',
         './vendor/power-components/livewire-powergrid/resources/views/**/*.php',
-        './vendor/power-components/livewire-powergrid/src/Themes/Tailwind.php'
+        './vendor/power-components/livewire-powergrid/src/Themes/Tailwind.php',
 
     ],
 

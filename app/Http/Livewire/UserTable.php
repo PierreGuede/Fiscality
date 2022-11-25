@@ -13,6 +13,14 @@ final class UserTable extends PowerGridComponent
 {
     use ActionButton;
 
+    public $saveOnMouseOut;
+
+    public  $name;
+
+    protected array $rules = [
+        'name.*' => ['required', 'min:6'],
+    ];
+
     /*
     |--------------------------------------------------------------------------
     |  Features Setup
@@ -51,6 +59,23 @@ final class UserTable extends PowerGridComponent
     public function datasource(): Builder
     {
         return User::whereUserId(auth()->user()->id);
+    }
+
+
+
+    /**
+     * Method pour update les valeurs
+     * @param $id
+     * @param $field
+     * @param $value
+     * @return void
+     */
+    public function onUpdatedEditable($id, $field, $value): void
+    {
+        dd($value);
+        User::query()->find($id)->update([
+                $field => $value,
+        ]);
     }
 
     /*
@@ -95,7 +120,20 @@ final class UserTable extends PowerGridComponent
 
             ->addColumn('firstname')
             ->addColumn('username')
-            ->addColumn('email');
+            ->addColumn('email')
+            ->addColumn('action', function (User $model){
+                return <<<'blade'
+                        <x-dropdown>
+                            <x-slot name="trigger">
+                                <x-form.button label="Options" primary />
+                            </x-slot>
+
+                            <x-dropdown.item label="Help Center" />
+                            <x-dropdown.item separator label="Live Chat" />
+                            <x-dropdown.item separator label="Logout" />
+                        </x-dropdown>
+                        blade;
+            });
     }
 
     /*
@@ -138,6 +176,7 @@ final class UserTable extends PowerGridComponent
 //                ->searchable()
 //                ->makeInputText()
             ,
+            Column::add()->title('Actions')->field('action')
 
 //            Column::make('USER ID', 'user_id')
 //                ->makeInputRange(),
@@ -145,6 +184,8 @@ final class UserTable extends PowerGridComponent
         ]
 ;
     }
+
+
 
     /*
     |--------------------------------------------------------------------------
@@ -160,21 +201,21 @@ final class UserTable extends PowerGridComponent
      * @return array<int, Button>
      */
 
-    /*
-    public function actions(): array
-    {
-       return [
-           Button::make('edit', 'Edit')
-               ->class('bg-indigo-500 cursor-pointer text-white px-3 py-2.5 m-1 rounded text-sm')
-               ->route('user.edit', ['user' => 'id']),
 
-           Button::make('destroy', 'Delete')
-               ->class('bg-red-500 cursor-pointer text-white px-3 py-2 m-1 rounded text-sm')
-               ->route('user.destroy', ['user' => 'id'])
-               ->method('delete')
-        ];
-    }
-    */
+//    public function actions(): array
+//    {
+//       return [
+//           Button::make('edit', 'Edit')
+//               ->class('bg-indigo-500 cursor-pointer text-white px-3 py-2.5 m-1 rounded text-sm')
+//               ,
+//
+//           Button::make('destroy', 'Delete')
+//               ->class('bg-red-500 cursor-pointer text-white px-3 py-2 m-1 rounded text-sm')
+//
+//
+//        ];
+//    }
+
 
     /*
     |--------------------------------------------------------------------------

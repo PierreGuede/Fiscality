@@ -16,23 +16,30 @@
         </svg>
         <div x-show="openSidebar" class="ml-2 text-sm font-bold transition-all" >
             <p>TECIT</p>
-            <p class="text-xs font-medium line-clamp-1 " >{{ auth()->user()->profile->social_reason  }}</p>
+
+            @if(empty(auth()->user()->profile->social_reason))
+                <p class="text-xs font-medium line-clamp-1">{{ auth()->user()->createdBy->profile->social_reason  }}</p>
+            @else
+                <p class="text-xs font-medium line-clamp-1">{{ auth()->user()->profile->social_reason  }}</p>
+            @endif
         </div>
     </a>
     <div class="w-full px-2 pb-2">
         <div  class="mt-3 flex w-full flex-col items-center border-t border-blue-300">
-            <x-app-sidebar.nav-link label="Utilisateur" href="{{ route('users.index') }}"  icon="user" />
             <x-app-sidebar.nav-link  label="Entreprises" href="{{ route('company.index') }}"  icon="office-building" />
-            <x-app-sidebar.nav-link label="Role & permission" href="{{ route('permission.index') }}"  icon="user" />
-            <x-app-sidebar.nav-link label="Droit d'accès" href="{{ route('role.index') }}"  icon="user" />
+            @hasanyrole('cabinet')
+                <x-app-sidebar.nav-link label="Utilisateur" href="{{ route('users.index') }}"  icon="user" />
+                <x-app-sidebar.nav-link label="Role & permission" href="{{ route('role.index') }}"  icon="user" />
+                <x-app-sidebar.nav-link label="Droit d'accès" href="{{ route('role.index') }}"  icon="user" />
+            @endhasanyrole
         </div>
     </div>
     <a :class="!openSidebar && 'justify-center'" class="mt-auto flex h-16 w-full items-center justify-start bg-blue-800 px-4 hover:bg-blue-700" href="#">
 
         <x-icon name="user-circle" class="h-8 w-8 stroke-1 stroke-current" />
         <div x-show="openSidebar" class="transition-all" >
-            <p  class="ml-2 text-xs font-medium text-xs">{{ auth()->user()->name  }}</p>
-            <p  class="ml-2 text-xs font-medium ">Compte</p>
+            <p  class="ml-2 text-xs font-medium text-xs">{{ auth()->user()->name  }} {{ auth()->user()->firstname  }}</p>
+{{--            <p  class="ml-2 text-xs font-medium ">Compte</p>--}}
 
         </div>
     </a>

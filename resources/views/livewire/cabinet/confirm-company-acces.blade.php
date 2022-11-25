@@ -9,7 +9,7 @@
         @error('company_name') <small>{{ $message  }}</small> @enderror
     </div>
     <div class="flex justify-end gap-x-3.5 mt-6" >
-        <x-form.button secondary label="Annuler" />
+        <x-form.button onclick="Livewire.emit('closeModal', 'cabinet.confirm-company-acces')" secondary label="Annuler" />
         @if($activate_button)
             <x-form.button primary label="Confirmer" type="submit" wire:click="confirmAcces " />
         @else
