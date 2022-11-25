@@ -72,6 +72,7 @@ Route::middleware('auth', 'hasOneRole','hasPack','email_verified')->group(functi
         Route::get('work-in-enterprise/{company}/other-reintegration/commission-purchase', [\App\Http\Controllers\CommissionOnPurchaseController::class, 'index'])->name('work.commissionPurchase');
         Route::get('work-in-enterprise/{company}/head-office-costs', [\App\Http\Controllers\HeadOfficeCostController::class, 'index'])->name('head-office-costs');
         Route::get('work-in-enterprise/{company}/total-tax-result',[App\Http\Controllers\TaxResultController::class,'totalTaxableIncomeBeforeHeadOfficeExpenses'])->name('taxt-result.totaltotalTaxableIncomeBeforeHeadOfficeExpenses');
+
     });
     Route::get('users', [\App\Http\Controllers\UserController::class, 'index'])->name('users.index');
     Route::post('users', [\App\Http\Controllers\UserController::class, 'store'])->name('users.store');
