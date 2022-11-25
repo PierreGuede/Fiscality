@@ -130,30 +130,28 @@ class MultiStepForm extends Component
         $this->validate([
             'name' => ['required', 'string', 'max:255', 'unique:companies'],
             'rccm' => ['required', 'string', 'max:14', 'unique:companies'],
-            'path_rccm' => ['required', 'file', 'mimes:pdf', 'max:4000', 'unique:companies'],
             'created_date' => ['required', 'date'],
             'ifu' => ['required', 'integer', 'digits:13', 'unique:companies'],
-            'path' => ['required', 'file', 'mimes:pdf', 'max:4000', 'unique:companies'],
             'email' => ['required', 'string', 'max:255', 'unique:companies'],
             'celphone' => ['required', 'max:255', 'unique:companies'],
         ]);
-        $ifuFile = 'IFU_DU_'.time().'.'.$this->path->getClientOriginalName();
+/*         $ifuFile = 'IFU_DU_'.time().'.'.$this->path->getClientOriginalName();
         $rccmFile = 'RCCM_DU_'.time().'.'.$this->path_rccm->getClientOriginalName();
-
-        $IFURequest = $this->path->storeAs('IFU', $ifuFile, 'public');
+ */
+/*         $IFURequest = $this->path->storeAs('IFU', $ifuFile, 'public');
         $RCCMRequest = $this->path_rccm->storeAs('RCCM', $rccmFile, 'public');
-
+ */
         try {
             DB::beginTransaction();
 
             $company = Company::create([
                 'name' => $this->name,
                 'rccm' => $this->rccm,
-                'path_rccm' => $RCCMRequest,
-                'created_date' => $this->created_date,
+/*                 'path_rccm' => $RCCMRequest,
+ */                'created_date' => $this->created_date,
                 'ifu' => $this->ifu,
-                'path' => $IFURequest,
-                'email' => $this->email,
+/*                 'path' => $IFURequest,
+ */                'email' => $this->email,
                 'celphone' => $this->celphone,
                 'tax_center_id' => $this->tax_center_id,
                 'type_company_id' => $this->type_company_id,

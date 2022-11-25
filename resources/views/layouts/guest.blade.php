@@ -15,15 +15,19 @@
     <!-- Scripts -->
     @wireUiScripts
     <script  src="{{ asset('js/init-alpine.js') }}" defer></script>
+    @notifyCss
+
 </head>
 
-<body class="selection:bg-blue-500 selection:text-white" x-data="{ 'showModal': false, 'starting': true, 'buttonok': false, 'showSubCat': false }" @keydown.escape="showModal = false"
+<body class="bg-blue-50" x-data="{ 'showModal': false, 'starting': true, 'buttonok': false, 'showSubCat': false }" @keydown.escape="showModal = false"
     x-cloak>
 
     <div x-data="globalData" >
         {{ $slot }}
     </div>
 
+    <x:notify-messages />
+    @notifyJs
 
 
     @livewireScripts

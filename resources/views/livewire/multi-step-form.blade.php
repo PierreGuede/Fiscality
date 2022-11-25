@@ -160,27 +160,31 @@
                                     </div>
                                     <div class="mt-4 ">
                                         <x-label for="rccm" :value="__('Justificatif')"/>
-                                        <x-input.filepond wire:model="path" x-ref="path"  data-max-files="1"  />
                                     </div>
 
                                     <div class="mt-4">
                                         <x-label for="rccm" :value="__('RCCM')"/>
-                                        <x-input.filepond wire:model="path_rccm" x-ref="path_rccm"  data-max-files="1"  />
                                         <x-input wire:model="rccm" {{-- name="rccm" --}}
                                         type="text"
-                                                 label="RCCM"
-                                                 class="block w-full"
-                                                 value="{{ old('rccm') }}"/>
+                                        label="RCCM"
+                                        class="block w-full"
+                                        value="{{ old('rccm') }}"/>
                                     </div>
                                     <div class="mt-4">
                                         <x-label id="celphone" :value="__('Numéro de téléphone')"/>
                                         <x-input label="Numéro de téléphone" wire:model="celphone" {{-- name="celphone" --}}
                                         type="text"
-                                                 class="block w-full"
-                                                 value="{{ old('celphone') }}"/>
+                                        class="block w-full"
+                                        value="{{ old('celphone') }}"/>
                                     </div>
+{{--                                     <div class="mt-4 space-y-2">
+                                        <label for="path" class="text-sm text-gray-500">Justificatif IFU (facultatif)</label>
+                                        <x-input.filepond wire:model="path" x-ref="path"  data-max-files="1"  />
 
-                            </div>
+                                        <label for="path_rccm" class="text-sm text-gray-500">Justificatif RCCM (facultatif)</label>
+                                        <x-input.filepond wire:model="path_rccm" x-ref="path_rccm"  data-max-files="1"  />
+                                    </div> --}}
+                                </div>
                         @endif
                         {{-- les buttons --}}
                         <div class="w-10/12 justify-between flex space-x-4 mt-6  mt-4 p-4">

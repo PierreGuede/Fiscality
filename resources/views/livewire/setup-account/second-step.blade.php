@@ -18,7 +18,9 @@
             placeholder="Date de création"
             wire:model.defer="normalPicker"
         />
-
+        <div class="mt-4">
+            <x-input type="number" label="Numéro de téléphone" id="celphone" name="celphone" class="block w-full" wire:model.defer="celphone"/>
+        </div>
         <div class="space-y-4" >
             <div class="mt-4">
                 <x-input type="text" label="IFU" id="ifu" name="ifu"

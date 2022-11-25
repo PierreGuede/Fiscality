@@ -69,5 +69,8 @@ class Kernel extends HttpKernel
         'hasOneRole' => \App\Http\Middleware\HasOneRoleMiddleware::class,
         'haveNotOneRole' => \App\Http\Middleware\HaveNotOneRoleMiddleware::class,
         'IsBlocked' => \App\Http\Middleware\IfIsBloquedMiddleware::class,
+        'hasPack' => \App\Http\Middleware\packMidlle::class,
+        'pack'=> \App\Http\Middleware\SubscriptionMidlle::class,
+        'email_verified'=> \App\Http\Middleware\EmailVerifyMiddleware::class,
     ];
 }

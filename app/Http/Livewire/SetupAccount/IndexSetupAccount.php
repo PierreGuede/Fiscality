@@ -21,6 +21,8 @@ class IndexSetupAccount extends Component
 
     public $rccm;
 
+    public $celphone;
+
     public $ifu_file;
 
     public $rccm_file;
@@ -110,6 +112,7 @@ class IndexSetupAccount extends Component
             'ifu' => $this->ifu,
             'ifu_file' => $ifu_file_path,
             'rccm' => $this->rccm,
+            'celphone' => $this->celphone,
             'rccm_file' => $rccm_file_path,
             'born_day' => $this->normal_picker,
             'user_id' => $user->id,
