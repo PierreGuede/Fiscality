@@ -22,7 +22,6 @@
 </head>
 
 <body class="selection:bg-blue-500 font-sans selection:text-white"
-      x-data="{ 'showModal': false, 'starting': true, 'buttonok': false, 'showSubCat': false }"
       @keydown.escape="showModal = false"
       x-cloak>
 

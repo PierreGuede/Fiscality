@@ -8,6 +8,7 @@ import FilePondPluginFileValidateSize from 'filepond-plugin-file-validate-size';
 const globalData =  () => ({
 
     response: 'yes',
+    openSidebar: true,
 
     init(){
         console.log('Init Alpinejs')

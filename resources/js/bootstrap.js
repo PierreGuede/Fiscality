@@ -1,8 +1,10 @@
 import _ from 'lodash';
-// import Alpine from 'alpinejs';
+import Alpine from 'alpinejs';
+import collapse from '@alpinejs/collapse'
 
 window._ = _;
-// window.Alpine = Alpine;
+ window.Alpine = Alpine;
+Alpine.plugin(collapse)
 
 
 /**

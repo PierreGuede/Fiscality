@@ -1,12 +1,11 @@
 import './bootstrap';
-import Alpine from 'alpinejs';
+// import Alpine from 'alpinejs';
 
-window.Alpine = Alpine;
+// window.Alpine = Alpine;
 
 import dayjs from "dayjs";
 import 'dayjs/locale/fr';
 import focus from '@alpinejs/focus'
-import collapse from '@alpinejs/collapse'
 import {sumBy} from "lodash";
 import * as FilePond from 'filepond';
 import FilePondPluginFileValidateType from 'filepond-plugin-file-validate-type';
