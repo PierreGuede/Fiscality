@@ -19,7 +19,7 @@ Route::get('/', function () {
 
 Route::get('/dashboard', function () {
     return view('dashboard');
-})->middleware(['auth', 'hasOneRole'])->name('dashboard');
+})->middleware(['auth','email_verified', 'hasOneRole'])->name('dashboard');
 Route::middleware('auth')->group(function () {
     Route::get('setup-account', [\App\Http\Controllers\UserController::class, 'enterprise'])->name('users.enterprise')->middleware('haveNotOneRole');
 
@@ -29,8 +29,10 @@ Route::middleware('auth')->group(function () {
 require __DIR__.'/auth.php';
 
 Route::post('company', [\App\Http\Controllers\CompanyController::class, 'store'])->name('company.store');
-
-Route::middleware('auth', 'hasOneRole')->group(function () {
+Route::middleware('auth','pack','email_verified')->group(function () {
+    Route::get('renew-subscription',[\App\Http\Controllers\SubscriptionController::class, 'renew'])->name('renew.pack');
+});
+Route::middleware('auth', 'hasOneRole','hasPack','email_verified')->group(function () {
     Route::view('about', 'about')->name('about');
     Route::middleware('hasOneRole')->group(function () {
         Route::get('company', [\App\Http\Controllers\CompanyController::class, 'index'])->name('company.index');
@@ -68,8 +70,9 @@ Route::middleware('auth', 'hasOneRole')->group(function () {
         Route::get('work-in-enterprise/{company}/other-reintegration', [\App\Http\Controllers\OtherReintegrationController::class, 'index'])->name('tax-result.reintegration.other-reintegration');
 
         Route::get('work-in-enterprise/{company}/other-reintegration/commission-purchase', [\App\Http\Controllers\CommissionOnPurchaseController::class, 'index'])->name('work.commissionPurchase');
-
         Route::get('work-in-enterprise/{company}/head-office-costs', [\App\Http\Controllers\HeadOfficeCostController::class, 'index'])->name('head-office-costs');
+        Route::get('work-in-enterprise/{company}/total-tax-result',[App\Http\Controllers\TaxResultController::class,'totalTaxableIncomeBeforeHeadOfficeExpenses'])->name('taxt-result.totaltotalTaxableIncomeBeforeHeadOfficeExpenses');
+
     });
     Route::get('users', [\App\Http\Controllers\UserController::class, 'index'])->name('users.index');
     Route::post('users', [\App\Http\Controllers\UserController::class, 'store'])->name('users.store');
