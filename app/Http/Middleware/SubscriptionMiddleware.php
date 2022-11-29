@@ -2,11 +2,12 @@
 
 namespace App\Http\Middleware;
 
+use Carbon\Carbon;
 use Closure;
 use App\Models\Subscription;
 use Illuminate\Http\Request;
 
-class SubscriptionMidlle
+class SubscriptionMiddleware
 {
     /**
      * Handle an incoming request.
@@ -17,17 +18,13 @@ class SubscriptionMidlle
      */
     public function handle(Request $request, Closure $next)
     {
-        $pack=Subscription::where('user_id',auth()->user()->id)->first();
-        if ($pack != null) {
-            if ($pack->created_at->year == date('Y')) {
-                return redirect()->route('company.index');
-            }
-            else {
-                return $next($request);
-            }
+       $subscription  = Subscription::whereUserId( is_null(auth()->user()->user_id) ?  auth()->user()->id :auth()->user()->user_id )->whereYear('created_at', Carbon::now()->year)->first();
+        if ($subscription != null) {
+           return $next($request);
         }
         else {
-            return null;
+            notify()->error('Erreur', 'Votre abonnement est expiré');
+            redirect()->route('login');
         }
     }
 }

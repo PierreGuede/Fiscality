@@ -11,7 +11,7 @@ use App\Fiscality\TaxCenters\TaxCenter;
 use App\Fiscality\TypeCompanies\TypeCompany;
 use Illuminate\Support\Facades\Storage;
 
-class CompanyController extends Controller
+class   CompanyController extends Controller
 {
     public $model;
 
@@ -47,6 +47,11 @@ class CompanyController extends Controller
         $company_mere = $this->model->where('user_id', request()->user()->id)->whereNotNull('company_id')->get();
 
         return view('admin.companies.index', ['company' => $company, 'mere' => $company_mere]);
+    }
+
+    public function setEntrepriseInformation()
+    {
+        return view('admin.companies.set-entreprise-information');
     }
 
     public function create()

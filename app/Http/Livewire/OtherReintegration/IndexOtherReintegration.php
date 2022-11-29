@@ -26,7 +26,7 @@ class IndexOtherReintegration extends Component
 
     public Company $company;
 
-    public OtherReintegration $other_reintegration;
+    public $other_reintegration;
 
     public $expense_not_related;
 
@@ -81,6 +81,11 @@ class IndexOtherReintegration extends Component
         $this->fill([
             'state' => is_null($this->other_reintegration) ? self::CREATE : self::READ,
         ]);
+    }
+
+    public function updated($propertyName)
+    {
+        $this->validateOnly($propertyName);
     }
 
     public function render()

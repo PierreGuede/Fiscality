@@ -21,7 +21,7 @@ class IndexSetupAccount extends Component
 
     public $rccm;
 
-    public $celphone;
+    public $celphone = '' ;
 
     public $ifu_file;
 
@@ -126,6 +126,11 @@ class IndexSetupAccount extends Component
 
         if ($this->management_type) {
             $user->assignRole($this->management_type);
+        }
+
+        if($this->management_type == 'entreprise') {
+            return redirect()->route('tax-result', [$this->company->id]);
+
         }
 
         return redirect()->route('company.index');

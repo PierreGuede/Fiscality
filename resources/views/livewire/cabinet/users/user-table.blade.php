@@ -29,7 +29,7 @@
                     </x-dropdown.item>
 
                     <x-dropdown.item @click="Livewire.emit('openModal', 'cabinet.users.edit-user', {{ json_encode([$user->id]) }})" >
-                        <span class="font-medium" > Edit</span>
+                        <span class="font-medium" > Modifier</span>
                     </x-dropdown.item>
 
                     <x-dropdown.item @click="Livewire.emit('openModal', 'cabinet.users.assign-company', {{ json_encode([$user->id]) }})" >

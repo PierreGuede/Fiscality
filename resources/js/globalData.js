@@ -18,7 +18,6 @@ const globalData =  () => ({
     filepondConf(){
         FilePond.registerPlugin(FilePondPluginFileValidateType, FilePondPluginFileValidateSize);
 
-
         FilePond.setOptions({
             allowMultiple: false,
                     // maxFiles: 1,
@@ -30,26 +29,6 @@ const globalData =  () => ({
             labelMaxFileSizeExceeded: 'Fichier trop grand',
             labelMaxFileSize: 'La taille maximum est 1MB'
     });
-    },
-
-    /**
-     *
-     * @param companyName string
-     */
-    handleCompanyAccess(companyName) {
-        window.$wireui.confirmDialog({
-            title: 'Vérification',
-            description: `Vous êtes sur le point d'accéder à l'espace de travail de ${companyName}  . Veuillez renseigner son nom tel quel pour confirmer l'accès à cet espace de travail.`,
-            icon: 'question',
-            accept: {
-                label: 'Confirmer',
-                method: 'save',
-                params: 'name',
-            },
-            reject: {
-                label: 'Annuler',
-            }
-        },1)
     },
 
     /**
@@ -81,8 +60,7 @@ const globalData =  () => ({
      * @param num number
      */
     formatNumber(num){
-        console.log(num)
-        return  new Intl.NumberFormat('fr', { style: 'currency', currency: 'XOF' }).format(number);
+        return  new Intl.NumberFormat('fr', { style: 'currency', currency: 'XOF' }).format(num);
     },
 
     /**
@@ -93,7 +71,6 @@ const globalData =  () => ({
     sumArray(args = []){
         return sumBy(args, (value) =>Number(value));
     }
-
 
 });
 

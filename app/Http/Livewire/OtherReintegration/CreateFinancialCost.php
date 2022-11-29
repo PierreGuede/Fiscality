@@ -26,7 +26,7 @@ class CreateFinancialCost extends Component
 
     public $rc;
 
-    public bool  $open_a_side = true;
+    public bool  $open_a_side = false;
 
     public string  $response = 'no';
 

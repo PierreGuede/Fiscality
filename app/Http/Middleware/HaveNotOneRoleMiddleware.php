@@ -18,10 +18,10 @@ class HaveNotOneRoleMiddleware
     {
         $user = request()->user();
        $role= \DB::table('model_has_roles')->where('model_id',$user->id)->first();
-        if ($role != null) {
-            abort(403, 'Vous avez deja un role et une entreprise');
-        } else {
+        if ($role == null) {
             return $next($request);
+        } else {
+            abort(403, 'Vous avez déjà un rôle et une entreprise');
         }
     }
 }

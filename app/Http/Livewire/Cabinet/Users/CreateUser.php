@@ -6,6 +6,7 @@ use App\Fiscality\Companies\Company;
 use App\Fiscality\CompanyAccesControl\Repositories\CompanyAccesControlRepository;
 use App\Mail\SendUserCredential;
 use App\Models\User;
+use Carbon\Carbon;
 use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
@@ -80,7 +81,8 @@ class CreateUser extends ModalComponent
             'firstname' => $this->firstname,
             'name' => $this->name,
             'password' => Hash::make($this->password),
-            'user_id' => auth()->user()->id
+            'user_id' => auth()->user()->id,
+            'email_verified' => Carbon::now(),
         ])->assignRole('Ressource');
 
         \Mail::to($this->email)->send(new SendUserCredential($user->name, $user->username, $user->email, $this->password));
@@ -109,7 +111,7 @@ class CreateUser extends ModalComponent
 
     private function generatePassword($n)
     {
-        $characters = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ#$@()[]{}.?!';
+        $characters = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ';
         $randomString = '';
 
         for ($i = 0; $i < $n; $i++) {

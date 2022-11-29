@@ -1,4 +1,4 @@
-@props(['company'])
+    @props(['company'])
 
 <div x-data="{ openSidebar: true, openDropdown: false }" :class=" openSidebar ? 'w-60' : 'w-20'  "
      class=" relative flex transition-all h-full flex-col items-center   bg-blue-600 text-blue-100">
@@ -146,6 +146,9 @@
         </div>
 
         {{--        Espace de travail--}}
+        @unlessrole('entreprise')
+            <span></span>
+        @else
         <p class="text-xs font-medium uppercase mt-6 mb-2">Espace de travail</p>
         <div class=" border-t border-blue-300">
             <div x-data="{ expanded: false }" class="w-full">
@@ -188,6 +191,7 @@
 
             </div>
         </div>
+    @endunlessrole
 
     </div>
 

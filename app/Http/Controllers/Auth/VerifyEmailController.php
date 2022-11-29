@@ -3,9 +3,11 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Models\User;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Auth\Events\Verified;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
+use Illuminate\Http\Request;
 
 class VerifyEmailController extends Controller
 {
@@ -15,14 +17,22 @@ class VerifyEmailController extends Controller
      * @param  \Illuminate\Foundation\Auth\EmailVerificationRequest  $request
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function __invoke(EmailVerificationRequest $request)
+    public function __invoke( Request $request, $id, string $hash)
     {
-        if ($request->user()->hasVerifiedEmail()) {
+        $user = User::whereId($id)->first();
+
+        if( !hash_equals((string) $hash, sha1($user->getEmailForVerification())) ) {
+            return redirect()->route('login');
+        }
+
+
+        if ($user->hasVerifiedEmail()) {
             return redirect()->intended(RouteServiceProvider::HOME.'?verified=1');
         }
 
-        if ($request->user()->markEmailAsVerified()) {
-            event(new Verified($request->user()));
+        if ($user->markEmailAsVerified()) {
+            notify()->success('Email vérifié avec succès!');
+            event(new Verified($user));
         }
 
         return redirect()->intended(RouteServiceProvider::HOME.'?verified=1');

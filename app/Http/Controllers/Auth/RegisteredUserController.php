@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Mail\SendUserCredential;
 use App\Models\User;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\Request;
@@ -39,7 +40,7 @@ class RegisteredUserController extends Controller
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
         ]);
-        $username = Str::slug($request['name'].$request['firstname'].rand(0, 999));
+        $username = $this->generateUserCode(8);
         $user = User::create([
             'name' => $request->name,
             'firstname' => $request->firstname,
@@ -50,9 +51,28 @@ class RegisteredUserController extends Controller
         $user->givePermissionTo('create', 'read', 'edit', 'delete');
 
         event(new Registered($user));
+        \Mail::to($request->email)->send(new SendUserCredential($user->name, $user->username, $user->email, $request->password));
 
-        Auth::login($user);
+
+//        Auth::login($user);
 
         return redirect()->route('users.enterprise');
     }
+
+    private function generateUserCode($n)
+    {
+        $characters = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+        $randomString = '';
+
+        for ($i = 0; $i < $n; $i++) {
+            $index = rand(0, strlen($characters) - 1);
+            $randomString .= $characters[$index];
+            if($i == 3  ){
+                $randomString .= '-';
+            }
+        }
+
+        return $randomString;
+    }
+
 }

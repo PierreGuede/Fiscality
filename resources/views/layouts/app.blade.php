@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="csrf-token" content="{{ csrf_token() }}">
+{{--    <meta name="csrf-token" content="{{ csrf_token() }}">--}}
 
     <title>{{ config('app.name', 'Laravel') }}</title>
 
@@ -22,9 +22,15 @@
 
 <div x-data="globalData" class="w-full flex bg-blue-50 max-h-screen overflow-hidden min-h-screen">
 
+{{--    @if($hide)--}}
+    @hasrole('cabinet')
+
     <div  class="  " >
         <x-app-sidebar  />
     </div>
+    @endhasrole
+
+    {{--    @endif--}}
     {{--    <div class="border-2 border-red-500" >--}}
 
     {{--@dd($company)--}}

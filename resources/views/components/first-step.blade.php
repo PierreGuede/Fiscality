@@ -10,7 +10,7 @@
             {{--            Entreprise--}}
             <li class="relative w-64 cursor-pointer">
                 <input wire:model="management_type" class="peer sr-only" id="entreprise" type="radio" value="enterprise" name="compte" />
-                <label for="entreprise" class="block space-y-7 rounded-md border-2 border-gray-300 p-4 pt-16 text-gray-700 hover:border-blue-100 hover:bg-blue-100 peer-checked:border-blue-500 peer-checked:bg-blue-500 peer-checked:text-blue-50">
+                <label for="entreprise" class="block space-y-7 rounded-md border-2 border-gray-300 p-6 pt-16 text-gray-700 hover:border-blue-100 hover:bg-blue-100 peer-checked:border-blue-500 peer-checked:bg-blue-500 peer-checked:text-blue-50">
                     <p class="text-lg font-semibold">Entreprise</p>
                 </label>
                 <svg class="absolute top-3 right-3 hidden h-6 w-6 flex-none shrink-0 fill-blue-100 stroke-blue-500 stroke-2 peer-checked:block" stroke-linecap="round" stroke-linejoin="round">
@@ -22,7 +22,7 @@
             {{--            Cabinet--}}
             <li class="relative w-64 cursor-pointer">
                 <input wire:model="management_type" class="peer sr-only" id="cabinet" type="radio" value="cabinet" name="compte" />
-                <label for="cabinet" class="block space-y-7 rounded-md border-2 border-gray-300 p-4 pt-16 text-gray-700 hover:border-blue-100 hover:bg-blue-100 peer-checked:border-blue-500 peer-checked:bg-blue-500 peer-checked:text-blue-50">
+                <label for="cabinet" class="block space-y-7 rounded-md border-2 border-gray-300 p-6 pt-16 text-gray-700 hover:border-blue-100 hover:bg-blue-100 peer-checked:border-blue-500 peer-checked:bg-blue-500 peer-checked:text-blue-50">
                     <p class="text-lg font-semibold">Cabinet</p>
                 </label>
                 <svg class="absolute top-3 right-3 hidden h-6 w-6 flex-none shrink-0 fill-blue-100 stroke-blue-500 stroke-2 peer-checked:block" stroke-linecap="round" stroke-linejoin="round">

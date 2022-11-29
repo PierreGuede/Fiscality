@@ -20,7 +20,8 @@
             <div class=" w-[90%] lg:w-[75%] xl:w-2/3 w">
                 <h6 class="mb-2 text-2xl font-semibold text-gray-700">Commencez</h6>
                 <p class="mb-10 text-sm text-gray-500">L'inscription ne prend qu'une minute</p>
-                <x-auth-validation-errors :errors="$errors" />
+
+                <x-errors />
 
                 <form method="POST" action="{{ route('register') }}" class="space-y-6">
                     @csrf

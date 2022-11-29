@@ -1,4 +1,4 @@
-<div :class=" openSidebar ? 'w-60' : 'w-20'  "  class=" relative flex transition-all h-full flex-col items-center   bg-blue-600 text-blue-100">
+        <div :class=" openSidebar ? 'w-60' : 'w-20'  "  class=" relative flex transition-all h-full flex-col items-center   bg-blue-600 text-blue-100">
 
     <button type="button" @click="openSidebar = !openSidebar" class=" absolute group top-4 right-0 hover:bg-blue-100 transition-colors translate-x-1/2 shadow-lg shadow-blue-200 focus:outline-none  p-1 bg-white rounded-sm" >
 

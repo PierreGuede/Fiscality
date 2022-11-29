@@ -17,17 +17,18 @@ class packMidlle
      */
     public function handle(Request $request, Closure $next)
     {
-        $pack=Subscription::where('user_id',auth()->user()->id)->first();
-        if ($pack != null) {
-            if ($pack->created_at->year == date('Y')) {
-                return $next($request);
-            }
-            else {
-                return redirect()->route('renew.pack');
-            }
-        }
-        else {
-            return null;
-        }
+        return $next($request);
+//        $pack=Subscription::where('user_id',auth()->user()->id)->first();
+//        if ($pack != null) {
+//            if ($pack->created_at->year == date('Y')) {
+//                return $next($request);
+//            }
+//            else {
+//                return redirect()->route('renew.pack');
+//            }
+//        }
+//        else {
+//            return null;
+//        }
     }
 }

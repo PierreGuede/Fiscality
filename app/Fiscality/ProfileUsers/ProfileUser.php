@@ -17,6 +17,7 @@ class ProfileUser extends Model
         'social_reason',
         'ifu',
         'ifu_file',
+        'celphone',
         'rccm',
         'rccm_file',
         'born_day',
@@ -25,6 +26,6 @@ class ProfileUser extends Model
 
     public function user()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class)    ;
     }
 }

@@ -17,15 +17,18 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth','email_verified', 'hasOneRole'])->name('dashboard');
-Route::middleware('auth')->group(function () {
+
+Route::middleware(['auth', 'email_verified'])->group(function () {
     Route::get('setup-account', [\App\Http\Controllers\UserController::class, 'enterprise'])->name('users.enterprise')->middleware('haveNotOneRole');
 
     Route::post('upload', [\App\Http\Controllers\UploadController::class, 'store']);
     Route::delete('upload', [\App\Http\Controllers\UploadController::class, 'delete']);
 });
+
 require __DIR__.'/auth.php';
 
 Route::post('company', [\App\Http\Controllers\CompanyController::class, 'store'])->name('company.store');
@@ -36,6 +39,7 @@ Route::middleware('auth', 'hasOneRole','hasPack','email_verified')->group(functi
     Route::view('about', 'about')->name('about');
     Route::middleware('hasOneRole')->group(function () {
         Route::get('company', [\App\Http\Controllers\CompanyController::class, 'index'])->name('company.index');
+        Route::get('company/set-other-information', [\App\Http\Controllers\CompanyController::class, 'setEntrepriseInformation'])->name('company.set_entreprise_information');
         Route::get('company/{id}', [\App\Http\Controllers\CompanyController::class, 'edit'])->name('company.edit');
         Route::get('company/downlad-ifu/{id}', [\App\Http\Controllers\CompanyController::class, 'downloadIfu'])->name('company.downladIFU');
         Route::get('company/downlad-rcccm/{id}', [\App\Http\Controllers\CompanyController::class, 'downloadRCCM'])->name('company.downladRCCM');

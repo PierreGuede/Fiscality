@@ -127,6 +127,7 @@ class MultiStepForm extends Component
 
     public function save()
     {
+
         $this->validate([
             'name' => ['required', 'string', 'max:255', 'unique:companies'],
             'rccm' => ['required', 'string', 'max:14', 'unique:companies'],
@@ -147,11 +148,11 @@ class MultiStepForm extends Component
             $company = Company::create([
                 'name' => $this->name,
                 'rccm' => $this->rccm,
-/*                 'path_rccm' => $RCCMRequest,
- */                'created_date' => $this->created_date,
+                'rccm_file' =>  '' ,//$RCCMRequest,
+                'created_date' => $this->created_date,
                 'ifu' => $this->ifu,
-/*                 'path' => $IFURequest,
- */                'email' => $this->email,
+                'ifu_file' => '', //$IFURequest,
+                'email' => $this->email,
                 'celphone' => $this->celphone,
                 'tax_center_id' => $this->tax_center_id,
                 'type_company_id' => $this->type_company_id,
@@ -166,6 +167,10 @@ class MultiStepForm extends Component
             DB::commit();
 
             notify()->success('Entreprise créée avec succès!');
+
+            if(auth()->user()->roles[0]->name == 'entreprise'){
+                return redirect()->route('tax-result', $company->id             );
+            }
 
             return redirect()->route('company.index');
         } catch (\Throwable $th) {

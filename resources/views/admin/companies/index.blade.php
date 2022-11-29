@@ -3,8 +3,10 @@
         <div class=" w-full flex justify-between">
             <h5 class="text-2xl font-semibold text-blue-900">Espace entreprise</h5>
 
+            @hasrole('cabinet')
             <x-form.button href="{{ route('company.enterprise') }}" primary outline right-icon="plus-circle"
                            label="Ajouter"/>
+            @endhasrole
         </div>
 
         <div class="mt-8 grid grid-cols-3 gap-4">

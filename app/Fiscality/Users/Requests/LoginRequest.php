@@ -28,7 +28,7 @@ class LoginRequest extends FormRequest
             'username' => ['required', 'string', 'regex:/\w*$/', 'max:255'],
             'email' => 'required|email',
             'remember' => 'boolean',
-            'password' => ['required', Password::min(6)],
+            'password' => ['required', Password::min(8)],
         ];
     }
 }
