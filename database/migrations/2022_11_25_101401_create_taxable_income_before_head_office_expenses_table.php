@@ -16,6 +16,7 @@ return new class extends Migration
         Schema::create('taxable_income_before_head_office_expenses', function (Blueprint $table) {
             $table->id();
             $table->decimal('total_amount', 15, 2);
+            $table->foreignIdFor(App\Fiscality\AccountingResults\AccountingResult::class)->nullable()->constrained();
             $table->timestamps();
         });
     }

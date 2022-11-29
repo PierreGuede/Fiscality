@@ -36,6 +36,10 @@
                         <span class="font-medium"> Affecter</span>
                     </x-dropdown.item>
 
+                    <x-dropdown.item @click="Livewire.emit('openModal', 'cabinet.users.desassign-company', {{ json_encode([$user->id]) }})" >
+                        <span class="font-medium"> désaffecter </span>
+                    </x-dropdown.item>
+
                     <x-dropdown.item @click="Livewire.emit('openModal', 'cabinet.users.delete-user', {{ json_encode([$user->id]) }})" >
                         <span class="font-medium" > Supprimer</span>
                     </x-dropdown.item>

@@ -59,13 +59,13 @@ class VehicleController extends Controller
     public function update(Company $company, $vehicle, Request $request)
     {
         $request->validate([
-            'name' => ['sometimes', 'required', 'string', 'max:255', Rule::unique('vehicless')->ignore($vehicle)],
-            'value' => ['sometimes', 'required', 'string', 'max:255', Rule::unique('vehicless')->ignore($vehicle)],
-            'plafond' => ['sometimes', 'required', 'string', 'max:255', Rule::unique('vehicless')->ignore($vehicle)],
-            'ecart' => ['sometimes', 'required', 'string', 'max:255', Rule::unique('vehicless')->ignore($vehicle)],
-            'dotation' => ['sometimes', 'required', 'string', 'max:255', Rule::unique('vehicless')->ignore($vehicle)],
-            'deductible_amortization' => ['sometimes', 'required', 'string', 'max:255', Rule::unique('vehicless')->ignore($vehicle)],
-            'date' => ['sometimes', 'required', 'string', 'max:255', Rule::unique('vehicless')->ignore($vehicle)],
+            'name' => ['sometimes', 'required', 'string', 'max:255'],
+            'value' => ['sometimes', 'required', 'string', 'max:255'],
+            'plafond' => ['sometimes', 'required', 'string', 'max:255'],
+            'ecart' => ['sometimes', 'required', 'string', 'max:255'],
+            'dotation' => ['sometimes', 'required', 'string', 'max:255'],
+            'deductible_amortization' => ['sometimes', 'required', 'string', 'max:255'],
+            'date' => ['sometimes', 'required', 'string', 'max:255'],
         ]);
         $update = Vehicle::find($vehicle);
         $update->update($request->all());
