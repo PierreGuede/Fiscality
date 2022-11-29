@@ -65,8 +65,14 @@ Route::middleware('auth', 'hasOneRole','hasPack','email_verified')->group(functi
 
         Route::get('work-in-enterprise/{company}/tax-result/amortization', [\App\Fiscality\AmortizationDetails\Controllers\AmortizationDetailsController::class, 'index'])->name('tax-result.reintegration.amortization');
         Route::get('work-in-enterprise/{company}/tax-result/amortization/tourism-cars', [\App\Http\Controllers\VehicleController::class, 'index'])->name('amortization.tourism-cars');
+        Route::get('work-in-enterprise/{company}/tax-result/amortization/tourism-cars/{vehicle}', [\App\Http\Controllers\VehicleController::class, 'edit'])->name('amortization.tourism-cars.edit');
+        Route::put('work-in-enterprise/{company}/tax-result/amortization/tourism-cars/{vehicle}', [\App\Http\Controllers\VehicleController::class, 'update'])->name('amortization.tourism-cars.update');
         Route::get('work-in-enterprise/{company}/tax-result/amortization/amortization-excess', [\App\Http\Controllers\ExcessController::class, 'index'])->name('amortization.amortization-excess');
+        Route::get('work-in-enterprise/{company}/tax-result/amortization/amortization-excess/{excess}', [\App\Http\Controllers\ExcessController::class, 'edit'])->name('amortization.amortization-excess.edit');
+        Route::put('work-in-enterprise/{company}/tax-result/amortization/amortization-excess/{excess}', [\App\Http\Controllers\ExcessController::class, 'update'])->name('amortization.amortization-excess.update');
         Route::get('work-in-enterprise/{company}/tax-result/amortization/depreciation-assets', [\App\Http\Controllers\DepreciationController::class, 'index'])->name('amortization.depreciation-assets');
+        Route::get('work-in-enterprise/{company}/tax-result/amortization/depreciation-assets/{depreciation}', [\App\Http\Controllers\DepreciationController::class, 'edit'])->name('amortization.depreciation-assets.edit');
+        Route::put('work-in-enterprise/{company}/tax-result/amortization/depreciation-assets/{depreciation}', [\App\Http\Controllers\DepreciationController::class, 'update'])->name('amortization.depreciation-assets.update');
 
         Route::get('work-in-enterprise/{company}/accured-charge', [\App\Http\Controllers\AccuredChargeController::class, 'index'])->name('tax-result.reintegration.accured-charge');
         Route::get('work-in-enterprise/{company}/accured-charge/provision', [\App\Http\Controllers\AccuredChargeController::class, 'provision'])->name('work.provision');

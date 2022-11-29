@@ -21,6 +21,25 @@ class CreateVehicle extends ModalComponent
         'date' => '',
     ];
 
+    protected $rules = [
+        'data.name' => 'required|string',
+        'data.value' => 'required|integer',
+        'data.plafond' => 'required|integer',
+        'data.dotation' => 'required|integer',
+        'data.date' => 'required|date|before_or_equal:today',
+    ];
+
+    protected $messages = [
+        'data.name.required' => 'champ obligatoire',
+        'data.account.distinct' => 'incohérent',
+        'data.name.required' => 'champ obligatoire',
+        'data.amount' => 'champ obligatoire',
+        'data.date.before_or_equal' => 'doit etre inférieur a la date actuelle',
+        'data.date.required' => 'champ requis',
+        'data.date.date' => 'le champs dois être une date',
+
+    ];
+
     public function mount(Company $company)
     {
         $this->company = $company;
@@ -38,6 +57,8 @@ class CreateVehicle extends ModalComponent
 
     public function save()
     {
+        $this->validate();
+
         $armortization = Amortization::create([]);
         try {
             $ecart = $this->data['value'] - $this->data['plafond'];

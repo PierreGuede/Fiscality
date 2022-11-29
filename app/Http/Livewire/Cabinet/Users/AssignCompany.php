@@ -5,6 +5,7 @@ namespace App\Http\Livewire\Cabinet\Users;
 use App\Fiscality\Companies\Company;
 use App\Fiscality\CompanyAccesControl\Repositories\CompanyAccesControlRepository;
 use App\Models\User;
+use DB;
 use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
@@ -17,7 +18,8 @@ class AssignCompany extends ModalComponent
 {
     public User $user;
     public $companies;
-
+    public $affected;
+    public $id_company=[];
     public $assign_companies;
 
     public string $name = '';
@@ -26,8 +28,12 @@ class AssignCompany extends ModalComponent
 
     public function mount(User $user)
     {
+        $this->affected=DB::table('company_user')->where('user_id',$user->id)->get();
+        foreach ($this->affected as $key => $value) {
+            array_push($this->id_company,$value->id);
+        }
         $this->user = $user;
-        $this->companies = Company::whereUserId(auth()->user()->id)->get();
+        $this->companies = Company::whereUserId(auth()->user()->id)->join('company_user','companies.id','=','company_user.company_id')->get();
         $this->fill([
             'name' => $user->name,
             'firstname' => $user->firstname,
@@ -43,7 +49,7 @@ class AssignCompany extends ModalComponent
     public function save()
     {
 
-        $this->user->personnel()->sync($this->assign_companies);
+        $this->user->personnel()->attach($this->assign_companies);
 
         $this->closeModal();
 
