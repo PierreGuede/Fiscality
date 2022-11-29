@@ -19,5 +19,5 @@
                 <x-button type="button" wire:click="changeState" >Modifier</x-button>
             </div>
         </div>
-    @endif
+    @endif 
 </div>
