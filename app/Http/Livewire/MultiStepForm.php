@@ -168,7 +168,7 @@ class MultiStepForm extends Component
 
             notify()->success('Entreprise créée avec succès!');
 
-            if(auth()->user()->roles[0]->name == 'entreprise'){
+            if(auth()->user()->roles[0]->name == 'enterprise'){
                 return redirect()->route('tax-result', $company->id             );
             }
 

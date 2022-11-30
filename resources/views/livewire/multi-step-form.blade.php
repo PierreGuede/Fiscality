@@ -1,10 +1,20 @@
 <div class="text-blue-900">
     <x-notifications position="top-left" />
     <div class="">
-        <div>
-            <h5 class="text-3xl font-bold">Créer une entreprise</h5>
-            <p class="text-xs font-light">Suivez les 4 étapes pour créer une nouvelle entreprise</p>
-        </div>
+        @hasrole('cabinet')
+            <div>
+                <h5 class="text-3xl font-bold">Créer une entreprise</h5>
+                <p class="text-xs font-light">Suivez les 4 étapes pour créer une nouvelle entreprise</p>
+            </div>
+        @endhasrole
+
+        @hasrole('enterprise')
+            <div>
+                <h5 class="text-3xl font-bold">Finaliser la création de votre compte</h5>
+{{--                <p class="text-xs font-light">Suivez les 4 étapes</p>--}}
+            </div>
+        @endhasrole
+
 
 
         <div class="mt-12 grid grid-cols-4 border-t-2 border-t-blue-300">
@@ -121,19 +131,19 @@
                         @if ($currentStep == \App\Http\Livewire\MultiStepForm::FOUTH_STEP)
                             <div class="  w-10/12 p-4">
                                     <div class="mt-4 ">
-                                        <x-label for="name" :value="__('Non de l\'entreprise')"/>
                                         <x-input type="text"
                                                  label="Raison sociale"
                                                  id="name"
                                                  wire:model="name" {{-- name="name" --}}
                                                  class="block w-full"
-                                                 value="{{ old('name') }}"
+                                                 value="{{ old('name')}}"
 
                                                  autofocus/>
                                     </div>
 
+
+
                                     <div class="mt-4">
-                                        <x-label for="email" :value="__('Email')"/>
                                         <x-input wire:model="email" label="Email"
                                         type="email"
                                                  class="block w-full"
@@ -148,6 +158,7 @@
                                         class="rounded-sm shadow-none border-gray-300"
                                         without-time="true"
                                         placeholder="Date de création"
+                                        max="{{ \Carbon\Carbon::now()  }}"
                                     />
                                 </div>
 
@@ -177,13 +188,7 @@
                                         class="block w-full"
                                         value="{{ old('celphone') }}"/>
                                     </div>
-{{--                                     <div class="mt-4 space-y-2">
-                                        <label for="path" class="text-sm text-gray-500">Justificatif IFU (facultatif)</label>
-                                        <x-input.filepond wire:model="path" x-ref="path"  data-max-files="1"  />
 
-                                        <label for="path_rccm" class="text-sm text-gray-500">Justificatif RCCM (facultatif)</label>
-                                        <x-input.filepond wire:model="path_rccm" x-ref="path_rccm"  data-max-files="1"  />
-                                    </div> --}}
                                 </div>
                         @endif
                         {{-- les buttons --}}

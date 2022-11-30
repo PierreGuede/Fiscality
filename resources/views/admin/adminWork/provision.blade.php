@@ -1,7 +1,7 @@
 <x-company-layout :company="$company" >
-    <div class="bg-white rounded-md w-10/12 mx-auto p-4">
-        <h1 class="text-xl">Provisions sur charge personnel :</h1>
+        <h5 class="text-2xl uppercase  font-semibold text-slate-700">Provisions sur charge personnel </h5>
 
+{{--    <div class="bg-white rounded-md w-10/12 mx-auto p-4">--}}
         <livewire:provision-livewire :company='$company'>
-    </div>
+{{--    </div>--}}
 </x-company-layout>

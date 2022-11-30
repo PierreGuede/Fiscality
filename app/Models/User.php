@@ -73,6 +73,14 @@ class User extends Authenticatable implements MustVerifyEmail
     }
 
     /**
+     * If the user is an enterprise, return the company. If the user is a cabinet, return the companies
+     */
+    public function userSetting()
+    {
+        return $this->hasOne(UserSetting::class);
+    }
+
+    /**
      *
      */
     public function getWorkspaceCompany()

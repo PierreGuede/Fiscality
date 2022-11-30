@@ -31,7 +31,7 @@
         <div class="mt-3 flex w-full flex-col items-center border-t border-blue-300">
 
             <div x-data="{ expanded: false }" class="p-2  rounded-md w-full text-sm  mt-4 " x-cloak>
-                <a href=" {{ route('tax-result.account-result', $company->id)  }}" @click="expanded = !expanded"
+                <a href=" {{ route('tax-result', $company->id)  }}" @click="expanded = !expanded"
                    type="button"
                    class="mt-2 flex h-10 w-full items-center rounded px-3 justify-between  focus:outline-none hover:bg-blue-500 ">
                     <span>Résultat Fiscale</span>
@@ -45,7 +45,7 @@
                 </a>
 
 
-                <div x-show=" {{ request()->routeIs('tax-result.*') or  request()->routeIs('work.*')  }} "
+                <div x-show=" {{ request()->routeIs('tax-result') or  request()->routeIs('tax-result.*') or  request()->routeIs('work.*')  }} "
                      class="relative pl-6  " x-collapse>
                     <div class="absolute h-full w-px bg-blue-400  left-[12px]  "></div>
 
@@ -69,7 +69,7 @@
                         </button>
 
 
-                        <div x-show=" child_expanded " class="relative pl-6  " x-collapse>
+                        <div x-show="  child_expanded " class="relative pl-6  " x-collapse>
                             <div class="absolute h-full w-px bg-blue-400  left-[12px]  "></div>
 
                             <x-nav-link label="Amortissement"
@@ -100,55 +100,17 @@
 
             </div>
 
-            <a href="{{ route('head-office-costs', $company->id)  }}" :class="!openSidebar && 'justify-center'"
-               class=" group relative mt-2 flex h-12 w-full items-center rounded px-3 hover:bg-blue-700" href="#">
-                <svg class="h-6 w-6 stroke-current shrink-0" xmlns="http://www.w3.org/2000/svg" fill="none"
-                     viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                          d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/>
-                </svg>
-                <span x-show="openSidebar"
-                      class="ml-2 text-sm font-medium transition-all line-clamp-1 ">Frais de siège </span>
+            <x-app-sidebar.nav-link  label="Frais de siège" href="{{ route('head-office-costs', $company->id)  }}"  icon="office-building" />
+            <x-app-sidebar.nav-link  label="Document" href="{{ route('company.index') }}"  icon="office-building" />
+            <x-app-sidebar.nav-link label="Paramètre" href="{{ route('user.setting') }}"  icon="cog" />
 
-                <div
-                    class="absolute scale-0 group-hover:scale-100 transition-all duration-300 -right-full translate-x-8 w-full bg-gray-700 text-white text-sm py-1.5 px-2.5 rounded-md ">
-                    <div class="relative ">
-
-                        <p>Frais de siège</p>
-
-                        <span
-                            class=" absolute top-1/2 -translate-y-1/2 -translate-x-1/2 -left-6  bg-gray-700 rounded-full w-3 h-3 block rotate-90 origin-center  ">  </span>
-                    </div>
-                </div>
-            </a>
-
-            <a :class="!openSidebar && 'justify-center'"
-               class=" group relative mt-2 flex h-12 w-full items-center rounded px-3 hover:bg-blue-700" href="#">
-                <svg class="h-6 w-6 stroke-current shrink-0" xmlns="http://www.w3.org/2000/svg" fill="none"
-                     viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                          d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/>
-                </svg>
-                <span x-show="openSidebar" class="ml-2 text-sm font-medium transition-all line-clamp-1 ">Document</span>
-
-                <div
-                    class="absolute scale-0 group-hover:scale-100 transition-all duration-300 -right-full translate-x-8 w-full bg-gray-700 text-white text-sm py-1.5 px-2.5 rounded-md ">
-                    <div class="relative ">
-
-                        <p>Documents</p>
-
-                        <span
-                            class=" absolute top-1/2 -translate-y-1/2 -translate-x-1/2 -left-6  bg-gray-700 rounded-full w-3 h-3 block rotate-90 origin-center  ">  </span>
-                    </div>
-                </div>
-            </a>
 
         </div>
 
         {{--        Espace de travail--}}
-        @unlessrole('entreprise')
-            <span></span>
-        @else
+{{--        @unlessrole('entreprise')--}}
+{{--            <span></span>--}}
+{{--        @else--}}
         <p class="text-xs font-medium uppercase mt-6 mb-2">Espace de travail</p>
         <div class=" border-t border-blue-300">
             <div x-data="{ expanded: false }" class="w-full">
@@ -191,7 +153,7 @@
 
             </div>
         </div>
-    @endunlessrole
+{{--    @endunlessrole--}}
 
     </div>
 
@@ -209,8 +171,12 @@
 
     <div x-show="openDropdown" class=" absolute -top-[180%] left-0 ml-2 w-[90%] bg-blue-100 p-2 rounded-sm"
          x-transition.scale>
+
         <button class=" w-full text-left p-2 text-slate-700 hover:bg-blue-50">Profile</button>
-        <button class=" w-full text-left p-2 text-slate-700 hover:bg-blue-50">Déconnexion</button>
+        <form method="POST" action="{{ route('logout')  }}">
+            @csrf
+            <a href="{{ route('logout')  }}" onclick="event.preventDefault();this.closest('form').submit()"  class=" block w-full text-left p-2 text-slate-700 hover:bg-blue-50">Déconnexion</a>
+        </form>
     </div>
 
 </div>

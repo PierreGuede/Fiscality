@@ -18,7 +18,7 @@
     @notifyCss
     <!-- Scripts -->
     @wireUiScripts
-    
+
     <script src="{{ asset('js/init-alpine.js') }}" defer></script>
 </head>
 
@@ -31,7 +31,7 @@
             <x-sidebar :company="$company" />
     </div>
 
-    <div class="p-6 overflow-y-auto w-full  ">
+    <div class=" content p-6 overflow-y-auto w-full ">
         {{ $slot }}
     </div>
 </div>
@@ -41,6 +41,10 @@
 
 @livewire('livewire-ui-modal')
 @livewireScripts
+<script src="https://cdn.jsdelivr.net/gh/livewire/turbolinks@v0.1.x/dist/livewire-turbolinks.js" data-turbolinks-eval="false"></script>
+{{--UnpolyJS--}}
+
+{{--Filepond--}}
 <script src="https://unpkg.com/filepond@^4/dist/filepond.js"></script>
 <script src="https://unpkg.com/filepond-plugin-file-validate-size/dist/filepond-plugin-file-validate-size.js"></script>
 <script src="https://unpkg.com/filepond-plugin-file-validate-type/dist/filepond-plugin-file-validate-type.js"></script>

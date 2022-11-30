@@ -1,7 +1,7 @@
 <div  >
 
-    @if ($account_result!=null)
         @livewire('total-card', ['total' => $total])
+    @if ($account_result!=null)
         @else
     <div class="mb-6">
             <select wire:model="state"

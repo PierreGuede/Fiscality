@@ -22,7 +22,7 @@
             </div>
 
             <div class=" grid grid-cols-12 space-x-4   ">
-                <p class="col-span-7 my-auto px-2">Produits financier </p>
+                <p class="col-span-7 my-auto px-2">Produits financiers </p>
                 <div class="col-span-4 ">
                     <x-input :disabled="true" step="any" type="number" label="" id="username" name="username"
                              wire:model.defer="" x-bind:value="{{ $total_financial_product  }}" class="w-full "
@@ -46,7 +46,7 @@
             </div>
 
             <div class=" grid grid-cols-12 space-x-4   ">
-                <p class="col-span-7 my-auto px-2">Plus-valu sur cessions à réintégrer</p>
+                <p class="col-span-7 my-auto px-2">Plus-value sur cessions à réintégrer</p>
                 <div class="col-span-4 ">
                     <x-input step="any" type="number" label="" id="capital_gain" name="capital_gain"
                              wire:model.defer="capital_gain" value="{{ old('capital_gain') }}" class="w-full " required

@@ -1,6 +1,4 @@
 <main x-data="{ step: @entangle('step') }" x-init="step = 1" >
-    <p class="text-2xl font-semibold" x-text="@js($step)" ></p>
-
     <div class="mx-auto my-6 max-w-screen-lg">
         <div class="flex gap-x-6">
             <div class="flex items-center gap-x-2">

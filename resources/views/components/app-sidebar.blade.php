@@ -29,8 +29,9 @@
             <x-app-sidebar.nav-link  label="Entreprises" href="{{ route('company.index') }}"  icon="office-building" />
             @hasanyrole('cabinet')
                 <x-app-sidebar.nav-link label="Utilisateur" href="{{ route('users.index') }}"  icon="user" />
-                <x-app-sidebar.nav-link label="Role & permission" href="{{ route('role.index') }}"  icon="user" />
+                <x-app-sidebar.nav-link label="Role & permission" href="{{ route('role.index') }}"  icon="adjustments" />
                 <x-app-sidebar.nav-link label="Droit d'accès" href="{{ route('role.index') }}"  icon="user" />
+                <x-app-sidebar.nav-link label="Paramètre" href="{{ route('user.setting') }}"  icon="cog" />
             @endhasanyrole
         </div>
     </div>

@@ -8,7 +8,7 @@
         ]) !!}
             placeholder="{{ $label  }}" />
         <label for="{{ $name }}"
-            class="absolute left-3 px-2 -top-2.5 text-gray-600 text-xs bg-white transition-all peer-placeholder-shown:text-sm peer-placeholder-shown:text-gray-400 peer-placeholder-shown:top-2.5 peer-focus:-top-2.5 peer-focus:text-gray-600 peer-focus:text-xs">
+            class="absolute left-3 px-2 line-clamp-1 -top-2.5 text-gray-600 text-xs bg-white transition-all peer-placeholder-shown:text-sm peer-placeholder-shown:text-gray-400 peer-placeholder-shown:top-2.5 peer-focus:-top-2.5 peer-focus:text-gray-600 peer-focus:text-xs">
             {{ $label  }}
            </label>
     </div>

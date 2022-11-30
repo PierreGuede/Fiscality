@@ -5,6 +5,7 @@ namespace App\Http\Livewire\SetupAccount;
 use App\Fiscality\Packs\Pack;
 use App\Fiscality\ProfileUsers\ProfileUser;
 use App\Models\Subscription;
+use Illuminate\Support\Facades\DB;
 use Livewire\Component;
 use Livewire\WithFileUploads;
 
@@ -85,6 +86,7 @@ class IndexSetupAccount extends Component
 
     public function save($ref_payement = '')
     {
+
 //        $this->validate();
 
 //        dd([
@@ -107,6 +109,10 @@ class IndexSetupAccount extends Component
         $ifu_file_path = $this->ifu_file->storeAs('IFU', $ifu_filename, 'public');
         $rccm_file_path = $this->rccm_file->storeAs('RCCM', $rccm_filename, 'public');
 
+        try {
+
+            DB::beginTransaction();
+
         ProfileUser::create([
             'social_reason'=> $this->social_reason,
             'ifu' => $this->ifu,
@@ -125,14 +131,20 @@ class IndexSetupAccount extends Component
         ]);
 
         if ($this->management_type) {
-            $user->assignRole($this->management_type);
+           $user->assignRole($this->management_type);
         }
 
-        if($this->management_type == 'entreprise') {
-            return redirect()->route('tax-result', [$this->company->id]);
+        DB::commit();
 
-        }
+            if($this->management_type == 'enterprise') {
+                return redirect()->route('company.enterprise');
+            }
 
         return redirect()->route('company.index');
+
+        } catch (\Throwable $th) {
+            DB::rollBack();
+            throw $th;
+        }
     }
 }

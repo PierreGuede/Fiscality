@@ -28,8 +28,6 @@ class AccuredChargeController extends Controller
     {
         $cahrgesCompany = AccuredChargeCompany::where('type', 'provision')->where('company_id', $company->id)->where('date', date('Y'))->first();
         if ($cahrgesCompany == null) {
-            notify()->success('Provision ont été ajouté avec succès !');
-
             return view('admin.adminWork.provision', compact('company'));
         } else {
             notify()->error('Vous avez deja créé un cette année');
@@ -42,7 +40,7 @@ class AccuredChargeController extends Controller
     {
         $cahrgesCompany = AccuredChargeCompany::where('type', AccuredChargeCompany::EXPENSE_PROVISIONED)->whereCompanyId($company->id)->whereYear('created_at', Carbon::now()->year)->first();
         if ($cahrgesCompany == null) {
-            notify()->success('Provision ont été ajouté avec succès !');
+//            notify()->success('Provision ont été ajouté avec succès !');
 
             return view('admin.adminWork.expenseProvisioned', compact('company'));
         } else {

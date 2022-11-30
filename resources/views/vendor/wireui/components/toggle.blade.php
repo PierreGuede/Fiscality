@@ -1,3 +1,5 @@
+{{--@props(['active' => false])--}}
+
 <div>
     <div class="flex items-center">
         @if ($leftLabel)
