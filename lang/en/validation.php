@@ -31,7 +31,7 @@ return [
         'string' => 'The :attribute must be between :min and :max characters.',
     ],
     'boolean' => 'The :attribute field must be true or false.',
-    'confirmed' => "Le champ de confirmation :attribute ne correspond pas.",
+    'confirmed' => 'Le champ de confirmation :attribute ne correspond pas.',
     'current_password' => 'The password is incorrect.',
     'date' => 'The :attribute is not a valid date.',
     'date_equals' => 'The :attribute must be a date equal to :date.',

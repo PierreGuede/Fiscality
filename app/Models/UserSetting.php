@@ -13,6 +13,6 @@ class UserSetting extends Model
         'email_notification',
         'sms_notification',
         'whatsapp_notification',
-        'user_id'
+        'user_id',
     ];
 }

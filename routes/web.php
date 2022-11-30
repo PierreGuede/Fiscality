@@ -17,7 +17,6 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'email_verified', 'hasOneRole'])->name('dashboard');
@@ -29,7 +28,7 @@ Route::middleware(['auth', 'email_verified'])->group(function () {
     Route::delete('upload', [\App\Http\Controllers\UploadController::class, 'delete']);
 });
 
-require __DIR__ . '/auth.php';
+require __DIR__.'/auth.php';
 
 Route::post('company', [\App\Http\Controllers\CompanyController::class, 'store'])->name('company.store');
 Route::middleware('auth', 'pack', 'email_verified')->group(function () {
@@ -83,8 +82,7 @@ Route::middleware('auth', 'hasOneRole', 'hasPack', 'email_verified')->group(func
         Route::get('workspace/company/{company}/head-office-costs', [\App\Http\Controllers\HeadOfficeCostController::class, 'index'])->name('head-office-costs');
         Route::get('workspace/company/{company}/total-tax-result', [App\Http\Controllers\TaxResultController::class, 'totalTaxableIncomeBeforeHeadOfficeExpenses'])->name('taxt-result.totaltotalTaxableIncomeBeforeHeadOfficeExpenses');
 
-        Route::get('workspace/company/{company}/setting', [\App\Http\Controllers\CompanySettingController::class, 'index'])->name('taxt-result.');
-
+        Route::get('workspace/company/{company}/setting', [\App\Http\Controllers\CompanySettingController::class, 'index'])->name('company.setting');
     });
     Route::get('users', [\App\Http\Controllers\UserController::class, 'index'])->name('users.index');
     Route::post('users', [\App\Http\Controllers\UserController::class, 'store'])->name('users.store');
@@ -102,9 +100,6 @@ Route::middleware('auth', 'hasOneRole', 'hasPack', 'email_verified')->group(func
     Route::post('user/setting/change-password', [\App\Http\Controllers\UserSettingController::class, 'storeChangePassword'])->name('user.setting.change-password');
     Route::get('user/setting/notification', [\App\Http\Controllers\UserSettingController::class, 'notification'])->name('user.setting.notification');
     Route::post('user/setting/notification', [\App\Http\Controllers\UserSettingController::class, 'storeNotification'])->name('user.setting.notification');
-
-
-
 });
 Route::middleware('auth', 'role:Super-Admin|cabinet|enterprise')->group(function () {
     Route::get('role', [\App\Http\Controllers\RoleController::class, 'index'])->name('role.index');

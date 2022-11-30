@@ -12,7 +12,8 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Pack extends Model
 {
-    public const CABINET="cabinet";
+    public const CABINET = 'cabinet';
+
     use HasFactory;
 
     protected $fillable = [

@@ -8,6 +8,8 @@ use App\Fiscality\Domains\Domain;
 use App\Fiscality\PrincipalActivities\PrincipalActivity;
 use App\Fiscality\TaxCenters\TaxCenter;
 use App\Fiscality\TypeCompanies\TypeCompany;
+use App\Fiscality\TypeImpots\TypeImpot;
+use App\Models\TypeCompanyTypeImpot;
 use Illuminate\Support\Facades\DB;
 use Livewire\Component;
 use Livewire\WithFileUploads;
@@ -127,28 +129,27 @@ class MultiStepForm extends Component
 
     public function save()
     {
-
-        $this->validate([
-            'name' => ['required', 'string', 'max:255', 'unique:companies'],
-            'rccm' => ['required', 'string', 'max:14', 'unique:companies'],
-            'created_date' => ['required', 'date'],
-            'ifu' => ['required', 'integer', 'digits:13', 'unique:companies'],
-            'email' => ['required', 'string', 'max:255', 'unique:companies'],
-            'celphone' => ['required', 'max:255', 'unique:companies'],
-        ]);
-/*         $ifuFile = 'IFU_DU_'.time().'.'.$this->path->getClientOriginalName();
-        $rccmFile = 'RCCM_DU_'.time().'.'.$this->path_rccm->getClientOriginalName();
- */
-/*         $IFURequest = $this->path->storeAs('IFU', $ifuFile, 'public');
-        $RCCMRequest = $this->path_rccm->storeAs('RCCM', $rccmFile, 'public');
- */
+//        $this->validate([
+//            'name' => ['required', 'string', 'max:255', 'unique:companies'],
+//            'rccm' => ['required', 'string', 'max:14', 'unique:companies'],
+//            'created_date' => ['required', 'date'],
+//            'ifu' => ['required', 'integer', 'digits:13', 'unique:companies'],
+//            'email' => ['required', 'string', 'max:255', 'unique:companies'],
+//            'celphone' => ['required', 'max:255', 'unique:companies'],
+//        ]);
+        /*         $ifuFile = 'IFU_DU_'.time().'.'.$this->path->getClientOriginalName();
+                $rccmFile = 'RCCM_DU_'.time().'.'.$this->path_rccm->getClientOriginalName();
+         */
+        /*         $IFURequest = $this->path->storeAs('IFU', $ifuFile, 'public');
+                $RCCMRequest = $this->path_rccm->storeAs('RCCM', $rccmFile, 'public');
+         */
         try {
             DB::beginTransaction();
 
             $company = Company::create([
                 'name' => $this->name,
                 'rccm' => $this->rccm,
-                'rccm_file' =>  '' ,//$RCCMRequest,
+                'rccm_file' => '', //$RCCMRequest,
                 'created_date' => $this->created_date,
                 'ifu' => $this->ifu,
                 'ifu_file' => '', //$IFURequest,
@@ -164,12 +165,20 @@ class MultiStepForm extends Component
                 $company->detailType()->attach($value);
             }
 
+//            $type_impot = TypeImpot::where
+//
+//            $res = TypeCompanyTypeImpot::create([
+//               'type_company_id' => 2,
+//               'type_impot_id' => 2,
+//               'company_id' => $company->id
+//           ]);
+
             DB::commit();
 
             notify()->success('Entreprise créée avec succès!');
 
-            if(auth()->user()->roles[0]->name == 'enterprise'){
-                return redirect()->route('tax-result', $company->id             );
+            if (auth()->user()->roles[0]->name == 'enterprise') {
+                return redirect()->route('tax-result', $company->id);
             }
 
             return redirect()->route('company.index');

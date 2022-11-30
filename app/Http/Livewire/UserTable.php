@@ -3,11 +3,18 @@
 namespace App\Http\Livewire;
 
 use App\Models\User;
-use Illuminate\Support\Carbon;
 use Illuminate\Database\Eloquent\Builder;
-use PowerComponents\LivewirePowerGrid\Rules\{Rule, RuleActions};
+use PowerComponents\LivewirePowerGrid\Button;
+use PowerComponents\LivewirePowerGrid\Column;
+use PowerComponents\LivewirePowerGrid\Exportable;
+use PowerComponents\LivewirePowerGrid\Footer;
+use PowerComponents\LivewirePowerGrid\Header;
+use PowerComponents\LivewirePowerGrid\PowerGrid;
+use PowerComponents\LivewirePowerGrid\PowerGridComponent;
+use PowerComponents\LivewirePowerGrid\PowerGridEloquent;
+use PowerComponents\LivewirePowerGrid\Rules\Rule;
+use PowerComponents\LivewirePowerGrid\Rules\RuleActions;
 use PowerComponents\LivewirePowerGrid\Traits\ActionButton;
-use PowerComponents\LivewirePowerGrid\{Button, Column, Exportable, Footer, Header, PowerGrid, PowerGridComponent, PowerGridEloquent};
 
 final class UserTable extends PowerGridComponent
 {
@@ -15,7 +22,7 @@ final class UserTable extends PowerGridComponent
 
     public $saveOnMouseOut;
 
-    public  $name;
+    public $name;
 
     protected array $rules = [
         'name.*' => ['required', 'min:6'],
@@ -33,10 +40,10 @@ final class UserTable extends PowerGridComponent
         $this->showCheckBox();
 
         return [
-//            Exportable::make('export')
-//                ->striped()
-//                ->type(Exportable::TYPE_XLS, Exportable::TYPE_CSV),
-////            Header::make()->showSearchInput(),
+            //            Exportable::make('export')
+            //                ->striped()
+            //                ->type(Exportable::TYPE_XLS, Exportable::TYPE_CSV),
+            ////            Header::make()->showSearchInput(),
             Footer::make()
                 ->showPerPage()
                 ->showRecordCount(),
@@ -52,19 +59,18 @@ final class UserTable extends PowerGridComponent
     */
 
     /**
-    * PowerGrid datasource.
-    *
-    * @return Builder<\App\Models\User>
-    */
+     * PowerGrid datasource.
+     *
+     * @return Builder<\App\Models\User>
+     */
     public function datasource(): Builder
     {
         return User::whereUserId(auth()->user()->id);
     }
 
-
-
     /**
      * Method pour update les valeurs
+     *
      * @param $id
      * @param $field
      * @param $value
@@ -74,7 +80,7 @@ final class UserTable extends PowerGridComponent
     {
         dd($value);
         User::query()->find($id)->update([
-                $field => $value,
+            $field => $value,
         ]);
     }
 
@@ -113,7 +119,7 @@ final class UserTable extends PowerGridComponent
             ->addColumn('id')
             ->addColumn('name')
 
-           /** Example of custom column using a closure **/
+            /** Example of custom column using a closure **/
 //            ->addColumn('name_lower', function (User $model) {
 //                return strtolower(e($model->name));
 //            })
@@ -121,7 +127,7 @@ final class UserTable extends PowerGridComponent
             ->addColumn('firstname')
             ->addColumn('username')
             ->addColumn('email')
-            ->addColumn('action', function (User $model){
+            ->addColumn('action', function (User $model) {
                 return <<<'blade'
                         <x-dropdown>
                             <x-slot name="trigger">
@@ -145,7 +151,7 @@ final class UserTable extends PowerGridComponent
     |
     */
 
-     /**
+    /**
      * PowerGrid Columns.
      *
      * @return array<int, Column>
@@ -153,13 +159,13 @@ final class UserTable extends PowerGridComponent
     public function columns(): array
     {
         return [
-//            Column::make('ID', 'id')
-//                ->makeInputRange(),
+            //            Column::make('ID', 'id')
+            //                ->makeInputRange(),
 
             Column::make('Nom', 'name')
                 ->sortable()
-//                ->searchable()
-//                ->makeInputText()
+            //                ->searchable()
+            //                ->makeInputText()
             ,
 
             Column::make('Prénom', 'firstname')
@@ -167,25 +173,22 @@ final class UserTable extends PowerGridComponent
 
             Column::make('Identifiant', 'username')
                 ->sortable()
-//                ->searchable()
-//                ->makeInputText()
+            //                ->searchable()
+            //                ->makeInputText()
             ,
 
             Column::make('Email', 'email')
                 ->sortable()
-//                ->searchable()
-//                ->makeInputText()
+            //                ->searchable()
+            //                ->makeInputText()
             ,
-            Column::add()->title('Actions')->field('action')
+            Column::add()->title('Actions')->field('action'),
 
-//            Column::make('USER ID', 'user_id')
-//                ->makeInputRange(),
+            //            Column::make('USER ID', 'user_id')
+            //                ->makeInputRange(),
 
-        ]
-;
+        ];
     }
-
-
 
     /*
     |--------------------------------------------------------------------------
@@ -201,7 +204,6 @@ final class UserTable extends PowerGridComponent
      * @return array<int, Button>
      */
 
-
 //    public function actions(): array
 //    {
 //       return [
@@ -215,7 +217,6 @@ final class UserTable extends PowerGridComponent
 //
 //        ];
 //    }
-
 
     /*
     |--------------------------------------------------------------------------

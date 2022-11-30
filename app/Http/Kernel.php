@@ -60,7 +60,7 @@ class Kernel extends HttpKernel
         'can' => \Illuminate\Auth\Middleware\Authorize::class,
         'guest' => \App\Http\Middleware\RedirectIfAuthenticated::class,
         'password.confirm' => \Illuminate\Auth\Middleware\RequirePassword::class,
-        'email_verified'=> \App\Http\Middleware\EmailVerifyMiddleware::class,
+        'email_verified' => \App\Http\Middleware\EmailVerifyMiddleware::class,
         'signed' => \App\Http\Middleware\ValidateSignature::class,
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
@@ -71,6 +71,6 @@ class Kernel extends HttpKernel
         'haveNotOneRole' => \App\Http\Middleware\HaveNotOneRoleMiddleware::class,
         'IsBlocked' => \App\Http\Middleware\IfIsBloquedMiddleware::class,
         'hasPack' => \App\Http\Middleware\packMidlle::class,
-        'subscription'=> \App\Http\Middleware\SubscriptionMiddleware::class,
+        'subscription' => \App\Http\Middleware\SubscriptionMiddleware::class,
     ];
 }

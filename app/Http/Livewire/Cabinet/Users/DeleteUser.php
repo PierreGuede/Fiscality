@@ -3,12 +3,10 @@
 namespace App\Http\Livewire\Cabinet\Users;
 
 use App\Models\User;
-use Livewire\Component;
 use LivewireUI\Modal\ModalComponent;
 
 class DeleteUser extends ModalComponent
 {
-
     public User $user;
 
     public function mount(User $user)
@@ -19,7 +17,6 @@ class DeleteUser extends ModalComponent
     {
         return view('livewire.cabinet.users.delete-user');
     }
-
 
     public function delete()
     {

@@ -4,10 +4,12 @@ namespace App\Fiscality\DetailTypes;
 
 use App\Fiscality\Bases\Base;
 use App\Fiscality\Categories\Category;
+use App\Fiscality\Companies\Company;
 use App\Fiscality\TypeImpots\TypeImpot;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Support\Str;
 
 /**
@@ -35,12 +37,17 @@ class DetailType extends Model
     //     $this->typeImpot=$typeImpot;
     // }
 
+    public function company(): HasMany
+    {
+        return $this->hasMany(Company::class);
+    }
+
     public function category(): BelongsTo
     {
         return $this->belongsTo(Category::class);
     }
 
-    public function base(): BelongsTo
+        public function base(): BelongsTo
     {
         return $this->belongsTo(Base::class);
     }

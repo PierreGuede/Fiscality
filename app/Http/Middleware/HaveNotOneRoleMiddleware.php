@@ -17,7 +17,7 @@ class HaveNotOneRoleMiddleware
     public function handle(Request $request, Closure $next)
     {
         $user = request()->user();
-       $role= \DB::table('model_has_roles')->where('model_id',$user->id)->first();
+        $role = \DB::table('model_has_roles')->where('model_id', $user->id)->first();
         if ($role == null) {
             return $next($request);
         } else {

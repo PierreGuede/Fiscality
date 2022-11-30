@@ -32,7 +32,7 @@ class User extends Authenticatable implements MustVerifyEmail
         'email',
         'password',
         'user_id',
-        'email_verified_at'
+        'email_verified_at',
     ];
 
     /**
@@ -61,7 +61,7 @@ class User extends Authenticatable implements MustVerifyEmail
 
     public function createdBy()
     {
-        return $this->belongsTo(User::class,'user_id');
+        return $this->belongsTo(User::class, 'user_id');
     }
 
     /**
@@ -80,9 +80,6 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->hasOne(UserSetting::class);
     }
 
-    /**
-     *
-     */
     public function getWorkspaceCompany()
     {
         return $this->belongsToMany(Company::class);

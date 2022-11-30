@@ -8,11 +8,9 @@ use App\Fiscality\Domains\Domain;
 use App\Fiscality\TypeCompanies\TypeCompany;
 use App\Http\Requests\StoreUserRequest;
 use App\Models\User;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
-use Illuminate\Validation\Rules;
 use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Models\Role;
 
@@ -47,13 +45,12 @@ class UserController extends Controller
                 $user->personnel()->sync($value);
             }
             DB::commit();
-            return redirect()->route('users.index');
 
-        } catch (\Throwable $th){
+            return redirect()->route('users.index');
+        } catch (\Throwable $th) {
             DB::rollBack();
             throw $th;
         }
-
     }
 
     public function enterprise()

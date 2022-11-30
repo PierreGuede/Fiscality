@@ -9,7 +9,6 @@ use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Str;
 use Illuminate\Validation\Rules;
 
 class RegisteredUserController extends Controller
@@ -53,7 +52,6 @@ class RegisteredUserController extends Controller
         event(new Registered($user));
         \Mail::to($request->email)->send(new SendUserCredential($user->name, $user->username, $user->email, $request->password));
 
-
 //        Auth::login($user);
 
         return redirect()->route('users.enterprise');
@@ -67,12 +65,11 @@ class RegisteredUserController extends Controller
         for ($i = 0; $i < $n; $i++) {
             $index = rand(0, strlen($characters) - 1);
             $randomString .= $characters[$index];
-            if($i == 3  ){
+            if ($i == 3) {
                 $randomString .= '-';
             }
         }
 
         return $randomString;
     }
-
 }

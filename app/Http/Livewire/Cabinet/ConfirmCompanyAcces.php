@@ -17,7 +17,6 @@ class ConfirmCompanyAcces extends ModalComponent
 
     public function mount(Company $company)
     {
-
         $this->fill([
             'company' => $company,
             'company_name' => '',
@@ -37,15 +36,15 @@ class ConfirmCompanyAcces extends ModalComponent
     }
 
         public function confirmAcces()
-    {
-        $companyAccesControlRepository = new CompanyAccesControlRepository();
+        {
+            $companyAccesControlRepository = new CompanyAccesControlRepository();
 
-        notify()->success('Bienvenue dans votre espace de travail');
-        if (strcmp($this->company_name, $this->company->name) == 0) {
+            notify()->success('Bienvenue dans votre espace de travail');
+            if (strcmp($this->company_name, $this->company->name) == 0) {
                 $companyAccesControlRepository->disconected();
-            $companyAccesControlRepository->connected($this->company->id);
-            return redirect()->route('tax-result', [$this->company->id]);
+                $companyAccesControlRepository->connected($this->company->id);
 
+                return redirect()->route('tax-result', [$this->company->id]);
+            }
         }
-    }
 }

@@ -18,11 +18,12 @@ class IndexSetupAccount extends Component
     public $step = 1;
 
     public $social_reason;
+
     public $ifu;
 
     public $rccm;
 
-    public $celphone = '' ;
+    public $celphone = '';
 
     public $ifu_file;
 
@@ -86,7 +87,6 @@ class IndexSetupAccount extends Component
 
     public function save($ref_payement = '')
     {
-
 //        $this->validate();
 
 //        dd([
@@ -110,38 +110,36 @@ class IndexSetupAccount extends Component
         $rccm_file_path = $this->rccm_file->storeAs('RCCM', $rccm_filename, 'public');
 
         try {
-
             DB::beginTransaction();
 
-        ProfileUser::create([
-            'social_reason'=> $this->social_reason,
-            'ifu' => $this->ifu,
-            'ifu_file' => $ifu_file_path,
-            'rccm' => $this->rccm,
-            'celphone' => $this->celphone,
-            'rccm_file' => $rccm_file_path,
-            'born_day' => $this->normal_picker,
-            'user_id' => $user->id,
-        ]);
+            ProfileUser::create([
+                'social_reason' => $this->social_reason,
+                'ifu' => $this->ifu,
+                'ifu_file' => $ifu_file_path,
+                'rccm' => $this->rccm,
+                'celphone' => $this->celphone,
+                'rccm_file' => $rccm_file_path,
+                'born_day' => $this->normal_picker,
+                'user_id' => $user->id,
+            ]);
 
-        Subscription::create([
-            'pack_id' => $getPack->id,
-            'user_id' => $user->id,
-            'ref_payment' => $ref_payement,
-        ]);
+            Subscription::create([
+                'pack_id' => $getPack->id,
+                'user_id' => $user->id,
+                'ref_payment' => $ref_payement,
+            ]);
 
-        if ($this->management_type) {
-           $user->assignRole($this->management_type);
-        }
+            if ($this->management_type) {
+                $user->assignRole($this->management_type);
+            }
 
-        DB::commit();
+            DB::commit();
 
-            if($this->management_type == 'enterprise') {
+            if ($this->management_type == 'enterprise') {
                 return redirect()->route('company.enterprise');
             }
 
-        return redirect()->route('company.index');
-
+            return redirect()->route('company.index');
         } catch (\Throwable $th) {
             DB::rollBack();
             throw $th;

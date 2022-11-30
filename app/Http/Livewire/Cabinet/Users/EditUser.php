@@ -2,23 +2,18 @@
 
 namespace App\Http\Livewire\Cabinet\Users;
 
-use App\Fiscality\Companies\Company;
-use App\Fiscality\CompanyAccesControl\Repositories\CompanyAccesControlRepository;
 use App\Models\User;
-use Illuminate\Validation\Rule;
-use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
-use Illuminate\Support\Str;
 use LivewireUI\Modal\ModalComponent;
-use Illuminate\Validation\Rules;
-
 
 class EditUser extends ModalComponent
 {
     public User $user;
 
     public string $name = '';
+
     public string $firstname = '';
+
     public string $email = '';
 
     public function mount(User $user)
@@ -46,7 +41,7 @@ class EditUser extends ModalComponent
             'name' => ['required', 'string', 'max:255'],
             'firstname' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-        ],[
+        ], [
             'name.required' => 'champ obligatoire',
             'firstname.required' => 'champ obligatoire',
             'email.required' => 'champ obligatoire',
@@ -61,7 +56,5 @@ class EditUser extends ModalComponent
         $this->emit('getUserData');
 
         $this->closeModal();
-
     }
-
 }

@@ -13,8 +13,10 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::whenTableDoesntHaveColumn('profile_users', 'social_reason', function (Blueprint $table) {
-            $table->string('social_reason')->default('');
+        Schema::whenTableHasColumn('type_company_type_impot','company_id' , function (Blueprint $table) {
+            $table->dropForeignIdFor(\App\Fiscality\Companies\Company::class);
+            $table->dropColumn('company_id');
         });
     }
+
 };

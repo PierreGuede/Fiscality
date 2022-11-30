@@ -3,27 +3,29 @@
 namespace App\Http\Livewire\Cabinet\Users;
 
 use App\Fiscality\Companies\Company;
-use App\Fiscality\CompanyAccesControl\Repositories\CompanyAccesControlRepository;
 use App\Mail\SendUserCredential;
 use App\Models\User;
 use Carbon\Carbon;
-use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
+use Illuminate\Validation\Rule;
 use LivewireUI\Modal\ModalComponent;
-use Illuminate\Validation\Rules;
-
 
 class CreateUser extends ModalComponent
 {
-    public const USER_CODE_LENGTH= 8;
-    public const PASSWORD_LENGTH= 10;
+    public const USER_CODE_LENGTH = 8;
+
+    public const PASSWORD_LENGTH = 10;
 
     public string $name = '';
+
     public string $firstname = '';
+
     public string $email = '';
+
     public string $password = '';
+
     public string $password_confirmation = '';
 
     public bool $send_password = false;
@@ -32,7 +34,6 @@ class CreateUser extends ModalComponent
 
     public function mount(Company $company)
     {
-
     }
 
     public function render()
@@ -42,8 +43,6 @@ class CreateUser extends ModalComponent
 
     public function save()
     {
-
-
         Validator::make([
             'name' => $this->name,
             'firstname' => $this->firstname,
@@ -53,8 +52,8 @@ class CreateUser extends ModalComponent
             'name' => ['required', 'string', 'max:255'],
             'firstname' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'password' => [ Rule::when(!$this->send_password, ['required','string' ,'password_confirmation'])],
-        ],[
+            'password' => [Rule::when(! $this->send_password, ['required', 'string', 'password_confirmation'])],
+        ], [
             'name.required' => 'champ obligatoire',
             'firstname.required' => 'champ obligatoire',
             'email.required' => 'champ obligatoire',
@@ -63,15 +62,13 @@ class CreateUser extends ModalComponent
 
         $username = Str::slug($this->name.$this->firstname.rand(0, 999));
 
-        if($this->send_password) {
+        if ($this->send_password) {
             $this->password = $this->generatePassword(self::PASSWORD_LENGTH);
         }
 
-
-
         $this->user_code = $this->generateUserCode(self::USER_CODE_LENGTH);
 
-        while(User::whereUsername($this->user_code)->first()) {
+        while (User::whereUsername($this->user_code)->first()) {
             $this->user_code = $this->generateUserCode(self::USER_CODE_LENGTH);
         }
 
@@ -90,7 +87,6 @@ class CreateUser extends ModalComponent
         $this->emit('getUserData');
 
         $this->closeModal();
-
     }
 
     private function generateUserCode($n)
@@ -101,7 +97,7 @@ class CreateUser extends ModalComponent
         for ($i = 0; $i < $n; $i++) {
             $index = rand(0, strlen($characters) - 1);
             $randomString .= $characters[$index];
-            if($i == 3  ){
+            if ($i == 3) {
                 $randomString .= '-';
             }
         }
@@ -121,6 +117,4 @@ class CreateUser extends ModalComponent
 
         return $randomString;
     }
-
-
 }

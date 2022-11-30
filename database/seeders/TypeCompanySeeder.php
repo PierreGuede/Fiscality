@@ -14,21 +14,20 @@ class TypeCompanySeeder extends Seeder
      */
     public function run()
     {
-        TypeCompany::create([
-            'name' => 'Personne concernée',
-            'code' => '313600',
+        TypeCompany::updateOrCreate([
+            'code' => 'PM',
+        ], [
+            'name' => 'Personne morales (Sociétés) ',
         ]);
-        TypeCompany::create([
-            'name' => 'Personne morales',
-            'code' => '813723',
+        TypeCompany::updateOrCreate([
+            'code' => 'ES',
+        ], [
+            'name' => 'Etablissements stables des personnes morales',
         ]);
-        TypeCompany::create([
-            'name' => 'Etablissement stable',
-            'code' => '395617',
-        ]);
-        TypeCompany::create([
-            'name' => 'Personne physique',
-            'code' => '504536',
+        TypeCompany::updateOrCreate([
+            'code' => 'PP',
+        ], [
+            'name' => 'Personne physiques, Entreprise individuelle',
         ]);
     }
 }

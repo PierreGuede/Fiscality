@@ -105,7 +105,7 @@
                             <div class="flex">
                                 <section class=" w-10/12 p-4">
                                     <div class="mt-4 pb-2">
-                                        <x-label for="name" :value="__('Catégorie d\'activité')"/>
+{{--                                        <x-label for="name" :value="__('Catégorie d\'activité')"/>--}}
                                         <div class="mt-4  space-y-4">
                                             @foreach ($typeCat as $typeCat)
                                                 <div class="">

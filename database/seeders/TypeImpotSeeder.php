@@ -15,37 +15,44 @@ class TypeImpotSeeder extends Seeder
      */
     public function run()
     {
-        TypeImpot::create([
-            'name' => 'IS',
+        TypeImpot::updateOrCreate([
             'code' => 'is',
-        ]);
-        TypeImpot::create([
-            'name' => 'IBA',
-            'code' => 'iba',
-        ]);
-        TypeImpot::create([
-            'name' => 'IRCM sur charges non déductible',
-            'code' => 'ircm_sur_charges_non_deductible',
-        ]);
-        TypeImpot::create([
-            'name' => 'IRCM sur résulats net comptable',
-            'code' => 'ircm_sur_resulats_net_comptable',
+        ], [
+            'name' => 'Impôt sur les Sociétés',
         ]);
 
-        TaxCenter::create([
+        TypeImpot::updateOrCreate([
+            'code' => 'iba',
+        ], [
+            'name' => 'Impôt sur les Bénéficiaires d\'Affaires',
+        ]);
+
+        TypeImpot::updateOrCreate([
+            'code' => 'ircm_sur_charges_non_deductible',
+        ], [
+            'name' => 'IRCM sur charges non déductible',
+        ]);
+
+        TypeImpot::updateOrCreate([
+            'code' => 'ircm_sur_resulats_net_comptable',
+        ], [
+            'name' => 'IRCM sur résulats net comptable',
+        ]);
+
+        TaxCenter::updateOrCreate([
             'name' => 'Parakou',
             'address' => '9CF8+FRH Ecole, Rue 218, Cotonou',
-            'code' => 'parakou',
+            'code' => 'PARAKOU',
         ]);
-        TaxCenter::create([
+        TaxCenter::updateOrCreate([
             'name' => 'Lokossa',
             'address' => '9CF8+FRG Ecole, Rue 218, Cotonou',
-            'code' => 'lokossa',
+            'code' => 'LOKOSSA',
         ]);
-        TaxCenter::create([
+        TaxCenter::updateOrCreate([
             'name' => 'Cotonou',
             'address' => '9CF8+FGH Ecole, Rue 218, Cotonou',
-            'code' => 'cotonou',
+            'code' => 'COTONOU',
         ]);
     }
 }

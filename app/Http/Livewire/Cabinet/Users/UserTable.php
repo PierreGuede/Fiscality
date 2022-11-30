@@ -7,7 +7,6 @@ use Livewire\Component;
 
 class UserTable extends Component
 {
-
     public $users;
 
     public $listeners = ['getUserData'];
@@ -21,7 +20,6 @@ class UserTable extends Component
     {
         return view('livewire.cabinet.users.user-table');
     }
-
 
     public function getUserData()
     {

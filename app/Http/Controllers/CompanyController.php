@@ -11,7 +11,7 @@ use App\Fiscality\TaxCenters\TaxCenter;
 use App\Fiscality\TypeCompanies\TypeCompany;
 use Illuminate\Support\Facades\Storage;
 
-class   CompanyController extends Controller
+class CompanyController extends Controller
 {
     public $model;
 

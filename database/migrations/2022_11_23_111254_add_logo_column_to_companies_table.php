@@ -13,9 +13,8 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::whenTableDoesntHaveColumn('companies','logo' , function (Blueprint $table) {
+        Schema::whenTableDoesntHaveColumn('companies', 'logo', function (Blueprint $table) {
             $table->string('logo')->default('');
         });
     }
-
 };
