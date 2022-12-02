@@ -14,16 +14,24 @@ class BaseSeeder extends Seeder
      */
     public function run()
     {
-        Base::create([
+        Base::updateOrCreate([
+            'code' => 'BF',
+        ], [
             'name' => 'Benefice fiscal',
         ]);
-        Base::create([
+        Base::updateOrCreate([
+            'code' => 'PE',
+        ], [
             'name' => 'Produits encaissables',
         ]);
-        Base::create([
+        Base::updateOrCreate([
+            'code' => 'VO',
+        ], [
             'name' => 'Volume',
         ]);
-        Base::create([
+        Base::updateOrCreate([
+            'code' => 'BA',
+        ], [
             'name' => 'Benefice d\'affaire',
         ]);
     }

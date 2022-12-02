@@ -17,7 +17,9 @@ class TypeCompany extends Model
     use HasFactory;
 
     public const PERSONNES_MORALES = 'PM';
+
     public const ETABLISSEMENT_STABLE = 'ES';
+
     public const PERSONNES_PHYSIQUE = 'PP';
 
     protected $fillable = [

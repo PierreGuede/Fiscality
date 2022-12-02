@@ -56,6 +56,19 @@ class CategoryRepository implements CategoryRepositoryInterface
         }
     }
 
+    public function findByCode(string $code)
+    {
+        try {
+            $category = new CategoryResource($this->model->whereCode($code)->get());
+
+            return response()->json([
+                'category' => $category,
+            ]);
+        } catch (\Throwable $th) {
+            throw $th;
+        }
+    }
+
     public function update(array $data, $id)
     {
         $category = $this->model->find($id);

@@ -15,6 +15,14 @@ class Base extends Model
 {
     use HasFactory;
 
+    public const BENEFICE_FISCAL = 'BF';
+
+    public const PRODUIT_ENCAISSABLE = 'PE';
+
+    public const VOLUME = 'VO';
+
+    public const BENEFICE_AFFAIRE = 'BA';
+
     protected $fillable = [
         'name',
     ];

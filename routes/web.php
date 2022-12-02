@@ -54,7 +54,7 @@ Route::middleware('auth', 'hasOneRole', 'hasPack', 'email_verified')->group(func
 //        Route::get('workspace/company/{company}/account-result', [\App\Http\Controllers\WorkInEnterprise::class, 'accountResult'])->name('work.accountResult');
         Route::get('workspace/company/{company}/impot-calcul', [\App\Http\Controllers\WorkInEnterprise::class, 'impotcalcul'])->name('work.impotcalcul');
 
-        Route::get('workspace/company/{company}/tax-result', [\App\Http\Controllers\TaxResultController::class, 'index'])->name('tax-result');
+        Route::get('workspace/company/{company}/tax-result', [\App\Fiscality\TaxResult\Controllers\TaxResultController::class, 'index'])->name('tax-result');
         Route::get('workspace/company/{company}/tax-result/account-result', [\App\Http\Controllers\AccountResultController::class, 'index'])->name('tax-result.account-result');
         Route::get('workspace/company/{company}/tax-result/account-result/income', [\App\Http\Controllers\AccountResultController::class, 'income'])->name('tax-result.account-result.income');
         Route::get('workspace/company/{company}/tax-result/account-result/expense', [\App\Http\Controllers\AccountResultController::class, 'expense'])->name('tax-result.account-result.expense');
@@ -80,9 +80,14 @@ Route::middleware('auth', 'hasOneRole', 'hasPack', 'email_verified')->group(func
 
         Route::get('workspace/company/{company}/other-reintegration/commission-purchase', [\App\Http\Controllers\CommissionOnPurchaseController::class, 'index'])->name('work.commissionPurchase');
         Route::get('workspace/company/{company}/head-office-costs', [\App\Http\Controllers\HeadOfficeCostController::class, 'index'])->name('head-office-costs');
-        Route::get('workspace/company/{company}/total-tax-result', [App\Http\Controllers\TaxResultController::class, 'totalTaxableIncomeBeforeHeadOfficeExpenses'])->name('taxt-result.totaltotalTaxableIncomeBeforeHeadOfficeExpenses');
+        Route::get('workspace/company/{company}/total-tax-result', [\App\Fiscality\TaxResult\Controllers\TaxResultController::class, 'totalTaxableIncomeBeforeHeadOfficeExpenses'])->name('tax-result.totalTaxableIncomeBeforeHeadOfficeExpenses');
 
         Route::get('workspace/company/{company}/setting', [\App\Http\Controllers\CompanySettingController::class, 'index'])->name('company.setting');
+        Route::put('workspace/company/{company}/setting', [\App\Http\Controllers\CompanySettingController::class, 'updateCompany'])->name('company.setting.update-company');
+        Route::get('workspace/company/{company}/setting/taxation', [\App\Http\Controllers\CompanySettingController::class, 'taxation'])->name('company.setting.taxation');
+        Route::get('workspace/company/{company}/setting/tax-type', [\App\Http\Controllers\CompanySettingController::class, 'taxType'])->name('company.setting.tax-type');
+
+        Route::get('workspace/company/{company}/tax/corporate-tax', [\App\Http\Controllers\CorporateTaxController::class, 'index'])->name('corporate-tax');
     });
     Route::get('users', [\App\Http\Controllers\UserController::class, 'index'])->name('users.index');
     Route::post('users', [\App\Http\Controllers\UserController::class, 'store'])->name('users.store');

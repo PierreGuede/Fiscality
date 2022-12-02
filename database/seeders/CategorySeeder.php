@@ -5,7 +5,6 @@ namespace Database\Seeders;
 use App\Fiscality\Categories\Category;
 use App\Fiscality\DetailTypes\DetailType;
 use Illuminate\Database\Seeder;
-use Illuminate\Support\Str;
 
 class CategorySeeder extends Seeder
 {
@@ -16,22 +15,26 @@ class CategorySeeder extends Seeder
      */
     public function run()
     {
-        Category::create([
-            'name' => 'Taux d\'impôt',
-            'code' => Str::slug('Taux impôt', '_'),
+        Category::updateOrCraete([
+            'code' => Category::IMPOT_REEL,
+        ], [
+            'name' => 'Impôt réel',
         ]);
-        Category::create([
-            'name' => 'Impot minimum',
-            'code' => Str::slug('Impot minimum', '_'),
+        Category::updateOrCraete([
+            'code' => Category::IMPOT_MINIMUM,
+        ], [
+            'name' => Category::IMPOT_MINIMUM,
         ]);
-        Category::create([
-            'name' => 'Minimum Forfaitaire',
-            'code' => Str::slug('Minimum_Forfaitaire', '_'),
+        Category::updateOrCraete([
+            'code' => Category::IMPOT_MINIMUM_FORFETAIRE,
+        ], [
+            'name' => 'Impôt minimum forfaitaire',
         ]);
 
-        DetailType::create([
-            'name' => 'Entreprise à prépondérance immobilière',
+        DetailType::updateOrCraete([
             'code' => '508573',
+        ], [
+            'name' => 'Entreprise à prépondérance immobilière',
             'category_id' => 2,
             'base_id' => 2,
             'taux' => '25',
@@ -39,9 +42,10 @@ class CategorySeeder extends Seeder
             'description' => 'null',
             'article' => 'article',
         ]);
-        DetailType::create([
-            'name' => 'Entreprise du secteur du bâtiment et des travaux publique',
+        DetailType::updateOrCraete([
             'code' => '508574',
+        ], [
+            'name' => 'Entreprise du secteur du bâtiment et des travaux publique',
             'category_id' => 2,
             'base_id' => 2,
             'taux' => '3',
@@ -49,9 +53,10 @@ class CategorySeeder extends Seeder
             'description' => 'null',
             'article' => 'article',
         ]);
-        DetailType::create([
-            'name' => 'Impôt sur les société dû',
+        DetailType::updateOrCraete([
             'code' => '508575',
+        ], [
+            'name' => 'Impôt sur les société dû',
             'category_id' => 3,
             'base_id' => 1,
             'taux' => '10',
@@ -59,9 +64,10 @@ class CategorySeeder extends Seeder
             'description' => 'null',
             'article' => 'article',
         ]);
-        DetailType::create([
-            'name' => 'Distributeurs non importateurs de produits pétroliers et les stations services',
+        DetailType::updateOrCraete([
             'code' => '508576',
+        ], [
+            'name' => 'Distributeurs non importateurs de produits pétroliers et les stations services',
             'category_id' => 2,
             'base_id' => 3,
             'taux' => '10',
@@ -70,8 +76,9 @@ class CategorySeeder extends Seeder
             'article' => 'article',
         ]);
         DetailType::create([
-            'name' => 'Industries',
             'code' => '508577',
+        ], [
+            'name' => 'Industries',
             'category_id' => 1,
             'base_id' => 2,
             'taux' => '20',
@@ -80,8 +87,9 @@ class CategorySeeder extends Seeder
             'article' => 'article',
         ]);
         DetailType::create([
-            'name' => 'Ecoles privées',
             'code' => '508578',
+        ], [
+            'name' => 'Ecoles privées',
             'category_id' => 1,
             'base_id' => 2,
             'taux' => '25',

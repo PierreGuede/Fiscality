@@ -13,10 +13,9 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::whenTableHasColumn('type_company_type_impot','company_id' , function (Blueprint $table) {
+        Schema::whenTableHasColumn('type_company_type_impot', 'company_id', function (Blueprint $table) {
             $table->dropForeignIdFor(\App\Fiscality\Companies\Company::class);
             $table->dropColumn('company_id');
         });
     }
-
 };

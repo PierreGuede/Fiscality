@@ -13,7 +13,7 @@ class UpdateCompanyRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +24,13 @@ class UpdateCompanyRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'name' => ['required', 'string'],
+            'created_date' => ['required', 'string'],
+            'email' => ['required', 'string'],
+            'celphone' => ['required', 'string'],
+            'rccm' => ['required', 'string'],
+            'type_company_id' => ['required'],
+            'tax_center_id' => ['required'],
         ];
     }
 }

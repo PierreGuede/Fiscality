@@ -11,9 +11,8 @@ class TypeCompanyTypeImpot extends Model
 
     protected $table = 'type_company_type_impot';
 
-    protected $fillable =[
+    protected $fillable = [
         'type_company_id',
         'type_impot_id',
     ];
-
 }

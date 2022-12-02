@@ -13,6 +13,12 @@ use Illuminate\Support\Str;
  */
 class Category extends Model
 {
+    public const IMPOT_REEL = 'IMPOT_REEL';
+
+    public const IMPOT_MINIMUM = 'IMPOT_MINIMUM';
+
+    public const IMPOT_MINIMUM_FORFETAIRE = 'IMPOT_MINIMUM_FORFETAIRE';
+
     use HasFactory;
 
     protected $fillable = [

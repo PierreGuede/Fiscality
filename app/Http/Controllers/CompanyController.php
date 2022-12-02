@@ -107,11 +107,10 @@ class CompanyController extends Controller
         return view('admin.companies.info', ['company' => $id]);
     }
 
-    public function update(UpdateCompanyRequest $data, $id): Company
+    public function update(UpdateCompanyRequest $data, Company $company): Company
     {
-        $company = $this->model->find($id);
         $company->update(['name' => $data['name']]);
-        // return redirect()->route('company.index');
+
         return $company;
     }
 

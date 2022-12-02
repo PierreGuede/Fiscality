@@ -101,6 +101,8 @@
             </div>
 
             <x-app-sidebar.nav-link  label="Frais de siège" href="{{ route('head-office-costs', $company->id)  }}"  icon="office-building" />
+            <x-app-sidebar.nav-link  label="Déficit" href="{{ route('head-office-costs', $company->id)  }}"  icon="office-building" />
+            <x-app-sidebar.nav-link  label="Impôt" href="{{ route('corporate-tax', $company->id)  }}"  icon="office-building" :active="request()->routeIs('corporate-tax')" />
             <x-app-sidebar.nav-link  label="Document" href="{{ route('company.index') }}"  icon="office-building" />
             <x-app-sidebar.nav-link label="Paramètre" href="{{ route('company.setting', $company->id) }}"  icon="cog" />
 

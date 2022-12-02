@@ -29,6 +29,7 @@ class DatabaseSeeder extends Seeder
         $this->call(AccuredChargeSeeder::class);
         $this->call(TownSeeder::class);
         $this->call(TypeCompanyTypeImpotSeeder::class);
+        $this->call(GuruMinimumTaxSeeder::class);
         \App\Models\User::factory()->create([
             'name' => 'Test',
             'firstname' => 'User',

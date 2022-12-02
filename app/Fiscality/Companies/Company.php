@@ -7,7 +7,6 @@ use App\Fiscality\DetailTypes\DetailType;
 use App\Fiscality\Domains\Domain;
 use App\Fiscality\TaxCenters\TaxCenter;
 use App\Fiscality\TypeCompanies\TypeCompany;
-use App\Fiscality\TypeImpots\TypeImpot;
 use App\Models\TypeCompanyTypeImpot;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -78,11 +77,10 @@ class Company extends Model
         return $this->BelongsToMany(DetailType::class);
     }
 
-
-    public function typeCompanyTypeImpot(): BelongsToMany
-    {
-        return $this->BelongsToMany(TypeCompanyTypeImpot::class, 'type_company_id')->withPivot('type_impot_id');
-    }
+//    public function typeCompanyTypeImpot(): BelongsToMany
+//    {
+//        return $this->BelongsToMany(TypeCompanyTypeImpot::class)->withPivot('type_impot_id');
+//    }
 
     public function taxCenter(): BelongsTo
     {

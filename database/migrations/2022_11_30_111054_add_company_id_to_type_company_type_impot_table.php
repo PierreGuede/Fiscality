@@ -13,7 +13,7 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::whenTableDoesntHaveColumn('type_company_type_impot','company_id' ,function (Blueprint $table) {
+        Schema::whenTableDoesntHaveColumn('type_company_type_impot', 'company_id', function (Blueprint $table) {
             $table->foreignIdFor(\App\Fiscality\Companies\Company::class)->constrained();
         });
     }

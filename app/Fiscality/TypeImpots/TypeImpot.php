@@ -14,11 +14,14 @@ class TypeImpot extends Model
 {
     use HasFactory;
 
-    public const IS= 'is';
+    public const IS = 'is';
+
     //    Impôt sur les Bénéfices d'Affaires
-    public const IBA= 'iba';
-    public const IRCM_SUR_CHARGES= 'ircm_sur_charges_non_deductible';
-    public const IRCM_SUR_RESULTAT= 'ircm_sur_resulats_net_comptable';
+    public const IBA = 'iba';
+
+    public const IRCM_SUR_CHARGES = 'ircm_sur_charges_non_deductible';
+
+    public const IRCM_SUR_RESULTAT = 'ircm_sur_resulats_net_comptable';
 
     protected $fillable = [
         'name',
