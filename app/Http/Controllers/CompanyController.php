@@ -66,7 +66,7 @@ class CompanyController extends Controller
 
             return view('auth.choseRole', compact('type', 'typeCat', 'domain', 'taxCenter'));
         } else {
-            return abort(403, 'Vous avez atteint le max');
+            return view('errors.subscription-max-page');
         }
     }
 

@@ -136,8 +136,13 @@
                                                  id="name"
                                                  wire:model="name" {{-- name="name" --}}
                                                  class="block w-full"
+<<<<<<< HEAD
                                                  value="{{ old('name')}}"
 
+=======
+                                                 value="{{ old('name') }}"
+                                                {{--  wire:keydown="verifyData(name)" --}}
+>>>>>>> feat/lastModify
                                                  autofocus/>
                                     </div>
 

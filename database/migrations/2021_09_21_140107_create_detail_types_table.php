@@ -19,7 +19,7 @@ return new class extends Migration
         Schema::create('detail_types', function (Blueprint $table) {
             $table->id();
             $table->string('name')->unique();
-            $table->string('code')->unique(); /* A inserer l'id du type d'impot et son nom */
+            // $table->string('code')->unique(); /* A inserer l'id du type d'impot et son nom */
             $table->foreignIdFor(Category::class)->constrained()->cascadeOnDelete();
             $table->foreignIdFor(Base::class)->nullable()->constrained()->cascadeOnDelete();
             $table->foreignIdFor(TypeImpot::class)->nullable()->constrained()->cascadeOnDelete();

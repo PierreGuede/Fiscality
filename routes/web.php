@@ -14,7 +14,12 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    if (auth()->user()) {
+        return redirect()->route('company.index');
+    }
+    else{
+        return view('welcome');
+    }
 });
 
 Route::get('/dashboard', function () {
@@ -35,6 +40,10 @@ Route::middleware('auth', 'pack', 'email_verified')->group(function () {
     Route::get('renew-subscription', [\App\Http\Controllers\SubscriptionController::class, 'renew'])->name('renew.pack');
 });
 Route::middleware('auth', 'hasOneRole', 'hasPack', 'email_verified')->group(function () {
+Route::middleware('auth','subscription','email_verified')->group(function () {
+    Route::get('renew-subscription',[\App\Http\Controllers\SubscriptionController::class, 'renew'])->name('renew.pack');
+});
+Route::middleware('auth', 'hasOneRole','email_verified')->group(function () {
     Route::view('about', 'about')->name('about');
     Route::middleware('hasOneRole')->group(function () {
         Route::get('company', [\App\Http\Controllers\CompanyController::class, 'index'])->name('company.index');
@@ -189,4 +198,7 @@ Route::middleware('auth', 'role:Super-Admin')->group(function () {
     Route::get('type_company/{id}', [\App\Http\Controllers\TypeCompanyController::class, 'edit'])->name('type.edit');
     Route::post('type_company/{id}', [\App\Http\Controllers\TypeCompanyController::class, 'update'])->name('type.update');
     Route::delete('type_company/{id}', [\App\Http\Controllers\TypeCompanyController::class, 'destroy'])->name('type.delete');
+});
+Route::fallback(function () {
+    return view('errors.404');
 });
