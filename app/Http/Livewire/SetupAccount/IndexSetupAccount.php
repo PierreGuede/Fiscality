@@ -82,7 +82,6 @@ class IndexSetupAccount extends Component
     {
         return view('livewire.setup-account.index-setup-account');
     }
-
     public function save($ref_payement = '')
     {
 //        $this->validate();

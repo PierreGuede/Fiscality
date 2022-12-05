@@ -128,7 +128,7 @@
                                                  wire:model="name" {{-- name="name" --}}
                                                  class="block w-full"
                                                  value="{{ old('name') }}"
-
+                                                {{--  wire:keydown="verifyData(name)" --}}
                                                  autofocus/>
                                     </div>
 

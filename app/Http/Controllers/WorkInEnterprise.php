@@ -40,7 +40,7 @@ class WorkInEnterprise extends Controller
         if ($request['name'] == $company->name) {
             return redirect()->route('tax-result.account-result', $id);
         } else {
-            return redirect()->route('dashboard');
+            return redirect()->route('company.index');
         }
     }
 
