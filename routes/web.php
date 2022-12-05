@@ -88,6 +88,8 @@ Route::middleware('auth', 'hasOneRole', 'hasPack', 'email_verified')->group(func
         Route::get('workspace/company/{company}/setting/tax-type', [\App\Http\Controllers\CompanySettingController::class, 'taxType'])->name('company.setting.tax-type');
 
         Route::get('workspace/company/{company}/tax/corporate-tax', [\App\Http\Controllers\CorporateTaxController::class, 'index'])->name('corporate-tax');
+        Route::get('workspace/company/{company}/tax/business-profit-tax', [\App\Http\Controllers\BusinessProfitTaxController::class, 'index'])->name('business-profit-tax');
+        Route::get('workspace/company/{company}/tax/ircm-on-expense', [\App\Http\Controllers\IRCMOnExpenseController::class, 'index'])->name('ircm-on-expense');
     });
     Route::get('users', [\App\Http\Controllers\UserController::class, 'index'])->name('users.index');
     Route::post('users', [\App\Http\Controllers\UserController::class, 'store'])->name('users.store');

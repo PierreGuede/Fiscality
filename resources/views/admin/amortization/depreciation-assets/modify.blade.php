@@ -1,4 +1,5 @@
 <x-company-layout :company="$company" >
+    <x-tax-result.content-wrapper :company="$company" >
 
     <div class="w-full  min-h-screen" >
 
@@ -40,5 +41,6 @@
         </div>
 
     </div>
+        </x-tax-result.content-wrapper>
 
 </x-company-layout>

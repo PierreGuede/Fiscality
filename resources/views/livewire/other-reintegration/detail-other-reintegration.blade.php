@@ -1,5 +1,5 @@
-<div x-data="{ openASide: false }" class=" pt-12 ">
-    <h2 class="py-4 text-2xl font-semibold text-gray-700">Autre réintégration</h2>
+<div x-data="{ openASide: false }" class=" ">
+    <x-title>Autre réintégration</x-title>
     <div class=" grid grid-cols-12  ">
         <p class="col-span-7 p-3   text-lg text-gray-700 font-semibold  ">Intitulé</p>
         <div class="col-span-3 p-3 text-lg text-gray-700 font-semibold   "><p>Montant</p></div>

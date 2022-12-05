@@ -1,7 +1,11 @@
 <x-company-layout :company="$company" >
+    <x-tax-result.content-wrapper :company="$company" >
+
     <div class="w-full  min-h-screen" >
         <div class="max-w-5xl w-full mx-auto">
-        <h5 class="text-2xl font-semibold text-gray-700 " >Vehicule de tourismes</h5>
+
+        <x-title>Vehicule de tourismes</x-title>
+
             <table class="w-full" >
                 <thead class="bg-transparent uppercase py-2 text-gray-600" >
                     <th class="text-xs py-3.5 font-semibold" >#</th>
@@ -43,4 +47,6 @@
             </table>
         </div>
     </div>
+        </x-tax-result.content-wrapper>
+
 </x-company-layout>

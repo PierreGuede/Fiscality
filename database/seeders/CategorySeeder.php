@@ -80,7 +80,7 @@ class CategorySeeder extends Seeder
         ], [
             'name' => 'Industries',
             'category_id' => 1,
-            'base_id' => 2,
+            'base_id' => 1,
             'taux' => '20',
             'type_impot_id' => 1,
             'description' => 'null',
@@ -91,7 +91,7 @@ class CategorySeeder extends Seeder
         ], [
             'name' => 'Ecoles privées',
             'category_id' => 1,
-            'base_id' => 2,
+            'base_id' => 1,
             'taux' => '25',
             'type_impot_id' => 1,
             'description' => 'null',

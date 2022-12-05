@@ -12,7 +12,7 @@
             <div class="w-1/5 items-center text-center">
                 <button type="button"
                     class="bg-green-500 border border-gray-500 text-white font-bold py-2 px-4 rounded-md"
-                    @click="showModal = true">Creer un Domaine d'activité</button>
+                    @click="showModal = true">Créer un Domaine d'activité</button>
             </div>
         </div>
         <table class="p-2 w-full text-sm text-left text-gray-500    ">

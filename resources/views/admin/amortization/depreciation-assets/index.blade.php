@@ -1,7 +1,10 @@
 <x-company-layout :company="$company">
+    <x-tax-result.content-wrapper :company="$company" >
+
     <div class="w-full  min-h-screen" >
         <div class="max-w-5xl w-full mx-auto">
-            <h5 class="text-lg font-semibold text-gray-500 py-5 " >Amortissement sur biens qui ne sont pas directement liés à l'exploitation</h5>
+
+            <x-title>Amortissement sur biens qui ne sont pas directement liés à l'exploitation</x-title>
             <table class="w-full" >
                 <thead class="bg-transparent uppercase py-2 text-gray-600" >
                 <th class="text-xs py-3.5 font-semibold" >#</th>
@@ -34,4 +37,6 @@
             </table>
         </div>
     </div>
+        </x-tax-result.content-wrapper>
+
 </x-company-layout>

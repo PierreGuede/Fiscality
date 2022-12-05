@@ -1,5 +1,10 @@
 <x-company-layout :company="$company" >
-    <h1 class="text-xl font-semibold text-gray-700 ml-4">LES DEDUCTIONS </h1>
+    <x-tax-result.content-wrapper :company="$company" >
 
-    @livewire('deduction.index-deduction', ['company' => $company])
+        <x-title>Déductions</x-title>
+
+
+        @livewire('deduction.index-deduction', ['company' => $company])
+        </x-tax-result.content-wrapper>
+
 </x-company-layout>

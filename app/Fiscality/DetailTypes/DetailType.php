@@ -47,10 +47,10 @@ class DetailType extends Model
         return $this->belongsTo(Category::class);
     }
 
-        public function base(): BelongsTo
-        {
-            return $this->belongsTo(Base::class);
-        }
+    public function base(): BelongsTo
+    {
+        return $this->belongsTo(Base::class);
+    }
 
     public function typeImpot()
     {

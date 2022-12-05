@@ -1,4 +1,4 @@
-    @props(['company'])
+@props(['company'])
 
 <div x-data="{ openSidebar: true, openDropdown: false }" :class=" openSidebar ? 'w-60' : 'w-20'  "
      class=" relative flex transition-all h-full flex-col items-center   bg-blue-600 text-blue-100">
@@ -30,89 +30,15 @@
     <div class="w-full px-2 pb-2">
         <div class="mt-3 flex w-full flex-col items-center border-t border-blue-300">
 
-            <div x-data="{ expanded: false }" class="p-2  rounded-md w-full text-sm  mt-4 " x-cloak>
-                <a href=" {{ route('tax-result', $company->id)  }}" @click="expanded = !expanded"
-                   type="button"
-                   class="mt-2 flex h-10 w-full items-center rounded px-3 justify-between  focus:outline-none hover:bg-blue-500 ">
-                    <span>Résultat Fiscale</span>
-
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                         stroke="currentColor" :class=" expanded ? '' : 'rotate-90' "
-                         class="w-4 transition-all h-4 lg:w-5 lg:h-5 stroke-2">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5"/>
-                    </svg>
-
-                </a>
-
-
-                <div x-show=" {{ request()->routeIs('tax-result') or  request()->routeIs('tax-result.*') or  request()->routeIs('work.*')  }} "
-                     class="relative pl-6  " x-collapse>
-                    <div class="absolute h-full w-px bg-blue-400  left-[12px]  "></div>
-
-                    <x-nav-link label="Résultat comptable"
-                                href="{{ route('tax-result.account-result', $company->id)  }}"
-                                active="{{ request()->routeIs('tax-result.account-result')  }}" icon="office-building"/>
-
-
-                    {{--                    Reintegration--}}
-                    <div x-data="{ child_expanded: false }" class="p-2  rounded-md w-full text-sm   " x-cloak>
-                        <button @click="child_expanded = !child_expanded" type="button"
-                                class="mt-2 flex h-10 w-full items-center rounded px-3 justify-between  focus:outline-none hover:bg-blue-500 ">
-                            <span>Réintegration</span>
-
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                                 stroke="currentColor" :class=" child_expanded ? '' : 'rotate-90' "
-                                 class="w-4 transition-all h-4 lg:w-5 lg:h-5 stroke-2">
-                                <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5"/>
-                            </svg>
-
-                        </button>
-
-
-                        <div x-show="  child_expanded " class="relative pl-6  " x-collapse>
-                            <div class="absolute h-full w-px bg-blue-400  left-[12px]  "></div>
-
-                            <x-nav-link label="Amortissement"
-                                        href="{{ route('tax-result.reintegration.amortization',$company->id) }}"
-                                        icon="office-building"/>
-                            <x-nav-link label="Provisions et charges provisionnées"
-                                        href="{{ route('tax-result.reintegration.accured-charge',$company->id) }}"
-                                        active="{{ request()->routeIs('tax-result.account-result')  }}"
-                                        icon="office-building"/>
-                            <x-nav-link label="Autre réintégration"
-                                        href="{{ route('tax-result.reintegration.other-reintegration',$company->id) }}"
-                                        active="{{ request()->routeIs('tax-result.account-result')  }}"
-                                        icon="office-building"/>
-                        </div>
-
-                    </div>
-                    <a href=" {{ route('tax-result.deduction', $company->id)  }} "
-                       :class=" {{ request()->routeIs('tax-result.deduction')  }} ? 'bg-blue-500' :''  "
-                       class="mt-2 flex h-10 w-full items-center rounded px-3 hover:bg-blue-500 gap-x-2">
-                        <svg class="h-4 w-4  stroke-current shrink-0" xmlns="http://www.w3.org/2000/svg" fill="none"
-                             viewBox="0 0 24 24" stroke="currentColor">--}}
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                  d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/>
-                        </svg>
-                        <span>Déductions</span>
-                    </a>
-                </div>
-
-            </div>
-
+            <x-app-sidebar.nav-link  label="Résultat Fiscale" href="{{ route('tax-result', $company->id)  }}"  icon="office-building" />
             <x-app-sidebar.nav-link  label="Frais de siège" href="{{ route('head-office-costs', $company->id)  }}"  icon="office-building" />
             <x-app-sidebar.nav-link  label="Déficit" href="{{ route('head-office-costs', $company->id)  }}"  icon="office-building" />
             <x-app-sidebar.nav-link  label="Impôt" href="{{ route('corporate-tax', $company->id)  }}"  icon="office-building" :active="request()->routeIs('corporate-tax')" />
             <x-app-sidebar.nav-link  label="Document" href="{{ route('company.index') }}"  icon="office-building" />
             <x-app-sidebar.nav-link label="Paramètre" href="{{ route('company.setting', $company->id) }}"  icon="cog" />
 
-
         </div>
 
-        {{--        Espace de travail--}}
-{{--        @unlessrole('entreprise')--}}
-{{--            <span></span>--}}
-{{--        @else--}}
         <p class="text-xs font-medium uppercase mt-6 mb-2">Espace de travail</p>
         <div class=" border-t border-blue-300">
             <div x-data="{ expanded: false }" class="w-full">

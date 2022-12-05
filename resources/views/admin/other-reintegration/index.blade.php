@@ -1,5 +1,5 @@
 <x-company-layout :company="$company" >
-    {{-- @livewire('other-reintegration.details') --}}
-    <livewire:other-reintegration.index-other-reintegration :company='$company'>
-
+    <x-tax-result.content-wrapper :company="$company" >
+        <livewire:other-reintegration.index-other-reintegration :company='$company'>
+    </x-tax-result.content-wrapper>
 </x-company-layout>
