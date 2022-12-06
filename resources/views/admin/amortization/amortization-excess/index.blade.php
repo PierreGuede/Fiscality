@@ -25,9 +25,8 @@
                         <td class=" text-center text-xs font-semibold py-4  my-10" > {{ $value->taux_use }} </td>
                         <td class=" text-center text-xs font-semibold py-4  my-10" > {{ $value->taux_recommended  }} </td>
                         <td class=" text-center text-xs font-semibold py-4  my-10" >{{ $value->ecart  }}</td>
-                        <td class=" text-center text-xs font-semibold py-4  my-10" >{{ $value->dotation  }}</td>
-                        <td class=" text-center text-xs font-semibold py-4  my-10" > {{ $value->deductible_amortization  }} </td>
-                        <td class=" text-center text-xs font-semibold py-4  my-10" > <span x-text="formatDate('{{  $value->date }}')" ></span> </td>
+                        <td class=" text-center text-xs font-semibold py-4  my-10" x-text="formatNumber({{ $value->dotation  }}, false)"  >{{ $value->dotation  }}</td>
+                        <td class=" text-center text-xs font-semibold py-4  my-10" x-text="formatNumber({{ $value->deductible_amortization  }}, false)" ></td>
                         <td class="text-center text-xs font-semibold py-4 px-4  my-10">
                             <div class="flex space-x-4">
                                 <a href="{{ route('amortization.amortization-excess.edit',['company'=>$company->id,'excess'=>$value->id]) }}">

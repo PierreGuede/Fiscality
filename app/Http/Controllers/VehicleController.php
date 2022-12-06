@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Fiscality\Amortizations\Amortization;
 use App\Fiscality\Companies\Company;
 use App\Fiscality\Vehicles\Vehicle;
+use App\Http\Requests\StoreVehicleRequest;
 use Illuminate\Http\Request;
 
 class VehicleController extends Controller
@@ -55,19 +56,17 @@ class VehicleController extends Controller
         return view('admin.amortization.vehicle-tourism.edit', compact('company', 'vehicle'));
     }
 
-    public function update(Company $company, $vehicle, Request $request)
+    public function update( StoreVehicleRequest $request, Company $company, $vehicle,)
     {
-        $request->validate([
-            'name' => ['sometimes', 'required', 'string', 'max:255'],
-            'value' => ['sometimes', 'required', 'string', 'max:255'],
-            'plafond' => ['sometimes', 'required', 'string', 'max:255'],
-            'ecart' => ['sometimes', 'required', 'string', 'max:255'],
-            'dotation' => ['sometimes', 'required', 'string', 'max:255'],
-            'deductible_amortization' => ['sometimes', 'required', 'string', 'max:255'],
-            'date' => ['sometimes', 'required', 'string', 'max:255'],
-        ]);
-        $update = Vehicle::find($vehicle);
-        $update->update($request->all());
+        $ecart = $request->input('value') - $request->input('plafond');
+        $deductibleAmortization = ((float) $request->input('dotation') * (float) $ecart) / (float) $request->input('value');
+
+        $res = Vehicle::find($vehicle);
+        $res->fill($request->validated());
+        $res->ecart = $ecart;
+        $res->deductible_amortization = $deductibleAmortization;
+
+        $res->save();
 
         return redirect()->route('amortization.tourism-cars', $company);
     }

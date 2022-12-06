@@ -1,5 +1,7 @@
 <x-company-layout :company="$company" >
 
+    <x-tax-result.content-wrapper :company="$company" >
+
     <div class="w-full  min-h-screen" >
 
         <div class="max-w-5xl w-full mx-auto">
@@ -57,7 +59,7 @@
                 </div>
 
                 <div class="flex gap-x-3 justify-end">
-                    <x-button type="button" wire:click="$emit('closeModal')" variant="neutral" class="w-36" >   {{ __('Annuler') }} </x-button>
+                    <x-button.link href="{{ route('amortization.amortization-excess', $company->id)  }}"  wire:click="$emit('closeModal')" variant="neutral" class="w-36" >   {{ __('Annuler') }} </x-button.link>
                     <x-button type="submit" class="w-36" >   {{ __('Enregistrer') }} </x-button>
                 </div>
             </form>
@@ -66,5 +68,7 @@
         </div>
 
     </div>
+        </x-tax-result.content-wrapper>
+
 
 </x-company-layout>

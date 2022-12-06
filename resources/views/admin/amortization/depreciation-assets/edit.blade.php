@@ -33,7 +33,7 @@
                 </div>
 
                 <div class="flex gap-x-3 justify-end">
-                    <x-button type="button" wire:click="$emit('closeModal')" variant="neutral" class="w-36" >   {{ __('Annuler') }} </x-button>
+                    <x-button.link href="{{ route('amortization.depreciation-assets', $company->id)  }}" wire:click="$emit('closeModal')" variant="neutral" class="w-36" >   {{ __('Annuler') }} </x-button.link>
                     <x-button type="submit" class="w-36" >   {{ __('Enregistrer') }} </x-button>
                 </div>
             </form>

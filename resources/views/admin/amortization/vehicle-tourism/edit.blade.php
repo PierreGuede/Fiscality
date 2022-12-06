@@ -30,7 +30,7 @@
                                 value="{{ old('date',$vehicle->date) }}" class="block w-full" required autofocus />
 
                     <div class="flex gap-x-3 justify-end">
-                        <x-button type="button"   variant="neutral" class="w-36" >   {{ __('Annuler') }} </x-button>
+                        <x-button.link href="{{ route('amortization.tourism-cars', $company->id)  }}"  variant="neutral" class="w-36" >   {{ __('Annuler') }} </x-button.link>
                         <x-button type="submit" class="w-36" >   {{ __('Enregistrer') }} </x-button>
                     </div>
             </form>
