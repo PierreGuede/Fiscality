@@ -22,7 +22,7 @@
                      allocations_to_provisions: 0,
                      calculation_base: 0,
                      fnCalculateAmount() {
-                        return this.bceaoRate && this.interest_rate_charged && this.amount_interest_recorded ?  this.amount_interest_recorded * ((Number(this.interest_rate_charged)-(this.bceaoRate+0.03)) / this.interest_rate_charged) : 0;
+                        return this.bceaoRate && this.interest_rate_charged && this.amount_interest_recorded ?  this.amount_interest_recorded * ((Number(this.interest_rate_charged)-(this.bceaoRate+3)) / this.interest_rate_charged) : 0;
                      },
 
                     fnBaseCalcul(){
@@ -148,7 +148,7 @@
                 <div>
                     <p class="text-sm text-gray-400">Surplus de taux pratiqué</p>
                     <p class="w-full h-10 p-2 px-3 text-gray-900 placeholder-transparent border border-gray-300 rounded-sm peer focus:ring-blue-500/40 focus:ring-4 focus:outline-none align-center focus:border-blue-600"
-                       x-text="Number(interest_rate_charged)-(bceaoRate+0.03)"> </p>
+                       x-text="Number(interest_rate_charged)-Number(Number(bceaoRate)+3)"> </p>
                 </div>
 
                 <x-input :disabled="true" type="number" label="Montant à réintégrer" id="delay_condition" name=""

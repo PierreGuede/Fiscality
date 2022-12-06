@@ -1,35 +1,6 @@
 <div x-data="{ arr_sum: [], rate: {{ $rate  }}  }">
-    <form class="space-y-4" action=" " wire:submit.prevent="save">
-        @foreach ($inputs as $key => $input)
-            <div>
-                <div class="flex gap-x-4 ">
-                    <div class="w-12">
-                        <x-input :disabled="true"
-                            class="w-full" for="input_{{ $key }}_account"
-                            type="number" id="input_{{ $key }}_account" label=''
-                            wire:model.defer="inputs.{{ $key }}.account"
-                            placeholder="Compte" class="" required autofocus/>
-                    </div>
+    <form class=" mt-10 grid grid-cols-2 gap-x-12" action=" " wire:submit.prevent="save">
 
-                    <div class="flex-1 w-full">
-                        <x-input :disabled="true" for="input_{{ $key }}_name"
-                                 type="text" id="input_{{ $key }}_name" label='Nom'
-                                 wire:model.defer="inputs.{{ $key }}.name"
-                                 placeholder="Nom"
-                                 class="" required autofocus/>
-                    </div>
-
-                    <div class="flex-1 w-full">
-                        <x-input :disabled="true" class="w-full" for="input_{{ $key }}_amount"
-                                 type="number" id="input_{{ $key }}_amount" label='Montant'
-                                 x-model="arr_sum[{{ $key  }}]"
-                                 wire:model.defer="inputs.{{ $key }}.amount"
-{{--                                 value="{{ old('inputs.{{ $key }}.amount', $inputs.{{ $key }}.amount) }}"--}}
-                                 placeholder="Compte" class="" required autofocus/>
-                    </div>
-                </div>
-            </div>
-        @endforeach
 
         <div class="space-y-4" x-data="globalData">
 
@@ -55,7 +26,6 @@
             <x-input :disabled="true" wire:model.defer="basis_calculating_deduction_limit" type="text"
                      label="Base de calcul du plafond de déduction" id="basis_calculating_deduction_limit"
                      name="basis_calculating_deduction_limit"
-                     x-bind:value=" {{ $taxable_income_before_restatement_head_office_costs }} + arr_sum.reduce((acc, next) => Number(acc) + Number(next), 0)"
                      class="block w-full" required autofocus/>
 
             <x-input :disabled="true" wire:model.defer="rate" type="number" min="0" max="100" label="Taux" id="rate" name="rate"
@@ -63,16 +33,48 @@
 
             <x-input :disabled="true" wire:model.defer="deductible_head_office_costs" type="text" label="Frais de siège déductibles"
                      id="deductible_head_office_costs" name="deductible_head_office_costs"
-                     x-bind:value=" ({{ $taxable_income_before_restatement_head_office_costs }} + arr_sum.reduce((acc, next) => Number(acc) + Number(next), 0)) * (rate/100)"
+{{--                     x-bind:value="deductible_head_office_costs"--}}
                      class="block w-full" required autofocus/>
 
             <x-input :disabled="true" wire:model.defer="non_deductible_head_office_costs" type="text"
                      label="Frais de siège non déductibles" id="non_deductible_head_office_costs"
                      name="non_deductible_head_office_costs"
-                     x-bind:value=" arr_sum.reduce((acc, next) => Number(acc) + Number(next), 0) - ({{ $taxable_income_before_restatement_head_office_costs }} + arr_sum.reduce((acc, next) => Number(acc) + Number(next), 0) * (rate/100))"
+{{--                     x-bind:value="non_deductible_head_office_costs"--}}
                      class="block w-full" required autofocus/>
         </div>
 
+        <div class="space-y-4" >
 
+            @foreach ($inputs as $key => $input)
+                <div>
+                    <div class="flex gap-x-4 ">
+                        <div class="w-12">
+                            <x-input :disabled="true"
+                                     class="w-full" for="input_{{ $key }}_account"
+                                     type="number" id="input_{{ $key }}_account" label=''
+                                     wire:model.defer="inputs.{{ $key }}.account"
+                                     placeholder="Compte" class="" required autofocus/>
+                        </div>
+
+                        <div class="flex-1 w-full">
+                            <x-input :disabled="true" for="input_{{ $key }}_name"
+                                     type="text" id="input_{{ $key }}_name" label='Nom'
+                                     wire:model.defer="inputs.{{ $key }}.name"
+                                     placeholder="Nom"
+                                     class="" required autofocus/>
+                        </div>
+
+                        <div class="flex-1 w-full">
+                            <x-input :disabled="true" class="w-full" for="input_{{ $key }}_amount"
+                                     type="number" id="input_{{ $key }}_amount" label='Montant'
+                                     x-model="arr_sum[{{ $key  }}]"
+                                     wire:model.defer="inputs.{{ $key }}.amount"
+                                     {{--                                 value="{{ old('inputs.{{ $key }}.amount', $inputs.{{ $key }}.amount) }}"--}}
+                                     placeholder="Compte" class="" required autofocus/>
+                        </div>
+                    </div>
+                </div>
+            @endforeach
+        </div>
     </form>
 </div>

@@ -51,7 +51,7 @@
 
         <div>
             <x-input   type="text" label="Amortisement non déductible" id="ecart" name="ecart"
-                       x-bind:value="taux_recommended > 0 ? (dotation*(taux_use - taux_recommended)) / taux_recommended : 0 " class="block w-full" required autofocus />
+                       x-bind:value="taux_recommended > 0 ? (dotation*((taux_use - taux_recommended)/100 )) / (taux_use/100) : 0 " class="block w-full" required autofocus />
         </div>
 
         <div class="flex gap-x-3 justify-end">

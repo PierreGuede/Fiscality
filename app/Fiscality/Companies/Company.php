@@ -22,6 +22,9 @@ class Company extends Model
 {
     use HasFactory;
 
+    public const CARBINET = 'carbinet';
+    public const ENTERPRISE = 'enterprise';
+
     protected $fillable = ['name',
         'social_reason',
         'created_date',

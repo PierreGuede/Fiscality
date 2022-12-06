@@ -60,7 +60,7 @@ const globalData =  () => ({
      * @param num number
      */
     formatNumber(num){
-        return  new Intl.NumberFormat('fr', { style: 'currency', currency: 'XOF' }).format(num);
+        return  new Intl.NumberFormat('fr', { style: 'currency', currency: 'XOF' }).format(num ? num : 0 );
     },
 
     /**

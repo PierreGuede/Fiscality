@@ -9,6 +9,9 @@ use Livewire\Component;
 
 class IndexHeadOfficeCost extends Component
 {
+    public const CREATE = 'CREATE';
+    public const EDIT = 'EDIT';
+    public const READ = 'CREATE';
     public Company $company;
 
     public string $state = 'CREATE';

@@ -2,7 +2,9 @@
 
 namespace App\Fiscality\Companies\Requests;
 
+use App\Fiscality\Companies\Company;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class CreateCompanyRequest extends FormRequest
 {
@@ -24,14 +26,14 @@ class CreateCompanyRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => ['required', 'string', 'max:255'],
-            'rccm' => ['required', 'string', 'max:14', 'unique:companies'],
-            'path_rccm' => ['required', 'file', 'mimes:pdf', 'max:4000'],
-            'created_date' => ['required', 'string', 'max:255'],
-            'ifu' => ['required', 'integer', 'digits:12', 'unique:companies'],
-            'path' => ['required', 'file', 'mimes:pdf', 'max:4000'],
+            'name' => [Rule::when(auth()->user()->roles[0] == Company::CARBINET, ['required', 'string', 'max:255'])],
+            'rccm' => [Rule::when(auth()->user()->roles[0] == Company::CARBINET ,['required', 'string', 'max:14', 'unique:companies'])],
+            'path_rccm' => [Rule::when(auth()->user()->roles[0] == Company::CARBINET,['required', 'file', 'mimes:pdf', 'max:4000'])],
+            'created_date' =>[Rule::when(auth()->user()->roles[0] == Company::CARBINET, ['required', 'string', 'max:255'])],
+            'ifu' =>[Rule::when(auth()->user()->roles[0] == Company::CARBINET, ['required', 'integer', 'digits:12', 'unique:companies'])],
+            'path' =>[Rule::when(auth()->user()->roles[0] == Company::CARBINET, ['required', 'file', 'mimes:pdf', 'max:4000'])],
             'email' => ['required', 'string', 'max:255'],
-            'celphone' => ['required', 'string', 'max:255'],
+            'celphone' =>[Rule::when(auth()->user()->roles[0] == Company::CARBINET, ['required', 'string', 'max:255'])],
             'centre' => ['required', 'string', 'max:255'],
         ];
     }

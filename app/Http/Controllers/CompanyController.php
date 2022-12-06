@@ -40,8 +40,10 @@ class CompanyController extends Controller
         $user = request()->user();
         if ($user->hasRole('Super-Admin')) {
             $company = $this->model->whereNull('company_id')->get();
-
             return view('admin.companies.indexAdmin', ['company' => $company]);
+        }
+        if ($user->hasRole(Company::ENTERPRISE)) {
+            return redirect()->route('tax-result',  $user->company[0]->id);
         }
         $company = $this->model->where('user_id', request()->user()->id)->get();
         $company_mere = $this->model->where('user_id', request()->user()->id)->whereNotNull('company_id')->get();
@@ -76,7 +78,7 @@ class CompanyController extends Controller
         $rccmFile = 'RCCM_DU'.time().'.'.$data['path_rccm']->extension();
         $IFURequest = $data->file('path')->storeAs('IFU', $ifuFile, 'public');
         $RCCMRequest = $data->file('path')->storeAs('RCCM', $rccmFile, 'public');
-        $store = $this->model->create([
+        $company = $this->model->create([
             'name' => $data['name'],
             'rccm' => $data['rccm'],
             'path_rccm' => $RCCMRequest,
@@ -93,8 +95,11 @@ class CompanyController extends Controller
             'user_id' => request()->user()->id,
         ]);
 
+        if(auth()->user()->roles[0] == 'enterprise') {
+            return route('tax-result', $company->id);
+        }
+
         return redirect()->route('company.index');
-        // return $store;
     }
 
     public function edit(Company $id)

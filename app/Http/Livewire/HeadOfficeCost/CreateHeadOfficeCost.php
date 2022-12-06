@@ -15,9 +15,12 @@ use App\Models\OtherReintegration;
 use Carbon\Carbon;
 use Illuminate\Support\Collection;
 use Livewire\Component;
+use WireUi\Traits\Actions;
 
 class CreateHeadOfficeCost extends Component
 {
+    use Actions;
+
     public Company $company;
 
     public $rate = 10;
@@ -152,7 +155,7 @@ class CreateHeadOfficeCost extends Component
         $head_office_cost = HeadOfficeCost::create([
             'account_result' => $this->account_result,
             'total_reintegration' => $this->total_reintegration,
-            'total_deduction' => $this->total_reintegration,
+            'total_deduction' => $this->total_deduction,
             'taxable_income_before_restatement_head_office_costs' => $taxable_income_before_restatement_head_office_costs,
             'basis_calculating_deduction_limit' => $basis_calculating_deduction_limit,
             'deductible_head_office_costs' => $deductible_head_office_costs,
@@ -170,6 +173,7 @@ class CreateHeadOfficeCost extends Component
             ]);
         }
 
-        notify()->success('Frais de siège calculé avec succès!');
+        $this->emit('refreshState');
+
     }
 }

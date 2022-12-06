@@ -19,6 +19,7 @@ class EditHandler extends Component
     public const FIRST_STEP = 'FIRST_STEP';
     public const SECOND_STEP = 'SECOND_STEP';
     public $state = self::FIRST_STEP;
+    public string $select_all ;
 
 
     public ?OtherReintegration $other_reintegration;
@@ -67,35 +68,15 @@ class EditHandler extends Component
 
     public $ircm_on_expense_detail;
 
-    public $data = [
-        'expense_not_related' => 'true',
-        'unjustfified_expense' => '',
-        'remuneration_not_subject_withholding_tax' => '',
-        'financial_cost' => '',
-        'commission_on_purchase' => 'true',
-        'commission_insurance_broker' => '',
-        'redevance' => 'true',
-        'accountind_financial_technical_assistance_costs' => '',
-        'interest_paid' => 'true',
-        'donation_grant_contribution' => 'true',
-        'advertising_gift' => '',
-        'sumptuary_expenses' => '',
-        'occult_remuneration' => '',
-        'motor_vehicle_tax' => '',
-        'income_tax' => '',
-        'fines_penalities' => '',
-        'past_assets' => 'true',
-        'other_non_deductible_expense' => 'true',
-        'variation_conversation_gap' => 'true',
-        'excess_rent' => '',
-        'other_non_deductible_expenses' => '',
-    ];
+    public $data;
 
     public $listeners = ['refresh'];
 
     public function mount($company)
     {
         $this->company = $company;
+        $this->select_all = false;
+        $this->initialState();
 
         $this->refreshFinancialCost();
         $this->refreshCommissionOnPurchase();
@@ -143,6 +124,70 @@ class EditHandler extends Component
     public function render()
     {
         return view('livewire.ircm-on-expense.edit-handler');
+    }
+
+    public function updatedSelectAll($value)
+    {
+//        $this->select_all = !$this->select_all;
+        if ($this->select_all == true) {
+            $this->selectAllDataState() ;
+        } else {
+            $this->initialState();
+        }
+    }
+
+    public function initialState()
+    {
+         $this->data = [
+        'expense_not_related' => 'true',
+        'unjustfified_expense' => '',
+        'remuneration_not_subject_withholding_tax' => '',
+        'financial_cost' => '',
+        'commission_on_purchase' => 'true',
+        'commission_insurance_broker' => '',
+        'redevance' => 'true',
+        'accountind_financial_technical_assistance_costs' => '',
+        'interest_paid' => 'true',
+        'donation_grant_contribution' => 'true',
+        'advertising_gift' => '',
+        'sumptuary_expenses' => '',
+        'occult_remuneration' => '',
+        'motor_vehicle_tax' => '',
+        'income_tax' => '',
+        'fines_penalities' => '',
+        'past_assets' => 'true',
+        'other_non_deductible_expense' => 'true',
+        'variation_conversation_gap' => 'true',
+        'excess_rent' => '',
+        'other_non_deductible_expenses' => '',
+    ];
+    }
+
+    public function selectAllDataState()
+    {
+        $this->data = [
+            'expense_not_related' => 'true',
+            'unjustfified_expense' => 'true',
+            'remuneration_not_subject_withholding_tax' => 'true',
+            'financial_cost' => 'true',
+            'commission_on_purchase' => 'true',
+            'commission_insurance_broker' => 'true',
+            'redevance' => 'true',
+            'accountind_financial_technical_assistance_costs' => 'true',
+            'interest_paid' => 'true',
+            'donation_grant_contribution' => 'true',
+            'advertising_gift' => 'true',
+            'sumptuary_expenses' => 'true',
+            'occult_remuneration' => 'true',
+            'motor_vehicle_tax' => 'true',
+            'income_tax' => 'true',
+            'fines_penalities' => 'true',
+            'past_assets' => 'true',
+            'other_non_deductible_expense' => 'true',
+            'variation_conversation_gap' => 'true',
+            'excess_rent' => 'true',
+            'other_non_deductible_expenses' => 'true',
+        ];
     }
 
     public function update()

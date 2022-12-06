@@ -103,10 +103,10 @@
             <x-input wire:model.defer="non_deductible_head_office_costs" type="text"
                      label="Frais de siège non déductibles" id="non_deductible_head_office_costs"
                      name="non_deductible_head_office_costs"
-                     x-bind:value=" arr_sum.reduce((acc, next) => Number(acc) + Number(next), 0) - ({{ $taxable_income_before_restatement_head_office_costs }} + arr_sum.reduce((acc, next) => Number(acc) + Number(next), 0) * (rate/100))"
+                     x-bind:value=" arr_sum.reduce((acc, next) => Number(acc) + Number(next), 0) -  ({{ $taxable_income_before_restatement_head_office_costs }} + arr_sum.reduce((acc, next) => Number(acc) + Number(next), 0)) * (rate/100) "
                      class="block w-full" required autofocus/>
         </div>
 
-        <x-button wire:click="save">Enregistrer</x-button>
+        <x-button type="submit" >Enregistrer</x-button>
     </form>
 </div>

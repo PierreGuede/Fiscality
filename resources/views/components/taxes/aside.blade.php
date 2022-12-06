@@ -15,13 +15,13 @@
 
             @if($impot->code == \App\Fiscality\TypeImpots\TypeImpot::IRCM_SUR_CHARGES )
                 <x-company-setting.link href="{{ route('ircm-on-expense', $company->id)  }}" name="IRCM sur charge"
-                                        :active="request()->routeIs('business-profit-tax')"/>
+                                        :active="request()->routeIs('ircm-on-expense')"/>
             @endif
 
             @if($impot->code == \App\Fiscality\TypeImpots\TypeImpot::IRCM_SUR_RESULTAT )
-                <x-company-setting.link href="{{ route('business-profit-tax', $company->id)  }}"
+                <x-company-setting.link href="{{ route('ircm-on-net-result', $company->id)  }}"
                                         name="IRCM sur résultat net"
-                                        :active="request()->routeIs('business-profit-tax')"/>
+                                        :active="request()->routeIs('ircm-on-net-result')"/>
             @endif
         @endforeach
     @endif

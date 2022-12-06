@@ -79,7 +79,7 @@ Route::middleware('auth', 'hasOneRole', 'hasPack', 'email_verified')->group(func
         Route::get('workspace/company/{company}/other-reintegration', [\App\Http\Controllers\OtherReintegrationController::class, 'index'])->name('tax-result.reintegration.other-reintegration');
 
         Route::get('workspace/company/{company}/other-reintegration/commission-purchase', [\App\Http\Controllers\CommissionOnPurchaseController::class, 'index'])->name('work.commissionPurchase');
-        Route::get('workspace/company/{company}/head-office-costs', [\App\Http\Controllers\HeadOfficeCostController::class, 'index'])->name('head-office-costs');
+        Route::get('workspace/company/{company}/head-office-costs', [\App\Http\Controllers\HeadOfficeCostController::class, 'index'])->name('tax-result.head-office-costs');
         Route::get('workspace/company/{company}/total-tax-result', [\App\Fiscality\TaxResult\Controllers\TaxResultController::class, 'totalTaxableIncomeBeforeHeadOfficeExpenses'])->name('tax-result.totalTaxableIncomeBeforeHeadOfficeExpenses');
 
         Route::get('workspace/company/{company}/setting', [\App\Http\Controllers\CompanySettingController::class, 'index'])->name('company.setting');
@@ -87,9 +87,11 @@ Route::middleware('auth', 'hasOneRole', 'hasPack', 'email_verified')->group(func
         Route::get('workspace/company/{company}/setting/taxation', [\App\Http\Controllers\CompanySettingController::class, 'taxation'])->name('company.setting.taxation');
         Route::get('workspace/company/{company}/setting/tax-type', [\App\Http\Controllers\CompanySettingController::class, 'taxType'])->name('company.setting.tax-type');
 
-        Route::get('workspace/company/{company}/tax/corporate-tax', [\App\Http\Controllers\CorporateTaxController::class, 'index'])->name('corporate-tax');
+        Route::get('workspace/company/{company}/tax/corporate-tax', [\App\Fiscality\CorporateTax\Controllers\CorporateTaxController::class, 'index'])->name('corporate-tax');
+        Route::get('workspace/company/{company}/tax/deficit', [\App\Http\Controllers\DeficitController::class, 'index'])->name('deficit');
         Route::get('workspace/company/{company}/tax/business-profit-tax', [\App\Http\Controllers\BusinessProfitTaxController::class, 'index'])->name('business-profit-tax');
         Route::get('workspace/company/{company}/tax/ircm-on-expense', [\App\Http\Controllers\IRCMOnExpenseController::class, 'index'])->name('ircm-on-expense');
+        Route::get('workspace/company/{company}/tax/ircm-on-net-result', [\App\Http\Controllers\IRCMOnNetResultController::class, 'index'])->name('ircm-on-net-result');
     });
     Route::get('users', [\App\Http\Controllers\UserController::class, 'index'])->name('users.index');
     Route::post('users', [\App\Http\Controllers\UserController::class, 'store'])->name('users.store');

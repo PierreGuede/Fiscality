@@ -5,13 +5,15 @@ namespace App\Http\Livewire\SetupAccount;
 use App\Fiscality\Packs\Pack;
 use App\Fiscality\ProfileUsers\ProfileUser;
 use App\Models\Subscription;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
 use Livewire\Component;
 use Livewire\WithFileUploads;
+use WireUi\Traits\Actions;
 
 class IndexSetupAccount extends Component
 {
-    use WithFileUploads;
+    use WithFileUploads, Actions;
 
     public const LIMIT = 2;
 
@@ -89,6 +91,8 @@ class IndexSetupAccount extends Component
     {
 //        $this->validate();
 
+
+
 //        dd([
 //            'ref_payment' => $ref_payement,
 //            'pack' => $this->pack,
@@ -112,6 +116,9 @@ class IndexSetupAccount extends Component
         try {
             DB::beginTransaction();
 
+        $date = date_create($this->normal_picker);
+         date_format($date, 'Y-m-d');
+
             ProfileUser::create([
                 'social_reason' => $this->social_reason,
                 'ifu' => $this->ifu,
@@ -119,7 +126,7 @@ class IndexSetupAccount extends Component
                 'rccm' => $this->rccm,
                 'celphone' => $this->celphone,
                 'rccm_file' => $rccm_file_path,
-                'born_day' => $this->normal_picker,
+                'born_day' => date_format($date, 'Y-m-d'),
                 'user_id' => $user->id,
             ]);
 

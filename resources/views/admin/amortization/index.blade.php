@@ -5,6 +5,7 @@
         <div class=" w-auto" >
             <x-title>Amortissement</x-title>
 
+{{--            @livewire('company.amortization.details', ['company' => $company])--}}
 
             @livewire('total-card', ['total' => $total])
             @livewire('company.amortization.vehicle-card', ['company' => $company])
