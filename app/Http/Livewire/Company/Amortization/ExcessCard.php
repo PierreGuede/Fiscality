@@ -38,5 +38,6 @@ class ExcessCard extends Component
     public function newExcess()
     {
         $this->total = Excess::where('company_id', $this->company->id)->sum('deductible_amortization');
+        $this->emit('refreshTotal');
     }
 }

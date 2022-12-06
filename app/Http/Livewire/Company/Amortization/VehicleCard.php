@@ -38,5 +38,6 @@ class VehicleCard extends Component
     public function newVehicle()
     {
         $this->total_vehicle = Vehicle::where('company_id', $this->company->id)->sum('deductible_amortization');
+        $this->emit('refreshTotal');
     }
 }

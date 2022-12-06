@@ -3,6 +3,7 @@
     <x-tax-result.content-wrapper :company="$company" >
 
     <div class="w-full  min-h-screen" >
+        <x-title>Surplus d'amortissement</x-title>
 
         <div class="max-w-5xl w-full mx-auto">
             <form x-data="{ taux_use: {{ $excess->taux_use }} , taux_recommended: {{ $excess->taux_recommended }}, dotation: {{ $excess->dotation }} }" class="mt-10 space-y-5" action="{{ route('amortization.amortization-excess.update',['company'=>$company->id,'excess'=>$excess->id]) }}" method="POST">
@@ -55,7 +56,7 @@
 
                 <div>
                     <x-input   type="text" label="Amortisement non déductible" id="ecart" name="ecart"
-                               x-bind:value="taux_recommended > 0 ? (dotation*(taux_use - taux_recommended)) / taux_recommended : 0 " class="block w-full" required autofocus />
+                               x-bind:value="((taux_use - taux_recommended) * dotation) / taux_use " class="block w-full" required autofocus />
                 </div>
 
                 <div class="flex gap-x-3 justify-end">

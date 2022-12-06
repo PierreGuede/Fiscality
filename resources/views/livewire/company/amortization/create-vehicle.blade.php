@@ -26,7 +26,7 @@
                  x-bind:value="value - plafond" class="block w-full"  autofocus />
 
 
-        <x-input wire:model.defer="data.dotation" x-model="dotation" type="number" label="Dotation eux amortissement comptabilisée" id="dotation" name="dotation"
+        <x-input wire:model.defer="data.dotation" x-model="dotation" type="number" label="Dotation aux amortissement comptabilisée" id="dotation" name="dotation"
                  x-bind:value="" class="block w-full"  autofocus />
                   @error('data.dotation')
             <span class="text-xs text-red-600">{{ $message }}</span>

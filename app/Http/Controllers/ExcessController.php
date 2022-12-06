@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Fiscality\Amortizations\Amortization;
 use App\Fiscality\Companies\Company;
 use App\Fiscality\Excesss\Excess;
+use App\Http\Requests\StoreAmortizationExcessRequest;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 
@@ -58,17 +59,23 @@ class ExcessController extends Controller
 
     public function update(Company $company, $excess, Request $request)
     {
-        $request->validate([
+       $validated =  $request->validate([
             'category_imo' => ['sometimes', 'required', 'string', 'max:255', Rule::unique('excesses')->ignore($excess)],
             'designation' => ['sometimes', 'required', 'string', 'max:255', Rule::unique('excesses')->ignore($excess)],
-            'taux_use' => ['sometimes', 'required', 'string', 'max:255', Rule::unique('excesses')->ignore($excess)],
-            'taux_recommended' => ['sometimes', 'required', 'string', 'max:255', Rule::unique('excesses')->ignore($excess)],
-            'ecart' => ['sometimes', 'required', 'string', 'max:255', Rule::unique('excesses')->ignore($excess)],
-            'dotation' => ['sometimes', 'required', 'string', 'max:255', Rule::unique('excesses')->ignore($excess)],
-            'deductible_amortization' => ['sometimes', 'required', 'string', 'max:255', Rule::unique('excesses')->ignore($excess)],
+            'taux_use' => ['sometimes', 'required', 'string', 'max:255'],
+            'taux_recommended' => ['sometimes', 'required', 'string', 'max:255'],
+            'ecart' => ['sometimes', 'required', 'string', 'max:255'],
+            'dotation' => ['sometimes', 'required', 'string', 'max:255'],
+            'deductible_amortization' => ['sometimes', 'required', 'string', 'max:255'],
         ]);
-        $update = Excess::find($excess);
-        $update->update($request->all());
+
+        $res = Excess::find($excess);
+        $ecart = (float) $request->input('taux_use') - (float) $request->input('taux_recommended');
+        $deductibleAmortization = ((float) $request->input('dotation') * (float) $ecart) / (float) $request->input('taux_use');
+        $res->fill($validated);
+        $res->ecart = $ecart;
+        $res->deductible_amortization = $deductibleAmortization;
+        $res->save();
 
         return redirect()->route('amortization.amortization-excess', $company);
     }

@@ -33,5 +33,6 @@ class DepreciationCard extends Component
     public function newDepreciation()
     {
         $this->total = Depreciation::where('company_id', $this->company->id)->sum('dotation');
+        $this->emit('refreshTotal');
     }
 }
