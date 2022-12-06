@@ -29,6 +29,11 @@ class CompanySettingController extends Controller
         return view('auth.company-setting.tax-type', compact('company'));
     }
 
+    public function allTaxes(Request $request, Company $company)
+    {
+        return view('auth.company-setting.all-taxes', compact('company'));
+    }
+
     public function updateCompany(UpdateCompanyRequest $request, Company $company)
     {
         $company->fill($request->validated());

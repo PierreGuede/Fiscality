@@ -9,7 +9,7 @@
 
             @livewire('accured-charge.provision-card',['company' => $company])
             @livewire('accured-charge.expense-provisioned-card',['company' => $company])
-            @livewire('create-provisions-personnel-expenses',['company' => $company])
+            @livewire('accured-charge.personnal-provision',['company' => $company])
 
 
 
