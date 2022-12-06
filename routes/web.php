@@ -19,9 +19,9 @@ Route::get('/', function () {
 
 Route::get('/dashboard', function () {
     return view('dashboard');
-})->middleware(['auth', 'email_verified', 'hasOneRole'])->name('dashboard');
+})->middleware(['auth', 'two-factor', 'email_verified', 'hasOneRole'])->name('dashboard');
 
-Route::middleware(['auth', 'email_verified'])->group(function () {
+Route::middleware(['auth', 'two-factor', 'email_verified'])->group(function () {
     Route::get('setup-account', [\App\Http\Controllers\UserController::class, 'enterprise'])->name('users.enterprise')->middleware('haveNotOneRole');
 
     Route::post('upload', [\App\Http\Controllers\UploadController::class, 'store']);
@@ -31,10 +31,10 @@ Route::middleware(['auth', 'email_verified'])->group(function () {
 require __DIR__.'/auth.php';
 
 Route::post('company', [\App\Http\Controllers\CompanyController::class, 'store'])->name('company.store');
-Route::middleware('auth', 'pack', 'email_verified')->group(function () {
+Route::middleware('auth', 'two-factor', 'pack', 'email_verified')->group(function () {
     Route::get('renew-subscription', [\App\Http\Controllers\SubscriptionController::class, 'renew'])->name('renew.pack');
 });
-Route::middleware('auth', 'hasOneRole', 'hasPack', 'email_verified')->group(function () {
+Route::middleware('auth', 'two-factor', 'hasOneRole', 'hasPack', 'email_verified')->group(function () {
     Route::view('about', 'about')->name('about');
     Route::middleware('hasOneRole')->group(function () {
         Route::get('company', [\App\Http\Controllers\CompanyController::class, 'index'])->name('company.index');
@@ -110,7 +110,8 @@ Route::middleware('auth', 'hasOneRole', 'hasPack', 'email_verified')->group(func
     Route::get('user/setting/notification', [\App\Http\Controllers\UserSettingController::class, 'notification'])->name('user.setting.notification');
     Route::post('user/setting/notification', [\App\Http\Controllers\UserSettingController::class, 'storeNotification'])->name('user.setting.notification');
 });
-Route::middleware('auth', 'role:Super-Admin|cabinet|enterprise')->group(function () {
+
+Route::middleware('auth', 'two-factor', 'role:Super-Admin|cabinet|enterprise')->group(function () {
     Route::get('role', [\App\Http\Controllers\RoleController::class, 'index'])->name('role.index');
     Route::post('role', [\App\Http\Controllers\RoleController::class, 'store'])->name('role.store');
     Route::get('role/{id}', [\App\Http\Controllers\RoleController::class, 'edit'])->name('role.edit');
@@ -124,7 +125,7 @@ Route::middleware('auth', 'role:Super-Admin|cabinet|enterprise')->group(function
     Route::delete('permission/{id}', [\App\Http\Controllers\PermissionController::class, 'destroy'])->name('permission.delete');
 });
 
-Route::middleware('auth', 'role:Super-Admin')->group(function () {
+Route::middleware('auth', 'two-factor', 'role:Super-Admin')->group(function () {
     Route::get('company/accept/{id}', [\App\Http\Controllers\CompanyController::class, 'acceptCompany'])->name('company.acceptCompany');
     Route::get('company/reject/{id}', [\App\Http\Controllers\CompanyController::class, 'rejectCompany'])->name('company.rejectCompany');
     Route::get('company/active/{id}', [\App\Http\Controllers\CompanyController::class, 'activeCompany'])->name('company.activeCompany');

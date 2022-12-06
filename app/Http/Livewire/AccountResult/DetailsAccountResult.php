@@ -17,7 +17,7 @@ class DetailsAccountResult extends Component
 
     public $total_incomes_expenses;
 
-    public $listeners = ['refreshTotalCard'];
+    protected $listeners = ['refreshTotalCard'];
 
     public function mount(Company $company)
     {
@@ -51,7 +51,7 @@ class DetailsAccountResult extends Component
 
     public function refreshTotalCard()
     {
-//        $account_result = AccountingResult::whereCompanyId($this->company->id)->whereYear(Carbon::now()->year)->first();
-//        $this->total = is_null($account_result) ? 0 : $account_result->ar_value;
+        $account_result = AccountingResult::whereCompanyId($this->company->id)->whereYear('created_at', Carbon::now()->year)->first();
+        $this->total = is_null($account_result) ? 0 : $account_result->ar_value;
     }
 }

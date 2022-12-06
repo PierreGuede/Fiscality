@@ -27,13 +27,13 @@ class CreateCompanyRequest extends FormRequest
     {
         return [
             'name' => [Rule::when(auth()->user()->roles[0] == Company::CARBINET, ['required', 'string', 'max:255'])],
-            'rccm' => [Rule::when(auth()->user()->roles[0] == Company::CARBINET ,['required', 'string', 'max:14', 'unique:companies'])],
-            'path_rccm' => [Rule::when(auth()->user()->roles[0] == Company::CARBINET,['required', 'file', 'mimes:pdf', 'max:4000'])],
-            'created_date' =>[Rule::when(auth()->user()->roles[0] == Company::CARBINET, ['required', 'string', 'max:255'])],
-            'ifu' =>[Rule::when(auth()->user()->roles[0] == Company::CARBINET, ['required', 'integer', 'digits:12', 'unique:companies'])],
-            'path' =>[Rule::when(auth()->user()->roles[0] == Company::CARBINET, ['required', 'file', 'mimes:pdf', 'max:4000'])],
+            'rccm' => [Rule::when(auth()->user()->roles[0] == Company::CARBINET, ['required', 'string', 'max:14', 'unique:companies'])],
+            'path_rccm' => [Rule::when(auth()->user()->roles[0] == Company::CARBINET, ['required', 'file', 'mimes:pdf', 'max:4000'])],
+            'created_date' => [Rule::when(auth()->user()->roles[0] == Company::CARBINET, ['required', 'string', 'max:255'])],
+            'ifu' => [Rule::when(auth()->user()->roles[0] == Company::CARBINET, ['required', 'integer', 'digits:12', 'unique:companies'])],
+            'path' => [Rule::when(auth()->user()->roles[0] == Company::CARBINET, ['required', 'file', 'mimes:pdf', 'max:4000'])],
             'email' => ['required', 'string', 'max:255'],
-            'celphone' =>[Rule::when(auth()->user()->roles[0] == Company::CARBINET, ['required', 'string', 'max:255'])],
+            'celphone' => [Rule::when(auth()->user()->roles[0] == Company::CARBINET, ['required', 'string', 'max:255'])],
             'centre' => ['required', 'string', 'max:255'],
         ];
     }

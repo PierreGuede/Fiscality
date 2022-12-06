@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('i_r_c_m_on_expenses', function (Blueprint $table) {
             $table->id();
-            $table->decimal('total',15,2);
+            $table->decimal('total', 15, 2);
             $table->foreignIdFor(\App\Fiscality\Companies\Company::class)->constrained();
             $table->foreignIdFor(\App\Models\User::class)->constrained();
             $table->timestamps();

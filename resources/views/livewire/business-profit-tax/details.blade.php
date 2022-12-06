@@ -1,6 +1,6 @@
 <div>
 
-    @livewire('total-card', ['total' => $max_value])
+    <x-total-card :total="$total" />
 
     @livewire('business-profit-tax.real-tax-card', ['total' => $data['impot_reel']])
     @livewire('business-profit-tax.minimum-tax-card', ['company' => $company])

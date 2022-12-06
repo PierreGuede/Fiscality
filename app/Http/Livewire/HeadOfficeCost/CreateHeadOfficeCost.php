@@ -174,6 +174,5 @@ class CreateHeadOfficeCost extends Component
         }
 
         $this->emit('refreshState');
-
     }
 }

@@ -72,5 +72,6 @@ class Kernel extends HttpKernel
         'IsBlocked' => \App\Http\Middleware\IfIsBloquedMiddleware::class,
         'hasPack' => \App\Http\Middleware\packMidlle::class,
         'subscription' => \App\Http\Middleware\SubscriptionMiddleware::class,
+        'two-factor' => \App\Http\Middleware\TwoFactor::class,
     ];
 }

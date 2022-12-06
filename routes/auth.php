@@ -45,6 +45,9 @@ Route::post('email/verification-notification', [EmailVerificationNotificationCon
             ->name('verification.send');
 //                ->middleware('throttle:6,1')
 Route::middleware('auth')->group(function () {
+    Route::get('verify/resend', [\App\Http\Controllers\TwoFactorController::class, 'resend'])->name('verify.resend');
+    Route::resource('verify', \App\Http\Controllers\TwoFactorController::class)->only(['index', 'store']);
+
     Route::get('confirm-password', [ConfirmablePasswordController::class, 'show'])
                 ->name('password.confirm');
 

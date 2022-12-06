@@ -10,7 +10,7 @@
                 <x-input type="text" label="Catégories d'immobilisation" id="category_imo" name="category_imo"
                          value="{{ old('category_imo',$excess->category_imo) }}" class="block w-full" required autofocus />
                     @error('data.category_imo')
-                    <span class="text-xs text-red-600">{{ $message }}</span>
+                         <span class="text-xs text-red-600">{{ $message }}</span>
                     @enderror
                 </div>
 

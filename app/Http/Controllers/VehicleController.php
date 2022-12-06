@@ -52,7 +52,7 @@ class VehicleController extends Controller
 
     public function edit(Company $company, Vehicle $vehicle)
     {
-        return view('admin.amortization.vehicle-tourism.modify', compact('company', 'vehicle'));
+        return view('admin.amortization.vehicle-tourism.edit', compact('company', 'vehicle'));
     }
 
     public function update(Company $company, $vehicle, Request $request)

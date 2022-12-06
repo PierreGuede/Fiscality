@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('i_r_c_m_on_expense_details', function (Blueprint $table) {
             $table->id();
             $table->string('field');
-            $table->decimal('amount', 15,2);
+            $table->decimal('amount', 15, 2);
             $table->boolean('is_selected')->default(true);
             $table->foreignIdFor(\App\Fiscality\Companies\Company::class)->constrained();
             $table->foreignIdFor(\App\Models\User::class)->constrained();

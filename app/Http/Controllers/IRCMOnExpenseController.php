@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Fiscality\Companies\Company;
-use Illuminate\Http\Request;
 
 class IRCMOnExpenseController extends Controller
 {

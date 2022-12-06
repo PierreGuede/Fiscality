@@ -7,7 +7,7 @@
     <x-taxes.aside :company="$company" />
     <div class="w-full  bg-white min-h-[60vh] rounded">
         <div class="p-8 flex flex-col justify-between h-full  ">
-            <div class=" divide-y-2 ">
+            <div class=" ">
 
                 {{ $slot  }}
 

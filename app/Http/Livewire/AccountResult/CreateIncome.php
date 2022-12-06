@@ -9,11 +9,15 @@ use App\Fiscality\IncomeExpenses\IncomeExpense;
 use App\Fiscality\RADetails\RADetail;
 use Carbon\Carbon;
 use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 use LivewireUI\Modal\ModalComponent;
+use WireUi\Traits\Actions;
 
 class CreateIncome extends ModalComponent
 {
+    use Actions;
+
     public Amortization $model;
 
     public $company;
@@ -122,27 +126,35 @@ class CreateIncome extends ModalComponent
         $total_data = $this->processDataTotalAmount($this->inputs);
 
         $exist = AccountingResult::whereCompanyId($this->company->id)->first();
+        try {
+            DB::beginTransaction();
+            if (is_null($exist)) {
+                $accounting_result = AccountingResult::create([
+                    'total_incomes' => $total_data,
+                    'total_expenses' => 0,
+                    'ar_value' => $total_data - 0,
+                    'company_id' => $this->company->id,
+                ]);
+                $this->processData($this->inputs, $accounting_result);
+            } else {
+                $exist->total_incomes = $total_data;
+                $exist->ar_value = (float) $total_data - (float) $exist->total_expenses;
+                $this->processData($this->inputs, $exist);
 
-        if (is_null($exist)) {
-            $accounting_result = AccountingResult::create([
-                'total_incomes' => $total_data,
-                'total_expenses' => 0,
-                'ar_value' => $total_data - 0,
-                'company_id' => $this->company->id,
-            ]);
-            $this->processData($this->inputs, $accounting_result);
-        } else {
-            $exist->total_incomes = $total_data;
-            $exist->ar_value = (float) $total_data - (float) $exist->total_expenses;
-            $this->processData($this->inputs, $exist);
+                $exist->save();
+            }
 
-            $exist->save();
+            $this->emit('refreshIncome');
+            $this->notification()->success(
+                $title = 'Succès',
+                $description = 'Produits enregistrés avec succès!'
+            );
+            DB::commit();
+            $this->closeModal();
+        } catch (\Throwable $th) {
+            DB::rollBack();
+            throw $th;
         }
-
-        $this->emit('refreshIncome');
-        $this->emit('refreshTotalCard');
-
-        $this->closeModal();
 
 //        return route('work.accountResult');
 //        $this->accounting_result = AccountingResult::whereCompanyId($company->id)->whereYear('created_at', Carbon::now()->year)->first();

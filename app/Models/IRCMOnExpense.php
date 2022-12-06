@@ -9,6 +9,5 @@ class IRCMOnExpense extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['total', 'amount', 'is_selected', 'company_id', 'user_id' ];
-
+    protected $fillable = ['total', 'amount', 'is_selected', 'company_id', 'user_id'];
 }

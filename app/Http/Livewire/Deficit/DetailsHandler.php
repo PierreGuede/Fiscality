@@ -10,19 +10,19 @@ use Livewire\Component;
 class DetailsHandler extends Component
 {
     public Company $company;
-    public  $amount;
 
+    public $amount;
 
     protected $rules = [
-        'amount' => ['required', 'min:0']
+        'amount' => ['required', 'min:0'],
     ];
 
     public function mount(Company $company)
     {
         $this->company = $company;
-        $deficit = Deficit::whereCompanyId($this->company->id)->whereYear('created_at',Carbon::now()->year)->first();
+        $deficit = Deficit::whereCompanyId($this->company->id)->whereYear('created_at', Carbon::now()->year)->first();
         $this->fill([
-            'amount' => $deficit->amount
+            'amount' => $deficit->amount,
         ]);
     }
 
@@ -36,7 +36,7 @@ class DetailsHandler extends Component
         Deficit::create([
             'amount' => $this->amount,
             'user_id' => auth()->user()->id,
-            'company_id' => $this->company->id
+            'company_id' => $this->company->id,
         ]);
 
         $this->emit('changeToRead');

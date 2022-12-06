@@ -17,10 +17,12 @@ use Livewire\Component;
 class EditHandler extends Component
 {
     public const FIRST_STEP = 'FIRST_STEP';
-    public const SECOND_STEP = 'SECOND_STEP';
-    public $state = self::FIRST_STEP;
-    public string $select_all ;
 
+    public const SECOND_STEP = 'SECOND_STEP';
+
+    public $state = self::FIRST_STEP;
+
+    public string $select_all;
 
     public ?OtherReintegration $other_reintegration;
 
@@ -90,8 +92,7 @@ class EditHandler extends Component
 
         $this->ircm_on_expense_detail = IRCMOnExpenseDetail::whereCompanyId($this->company->id)->whereYear('created_at', Carbon::now()->year)->get();
 
-
-        for ($i = 0; $i < count($this->ircm_on_expense_detail); $i++){
+        for ($i = 0; $i < count($this->ircm_on_expense_detail); $i++) {
             $this->data[$this->ircm_on_expense_detail[$i]['field']] = 'true';
         }
 
@@ -130,7 +131,7 @@ class EditHandler extends Component
     {
 //        $this->select_all = !$this->select_all;
         if ($this->select_all == true) {
-            $this->selectAllDataState() ;
+            $this->selectAllDataState();
         } else {
             $this->initialState();
         }
@@ -138,29 +139,29 @@ class EditHandler extends Component
 
     public function initialState()
     {
-         $this->data = [
-        'expense_not_related' => 'true',
-        'unjustfified_expense' => '',
-        'remuneration_not_subject_withholding_tax' => '',
-        'financial_cost' => '',
-        'commission_on_purchase' => 'true',
-        'commission_insurance_broker' => '',
-        'redevance' => 'true',
-        'accountind_financial_technical_assistance_costs' => '',
-        'interest_paid' => 'true',
-        'donation_grant_contribution' => 'true',
-        'advertising_gift' => '',
-        'sumptuary_expenses' => '',
-        'occult_remuneration' => '',
-        'motor_vehicle_tax' => '',
-        'income_tax' => '',
-        'fines_penalities' => '',
-        'past_assets' => 'true',
-        'other_non_deductible_expense' => 'true',
-        'variation_conversation_gap' => 'true',
-        'excess_rent' => '',
-        'other_non_deductible_expenses' => '',
-    ];
+        $this->data = [
+            'expense_not_related' => 'true',
+            'unjustfified_expense' => '',
+            'remuneration_not_subject_withholding_tax' => '',
+            'financial_cost' => '',
+            'commission_on_purchase' => 'true',
+            'commission_insurance_broker' => '',
+            'redevance' => 'true',
+            'accountind_financial_technical_assistance_costs' => '',
+            'interest_paid' => 'true',
+            'donation_grant_contribution' => 'true',
+            'advertising_gift' => '',
+            'sumptuary_expenses' => '',
+            'occult_remuneration' => '',
+            'motor_vehicle_tax' => '',
+            'income_tax' => '',
+            'fines_penalities' => '',
+            'past_assets' => 'true',
+            'other_non_deductible_expense' => 'true',
+            'variation_conversation_gap' => 'true',
+            'excess_rent' => '',
+            'other_non_deductible_expenses' => '',
+        ];
     }
 
     public function selectAllDataState()
@@ -195,7 +196,7 @@ class EditHandler extends Component
         $this->state = 'create';
     }
 
-    public function nextStep ()
+    public function nextStep()
     {
         $this->state = self::SECOND_STEP;
     }
@@ -207,34 +208,32 @@ class EditHandler extends Component
 
     public function save()
     {
-
         $total = 0;
         $this->other_reintegration = OtherReintegration::whereCompanyId($this->company->id)->whereYear('created_at', Carbon::now()->year)->first();
 
-        for ($i = 0; $i < count($this->data); $i++){
-            if( $this->data[array_keys($this->data)[$i]] == 'true') {
+        for ($i = 0; $i < count($this->data); $i++) {
+            if ($this->data[array_keys($this->data)[$i]] == 'true') {
                 IRCMOnExpenseDetail::updateOrCreate([
                     'field' => array_keys($this->data)[$i],
                 ], [
                     'is_selected' => true,
-                    'amount' => (float)$this->other_reintegration[array_keys($this->data)[$i]],
+                    'amount' => (float) $this->other_reintegration[array_keys($this->data)[$i]],
                     'user_id' => auth()->user()->id,
                     'company_id' => $this->company->id,
                 ]);
-                $total += (float)$this->other_reintegration[array_keys($this->data)[$i]];
+                $total += (float) $this->other_reintegration[array_keys($this->data)[$i]];
             }
         }
-        $element_to_remove = [] ;
-        for ($i = 0; $i < count($this->ircm_on_expense_detail); $i++){
-            if($this->data[$this->ircm_on_expense_detail[$i]['field']] == ''){
+        $element_to_remove = [];
+        for ($i = 0; $i < count($this->ircm_on_expense_detail); $i++) {
+            if ($this->data[$this->ircm_on_expense_detail[$i]['field']] == '') {
                 $element_to_remove[$i] = $this->ircm_on_expense_detail[$i]->id;
             }
         }
 
-        if(count($element_to_remove) > 0 ){
+        if (count($element_to_remove) > 0) {
             IRCMOnExpenseDetail::destroy($element_to_remove);
         }
-
 
         notify()->success('Enregistrer avec succès');
 

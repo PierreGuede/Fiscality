@@ -10,18 +10,19 @@ use Livewire\Component;
 class EditHandler extends Component
 {
     public Company $company;
-    public  $amount;
+
+    public $amount;
 
     protected $rules = [
-        'amount' => ['required', 'min:0']
+        'amount' => ['required', 'min:0'],
     ];
 
     public function mount(Company $company)
     {
         $this->company = $company;
-        $deficit = Deficit::whereCompanyId($this->company->id)->whereYear('created_at',Carbon::now()->year)->first();
+        $deficit = Deficit::whereCompanyId($this->company->id)->whereYear('created_at', Carbon::now()->year)->first();
         $this->fill([
-            'amount' => $deficit->amount
+            'amount' => $deficit->amount,
         ]);
     }
 
@@ -32,7 +33,7 @@ class EditHandler extends Component
 
     public function save()
     {
-        $deficit = Deficit::whereCompanyId($this->company->id)->whereYear('created_at',Carbon::now()->year)->first();
+        $deficit = Deficit::whereCompanyId($this->company->id)->whereYear('created_at', Carbon::now()->year)->first();
 
         $deficit->fill([
             'amount' => $this->amount,

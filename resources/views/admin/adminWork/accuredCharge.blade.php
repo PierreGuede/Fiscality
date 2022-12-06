@@ -5,9 +5,9 @@
 
             <div class="space-y-2">
 
-            @livewire('total-card', ['total' => $total])
+                <x-total-card :total="$total" />
 
-            @livewire('accured-charge.provision-card',['company' => $company])
+                @livewire('accured-charge.provision-card',['company' => $company])
             @livewire('accured-charge.expense-provisioned-card',['company' => $company])
             @livewire('create-provisions-personnel-expenses',['company' => $company])
 

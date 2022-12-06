@@ -9,10 +9,11 @@ use Livewire\Component;
 class CreateHandler extends Component
 {
     public Company $company;
-    public  $amount;
+
+    public $amount;
 
     protected $rules = [
-        'amount' => ['required', 'min:0']
+        'amount' => ['required', 'min:0'],
     ];
 
     public function mount(Company $company)
@@ -30,7 +31,7 @@ class CreateHandler extends Component
         Deficit::create([
             'amount' => $this->amount,
             'user_id' => auth()->user()->id,
-            'company_id' => $this->company->id
+            'company_id' => $this->company->id,
         ]);
 
         $this->emit('changeToRead');

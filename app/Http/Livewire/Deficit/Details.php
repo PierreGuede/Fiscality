@@ -9,11 +9,15 @@ use Livewire\Component;
 class Details extends Component
 {
     public const CREATE = 'CREATE';
+
     public const EDIT = 'EDIT';
+
     public const READ = 'READ';
 
     public string $state;
-    public  $company;
+
+    public $company;
+
     public $deficit_amount;
 
     public $listeners = ['changeToRead', 'edit'];
@@ -40,5 +44,4 @@ class Details extends Component
     {
         $this->state = self::READ;
     }
-
 }

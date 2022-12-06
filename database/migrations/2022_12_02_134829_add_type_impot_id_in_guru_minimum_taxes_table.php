@@ -13,7 +13,7 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::whenTableDoesntHaveColumn('guru_minimum_taxes','type_impot_id' ,function (Blueprint $table) {
+        Schema::whenTableDoesntHaveColumn('guru_minimum_taxes', 'type_impot_id', function (Blueprint $table) {
             $table->foreignIdFor(\App\Fiscality\TypeImpots\TypeImpot::class)->nullable()->constrained();
         });
     }

@@ -47,7 +47,7 @@ class DepreciationController extends Controller
 
     public function edit(Company $company, Depreciation $depreciation)
     {
-        return view('admin.amortization.depreciation-assets.modify', compact('company', 'depreciation'));
+        return view('admin.amortization.depreciation-assets.edit', compact('company', 'depreciation'));
     }
 
     public function update(Company $company, $depreciation, Request $request)

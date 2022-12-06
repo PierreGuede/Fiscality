@@ -1,7 +1,8 @@
 <x-company-layout :company="$company" >
     <x-tax-result.content-wrapper :company="$company" >
 
-    <div class="w-full  min-h-screen" >
+    <div class="w-full  min-h-screen space-y-4" >
+        <x-title>Vehicule de tourismes</x-title>
 
         <div class="max-w-5xl w-full mx-auto">
             <form x-data="{ value: {{ $vehicle->value }}, plafond: 25_000_000,dotation: {{ $vehicle->dotation }} }" class="mt-10 space-y-5" action="{{ route('amortization.tourism-cars.update',['company'=>$company->id,'vehicle'=>$vehicle->id]) }}" method="POST">
@@ -29,7 +30,7 @@
                                 value="{{ old('date',$vehicle->date) }}" class="block w-full" required autofocus />
 
                     <div class="flex gap-x-3 justify-end">
-                        <x-button type="button" wire:click="$emit('closeModal')" variant="neutral" class="w-36" >   {{ __('Annuler') }} </x-button>
+                        <x-button type="button"   variant="neutral" class="w-36" >   {{ __('Annuler') }} </x-button>
                         <x-button type="submit" class="w-36" >   {{ __('Enregistrer') }} </x-button>
                     </div>
             </form>

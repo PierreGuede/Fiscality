@@ -10,13 +10,19 @@ use Livewire\Component;
 class Handler extends Component
 {
     public const READ = 'READ';
+
     public const EDIT = 'EDIT';
+
     public const CREATE = 'CREATE';
 
     public $state;
+
     public $total;
+
     public Company $company;
+
     public $ircm_on_expense_detail;
+
     public $data = [];
 
     public $listeners = ['refresh'];
@@ -45,17 +51,16 @@ class Handler extends Component
 
         $total = 0;
         $this->state = self::CREATE;
-        if(count($ircm_on_expense_detail) > 0) {
+        if (count($ircm_on_expense_detail) > 0) {
             $total = array_sum(array_column($ircm_on_expense_detail->toArray(), 'amount'));
 
-            for ($i = 0; $i < count($ircm_on_expense_detail); $i++){
-                $this->data[$ircm_on_expense_detail[$i]['field']] = (float)$ircm_on_expense_detail[$i]['amount'];
+            for ($i = 0; $i < count($ircm_on_expense_detail); $i++) {
+                $this->data[$ircm_on_expense_detail[$i]['field']] = (float) $ircm_on_expense_detail[$i]['amount'];
             }
             $this->state = self::READ;
         }
 
-        $this->total = $total * (15/100) ;
+        $this->total = $total * (15 / 100);
         $this->ircm_on_expense_detail = $ircm_on_expense_detail;
     }
-
 }

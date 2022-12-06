@@ -101,7 +101,7 @@ class CreateMinimumTax extends ModalComponent
                 'type' => $this->guruMinimumTax[0]->type,
                 'company_id' => $this->company->id,
                 'user_id' => auth()->user()->id,
-                'type_impot_id' => $typeImpot->id
+                'type_impot_id' => $typeImpot->id,
             ]);
 
             for ($i = 0; $i < count($this->inputs); $i++) {
@@ -113,7 +113,7 @@ class CreateMinimumTax extends ModalComponent
                     'company_id' => $this->company->id,
                     'user_id' => auth()->user()->id,
                     'minimum_tax_id' => $minimumtax->id,
-                    'type_impot_id' => $typeImpot->id
+                    'type_impot_id' => $typeImpot->id,
                 ]);
             }
 

@@ -25,6 +25,6 @@
             </table>
         </div>
     </div>
-        <x-tax-result.content-wrapper>
+        </x-tax-result.content-wrapper>
 
 </x-company-layout>

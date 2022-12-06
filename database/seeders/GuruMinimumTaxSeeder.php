@@ -15,7 +15,6 @@ class GuruMinimumTaxSeeder extends Seeder
      */
     public function run()
     {
-
         $is = TypeImpot::whereCode(TypeImpot::IS)->first();
 //        Produit encaissable
         GuruMinimumTax::updateOrCreate([
@@ -98,7 +97,7 @@ class GuruMinimumTaxSeeder extends Seeder
         ], [
             'name' => 'Test1',
             'type' => GuruMinimumTax::COLLECTABLE_PRODUCT,
-            'type_impot_id' =>  $iba->id,
+            'type_impot_id' => $iba->id,
         ]);
 
         GuruMinimumTax::updateOrCreate([
@@ -106,7 +105,7 @@ class GuruMinimumTaxSeeder extends Seeder
         ], [
             'name' => 'Test2',
             'type' => GuruMinimumTax::VOLUME,
-            'type_impot_id' =>  $iba->id,
+            'type_impot_id' => $iba->id,
         ]);
     }
 }

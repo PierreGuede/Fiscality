@@ -100,7 +100,7 @@ class EditMinimumTax extends ModalComponent
                     'company_id' => $this->company->id,
                     'user_id' => auth()->user()->id,
                     'minimum_tax_id' => $minimumtax->id,
-                    'type_impot_id' => $typeImpot->id
+                    'type_impot_id' => $typeImpot->id,
                 ]);
             }
 

@@ -1,6 +1,7 @@
 <div  >
 
-        @livewire('total-card', ['total' => $total])
+{{--    @livewire('total-card', ['total' => $total])--}}
+    <x-total-card :total="$total" />
     @if ($account_result!=null)
         @else
     <div class="mb-6">

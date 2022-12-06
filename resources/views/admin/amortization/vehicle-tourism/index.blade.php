@@ -15,7 +15,7 @@
                     <th class="text-xs py-3.5 font-semibold" >Écart</th>
                     <th class="text-xs py-3.5 font-semibold" >Dotation</th>
                     <th class="text-xs py-3.5 font-semibold" >Amortissement</th>
-                    <th class="text-xs py-3.5 font-semibold" >Acheté le</th>
+                    <th class="text-xs py-3.5 font-semibold" >Date d'achat</th>
                 </thead>
                 <tbody>
                 @foreach($data as $key => $value)
@@ -23,11 +23,11 @@
                         <td class=" text-center text-xs font-semibold py-4 px-4  my-10" >{{ $key +1  }}</td>
                         <td class=" text-center text-xs font-semibold py-4  my-10" > {{$value->name}} </td>
                         <td class=" text-center text-xs font-semibold py-4  my-10" >{{ $value->value  }}</td>
-                        <td class=" text-center text-xs font-semibold py-4  my-10" > {{ $value->plafond }} </td>
-                        <td class=" text-center text-xs font-semibold py-4  my-10" > {{ $value->ecart  }} </td>
-                        <td class=" text-center text-xs font-semibold py-4  my-10" >{{ $value->value  }}</td>
-                        <td class=" text-center text-xs font-semibold py-4  my-10" > {{ $value->deductible_amortization  }} </td>
-                        <td class=" text-center text-xs font-semibold py-4  my-10" > <span {{-- x-text="formatDate('{{  $value->date }}')" --}} >{{  $value->date }}</span> </td>
+                        <td class=" text-center text-xs font-semibold py-4  my-10" x-text="formatNumber({{ $value->plafond }}, false)" > </td>
+                        <td class=" text-center text-xs font-semibold py-4  my-10" x-text="formatNumber({{ $value->ecart  }}, false)" >  </td>
+                        <td class=" text-center text-xs font-semibold py-4  my-10" x-text="formatNumber({{ $value->value  }}, false)"  ></td>
+                        <td class=" text-center text-xs font-semibold py-4  my-10" x-text="formatNumber({{ $value->deductible_amortization  }}, false)" ></td>
+                        <td class=" text-center text-xs font-semibold py-4  my-10" > <span  x-text="formatDate('{{  $value->date }}')"  ></span> </td>
                         <td class="text-center text-xs font-semibold py-4 px-4  my-10">
                             <div class="flex space-x-4">
                                 <a href="{{ route('amortization.tourism-cars.edit',['company'=>$company->id,'vehicle'=>$value->id]) }}">

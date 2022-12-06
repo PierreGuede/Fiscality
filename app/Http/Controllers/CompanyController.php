@@ -40,10 +40,11 @@ class CompanyController extends Controller
         $user = request()->user();
         if ($user->hasRole('Super-Admin')) {
             $company = $this->model->whereNull('company_id')->get();
+
             return view('admin.companies.indexAdmin', ['company' => $company]);
         }
         if ($user->hasRole(Company::ENTERPRISE)) {
-            return redirect()->route('tax-result',  $user->company[0]->id);
+            return redirect()->route('tax-result', $user->company[0]->id);
         }
         $company = $this->model->where('user_id', request()->user()->id)->get();
         $company_mere = $this->model->where('user_id', request()->user()->id)->whereNotNull('company_id')->get();
@@ -95,7 +96,7 @@ class CompanyController extends Controller
             'user_id' => request()->user()->id,
         ]);
 
-        if(auth()->user()->roles[0] == 'enterprise') {
+        if (auth()->user()->roles[0] == 'enterprise') {
             return route('tax-result', $company->id);
         }
 

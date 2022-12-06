@@ -1,5 +1,9 @@
-<div class="py-10 px-10 w-full " >
-    <div x-data="globalData" class="flex justify-between" >
+<div x-data="{
+                expense_sum: @js($arr_sum),
+            }"
+     class="py-10 px-10 w-full " >
+
+    <div x-data="globalData"  class="flex justify-between" >
         <h5 class="text-base text-gray-600 font-semibold" >Charges</h5>
 
         <h5 class="text-base text-gray-600 font-semibold" x-text="formatNumber(sumArray(expense_sum))" ></h5>

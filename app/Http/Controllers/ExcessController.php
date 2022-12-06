@@ -53,7 +53,7 @@ class ExcessController extends Controller
 
     public function edit(Company $company, Excess $excess)
     {
-        return view('admin.amortization.amortization-excess.modify', compact('company', 'excess'));
+        return view('admin.amortization.amortization-excess.edit', compact('company', 'excess'));
     }
 
     public function update(Company $company, $excess, Request $request)

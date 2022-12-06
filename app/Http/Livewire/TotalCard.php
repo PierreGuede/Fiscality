@@ -20,4 +20,9 @@ class TotalCard extends Component
     {
         return view('livewire.total-card');
     }
+
+    public function updatedTotal($value)
+    {
+        dump($value);
+    }
 }

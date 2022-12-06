@@ -2,7 +2,8 @@
 
     @if($state == \App\Http\Livewire\IrcmOnExpense\Handler::READ)
         <div class="w-10/12" >
-            @livewire('total-card', ['total'=> $total   ])
+            <x-total-card :total="$total" />
+
         </div>
         <x-ircm-on-expense.details :data="$data"  />
     @endif

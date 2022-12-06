@@ -3,6 +3,8 @@ import * as FilePond from 'filepond';
 import FilePondPluginFileValidateType from 'filepond-plugin-file-validate-type';
 import FilePondPluginFileEncode from 'filepond-plugin-file-encode';
 import FilePondPluginFileValidateSize from 'filepond-plugin-file-validate-size';
+import dayjs from "dayjs";
+import 'dayjs/locale/fr';
 
 
 const globalData =  () => ({
@@ -52,14 +54,18 @@ const globalData =  () => ({
      * @param  date string
      */
     formatDate(date) {
-        return dayjs(date).local('fr').format('DD MMM YYYY')
+        return dayjs(date).locale('fr').format('DD MMM YYYY')
     },
 
     /**
      *
      * @param num number
+     * @param currency boolean
      */
-    formatNumber(num){
+    formatNumber(num, currency = true){
+        if(!currency){
+            return  new Intl.NumberFormat('fr').format(num ? num : 0 );
+        }
         return  new Intl.NumberFormat('fr', { style: 'currency', currency: 'XOF' }).format(num ? num : 0 );
     },
 

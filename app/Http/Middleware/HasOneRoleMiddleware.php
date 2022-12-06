@@ -2,7 +2,6 @@
 
 namespace App\Http\Middleware;
 
-use App\Fiscality\Companies\Company;
 use Closure;
 use Illuminate\Http\Request;
 

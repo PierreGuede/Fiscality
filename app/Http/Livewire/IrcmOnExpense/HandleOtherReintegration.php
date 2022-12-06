@@ -10,7 +10,6 @@ use App\Fiscality\ExcessRents\ExcessRent;
 use App\Fiscality\FinancialCosts\FinancialCost;
 use App\Fiscality\Redevances\Redevance;
 use App\Models\DonationGrantContribution;
-use App\Models\IRCMOnExpense;
 use App\Models\IRCMOnExpenseDetail;
 use App\Models\OtherReintegration;
 use Carbon\Carbon;
@@ -24,7 +23,9 @@ class HandleOtherReintegration extends Component
     public Company $company;
 
     public const FIRST_STEP = 'FIRST_STEP';
+
     public const SECOND_STEP = 'SECOND_STEP';
+
     public $state = self::FIRST_STEP;
 
     public ?OtherReintegration $other_reintegration;
@@ -147,7 +148,7 @@ class HandleOtherReintegration extends Component
         $this->state = 'create';
     }
 
-    public function nextStep ()
+    public function nextStep()
     {
         $this->state = self::SECOND_STEP;
     }
@@ -159,25 +160,23 @@ class HandleOtherReintegration extends Component
 
     public function save()
     {
-
         $total = 0;
         $this->other_reintegration = OtherReintegration::whereCompanyId($this->company->id)->whereYear('created_at', Carbon::now()->year)->first();
         try {
             \DB::beginTransaction();
 
-            for ($i = 0; $i < count($this->data); $i++){
-               if( $this->data[array_keys($this->data)[$i]] == 'true') {
+            for ($i = 0; $i < count($this->data); $i++) {
+                if ($this->data[array_keys($this->data)[$i]] == 'true') {
                     IRCMOnExpenseDetail::create([
                         'field' => array_keys($this->data)[$i],
                         'is_selected' => true,
-                        'amount' => (float)$this->other_reintegration[array_keys($this->data)[$i]],
+                        'amount' => (float) $this->other_reintegration[array_keys($this->data)[$i]],
                         'user_id' => auth()->user()->id,
                         'company_id' => $this->company->id,
                     ]);
-                   $total += (float)$this->other_reintegration[array_keys($this->data)[$i]];
-               }
+                    $total += (float) $this->other_reintegration[array_keys($this->data)[$i]];
+                }
             }
-
 
             $this->notification()->success(
                 $title = 'Succès',
@@ -187,10 +186,8 @@ class HandleOtherReintegration extends Component
             $this->emit('refresh');
 
             \DB::commit();
-
         } catch (\Throwable $th) {
             \DB::rollBack();
-
 
             $this->notification()->success(
                 $title = 'Erreur',

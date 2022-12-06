@@ -5,7 +5,6 @@ namespace App\Http\Livewire\SetupAccount;
 use App\Fiscality\Packs\Pack;
 use App\Fiscality\ProfileUsers\ProfileUser;
 use App\Models\Subscription;
-use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
 use Livewire\Component;
 use Livewire\WithFileUploads;
@@ -91,8 +90,6 @@ class IndexSetupAccount extends Component
     {
 //        $this->validate();
 
-
-
 //        dd([
 //            'ref_payment' => $ref_payement,
 //            'pack' => $this->pack,
@@ -116,8 +113,8 @@ class IndexSetupAccount extends Component
         try {
             DB::beginTransaction();
 
-        $date = date_create($this->normal_picker);
-         date_format($date, 'Y-m-d');
+            $date = date_create($this->normal_picker);
+            date_format($date, 'Y-m-d');
 
             ProfileUser::create([
                 'social_reason' => $this->social_reason,
