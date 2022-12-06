@@ -21,17 +21,18 @@
                 <p>Conditions applicables à tous les intérêts</p>
             </div>
             <div class=" ml-6 mt-4 space-y-4">
-                <div class="grid grid-cols-12 gap-x-2">
-                    <h5 class="py-1 text-sm font-semibold text-gray-700 col-span-1">Compte </h5>
-                    <h5 class="py-1 text-sm font-semibold text-gray-700 col-span-3">Intitulé </h5>
-                    <h5 class="py-1 text-sm font-semibold text-gray-700 col-span-2">Total des achats </h5>
-                    <h5 class="py-1 text-sm font-semibold text-gray-700 col-span-2">Montant des commissions</h5>
-                    <h5 class="py-1 text-sm font-semibold text-gray-700 col-span-2">Limite de déduction</h5>
-                    <h5 class="py-1 text-sm font-semibold text-gray-700 col-span-2">Montant non déductible</h5>
+                <div class="" >
+                    <div class="  grid grid-cols-12 gap-x-3">
+                        <h5 class="py-1 text-sm font-semibold text-gray-700 col-span-1 text-left  ">Compte </h5>
+                        <h5 class="py-1 text-sm font-semibold text-gray-700 col-span-3 text-left  ">Intitulé </h5>
+                        <h5 class="py-1 text-sm font-semibold text-gray-700 col-span-2 text-left  ">Total des achats </h5>
+                        <h5 class="py-1 text-sm font-semibold text-gray-700 col-span-2 text-left  ">Montant des commissions</h5>
+                        <h5 class="py-1 text-sm font-semibold text-gray-700 col-span-2 text-left  ">Limite de déduction</h5>
+                        <h5 class="py-1 text-sm font-semibold text-gray-700 col-span-2 text-left  ">Montant non déductible</h5>
 
-
+                    </div>
+{{--                    <div class="w-4" ></div>--}}
                 </div>
-
                 <div class="space-y-3" >
 
                 @foreach($inputs as  $key => $value)
@@ -64,7 +65,7 @@
                                 wire:model.defer="inputs.{{ $key }}.total"
                                 placeholder="Total des achats" class="" x-model="arrayLimit[{{$key}}]" required autofocus />
                                 @error('inputs.' . $key . '.total')
-                                <span class="text-xs text-red-600">{{ $message }}</span>
+                                    <span class="text-xs text-red-600">{{ $message }}</span>
                                 @enderror
                             </div>
 

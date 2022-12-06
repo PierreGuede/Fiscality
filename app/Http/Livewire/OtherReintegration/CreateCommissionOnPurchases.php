@@ -25,16 +25,17 @@ class CreateCommissionOnPurchases extends Component
     protected $listeners = ['openASide', 'closeASide'];
 
     protected $rules = [
-        'inputs.*.account' => 'required|distinct|integer',
-        'inputs.*.name' => 'required',
-        'inputs.*.amount' => 'required',
+        'inputs.*.Account' => 'required|distinct|integer',
+        'inputs.*.designation' => 'required',
+        'inputs.*.total' => 'required|integer',
     ];
 
     protected $messages = [
-        'inputs.*.account.required' => 'champ obligatoire',
-        'inputs.*.account.distinct' => 'incohérent',
-        'inputs.*.name.required' => 'champ obligatoire',
-        'inputs.*.amount' => 'champ obligatoire',
+        'inputs.*.Account.required' => 'champ obligatoire',
+        'inputs.*.Account.distinct' => 'incohérent',
+        'inputs.*.designation.required' => 'champ obligatoire',
+        'inputs.*.total.required' => 'champ obligatoire',
+        'inputs.*.total.integer' => 'champ obligatoire',
 
     ];
 
@@ -78,6 +79,8 @@ class CreateCommissionOnPurchases extends Component
 
     public function store()
     {
+        $this->validate();
+
         $total = [];
         foreach ($this->inputs as $value) {
             array_push($total, $value['total']);

@@ -7,6 +7,7 @@ use App\Fiscality\RedevanceDetails\RedevanceDetail;
 use App\Fiscality\Redevances\Redevance;
 use App\Models\GuruRedevance;
 use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\DB;
 use Livewire\Component;
 
 class CreateRedevance extends Component
@@ -33,27 +34,21 @@ class CreateRedevance extends Component
 
     protected $rules = [
         'inputs.*.account' => 'required|distinct|integer',
-        'inputs.*.name' => 'required',
+        'inputs.*.designation' => 'required',
         'inputs.*.amount' => 'required',
         'turnover' => 'required',
-        'deduction_limit' => 'required',
-        'amount_reintegrated' => 'required',
-        'total_amount' => 'required',
-
     ];
 
     protected $messages = [
         'inputs.*.account.required' => 'champ obligatoire',
         'inputs.*.account.distinct' => 'incohérent',
-        'inputs.*.name.required' => 'champ obligatoire',
+        'inputs.*.designation.required' => 'champ obligatoire',
         'inputs.*.amount' => 'champ obligatoire',
-
+        'turnover' => 'champ obligatoire',
     ];
 
     public function add(): void
     {
-//        $this->inputs->push( ['Account' => 0 , 'designation' => '', 'amount' => 0, 'turnover' => 0, 'deduction_limit' => 0, 'amount_reintegrated' => 0 ]);
-
         $this->inputs->push(['account' => 0, 'designation' => '', 'amount' => 0]);
     }
 
@@ -74,8 +69,6 @@ class CreateRedevance extends Component
 
     public function render()
     {
-//        $this->guru_redevance = [];
-
         return view('livewire.other-reintegration.create-redevance');
     }
 
@@ -101,32 +94,44 @@ class CreateRedevance extends Component
 
     public function save()
     {
-        $total_amount = (float) $this->processDataTotalAmount($this->inputs);
+        $this->validate();
+
+        $total_amount = array_sum(array_column($this->inputs->toArray(), 'amount'));
         $amount_reintegrate = (float) $total_amount - ((float) $this->turnover * 0.05);
 
-        $redevance = Redevance::create([
-            'Account' => 0,
-            'designation' => 0,
-            'amount' => $total_amount,
-            'turnover' => (float) $this->turnover,
-            'deduction_limit' => (float) $this->turnover * 0.05,
-            'amount_reintegrated' => $amount_reintegrate,
-            'company_id' => $this->company->id,
-        ]);
+        try {
+            DB::beginTransaction();
 
-        for ($i = 0; $i < count($this->inputs); $i++) {
-            RedevanceDetail::create([
-                'account' => $this->inputs[$i]['account'],
-                'designation' => $this->inputs[$i]['designation'],
-                'amount' => $this->inputs[$i]['amount'],
-                'redevance_id' => $redevance->id,
+
+            $redevance = Redevance::create([
+                'Account' => 0,
+                'designation' => 0,
+                'amount' => $total_amount,
+                'turnover' => (float) $this->turnover,
+                'deduction_limit' => (float) $this->turnover * 0.05,
+                'amount_reintegrated' => $amount_reintegrate,
                 'company_id' => $this->company->id,
             ]);
-        }
+
+            for ($i = 0; $i < count($this->inputs); $i++) {
+                RedevanceDetail::create([
+                    'account' => $this->inputs[$i]['account'],
+                    'designation' => $this->inputs[$i]['designation'],
+                    'amount' => $this->inputs[$i]['amount'],
+                    'redevance_id' => $redevance->id,
+                    'company_id' => $this->company->id,
+                ]);
+            }
 
         $this->emit('refresh');
-
         notify()->success('Redevances créées avec succès!');
+
+        DB::commit();
+
         $this->closeASide();
+        } catch(\Throwable $th){
+            DB::rollBack();
+            throw $th;
+        }
     }
 }

@@ -20,17 +20,12 @@
                     <h5 class="py-1 text-sm font-semibold text-gray-700 col-span-2">Compte </h5>
                     <h5 class="py-1 text-sm font-semibold text-gray-700 col-span-7">Intitulé </h5>
                     <h5 class="py-1 text-sm font-semibold text-gray-700 col-span-3">Montant </h5>
-
-
                 </div>
 
 
                 <div class="space-y-3">
-
-                    <span class="text-xl text-gray-700 " x-text="JSON.stringify(inputs)"></span>
                     @foreach($inputs as  $key => $value)
                         <div   class="flex gap-x-2 items-center ">
-
                             <div class="grid grid-cols-12 gap-x-4">
                                 <div class="col-span-2">
                                     <x-input  :disabled=" count($guru_redevance) > $key  "  type="number" label="" for="input_{{ $key }}_account"
@@ -42,7 +37,6 @@
                                     <span class="text-xs text-red-600">{{ $message }}</span>
                                     @enderror
                                 </div>
-
 
                                 <div class="col-span-7">
                                     <x-input :disabled=" count($guru_redevance) > $key  " type="text" label="" for="input_{{ $key }}_designation"
@@ -108,8 +102,13 @@
                 </div>
 
                 <div class="mt-2 space-y-3 ">
+
                     <x-input x-model="turnover" wire:model.defer="turnover" type="number" step="0.01" label="Chiffre d'affaires" id="turnover" name="turnover"
                              value="{{ old('turnover') }}" class="block w-full" required autofocus/>
+                    @error('turnover')
+                    <span class="text-xs text-red-600">{{ $message }}</span>
+                    @enderror
+
                     <x-input  type="number" wire:model.defer="deduction_limit" step="0.01" label="Limite de déduction" id="delay_condition" name=""
                              x-bind:value="turnover * 0.05" class="block w-full" step="0.01" required autofocus/>
                     <x-input type="number" wire:model.defer="amount_reintegrated" step="0.01" label="Montant à réintégrer" id="reintegration_amount" name=""
