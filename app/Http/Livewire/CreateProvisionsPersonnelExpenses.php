@@ -4,8 +4,9 @@ namespace App\Http\Livewire;
 
 use App\Models\AccuredChargeCompany;
 use Livewire\Component;
+use LivewireUI\Modal\ModalComponent;
 
-class CreateProvisionsPersonnelExpenses extends Component
+class CreateProvisionsPersonnelExpenses extends ModalComponent
 {
     public $company;
 
@@ -13,6 +14,15 @@ class CreateProvisionsPersonnelExpenses extends Component
 
     public $inputs;
 
+    public function addProvisionsPersonnelInput()
+    {
+        $this->inputs->push(['compte' => '', 'designation' => '', 'amount' => '', 'type' => AccuredChargeCompany::PERSONNAL_PROVISION]);
+    }
+
+    public function removeInput($key)
+    {
+        $this->inputs->pull($key);
+    }
     protected $rules = [
         'inputs.*.compte' => 'required|distinct|integer',
         'inputs.*.designation' => 'required',
@@ -28,6 +38,12 @@ class CreateProvisionsPersonnelExpenses extends Component
         'inputs.*.amount' => 'champ obligatoire',
 
     ];
+
+    public static function closeModalOnClickAway(): bool
+    {
+        return false;
+    }
+
 
     public function mount($company)
     {
@@ -57,11 +73,14 @@ class CreateProvisionsPersonnelExpenses extends Component
                 'designation' => $value['designation'],
                 'type' => $value['type'],
                 'amount' => $value['amount'],
-                'company_id' => $this->company->id,
+                'company_id' => $this->company['id'],
                 'date' => date('Y'),
             ]);
         }
 
-        return redirect()->route('work.accuredCharge', $this->company->id);
+        $this->emit('refreshProvisionPersonnal');
+        $this->emit('refreshTotalCard');
+
+        $this->closeModal();
     }
 }

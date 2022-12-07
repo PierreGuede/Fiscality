@@ -51,22 +51,36 @@ class AccuredChargeController extends Controller
 
     }
 
-
-    public function editProvisionOrExpenseProvisionned(Company $company,AccuredChargeCompany $provision)
+    public function detailPersonalProvision(Company $company)
     {
-        if ($provision->type =='provision') {
-            return view('admin.adminWork.edit-provision', compact('company','provision'));
+        $cahrgesCompany = AccuredChargeCompany::where('type', AccuredChargeCompany::PERSONNAL_PROVISION)->where('company_id', $company->id)->where('date', date('Y'))->get();
+            return view('admin.adminWork.detail-perssonal-provision', compact('company','cahrgesCompany'));
 
+    }
+    public function editProvisionOrExpenseProvisionned(Company $company, $expenseOrProvisionID)
+    {
+        $find=AccuredChargeCompany::find($expenseOrProvisionID);
+        if ($find->type =='provision') {
+            return view('admin.adminWork.edit-provision',[
+                'company'=>$company,
+                'provision'=>$find
+            ]);
         }
-
-        elseif ($provision->type == AccuredChargeCompany::EXPENSE_PROVISIONED) {
-            return view('admin.adminWork.edit-expense-provisioned', compact('company','provision'));
-
+        elseif($find->type =='expense_provisioned') {
+            return view('admin.adminWork.edit-expense-provisioned',[
+                'company'=>$company,
+                'expense'=>$find
+            ]);
+        }
+        else{
+            return view('admin.adminWork.edit-personnal-provision',[
+                'company'=>$company,
+                'personnalProvision'=>$find
+            ]);
         }
 
 
     }
-/* updateProvision */
     public function expenseProvisioned(Company $company)
     {
         $cahrgesCompany = AccuredChargeCompany::where('type', AccuredChargeCompany::EXPENSE_PROVISIONED)->whereCompanyId($company->id)->whereYear('created_at', Carbon::now()->year)->first();
@@ -74,6 +88,19 @@ class AccuredChargeController extends Controller
 //            notify()->success('Provision ont été ajouté avec succès !');
 
             return view('admin.adminWork.expenseProvisioned', compact('company'));
+        } else {
+            notify()->error('Vous avez deja créé un cette année');
+
+            return redirect()->back()->withErrors(['msg' => 'Vous avez deja créé un cette année']);
+        }
+    }
+
+
+    public function personalProvision(Company $company)
+    {
+        $cahrgesCompany = AccuredChargeCompany::where('type', 'personal-provision')->where('company_id', $company->id)->where('date', date('Y'))->first();
+        if ($cahrgesCompany == null) {
+            return view('admin.adminWork.personnal-provision', compact('company'));
         } else {
             notify()->error('Vous avez deja créé un cette année');
 
@@ -89,18 +116,34 @@ class AccuredChargeController extends Controller
             'type' => $data['type'],
         ]);
     }
-    public function update(Request $data, Company $company, AccuredChargeCompany $provision)
+    public function updateProvision(Request $data, Company $company, AccuredChargeCompany $provision)
     {
         $provision->update([
             'compte' => $data['compte'],
             'designation' => $data['designation'],
             'amount' => $data['amount'],
         ]);
-        if ($provision->type =='provision') {
             return redirect()->route('tax-result.reintegration.accured-charge.detailProvision',$company->id);
-        }
-        elseif ($provision->type == AccuredChargeCompany::EXPENSE_PROVISIONED) {
-            return redirect()->route('tax-result.reintegration.accured-charge.detailexpenseProvisioned',$company->id);
-        }
     }
+
+    public function updateExpenseProvisionned(Request $data, Company $company, AccuredChargeCompany $expense)
+    {
+        $expense->update([
+            'compte' => $data['compte'],
+            'designation' => $data['designation'],
+            'amount' => $data['amount'],
+        ]);
+            return redirect()->route('tax-result.reintegration.accured-charge.detailexpenseProvisioned',$company->id);
+    }
+
+    public function updatePersonnalProvision(Request $data, Company $company, AccuredChargeCompany $personnalProvision)
+    {
+        $personnalProvision->update([
+            'compte' => $data['compte'],
+            'designation' => $data['designation'],
+            'amount' => $data['amount'],
+        ]);
+        return redirect()->route('tax-result.reintegration.accured-charge.detailPersonalProvision',$company->id);
+    }
+
 }

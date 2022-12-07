@@ -16,12 +16,12 @@ class PersonnalProvision extends Component
 
     public $total = 0;
 
-    protected $listeners = ['refreshProvision'];
+    protected $listeners = ['refreshProvisionPersonnal'];
 
     public function mount($company)
     {
         $this->company = $company;
-        $this->total = AccuredChargeCompany::where('type', 'provision')->whereCompanyId($this->company->id)->whereYear('created_at', Carbon::now()->year)->first();
+        $this->total = AccuredChargeCompany::where('type', 'personnal_provision')->whereCompanyId($this->company->id)->whereYear('created_at', Carbon::now()->year)->first();
     }
 
     public function render()
@@ -29,8 +29,8 @@ class PersonnalProvision extends Component
         return view('livewire.accured-charge.personnal-provision');
     }
 
-    public function refreshProvision()
+    public function refreshProvisionPersonnal()
     {
-        $this->total = AccuredChargeCompany::where('type', 'provision')->whereCompanyId($this->company->id)->whereYear(Carbon::now()->year)->first();
+        $this->total = AccuredChargeCompany::where('type', 'personnal_provision')->whereCompanyId($this->company->id)->whereYear(Carbon::now()->year)->first();
     }
 }

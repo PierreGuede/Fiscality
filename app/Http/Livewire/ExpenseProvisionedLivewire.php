@@ -5,8 +5,9 @@ namespace App\Http\Livewire;
 use App\Fiscality\AccuredCharges\AccuredCharge;
 use App\Models\AccuredChargeCompany;
 use Livewire\Component;
+use LivewireUI\Modal\ModalComponent;
 
-class ExpenseProvisionedLivewire extends Component
+class ExpenseProvisionedLivewire extends ModalComponent
 {
     public $company;
 
@@ -47,6 +48,11 @@ class ExpenseProvisionedLivewire extends Component
         ]);
     }
 
+    public static function closeModalOnClickAway(): bool
+    {
+        return false;
+    }
+
     public function render()
     {
         $charges = AccuredCharge::where('type', 'charges')->get();
@@ -70,11 +76,14 @@ class ExpenseProvisionedLivewire extends Component
                 'designation' => $value['designation'],
                 'type' => $value['type'],
                 'amount' => $value['amount'],
-                'company_id' => $this->company->id,
+                'company_id' => $this->company['id'],
                 'date' => date('Y'),
             ]);
         }
 
-        return redirect()->route('tax-result.reintegration.accured-charge', $this->company->id);
+        $this->emit('refreshExpenseProvision');
+        $this->emit('refreshTotalCard');
+
+        $this->closeModal();
     }
 }

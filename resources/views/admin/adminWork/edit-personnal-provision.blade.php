@@ -3,12 +3,12 @@
     <div class="w-full  min-h-screen" >
 
         <div class="max-w-5xl w-full mx-auto">
-            <form method="POST" class="space-y-4" action="{{ route('tax-result.reintegration.accured-charge.detailProvision.updateProvision',['company'=>$company->id,'provision'=>$provision->id]) }}">
+            <form method="POST" class="space-y-4" action="{{ route('tax-result.reintegration.accured-charge.detailPersonalProvision.updatePersonnalProvision',['company'=>$company->id,'personnalProvision'=>$personnalProvision->id]) }}">
                 @method('PUT')
                 @csrf
                 <div>
                 <x-input type="text" label="Compte" id="category_imo" name="compte"
-                         value="{{ old('compte',$provision->compte) }}" class="block w-full" required autofocus />
+                         value="{{ old('compte',$personnalProvision->compte) }}" class="block w-full" required autofocus />
                     @error('compte')
                     <span class="text-xs text-red-600">{{ $message }}</span>
                     @enderror
@@ -16,7 +16,7 @@
 
                 <div>
                     <x-input type="text" label="Désignation" id="designation" name="designation"
-                             value="{{ old('designation',$provision->designation) }}" class="block w-full" required autofocus />
+                             value="{{ old('designation',$personnalProvision->designation) }}" class="block w-full" required autofocus />
                     @error('designation')
                     <span class="text-xs text-red-600">{{ $message }}</span>
                     @enderror
@@ -24,7 +24,7 @@
 
                 <div>
                     <x-input  type="text" label="Montant" id="dotation" name="amount"
-                             value="{{ old('amount',$provision->amount) }}" class="block w-full" required autofocus />
+                             value="{{ old('amount',$personnalProvision->amount) }}" class="block w-full" required autofocus />
                     @error('amount')
                     <span class="text-xs text-red-600">{{ $message }}</span>
                     @enderror
