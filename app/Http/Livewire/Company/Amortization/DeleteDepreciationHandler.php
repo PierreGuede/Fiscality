@@ -3,8 +3,6 @@
 namespace App\Http\Livewire\Company\Amortization;
 
 use App\Fiscality\Depreciations\Depreciation;
-use App\Fiscality\Excesss\Excess;
-use Livewire\Component;
 use LivewireUI\Modal\ModalComponent;
 use WireUi\Traits\Actions;
 
@@ -27,7 +25,6 @@ class DeleteDepreciationHandler extends ModalComponent
     public function delete()
     {
         Depreciation::destroy($this->depreciation);
-
 
         return redirect(request()->header('Referer'));
     }

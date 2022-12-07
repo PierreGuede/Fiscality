@@ -56,7 +56,7 @@ class VehicleController extends Controller
         return view('admin.amortization.vehicle-tourism.edit', compact('company', 'vehicle'));
     }
 
-    public function update( StoreVehicleRequest $request, Company $company, $vehicle,)
+    public function update(StoreVehicleRequest $request, Company $company, $vehicle)
     {
         $ecart = $request->input('value') - $request->input('plafond');
         $deductibleAmortization = ((float) $request->input('dotation') * (float) $ecart) / (float) $request->input('value');

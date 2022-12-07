@@ -5,6 +5,7 @@ import FilePondPluginFileEncode from 'filepond-plugin-file-encode';
 import FilePondPluginFileValidateSize from 'filepond-plugin-file-validate-size';
 import dayjs from "dayjs";
 import 'dayjs/locale/fr';
+import {sumBy} from "lodash";
 
 
 const globalData =  () => ({
@@ -81,4 +82,3 @@ const globalData =  () => ({
 });
 
 export default globalData;
-

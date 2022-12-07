@@ -2,7 +2,6 @@
 
 namespace App\Http\Livewire\Company\Amortization;
 
-use Livewire\Component;
 use LivewireUI\Modal\ModalComponent;
 use WireUi\Traits\Actions;
 
@@ -24,7 +23,7 @@ class DeleteVehicleHandler extends ModalComponent
 
     public function delete()
     {
-         \App\Fiscality\Vehicles\Vehicle::destroy($this->vehicle);
+        \App\Fiscality\Vehicles\Vehicle::destroy($this->vehicle);
 
         return redirect(request()->header('Referer'));
     }

@@ -10,8 +10,8 @@ use Livewire\Component;
 
 class Details extends Component
 {
-
     public ?Company $company;
+
     public $total = 0;
 
     protected $listeners = ['refreshTotal'];

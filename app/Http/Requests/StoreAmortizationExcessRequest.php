@@ -24,7 +24,6 @@ class StoreAmortizationExcessRequest extends FormRequest
      */
     public function rules()
     {
-
         return [
             'category_imo' => ['sometimes', 'required', 'string', 'max:255', Rule::unique('excesses')->ignore($excess)],
             'designation' => ['sometimes', 'required', 'string', 'max:255', Rule::unique('excesses')->ignore($excess)],

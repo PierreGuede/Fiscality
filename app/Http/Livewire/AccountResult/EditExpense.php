@@ -16,6 +16,7 @@ use WireUi\Traits\Actions;
 class EditExpense extends ModalComponent
 {
     use Actions;
+
     public Amortization $model;
 
     public $company;
@@ -29,6 +30,7 @@ class EditExpense extends ModalComponent
     public $data;
 
     public $inputs;
+
     public $arr_sum = [];
 
     protected $rules = [
@@ -110,7 +112,7 @@ class EditExpense extends ModalComponent
     {
         $this->validate();
 
-        $total_data =array_sum(array_column($this->inputs->toArray(), 'amount'));
+        $total_data = array_sum(array_column($this->inputs->toArray(), 'amount'));
 
         $exist = AccountingResult::whereCompanyId($this->company->id)->whereYear('created_at', Carbon::now()->year)->first();
 
