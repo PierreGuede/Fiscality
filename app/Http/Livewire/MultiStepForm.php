@@ -29,6 +29,8 @@ class MultiStepForm extends Component
 
     public $name;
 
+    public $logo;
+
     public $email;
 
     public $created_date;
@@ -76,6 +78,38 @@ class MultiStepForm extends Component
         $taxCenter = TaxCenter::all();
 
         return view('livewire.multi-step-form', compact('type', 'typeCat', 'domain', 'taxCenter'));
+    }
+    public function updatedIfu($value){
+        if (strlen($value)===13) {
+            $find_Ifu=Company::whereIfu($value)->first();
+            if ($find_Ifu !=null) {
+                return $this->notification()->error(
+                    $title='Erreur!!!',
+                    $description="Le numero IFU existe déjà!"
+                );
+            }
+        }
+    }
+
+    public function updatedEmail($value){
+        if (strstr($value,'@')) {
+            $find_mail=Company::whereEmail($value)->first();
+            if ($find_mail !=null) {
+                return $this->notification()->error(
+                    $title='Erreur!!!',
+                    $description="Ce mail a déjà été utilisé dans TECIT"
+                );
+            }
+        }
+    }
+
+    public function updatedCreatedDate($value){
+        if ($value > now()) {
+                return $this->notification()->error(
+                    $title='Erreur!!!',
+                    $description="Vous ne pouvez pas choisir une date ultérieur a aujourd'hui"
+                );
+        }
     }
 
     public function increaseStep()
@@ -127,8 +161,12 @@ class MultiStepForm extends Component
         }
     }
 
+    public function verifyData($wordInput){
+        dd($wordInput);
+    }
     public function save()
     {
+<<<<<<< HEAD
 //        $this->validate([
 //            'name' => ['required', 'string', 'max:255', 'unique:companies'],
 //            'rccm' => ['required', 'string', 'max:14', 'unique:companies'],
@@ -143,11 +181,29 @@ class MultiStepForm extends Component
         /*         $IFURequest = $this->path->storeAs('IFU', $ifuFile, 'public');
                 $RCCMRequest = $this->path_rccm->storeAs('RCCM', $rccmFile, 'public');
          */
+=======
+
+        $this->validate([
+            'name' => ['required', 'string', 'max:255'],
+            'rccm' => ['required', 'string', 'max:14', 'unique:companies'],
+            'created_date' => ['required', 'date'],
+            'ifu' => ['required', 'integer', 'digits:13', 'unique:companies'],
+            'email' => ['required', 'string', 'max:255', 'unique:companies'],
+            'celphone' => ['required', 'max:255', 'unique:companies'],
+        ]);
+/*         $ifuFile = 'IFU_DU_'.time().'.'.$this->path->getClientOriginalName();
+        $rccmFile = 'RCCM_DU_'.time().'.'.$this->path_rccm->getClientOriginalName();
+ */
+/*         $IFURequest = $this->path->storeAs('IFU', $ifuFile, 'public');
+        $RCCMRequest = $this->path_rccm->storeAs('RCCM', $rccmFile, 'public');
+ */
+>>>>>>> feat/lastModify
         try {
             DB::beginTransaction();
 
             $company = Company::create([
                 'name' => $this->name,
+                'logo' => $this->logo,
                 'rccm' => $this->rccm,
                 'rccm_file' => '', //$RCCMRequest,
                 'created_date' => $this->created_date,
@@ -177,7 +233,11 @@ class MultiStepForm extends Component
 
             notify()->success('Entreprise créée avec succès!');
 
+<<<<<<< HEAD
             if (auth()->user()->roles[0]->name == 'enterprise') {
+=======
+            if(auth()->user()->roles[0]->name == 'entreprise'){
+>>>>>>> feat/lastModify
                 return redirect()->route('tax-result', $company->id);
             }
 

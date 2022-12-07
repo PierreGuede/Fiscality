@@ -14,7 +14,12 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    if (auth()->user()) {
+        return redirect()->route('company.index');
+    }
+    else{
+        return view('welcome');
+    }
 });
 
 Route::get('/dashboard', function () {
@@ -34,7 +39,12 @@ Route::post('company', [\App\Http\Controllers\CompanyController::class, 'store']
 Route::middleware('auth', 'two-factor', 'pack', 'email_verified')->group(function () {
     Route::get('renew-subscription', [\App\Http\Controllers\SubscriptionController::class, 'renew'])->name('renew.pack');
 });
+//Route::middleware('auth', 'hasOneRole', 'hasPack', 'email_verified')->group(function () {
 Route::middleware('auth', 'two-factor', 'hasOneRole', 'hasPack', 'email_verified')->group(function () {
+Route::middleware('auth','subscription','email_verified')->group(function () {
+    Route::get('renew-subscription',[\App\Http\Controllers\SubscriptionController::class, 'renew'])->name('renew.pack');
+});
+Route::middleware('auth', 'hasOneRole','email_verified')->group(function () {
     Route::view('about', 'about')->name('about');
     Route::middleware('hasOneRole')->group(function () {
         Route::get('company', [\App\Http\Controllers\CompanyController::class, 'index'])->name('company.index');
@@ -79,7 +89,7 @@ Route::middleware('auth', 'two-factor', 'hasOneRole', 'hasPack', 'email_verified
         Route::get('workspace/company/{company}/other-reintegration', [\App\Http\Controllers\OtherReintegrationController::class, 'index'])->name('tax-result.reintegration.other-reintegration');
 
         Route::get('workspace/company/{company}/other-reintegration/commission-purchase', [\App\Http\Controllers\CommissionOnPurchaseController::class, 'index'])->name('work.commissionPurchase');
-        Route::get('workspace/company/{company}/head-office-costs', [\App\Http\Controllers\HeadOfficeCostController::class, 'index'])->name('tax-result.head-office-costs');
+        Route::get('workspace/company/{company}/head-office-costs', [\App\Http\Controllers\HeadOfficeCostController::class, 'index'])->name('head-office-costs');
         Route::get('workspace/company/{company}/total-tax-result', [\App\Fiscality\TaxResult\Controllers\TaxResultController::class, 'totalTaxableIncomeBeforeHeadOfficeExpenses'])->name('tax-result.totalTaxableIncomeBeforeHeadOfficeExpenses');
 
         Route::get('workspace/company/{company}/setting', [\App\Http\Controllers\CompanySettingController::class, 'index'])->name('company.setting');
@@ -110,8 +120,7 @@ Route::middleware('auth', 'two-factor', 'hasOneRole', 'hasPack', 'email_verified
     Route::get('user/setting/notification', [\App\Http\Controllers\UserSettingController::class, 'notification'])->name('user.setting.notification');
     Route::post('user/setting/notification', [\App\Http\Controllers\UserSettingController::class, 'storeNotification'])->name('user.setting.notification');
 });
-
-Route::middleware('auth', 'two-factor', 'role:Super-Admin|cabinet|enterprise')->group(function () {
+Route::middleware('auth', 'role:Super-Admin|cabinet|enterprise')->group(function () {
     Route::get('role', [\App\Http\Controllers\RoleController::class, 'index'])->name('role.index');
     Route::post('role', [\App\Http\Controllers\RoleController::class, 'store'])->name('role.store');
     Route::get('role/{id}', [\App\Http\Controllers\RoleController::class, 'edit'])->name('role.edit');
@@ -125,7 +134,7 @@ Route::middleware('auth', 'two-factor', 'role:Super-Admin|cabinet|enterprise')->
     Route::delete('permission/{id}', [\App\Http\Controllers\PermissionController::class, 'destroy'])->name('permission.delete');
 });
 
-Route::middleware('auth', 'two-factor', 'role:Super-Admin')->group(function () {
+Route::middleware('auth', 'role:Super-Admin')->group(function () {
     Route::get('company/accept/{id}', [\App\Http\Controllers\CompanyController::class, 'acceptCompany'])->name('company.acceptCompany');
     Route::get('company/reject/{id}', [\App\Http\Controllers\CompanyController::class, 'rejectCompany'])->name('company.rejectCompany');
     Route::get('company/active/{id}', [\App\Http\Controllers\CompanyController::class, 'activeCompany'])->name('company.activeCompany');
@@ -192,4 +201,7 @@ Route::middleware('auth', 'two-factor', 'role:Super-Admin')->group(function () {
     Route::get('type_company/{id}', [\App\Http\Controllers\TypeCompanyController::class, 'edit'])->name('type.edit');
     Route::post('type_company/{id}', [\App\Http\Controllers\TypeCompanyController::class, 'update'])->name('type.update');
     Route::delete('type_company/{id}', [\App\Http\Controllers\TypeCompanyController::class, 'destroy'])->name('type.delete');
+});
+Route::fallback(function () {
+    return view('errors.404');
 });
