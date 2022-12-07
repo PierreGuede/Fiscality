@@ -5,8 +5,9 @@ namespace App\Http\Livewire;
 use App\Fiscality\AccuredCharges\AccuredCharge;
 use App\Models\AccuredChargeCompany;
 use Livewire\Component;
+use LivewireUI\Modal\ModalComponent;
 
-class ProvisionLivewire extends Component
+class ProvisionLivewire extends ModalComponent
 {
     public $company;
 
@@ -38,6 +39,11 @@ class ProvisionLivewire extends Component
 
     ];
 
+    public static function closeModalOnClickAway(): bool
+    {
+        return false;
+    }
+
     public function mount($company)
     {
         $this->company = $company;
@@ -63,6 +69,7 @@ class ProvisionLivewire extends Component
 
     public function store()
     {
+        // dd($this->company['id']);
         $this->submit();
         foreach ($this->inputs as  $value) {
             AccuredChargeCompany::create([
@@ -70,11 +77,15 @@ class ProvisionLivewire extends Component
                 'designation' => $value['designation'],
                 'type' => $value['type'],
                 'amount' => $value['amount'],
-                'company_id' => $this->company->id,
+                'company_id' => $this->company['id'],
                 'date' => date('Y'),
             ]);
         }
+        $this->emit('refreshProvision');
+        $this->emit('refreshTotalCard');
 
-        return redirect()->route('tax-result.reintegration.accured-charge', $this->company->id);
+        $this->closeModal();
+
+        return redirect()->route('tax-result.reintegration.accured-charge', $this->company['id']);
     }
 }

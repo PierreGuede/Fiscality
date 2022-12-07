@@ -8,10 +8,10 @@
             <table class="w-full" >
                 <thead class="bg-transparent uppercase py-2 text-gray-600" >
                     <th class="text-xs py-3.5 font-semibold" >#</th>
-                    <th class="text-xs py-3.5 font-semibold" >compte </th>
-                    <th class="text-xs py-3.5 font-semibold" >designation</th>
-                    <th class="text-xs py-3.5 font-semibold" >amount </th>
-                    <th class="text-xs py-3.5 font-semibold" >date </th>
+                    <th class="text-xs py-3.5 font-semibold" >Compte </th>
+                    <th class="text-xs py-3.5 font-semibold" >Designation</th>
+                    <th class="text-xs py-3.5 font-semibold" >Montant </th>
+                    <th class="text-xs py-3.5 font-semibold" >Date </th>
                 </thead>
                 <tbody>
                 @foreach($cahrgesCompany as $key => $value)
