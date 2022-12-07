@@ -6,5 +6,6 @@
         <x-company-setting.link href="{{ route('company.setting', $company->id)  }}" name="Information générale" :active="request()->routeIs('company.setting')"  />
         <x-company-setting.link href="{{ route('company.setting.taxation', $company->id)  }}" name="Imposition" :active="request()->routeIs('company.setting.taxation')"  />
         <x-company-setting.link href="{{ route('company.setting.tax-type', $company->id)  }}" name="Type d'impôt" :active="request()->routeIs('company.setting.tax-type')"  />
+        <x-company-setting.link href="{{ route('company.setting.all-taxes', $company->id)  }}" name="Taux d'imposition" :active="request()->routeIs('company.setting.all-taxes')"  />
     @endif
 </div>

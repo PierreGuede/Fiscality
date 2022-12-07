@@ -85,7 +85,14 @@ Route::middleware('auth', 'hasOneRole','email_verified')->group(function () {
 
         Route::get('workspace/company/{company}/accured-charge', [\App\Http\Controllers\AccuredChargeController::class, 'index'])->name('tax-result.reintegration.accured-charge');
         Route::get('workspace/company/{company}/accured-charge/provision', [\App\Http\Controllers\AccuredChargeController::class, 'provision'])->name('work.provision');
+        Route::get('workspace/company/{company}/accured-charge/detail-provision', [\App\Http\Controllers\AccuredChargeController::class, 'detailProvision'])->name('tax-result.reintegration.accured-charge.detailProvision');
+        Route::get('workspace/company/{company}/accured-charge/detail-provision/{provision}', [\App\Http\Controllers\AccuredChargeController::class, 'editProvisionOrExpenseProvisionned'])->name('tax-result.reintegration.accured-charge.detailProvision.edit');
+        Route::put('workspace/company/{company}/accured-charge/detail-provision/{provision}', [\App\Http\Controllers\AccuredChargeController::class, 'update'])->name('tax-result.reintegration.accured-charge.detailProvision.update');
+
         Route::get('workspace/company/{company}/accured-charge/provisioned-expense', [\App\Http\Controllers\AccuredChargeController::class, 'expenseProvisioned'])->name('work.expenseProvisioned');
+        Route::get('workspace/company/{company}/accured-charge/detail-expense-provisioned', [\App\Http\Controllers\AccuredChargeController::class, 'detailexpenseProvisioned'])->name('tax-result.reintegration.accured-charge.detailexpenseProvisioned');
+        Route::get('workspace/company/{company}/accured-charge/detail-provision/{expense}', [\App\Http\Controllers\AccuredChargeController::class, 'editProvisionOrExpenseProvisionned'])->name('tax-result.reintegration.accured-charge.detailExpenseProvisioned.edit');
+        Route::put('workspace/company/{company}/accured-charge/detail-provision/{expense}', [\App\Http\Controllers\AccuredChargeController::class, 'update'])->name('tax-result.reintegration.accured-charge.detailExpenseProvisioned.update');
         Route::get('workspace/company/{company}/other-reintegration', [\App\Http\Controllers\OtherReintegrationController::class, 'index'])->name('tax-result.reintegration.other-reintegration');
 
         Route::get('workspace/company/{company}/other-reintegration/commission-purchase', [\App\Http\Controllers\CommissionOnPurchaseController::class, 'index'])->name('work.commissionPurchase');
@@ -96,6 +103,7 @@ Route::middleware('auth', 'hasOneRole','email_verified')->group(function () {
         Route::put('workspace/company/{company}/setting', [\App\Http\Controllers\CompanySettingController::class, 'updateCompany'])->name('company.setting.update-company');
         Route::get('workspace/company/{company}/setting/taxation', [\App\Http\Controllers\CompanySettingController::class, 'taxation'])->name('company.setting.taxation');
         Route::get('workspace/company/{company}/setting/tax-type', [\App\Http\Controllers\CompanySettingController::class, 'taxType'])->name('company.setting.tax-type');
+        Route::get('workspace/company/{company}/setting/all-taxes', [\App\Http\Controllers\CompanySettingController::class, 'allTaxes'])->name('company.setting.all-taxes');
 
         Route::get('workspace/company/{company}/tax/corporate-tax', [\App\Fiscality\CorporateTax\Controllers\CorporateTaxController::class, 'index'])->name('corporate-tax');
         Route::get('workspace/company/{company}/tax/deficit', [\App\Http\Controllers\DeficitController::class, 'index'])->name('deficit');
@@ -201,6 +209,7 @@ Route::middleware('auth', 'role:Super-Admin')->group(function () {
     Route::get('type_company/{id}', [\App\Http\Controllers\TypeCompanyController::class, 'edit'])->name('type.edit');
     Route::post('type_company/{id}', [\App\Http\Controllers\TypeCompanyController::class, 'update'])->name('type.update');
     Route::delete('type_company/{id}', [\App\Http\Controllers\TypeCompanyController::class, 'destroy'])->name('type.delete');
+});
 });
 Route::fallback(function () {
     return view('errors.404');
