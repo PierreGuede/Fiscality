@@ -16,8 +16,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     if (auth()->user()) {
         return redirect()->route('company.index');
-    }
-    else{
+    } else {
         return view('welcome');
     }
 });
@@ -40,21 +39,21 @@ Route::middleware('auth', 'two-factor', 'pack', 'email_verified')->group(functio
     Route::get('renew-subscription', [\App\Http\Controllers\SubscriptionController::class, 'renew'])->name('renew.pack');
 });
 //Route::middleware('auth', 'hasOneRole', 'hasPack', 'email_verified')->group(function () {
-Route::middleware('auth', 'two-factor', 'hasOneRole', 'hasPack', 'email_verified')->group(function () {
-Route::middleware('auth','subscription','email_verified')->group(function () {
-    Route::get('renew-subscription',[\App\Http\Controllers\SubscriptionController::class, 'renew'])->name('renew.pack');
+//Route::middleware('auth', 'two-factor', 'hasOneRole', 'hasPack', 'email_verified')->group(function () {
+Route::middleware('auth', 'two-factor', 'subscription', 'email_verified')->group(function () {
+    Route::get('renew-subscription', [\App\Http\Controllers\SubscriptionController::class, 'renew'])->name('renew.pack');
 });
-Route::middleware('auth', 'hasOneRole','email_verified')->group(function () {
+Route::middleware('auth', 'two-factor', 'hasOneRole', 'email_verified')->group(function () {
     Route::view('about', 'about')->name('about');
-    Route::middleware('hasOneRole')->group(function () {
-        Route::get('company', [\App\Http\Controllers\CompanyController::class, 'index'])->name('company.index');
-        Route::get('company/set-other-information', [\App\Http\Controllers\CompanyController::class, 'setEntrepriseInformation'])->name('company.set_entreprise_information');
-        Route::get('company/{id}', [\App\Http\Controllers\CompanyController::class, 'edit'])->name('company.edit');
-        Route::get('company/downlad-ifu/{id}', [\App\Http\Controllers\CompanyController::class, 'downloadIfu'])->name('company.downladIFU');
-        Route::get('company/downlad-rcccm/{id}', [\App\Http\Controllers\CompanyController::class, 'downloadRCCM'])->name('company.downladRCCM');
-        Route::post('company/{id}', [\App\Http\Controllers\CompanyController::class, 'update'])->name('company.update');
-        Route::delete('company/{id}', [\App\Http\Controllers\CompanyController::class, 'destroy'])->name('company.delete');
-    });
+//    Route::middleware('hasOneRole')->group(function () {
+    Route::get('company', [\App\Http\Controllers\CompanyController::class, 'index'])->name('company.index');
+    Route::get('company/set-other-information', [\App\Http\Controllers\CompanyController::class, 'setEntrepriseInformation'])->name('company.set_entreprise_information');
+    Route::get('company/{id}', [\App\Http\Controllers\CompanyController::class, 'edit'])->name('company.edit');
+    Route::get('company/downlad-ifu/{id}', [\App\Http\Controllers\CompanyController::class, 'downloadIfu'])->name('company.downladIFU');
+    Route::get('company/downlad-rcccm/{id}', [\App\Http\Controllers\CompanyController::class, 'downloadRCCM'])->name('company.downladRCCM');
+    Route::post('company/{id}', [\App\Http\Controllers\CompanyController::class, 'update'])->name('company.update');
+    Route::delete('company/{id}', [\App\Http\Controllers\CompanyController::class, 'destroy'])->name('company.delete');
+//    });
 
     Route::middleware('hasOneRole')->group(function () {
         Route::get('create-company', [\App\Http\Controllers\CompanyController::class, 'create'])->name('company.enterprise');
@@ -96,7 +95,7 @@ Route::middleware('auth', 'hasOneRole','email_verified')->group(function () {
         Route::get('workspace/company/{company}/other-reintegration', [\App\Http\Controllers\OtherReintegrationController::class, 'index'])->name('tax-result.reintegration.other-reintegration');
 
         Route::get('workspace/company/{company}/other-reintegration/commission-purchase', [\App\Http\Controllers\CommissionOnPurchaseController::class, 'index'])->name('work.commissionPurchase');
-        Route::get('workspace/company/{company}/head-office-costs', [\App\Http\Controllers\HeadOfficeCostController::class, 'index'])->name('head-office-costs');
+        Route::get('workspace/company/{company}/head-office-costs', [\App\Http\Controllers\HeadOfficeCostController::class, 'index'])->name('tax-result.head-office-costs');
         Route::get('workspace/company/{company}/total-tax-result', [\App\Fiscality\TaxResult\Controllers\TaxResultController::class, 'totalTaxableIncomeBeforeHeadOfficeExpenses'])->name('tax-result.totalTaxableIncomeBeforeHeadOfficeExpenses');
 
         Route::get('workspace/company/{company}/setting', [\App\Http\Controllers\CompanySettingController::class, 'index'])->name('company.setting');
@@ -210,7 +209,7 @@ Route::middleware('auth', 'role:Super-Admin')->group(function () {
     Route::post('type_company/{id}', [\App\Http\Controllers\TypeCompanyController::class, 'update'])->name('type.update');
     Route::delete('type_company/{id}', [\App\Http\Controllers\TypeCompanyController::class, 'destroy'])->name('type.delete');
 });
-});
+//});
 Route::fallback(function () {
     return view('errors.404');
 });

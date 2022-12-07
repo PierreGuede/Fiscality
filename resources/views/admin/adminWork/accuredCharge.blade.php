@@ -7,11 +7,9 @@
 
                 <x-total-card :total="$total" />
 
+                @livewire('accured-charge.personnal-provision-card',['company' => $company])
                 @livewire('accured-charge.provision-card',['company' => $company])
-            @livewire('accured-charge.expense-provisioned-card',['company' => $company])
-            @livewire('accured-charge.personnal-provision',['company' => $company])
-
-
+                @livewire('accured-charge.expense-provisioned-card',['company' => $company])
 
         </div>
             </x-tax-result.content-wrapper>

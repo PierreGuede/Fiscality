@@ -40,32 +40,26 @@ class AccuredChargeController extends Controller
     public function detailProvision(Company $company)
     {
         $cahrgesCompany = AccuredChargeCompany::where('type', 'provision')->where('company_id', $company->id)->where('date', date('Y'))->get();
-            return view('admin.adminWork.detail-provision', compact('company','cahrgesCompany'));
 
+        return view('admin.adminWork.detail-provision', compact('company', 'cahrgesCompany'));
     }
 
     public function detailexpenseProvisioned(Company $company)
     {
         $cahrgesCompany = AccuredChargeCompany::where('type', AccuredChargeCompany::EXPENSE_PROVISIONED)->where('company_id', $company->id)->where('date', date('Y'))->get();
-            return view('admin.adminWork.detail-expenseProvisioned', compact('company','cahrgesCompany'));
 
+        return view('admin.adminWork.detail-expenseProvisioned', compact('company', 'cahrgesCompany'));
     }
 
-
-    public function editProvisionOrExpenseProvisionned(Company $company,AccuredChargeCompany $provision)
+    public function editProvisionOrExpenseProvisionned(Company $company, AccuredChargeCompany $provision)
     {
-        if ($provision->type =='provision') {
-            return view('admin.adminWork.edit-provision', compact('company','provision'));
-
+        if ($provision->type == 'provision') {
+            return view('admin.adminWork.edit-provision', compact('company', 'provision'));
+        } elseif ($provision->type == AccuredChargeCompany::EXPENSE_PROVISIONED) {
+            return view('admin.adminWork.edit-expense-provisioned', compact('company', 'provision'));
         }
-
-        elseif ($provision->type == AccuredChargeCompany::EXPENSE_PROVISIONED) {
-            return view('admin.adminWork.edit-expense-provisioned', compact('company','provision'));
-
-        }
-
-
     }
+
 /* updateProvision */
     public function expenseProvisioned(Company $company)
     {
@@ -89,6 +83,7 @@ class AccuredChargeController extends Controller
             'type' => $data['type'],
         ]);
     }
+
     public function update(Request $data, Company $company, AccuredChargeCompany $provision)
     {
         $provision->update([
@@ -96,11 +91,10 @@ class AccuredChargeController extends Controller
             'designation' => $data['designation'],
             'amount' => $data['amount'],
         ]);
-        if ($provision->type =='provision') {
-            return redirect()->route('tax-result.reintegration.accured-charge.detailProvision',$company->id);
-        }
-        elseif ($provision->type == AccuredChargeCompany::EXPENSE_PROVISIONED) {
-            return redirect()->route('tax-result.reintegration.accured-charge.detailexpenseProvisioned',$company->id);
+        if ($provision->type == 'provision') {
+            return redirect()->route('tax-result.reintegration.accured-charge.detailProvision', $company->id);
+        } elseif ($provision->type == AccuredChargeCompany::EXPENSE_PROVISIONED) {
+            return redirect()->route('tax-result.reintegration.accured-charge.detailexpenseProvisioned', $company->id);
         }
     }
 }

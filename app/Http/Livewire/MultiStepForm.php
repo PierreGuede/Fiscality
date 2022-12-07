@@ -79,36 +79,40 @@ class MultiStepForm extends Component
 
         return view('livewire.multi-step-form', compact('type', 'typeCat', 'domain', 'taxCenter'));
     }
-    public function updatedIfu($value){
-        if (strlen($value)===13) {
-            $find_Ifu=Company::whereIfu($value)->first();
-            if ($find_Ifu !=null) {
+
+    public function updatedIfu($value)
+    {
+        if (strlen($value) === 13) {
+            $find_Ifu = Company::whereIfu($value)->first();
+            if ($find_Ifu != null) {
                 return $this->notification()->error(
-                    $title='Erreur!!!',
-                    $description="Le numero IFU existe déjà!"
+                    $title = 'Erreur!!!',
+                    $description = 'Le numero IFU existe déjà!'
                 );
             }
         }
     }
 
-    public function updatedEmail($value){
-        if (strstr($value,'@')) {
-            $find_mail=Company::whereEmail($value)->first();
-            if ($find_mail !=null) {
+    public function updatedEmail($value)
+    {
+        if (strstr($value, '@')) {
+            $find_mail = Company::whereEmail($value)->first();
+            if ($find_mail != null) {
                 return $this->notification()->error(
-                    $title='Erreur!!!',
-                    $description="Ce mail a déjà été utilisé dans TECIT"
+                    $title = 'Erreur!!!',
+                    $description = 'Ce mail a déjà été utilisé dans TECIT'
                 );
             }
         }
     }
 
-    public function updatedCreatedDate($value){
+    public function updatedCreatedDate($value)
+    {
         if ($value > now()) {
-                return $this->notification()->error(
-                    $title='Erreur!!!',
-                    $description="Vous ne pouvez pas choisir une date ultérieur a aujourd'hui"
-                );
+            return $this->notification()->error(
+                $title = 'Erreur!!!',
+                $description = "Vous ne pouvez pas choisir une date ultérieur a aujourd'hui"
+            );
         }
     }
 
@@ -161,12 +165,13 @@ class MultiStepForm extends Component
         }
     }
 
-    public function verifyData($wordInput){
+    public function verifyData($wordInput)
+    {
         dd($wordInput);
     }
+
     public function save()
     {
-<<<<<<< HEAD
 //        $this->validate([
 //            'name' => ['required', 'string', 'max:255', 'unique:companies'],
 //            'rccm' => ['required', 'string', 'max:14', 'unique:companies'],
@@ -181,7 +186,6 @@ class MultiStepForm extends Component
         /*         $IFURequest = $this->path->storeAs('IFU', $ifuFile, 'public');
                 $RCCMRequest = $this->path_rccm->storeAs('RCCM', $rccmFile, 'public');
          */
-=======
 
         $this->validate([
             'name' => ['required', 'string', 'max:255'],
@@ -191,13 +195,12 @@ class MultiStepForm extends Component
             'email' => ['required', 'string', 'max:255', 'unique:companies'],
             'celphone' => ['required', 'max:255', 'unique:companies'],
         ]);
-/*         $ifuFile = 'IFU_DU_'.time().'.'.$this->path->getClientOriginalName();
-        $rccmFile = 'RCCM_DU_'.time().'.'.$this->path_rccm->getClientOriginalName();
- */
-/*         $IFURequest = $this->path->storeAs('IFU', $ifuFile, 'public');
-        $RCCMRequest = $this->path_rccm->storeAs('RCCM', $rccmFile, 'public');
- */
->>>>>>> feat/lastModify
+        /*         $ifuFile = 'IFU_DU_'.time().'.'.$this->path->getClientOriginalName();
+                $rccmFile = 'RCCM_DU_'.time().'.'.$this->path_rccm->getClientOriginalName();
+         */
+        /*         $IFURequest = $this->path->storeAs('IFU', $ifuFile, 'public');
+                $RCCMRequest = $this->path_rccm->storeAs('RCCM', $rccmFile, 'public');
+         */
         try {
             DB::beginTransaction();
 
@@ -233,11 +236,7 @@ class MultiStepForm extends Component
 
             notify()->success('Entreprise créée avec succès!');
 
-<<<<<<< HEAD
             if (auth()->user()->roles[0]->name == 'enterprise') {
-=======
-            if(auth()->user()->roles[0]->name == 'entreprise'){
->>>>>>> feat/lastModify
                 return redirect()->route('tax-result', $company->id);
             }
 
@@ -247,6 +246,7 @@ class MultiStepForm extends Component
                 $title = 'Error !!!',
                 $description = "Une erreur est survenue lors de la création de l'entreprise"
             );
+            DB::rollBack();
             throw $th;
         }
     }

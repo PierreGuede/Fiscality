@@ -116,9 +116,7 @@ class CreateIncome extends ModalComponent
         return $income_total_amount;
     }
 
-    /**
-     * @return  string
-     */
+
     public function save()
     {
         $this->validate();
