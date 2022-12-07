@@ -26,7 +26,7 @@ class CreateVehicle extends ModalComponent
         'data.value' => 'required|integer',
         'data.plafond' => 'required|integer',
         'data.dotation' => 'required|integer',
-//        'data.date' => 'date|before_or_equal:today',
+        //        'data.date' => 'date|before_or_equal:today',
     ];
 
     protected $messages = [
@@ -34,9 +34,9 @@ class CreateVehicle extends ModalComponent
         'data.value.required' => 'champ obligatoire',
         'data.amount.required' => 'champ obligatoire',
         'data.dotation.required' => 'champ obligatoire',
-//        'data.date.before_or_equal' => 'doit être inférieur à la date actuelle',
-//        'data.date.required' => 'champ requis',
-//        'data.date.date' => 'le champ doit être une date',
+        //        'data.date.before_or_equal' => 'doit être inférieur à la date actuelle',
+        //        'data.date.required' => 'champ requis',
+        //        'data.date.date' => 'le champ doit être une date',
 
     ];
 

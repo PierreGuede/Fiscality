@@ -102,7 +102,6 @@ class CreateRedevance extends Component
         try {
             DB::beginTransaction();
 
-
             $redevance = Redevance::create([
                 'Account' => 0,
                 'designation' => 0,
@@ -123,13 +122,13 @@ class CreateRedevance extends Component
                 ]);
             }
 
-        $this->emit('refresh');
-        notify()->success('Redevances créées avec succès!');
+            $this->emit('refresh');
+            notify()->success('Redevances créées avec succès!');
 
-        DB::commit();
+            DB::commit();
 
-        $this->closeASide();
-        } catch(\Throwable $th){
+            $this->closeASide();
+        } catch(\Throwable $th) {
             DB::rollBack();
             throw $th;
         }

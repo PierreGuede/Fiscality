@@ -8,10 +8,7 @@
         @endif
 
         @if($align == 'right')
-                @if($formula)
-                    <p class="text-right ml-auto" x-text="formatNumber({{ $amount  }},  @js($currency)  )"  >100000</p>
-                @endif
-            @endif
-
+            <p class="text-right ml-auto" x-text="formatNumber({{ $amount  }},  @js($currency)  )"  >100000</p>
+        @endif
     </div>
 </div>

@@ -27,19 +27,12 @@ class CreateExcessRent extends Component
     protected $rules = [
         'rent_amount' => 'required|min:1',
         'rental_period_year' => 'required|min:1',
-        'annual_deduction_limit' => 'required|min:1',
     ];
 
-//    protected $messages = [
-//        'inputs.*.account.required' => 'champ obligatoire',
-//        'inputs.*.account.distinct' => 'incohérent',
-//        'inputs.*.name.required' => 'champ obligatoire',
-//        'inputs.*.amount' => 'champ obligatoire',
-//
-//        'rent_amount' => 'champ obligatoire',
-//        'rental_period_year' => 'required|min:1',
-//        'annual_deduction_limit' => 'required|min:1',
-//    ];
+    protected $messages = [
+        'rent_amount' => 'champ obligatoire',
+        'rental_period_year' => 'champ obligatoire',
+    ];
 
     public function mount(Company $company)
     {
@@ -69,6 +62,8 @@ class CreateExcessRent extends Component
 
     public function save()
     {
+        $this->validate();
+
         $applicable_deduction_limit = $this->annual_deduction_limit * $this->rental_period_year / 365;
         $amount_rent_reintegrated = $this->rent_amount - $applicable_deduction_limit;
 

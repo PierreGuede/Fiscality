@@ -3,7 +3,6 @@
 namespace App\Http\Livewire\Company\Amortization;
 
 use App\Fiscality\Excesss\Excess;
-use Livewire\Component;
 use LivewireUI\Modal\ModalComponent;
 use WireUi\Traits\Actions;
 

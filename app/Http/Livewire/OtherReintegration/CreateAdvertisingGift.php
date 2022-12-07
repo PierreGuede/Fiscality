@@ -6,6 +6,7 @@ use App\Fiscality\AdvertisingGiftDetails\AdvertisingGiftDetail;
 use App\Fiscality\AdvertisingGifts\AdvertisingGift;
 use App\Fiscality\Companies\Company;
 use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\DB;
 use Livewire\Component;
 
 class CreateAdvertisingGift extends Component
@@ -25,8 +26,6 @@ class CreateAdvertisingGift extends Component
         'inputs.*.name' => 'required',
         'inputs.*.amount' => 'required',
         'turnover' => 'required|min:1',
-        'deduction_limit' => 'required|min:1',
-        'surplus_reintegrated' => 'required|min:1',
     ];
 
     protected $messages = [
@@ -35,8 +34,6 @@ class CreateAdvertisingGift extends Component
         'inputs.*.name.required' => 'champ obligatoire',
         'inputs.*.amount' => 'champ obligatoire',
         'turnover' => 'champ obligatoire',
-        'deduction_limit' => 'champ obligatoire',
-        'surplus_reintegrated' => 'champ obligatoire',
     ];
 
     public function add(): void
@@ -87,27 +84,39 @@ class CreateAdvertisingGift extends Component
 
     public function save()
     {
-        $total_amount = $this->processDataTotalAmount($this->inputs);
+        $this->validate();
+
+        $total_amount = array_sum(array_column($this->inputs->toArray(), 'amount'));
         $limit_deduction = (float) $this->turnover * (3 / 1000);
         $surplus_reintegrated = (float) $total_amount - $limit_deduction;
 
-        $advertising_gift = AdvertisingGift::create([
-            'total_amount' => $total_amount,
-            'turnover' => $this->turnover,
-            'surplus_reintegrated' => $surplus_reintegrated,
-            'deduction_limit' => $limit_deduction,
-            'company_id' => $this->company->id,
-        ]);
+        try {
+            DB::beginTransaction();
 
-        for ($i = 0; $i < count($this->inputs); $i++) {
-            AdvertisingGiftDetail::create([
-                'advertising_gift_id' => $advertising_gift->id,
+            $advertising_gift = AdvertisingGift::create([
+                'total_amount' => $total_amount,
+                'turnover' => $this->turnover,
+                'surplus_reintegrated' => $surplus_reintegrated,
+                'deduction_limit' => $limit_deduction,
                 'company_id' => $this->company->id,
-                'name' => $this->inputs[$i]['name'],
-                'amount' => $this->inputs[$i]['amount'],
             ]);
-        }
 
-        $this->closeASide();
+            for ($i = 0; $i < count($this->inputs); $i++) {
+                AdvertisingGiftDetail::create([
+                    'advertising_gift_id' => $advertising_gift->id,
+                    'company_id' => $this->company->id,
+                    'name' => $this->inputs[$i]['name'],
+                    'amount' => $this->inputs[$i]['amount'],
+                ]);
+            }
+
+            $this->closeASide();
+            $this->emit('refresh');
+
+            DB::commit();
+        } catch (\Throwable $th) {
+            DB::rollBack();
+            throw $th;
+        }
     }
 }

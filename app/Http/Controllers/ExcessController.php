@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Fiscality\Amortizations\Amortization;
 use App\Fiscality\Companies\Company;
 use App\Fiscality\Excesss\Excess;
-use App\Http\Requests\StoreAmortizationExcessRequest;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 
@@ -59,7 +58,7 @@ class ExcessController extends Controller
 
     public function update(Company $company, $excess, Request $request)
     {
-       $validated =  $request->validate([
+        $validated = $request->validate([
             'category_imo' => ['sometimes', 'required', 'string', 'max:255', Rule::unique('excesses')->ignore($excess)],
             'designation' => ['sometimes', 'required', 'string', 'max:255', Rule::unique('excesses')->ignore($excess)],
             'taux_use' => ['sometimes', 'required', 'string', 'max:255'],

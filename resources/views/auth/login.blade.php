@@ -18,10 +18,10 @@
                         <form method="POST" action="{{ route('login') }}" class="mt-6 space-y-6">
                             @csrf
 
-                            <div class="mt-4">
-                                <x-input type="text" label="Username" id="username" name="username"
-                                    value="{{ old('username') }}" class="block w-full" required autofocus />
-                            </div>
+{{--                            <div class="mt-4">--}}
+{{--                                <x-input type="text" label="Username" id="username" name="username"--}}
+{{--                                    value="{{ old('username') }}" class="block w-full" required autofocus />--}}
+{{--                            </div>--}}
 
                             <!-- Input[ype="email"] -->
                             <div class="mt-4">

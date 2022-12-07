@@ -21,11 +21,11 @@
                     <h5 class="py-1 text-sm font-semibold text-gray-700 col-span-3">Montant </h5>
                 </div>
 
-                <div class="" >
+                <div class="space-y-4" >
                     @foreach($inputs as  $key => $value)
                         <div class="flex gap-x-2 items-center ">
 
-                            <div class="grid grid-cols-12 gap-x-4">
+                            <div class="grid grid-cols-12 gap-x-4 ">
                                 <div class="col-span-7">
                                     <x-input type="number" label="" id="delay_condition" name=""
                                              value="{{ old('delay_condition') }}" class="block w-full" required

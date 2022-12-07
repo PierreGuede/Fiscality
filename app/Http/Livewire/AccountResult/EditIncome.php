@@ -119,7 +119,6 @@ class EditIncome extends ModalComponent
      */
     public function save()
     {
-
         $this->validate();
 
         $total_data = $this->processDataTotalAmount($this->inputs);
