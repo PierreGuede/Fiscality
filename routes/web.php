@@ -57,63 +57,65 @@ Route::middleware('auth', 'two-factor', 'hasOneRole', 'email_verified')->group(f
 
     Route::middleware('hasOneRole')->group(function () {
         Route::get('create-company', [\App\Http\Controllers\CompanyController::class, 'create'])->name('company.enterprise');
-        Route::get('workspace/company/{company}', [\App\Http\Controllers\WorkInEnterprise::class, 'index'])->name('work.show');
-        Route::post('workspace/company/{company}', [\App\Http\Controllers\WorkInEnterprise::class, 'access'])->name('work.access');
-        Route::get('workspace/company/{company}/actions', [\App\Http\Controllers\WorkInEnterprise::class, 'actions'])->name('work.actions');
-//        Route::get('workspace/company/{company}/account-result', [\App\Http\Controllers\WorkInEnterprise::class, 'accountResult'])->name('work.accountResult');
-        Route::get('workspace/company/{company}/impot-calcul', [\App\Http\Controllers\WorkInEnterprise::class, 'impotcalcul'])->name('work.impotcalcul');
+        Route::middleware('acces-company')->group(function () {
+            Route::get('workspace/company/{company}', [\App\Http\Controllers\WorkInEnterprise::class, 'index'])->name('work.show');
+            Route::post('workspace/company/{company}', [\App\Http\Controllers\WorkInEnterprise::class, 'access'])->name('work.access');
+            Route::get('workspace/company/{company}/actions', [\App\Http\Controllers\WorkInEnterprise::class, 'actions'])->name('work.actions');
+    //        Route::get('workspace/company/{company}/account-result', [\App\Http\Controllers\WorkInEnterprise::class, 'accountResult'])->name('work.accountResult');
+            Route::get('workspace/company/{company}/impot-calcul', [\App\Http\Controllers\WorkInEnterprise::class, 'impotcalcul'])->name('work.impotcalcul');
 
-        Route::get('workspace/company/{company}/tax-result', [\App\Fiscality\TaxResult\Controllers\TaxResultController::class, 'index'])->name('tax-result');
-        Route::get('workspace/company/{company}/tax-result/account-result', [\App\Http\Controllers\AccountResultController::class, 'index'])->name('tax-result.account-result');
-        Route::get('workspace/company/{company}/tax-result/account-result/income', [\App\Http\Controllers\AccountResultController::class, 'income'])->name('tax-result.account-result.income');
-        Route::get('workspace/company/{company}/tax-result/account-result/expense', [\App\Http\Controllers\AccountResultController::class, 'expense'])->name('tax-result.account-result.expense');
-        Route::get('workspace/company/{company}/tax-result/non-deductible-charge', [\App\Http\Controllers\NonDeductibleChargeController::class, 'index'])->name('tax-result.reintegration.non-deductible-charge');
-        Route::get('workspace/company/{company}/tax-result/deduction', [\App\Http\Controllers\DeductionController::class, 'index'])->name('tax-result.deduction');
-        Route::post('workspace/company/{company}/tax-result/deduction', [\App\Http\Controllers\DeductionController::class, 'store'])->name('tax-result.deduction.store');
+            Route::get('workspace/company/{company}/tax-result', [\App\Fiscality\TaxResult\Controllers\TaxResultController::class, 'index'])->name('tax-result');
+            Route::get('workspace/company/{company}/tax-result/account-result', [\App\Http\Controllers\AccountResultController::class, 'index'])->name('tax-result.account-result');
+            Route::get('workspace/company/{company}/tax-result/account-result/income', [\App\Http\Controllers\AccountResultController::class, 'income'])->name('tax-result.account-result.income');
+            Route::get('workspace/company/{company}/tax-result/account-result/expense', [\App\Http\Controllers\AccountResultController::class, 'expense'])->name('tax-result.account-result.expense');
+            Route::get('workspace/company/{company}/tax-result/non-deductible-charge', [\App\Http\Controllers\NonDeductibleChargeController::class, 'index'])->name('tax-result.reintegration.non-deductible-charge');
+            Route::get('workspace/company/{company}/tax-result/deduction', [\App\Http\Controllers\DeductionController::class, 'index'])->name('tax-result.deduction');
+            Route::post('workspace/company/{company}/tax-result/deduction', [\App\Http\Controllers\DeductionController::class, 'store'])->name('tax-result.deduction.store');
 
-        Route::get('workspace/company/{company}/tax-result/amortization', [\App\Fiscality\AmortizationDetails\Controllers\AmortizationDetailsController::class, 'index'])->name('tax-result.reintegration.amortization');
-        Route::get('workspace/company/{company}/tax-result/amortization/tourism-cars', [\App\Http\Controllers\VehicleController::class, 'index'])->name('amortization.tourism-cars');
-        Route::get('workspace/company/{company}/tax-result/amortization/tourism-cars/{vehicle}', [\App\Http\Controllers\VehicleController::class, 'edit'])->name('amortization.tourism-cars.edit');
-        Route::put('workspace/company/{company}/tax-result/amortization/tourism-cars/{vehicle}', [\App\Http\Controllers\VehicleController::class, 'update'])->name('amortization.tourism-cars.update');
-        Route::get('workspace/company/{company}/tax-result/amortization/amortization-excess', [\App\Http\Controllers\ExcessController::class, 'index'])->name('amortization.amortization-excess');
-        Route::get('workspace/company/{company}/tax-result/amortization/amortization-excess/{excess}', [\App\Http\Controllers\ExcessController::class, 'edit'])->name('amortization.amortization-excess.edit');
-        Route::put('workspace/company/{company}/tax-result/amortization/amortization-excess/{excess}', [\App\Http\Controllers\ExcessController::class, 'update'])->name('amortization.amortization-excess.update');
-        Route::get('workspace/company/{company}/tax-result/amortization/depreciation-assets', [\App\Http\Controllers\DepreciationController::class, 'index'])->name('amortization.depreciation-assets');
-        Route::get('workspace/company/{company}/tax-result/amortization/depreciation-assets/{depreciation}', [\App\Http\Controllers\DepreciationController::class, 'edit'])->name('amortization.depreciation-assets.edit');
-        Route::put('workspace/company/{company}/tax-result/amortization/depreciation-assets/{depreciation}', [\App\Http\Controllers\DepreciationController::class, 'update'])->name('amortization.depreciation-assets.update');
+            Route::get('workspace/company/{company}/tax-result/amortization', [\App\Fiscality\AmortizationDetails\Controllers\AmortizationDetailsController::class, 'index'])->name('tax-result.reintegration.amortization');
+            Route::get('workspace/company/{company}/tax-result/amortization/tourism-cars', [\App\Http\Controllers\VehicleController::class, 'index'])->name('amortization.tourism-cars');
+            Route::get('workspace/company/{company}/tax-result/amortization/tourism-cars/{vehicle}', [\App\Http\Controllers\VehicleController::class, 'edit'])->name('amortization.tourism-cars.edit');
+            Route::put('workspace/company/{company}/tax-result/amortization/tourism-cars/{vehicle}', [\App\Http\Controllers\VehicleController::class, 'update'])->name('amortization.tourism-cars.update');
+            Route::get('workspace/company/{company}/tax-result/amortization/amortization-excess', [\App\Http\Controllers\ExcessController::class, 'index'])->name('amortization.amortization-excess');
+            Route::get('workspace/company/{company}/tax-result/amortization/amortization-excess/{excess}', [\App\Http\Controllers\ExcessController::class, 'edit'])->name('amortization.amortization-excess.edit');
+            Route::put('workspace/company/{company}/tax-result/amortization/amortization-excess/{excess}', [\App\Http\Controllers\ExcessController::class, 'update'])->name('amortization.amortization-excess.update');
+            Route::get('workspace/company/{company}/tax-result/amortization/depreciation-assets', [\App\Http\Controllers\DepreciationController::class, 'index'])->name('amortization.depreciation-assets');
+            Route::get('workspace/company/{company}/tax-result/amortization/depreciation-assets/{depreciation}', [\App\Http\Controllers\DepreciationController::class, 'edit'])->name('amortization.depreciation-assets.edit');
+            Route::put('workspace/company/{company}/tax-result/amortization/depreciation-assets/{depreciation}', [\App\Http\Controllers\DepreciationController::class, 'update'])->name('amortization.depreciation-assets.update');
 
-        Route::get('workspace/company/{company}/accured-charge', [\App\Http\Controllers\AccuredChargeController::class, 'index'])->name('tax-result.reintegration.accured-charge');
-        Route::get('workspace/company/{company}/accured-charge/provision', [\App\Http\Controllers\AccuredChargeController::class, 'provision'])->name('work.provision');
-        Route::get('workspace/company/{company}/accured-charge/detail-provision', [\App\Http\Controllers\AccuredChargeController::class, 'detailProvision'])->name('tax-result.reintegration.accured-charge.detailProvision');
-        Route::get('workspace/company/{company}/accured-charge/detail-provision/{provision}', [\App\Http\Controllers\AccuredChargeController::class, 'editProvisionOrExpenseProvisionned'])->name('tax-result.reintegration.accured-charge.detailProvision.edit');
-        Route::put('workspace/company/{company}/accured-charge/detail-provision/{provision}', [\App\Http\Controllers\AccuredChargeController::class, 'updateProvision'])->name('tax-result.reintegration.accured-charge.detailProvision.updateProvision');
+            Route::get('workspace/company/{company}/accured-charge', [\App\Http\Controllers\AccuredChargeController::class, 'index'])->name('tax-result.reintegration.accured-charge');
+            Route::get('workspace/company/{company}/accured-charge/provision', [\App\Http\Controllers\AccuredChargeController::class, 'provision'])->name('work.provision');
+            Route::get('workspace/company/{company}/accured-charge/detail-provision', [\App\Http\Controllers\AccuredChargeController::class, 'detailProvision'])->name('tax-result.reintegration.accured-charge.detailProvision');
+            Route::get('workspace/company/{company}/accured-charge/detail-provision/{provision}', [\App\Http\Controllers\AccuredChargeController::class, 'editProvisionOrExpenseProvisionned'])->name('tax-result.reintegration.accured-charge.detailProvision.edit');
+            Route::put('workspace/company/{company}/accured-charge/detail-provision/{provision}', [\App\Http\Controllers\AccuredChargeController::class, 'updateProvision'])->name('tax-result.reintegration.accured-charge.detailProvision.updateProvision');
 
-        Route::get('workspace/company/{company}/accured-charge/provisioned-expense', [\App\Http\Controllers\AccuredChargeController::class, 'expenseProvisioned'])->name('work.expenseProvisioned');
-        Route::get('workspace/company/{company}/accured-charge/detail-expense-provisioned', [\App\Http\Controllers\AccuredChargeController::class, 'detailexpenseProvisioned'])->name('tax-result.reintegration.accured-charge.detailexpenseProvisioned');
-        Route::get('workspace/company/{company}/accured-charge/detail-expense-provisioned/{expense}', [\App\Http\Controllers\AccuredChargeController::class, 'editProvisionOrExpenseProvisionned'])->name('tax-result.reintegration.accured-charge.detailExpenseProvisioned.edit');
-        Route::put('workspace/company/{company}/accured-charge/detail-expense-provisioned/{expense}', [\App\Http\Controllers\AccuredChargeController::class, 'updateExpenseProvisionned'])->name('tax-result.reintegration.accured-charge.detailExpenseProvisioned.updateExpenseProvisionned');
+            Route::get('workspace/company/{company}/accured-charge/provisioned-expense', [\App\Http\Controllers\AccuredChargeController::class, 'expenseProvisioned'])->name('work.expenseProvisioned');
+            Route::get('workspace/company/{company}/accured-charge/detail-expense-provisioned', [\App\Http\Controllers\AccuredChargeController::class, 'detailexpenseProvisioned'])->name('tax-result.reintegration.accured-charge.detailexpenseProvisioned');
+            Route::get('workspace/company/{company}/accured-charge/detail-expense-provisioned/{expense}', [\App\Http\Controllers\AccuredChargeController::class, 'editProvisionOrExpenseProvisionned'])->name('tax-result.reintegration.accured-charge.detailExpenseProvisioned.edit');
+            Route::put('workspace/company/{company}/accured-charge/detail-expense-provisioned/{expense}', [\App\Http\Controllers\AccuredChargeController::class, 'updateExpenseProvisionned'])->name('tax-result.reintegration.accured-charge.detailExpenseProvisioned.updateExpenseProvisionned');
 
-        Route::get('workspace/company/{company}/accured-charge/personal-provision', [\App\Http\Controllers\AccuredChargeController::class, 'personalProvision'])->name('work.personal-provision');
-        Route::get('workspace/company/{company}/accured-charge/detail-personal-provision', [\App\Http\Controllers\AccuredChargeController::class, 'detailPersonalProvision'])->name('tax-result.reintegration.accured-charge.detailPersonalProvision');
-        Route::get('workspace/company/{company}/accured-charge/detail-personal-provision/{personnalProvision}', [\App\Http\Controllers\AccuredChargeController::class, 'editProvisionOrExpenseProvisionned'])->name('tax-result.reintegration.accured-charge.detailPersonalProvision.edit');
-        Route::put('workspace/company/{company}/accured-charge/detail-personal-provision/{personnalProvision}', [\App\Http\Controllers\AccuredChargeController::class, 'updatePersonnalProvision'])->name('tax-result.reintegration.accured-charge.detailPersonalProvision.updatePersonnalProvision');
+            Route::get('workspace/company/{company}/accured-charge/personal-provision', [\App\Http\Controllers\AccuredChargeController::class, 'personalProvision'])->name('work.personal-provision');
+            Route::get('workspace/company/{company}/accured-charge/detail-personal-provision', [\App\Http\Controllers\AccuredChargeController::class, 'detailPersonalProvision'])->name('tax-result.reintegration.accured-charge.detailPersonalProvision');
+            Route::get('workspace/company/{company}/accured-charge/detail-personal-provision/{personnalProvision}', [\App\Http\Controllers\AccuredChargeController::class, 'editProvisionOrExpenseProvisionned'])->name('tax-result.reintegration.accured-charge.detailPersonalProvision.edit');
+            Route::put('workspace/company/{company}/accured-charge/detail-personal-provision/{personnalProvision}', [\App\Http\Controllers\AccuredChargeController::class, 'updatePersonnalProvision'])->name('tax-result.reintegration.accured-charge.detailPersonalProvision.updatePersonnalProvision');
 
-        Route::get('workspace/company/{company}/other-reintegration', [\App\Http\Controllers\OtherReintegrationController::class, 'index'])->name('tax-result.reintegration.other-reintegration');
-        Route::get('workspace/company/{company}/other-reintegration/commission-purchase', [\App\Http\Controllers\CommissionOnPurchaseController::class, 'index'])->name('work.commissionPurchase');
-        Route::get('workspace/company/{company}/head-office-costs', [\App\Http\Controllers\HeadOfficeCostController::class, 'index'])->name('tax-result.head-office-costs');
-        Route::get('workspace/company/{company}/total-tax-result', [\App\Fiscality\TaxResult\Controllers\TaxResultController::class, 'totalTaxableIncomeBeforeHeadOfficeExpenses'])->name('tax-result.totalTaxableIncomeBeforeHeadOfficeExpenses');
+            Route::get('workspace/company/{company}/other-reintegration', [\App\Http\Controllers\OtherReintegrationController::class, 'index'])->name('tax-result.reintegration.other-reintegration');
+            Route::get('workspace/company/{company}/other-reintegration/commission-purchase', [\App\Http\Controllers\CommissionOnPurchaseController::class, 'index'])->name('work.commissionPurchase');
+            Route::get('workspace/company/{company}/head-office-costs', [\App\Http\Controllers\HeadOfficeCostController::class, 'index'])->name('tax-result.head-office-costs');
+            Route::get('workspace/company/{company}/total-tax-result', [\App\Fiscality\TaxResult\Controllers\TaxResultController::class, 'totalTaxableIncomeBeforeHeadOfficeExpenses'])->name('tax-result.totalTaxableIncomeBeforeHeadOfficeExpenses');
 
-        Route::get('workspace/company/{company}/setting', [\App\Http\Controllers\CompanySettingController::class, 'index'])->name('company.setting');
-        Route::put('workspace/company/{company}/setting', [\App\Http\Controllers\CompanySettingController::class, 'updateCompany'])->name('company.setting.update-company');
-        Route::get('workspace/company/{company}/setting/taxation', [\App\Http\Controllers\CompanySettingController::class, 'taxation'])->name('company.setting.taxation');
-        Route::get('workspace/company/{company}/setting/tax-type', [\App\Http\Controllers\CompanySettingController::class, 'taxType'])->name('company.setting.tax-type');
-        Route::get('workspace/company/{company}/setting/all-taxes', [\App\Http\Controllers\CompanySettingController::class, 'allTaxes'])->name('company.setting.all-taxes');
+            Route::get('workspace/company/{company}/setting', [\App\Http\Controllers\CompanySettingController::class, 'index'])->name('company.setting');
+            Route::put('workspace/company/{company}/setting', [\App\Http\Controllers\CompanySettingController::class, 'updateCompany'])->name('company.setting.update-company');
+            Route::get('workspace/company/{company}/setting/taxation', [\App\Http\Controllers\CompanySettingController::class, 'taxation'])->name('company.setting.taxation');
+            Route::get('workspace/company/{company}/setting/tax-type', [\App\Http\Controllers\CompanySettingController::class, 'taxType'])->name('company.setting.tax-type');
+            Route::get('workspace/company/{company}/setting/all-taxes', [\App\Http\Controllers\CompanySettingController::class, 'allTaxes'])->name('company.setting.all-taxes');
 
-        Route::get('workspace/company/{company}/tax/corporate-tax', [\App\Fiscality\CorporateTax\Controllers\CorporateTaxController::class, 'index'])->name('corporate-tax');
-        Route::get('workspace/company/{company}/tax/deficit', [\App\Http\Controllers\DeficitController::class, 'index'])->name('deficit');
-        Route::get('workspace/company/{company}/tax/business-profit-tax', [\App\Http\Controllers\BusinessProfitTaxController::class, 'index'])->name('business-profit-tax');
-        Route::get('workspace/company/{company}/tax/ircm-on-expense', [\App\Http\Controllers\IRCMOnExpenseController::class, 'index'])->name('ircm-on-expense');
-        Route::get('workspace/company/{company}/tax/ircm-on-net-result', [\App\Http\Controllers\IRCMOnNetResultController::class, 'index'])->name('ircm-on-net-result');
+            Route::get('workspace/company/{company}/tax/corporate-tax', [\App\Fiscality\CorporateTax\Controllers\CorporateTaxController::class, 'index'])->name('corporate-tax');
+            Route::get('workspace/company/{company}/tax/deficit', [\App\Http\Controllers\DeficitController::class, 'index'])->name('deficit');
+            Route::get('workspace/company/{company}/tax/business-profit-tax', [\App\Http\Controllers\BusinessProfitTaxController::class, 'index'])->name('business-profit-tax');
+            Route::get('workspace/company/{company}/tax/ircm-on-expense', [\App\Http\Controllers\IRCMOnExpenseController::class, 'index'])->name('ircm-on-expense');
+            Route::get('workspace/company/{company}/tax/ircm-on-net-result', [\App\Http\Controllers\IRCMOnNetResultController::class, 'index'])->name('ircm-on-net-result');
+        });
     });
     Route::get('users', [\App\Http\Controllers\UserController::class, 'index'])->name('users.index');
     Route::post('users', [\App\Http\Controllers\UserController::class, 'store'])->name('users.store');

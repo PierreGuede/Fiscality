@@ -27,12 +27,8 @@ class AssignCompany extends ModalComponent
 
     public function mount(User $user)
     {
-        $this->affected = DB::table('company_user')->where('user_id', $user->id)->get();
-        foreach ($this->affected as $key => $value) {
-            array_push($this->id_company, $value->id);
-        }
         $this->user = $user;
-        $this->companies = Company::whereUserId(auth()->user()->id)->join('company_user', 'companies.id', '=', 'company_user.company_id')->get();
+        $this->companies = Company::whereUserId(auth()->user()->id)->get();
         $this->fill([
             'name' => $user->name,
             'firstname' => $user->firstname,
