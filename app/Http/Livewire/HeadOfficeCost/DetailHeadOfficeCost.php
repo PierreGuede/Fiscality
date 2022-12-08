@@ -29,6 +29,7 @@ class DetailHeadOfficeCost extends Component
     public $deductible_head_office_costs = 0;
 
     public $non_deductible_head_office_costs = 0;
+    public $arr_sum;
 
     public function add()
     {
@@ -46,7 +47,7 @@ class DetailHeadOfficeCost extends Component
 
         $head_office_cost = HeadOfficeCost::whereCompanyId($this->company->id)->whereYear('created_at', Carbon::now()->year)->first();
         $head_office_cost_detail = HeadOfficeCostDetail::whereCompanyId($this->company->id)->whereYear('created_at', Carbon::now()->year)->get();
-
+        $this->arr_sum = array_column($head_office_cost_detail->toArray(), 'amount');
         $this->fill([
             'inputs' => collect($head_office_cost_detail),
             'account_result' => $head_office_cost->account_result,

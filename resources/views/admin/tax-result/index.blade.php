@@ -6,7 +6,7 @@
         <h5 class="text-2xl ml-12 font-semibold text-blue-900">Résultat Fiscal</h5>
         <div class="flex justify-between mt-12 mx-12 ">
 
-            <div class=" max-w-md overscroll-y-auto ">
+            <div class=" max-w-sm  2xl:max-w-md overscroll-y-auto ">
                 <x-tree.item title="Résultat comptable" :total="$data['account_result']"
                              description="La route commença à s’enfoncer. On ne voyait plus les grillages sur les cotés, mais juste des rochers. Et soudain, les voitures s’arrêtèrent devant une énorme porte en métal entourée de béton. "/>
                 <x-tree.item title="Amortissement" :total="$data['amortization']"
@@ -36,41 +36,41 @@
 
             <div class="max-w-md overflow-hidden fixed top-24 right-20 space-y-6 ">
                 <div class=" w-full bg-white   px-6 py-3">
-                    <div class="flex justify-between text-gray-700 font-semibold text-md">
+                    <div class="flex justify-between text-gray-700 font-semibold text-sm">
                         <p>Résultat fiscal avant frais de sièges</p>
                     </div>
                     <div class="flex items-center gap-x-2" >
-                        <p class="text-md line-clamp-3 font-semibold mt-6 text-slate-500">
+                        <p class="text-sm line-clamp-3 font-semibold mt-6 text-slate-500">
                             Total:
                         </p>
-                        <p class="text-md line-clamp-3 font-semibold mt-6 text-slate-500" x-text="formatNumber({{ $total_tax_result_before_head_office_cost  }})">
+                        <p class="text-sm line-clamp-3 font-semibold mt-6 text-slate-500" x-text="formatNumber({{ $total_tax_result_before_head_office_cost  }})">
                         </p>
                     </div>
                 </div>
 
                 <div class=" w-full bg-white   px-6 py-3">
-                    <div class="flex justify-between text-gray-700 font-semibold text-md">
+                    <div class="flex justify-between text-gray-700 font-semibold text-sm">
                         <p>Frais de siège</p>
                     </div>
                     <div class="flex items-center gap-x-2" >
-                        <p class="text-md line-clamp-3 font-semibold mt-6 text-slate-500">
+                        <p class="text-sm line-clamp-3 font-semibold mt-6 text-slate-500">
                             Total:
                         </p>
-                        <p class="text-md line-clamp-3 font-semibold mt-6 text-slate-500" x-text="formatNumber({{  $head_office_cost_total  }})">
+                        <p class="text-sm line-clamp-3 font-semibold mt-6 text-slate-500" x-text="formatNumber({{  $head_office_cost_total  }})">
                         </p>
                     </div>
                 </div>
 
                 <div class=" w-full bg-white  px-6 py-3">
-                    <div class="flex justify-between text-gray-700 font-semibold text-md">
+                    <div class="flex justify-between text-gray-700 font-semibold text-sm">
                         <p>Résultat fiscal avant déficit</p>
                     </div>
 
                     <div class="flex items-center gap-x-2" >
-                        <p class="text-md line-clamp-3 font-semibold mt-6 text-slate-500">
+                        <p class="text-sm line-clamp-3 font-semibold mt-6 text-slate-500">
                             Total:
                         </p>
-                        <p class="text-md line-clamp-3 font-semibold mt-6 text-slate-500" x-text="formatNumber({{ $total_tax_result_before_deficit_report  }})">
+                        <p class="text-sm line-clamp-3 font-semibold mt-6 text-slate-500" x-text="formatNumber({{ $total_tax_result_before_deficit_report  }})">
                         </p>
                     </div>
                 </div>
@@ -78,27 +78,27 @@
 
 
                 <div class=" w-full bg-white   px-6 py-3">
-                    <div class="flex justify-between text-gray-700 font-semibold text-md">
+                    <div class="flex justify-between text-gray-700 font-semibold text-sm">
                         <p>Report de Déficit</p>
                     </div>
                     <div class="flex items-center gap-x-2" >
-                        <p class="text-md line-clamp-3 font-semibold mt-6 text-slate-500">
+                        <p class="text-sm line-clamp-3 font-semibold mt-6 text-slate-500">
                             Total:
                         </p>
-                        <p class="text-md line-clamp-3 font-semibold mt-6 text-slate-500" x-text="formatNumber({{  $deficit_total  }})">
+                        <p class="text-sm line-clamp-3 font-semibold mt-6 text-slate-500" x-text="formatNumber({{  $deficit_total  }})">
                         </p>
                     </div>
                 </div>
 
                 <div class=" w-full bg-white   px-6 py-3">
-                    <div class="flex justify-between text-gray-700 font-semibold text-md">
+                    <div class="flex justify-between text-gray-700 font-semibold text-sm">
                         <p>Résultat fiscal</p>
                     </div>
                     <div class="flex items-center gap-x-2" >
-                        <p class="text-md line-clamp-3 font-semibold mt-6 text-slate-500">
+                        <p class="text-sm line-clamp-3 font-semibold mt-6 text-slate-500">
                             Total:
                         </p>
-                        <p class="text-md line-clamp-3 font-semibold mt-6 text-slate-500" x-text="formatNumber({{$total_tax_result_before_deficit_report - $deficit_total  }})">
+                        <p class="text-sm line-clamp-3 font-semibold mt-6 text-slate-500" x-text="formatNumber({{$total_tax_result_before_deficit_report - $deficit_total  }})">
                         </p>
                     </div>
                 </div>

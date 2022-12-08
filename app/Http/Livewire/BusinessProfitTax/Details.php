@@ -21,6 +21,8 @@ class Details extends Component
 
     public $data;
 
+    public  $total = 0;
+
     public $listeners = ['updateMaxValue' => 'handleMaxValue'];
 
     public function mount($company)
@@ -28,6 +30,7 @@ class Details extends Component
         $this->company = $company;
 
         $this->handleMaxValue();
+        $this->total = $this->max_value;
     }
 
     public function render()
