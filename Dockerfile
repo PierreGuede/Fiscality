@@ -2,7 +2,7 @@ FROM ubuntu:22.04
 
 LABEL maintainer="Taylor Otwell"
 
-ARG WWWGROUP
+ARG WWWGROUP=1000
 ARG NODE_VERSION=16
 ARG POSTGRES_VERSION=14
 
@@ -46,7 +46,8 @@ RUN apt-get update \
     && apt-get install -y postgresql-client-$POSTGRES_VERSION \
     && apt-get -y autoremove \
     && apt-get clean \
-    && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+    && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* \
+    && composer install
 
 RUN setcap "cap_net_bind_service=+ep" /usr/bin/php8.1
 
