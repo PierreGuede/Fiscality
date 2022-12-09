@@ -58,7 +58,6 @@ COPY supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 COPY php.ini /etc/php/8.1/cli/conf.d/99-sail.ini
 RUN chmod +x /usr/local/bin/start-container
 
-RUN composer install
 
 # Copy existing application directory contents
 COPY . /var/www/html
@@ -68,6 +67,11 @@ COPY --chown=www:www . /var/www/html
 
 # Change current user to www
 USER www
+
+RUN composer install
+
+COPY . /var/www/html
+
 
 EXPOSE 8000
 
