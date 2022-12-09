@@ -1,3 +1,8 @@
+<div class="py-10 px-10 w-full " >
+    <div>
+        <h5 class="text-base text-gray-600 font-semibold" >Provisions</h5>
+    </div>
+
 <div>
     <div class="w-full mt-4 space-y-8 ">
         @foreach ($inputs as $key => $input)
@@ -61,7 +66,10 @@
                 <p class="ml-2">Ajouter</p>
             </button>
         </div>
-        <x-button wire:click='store' class="p-2 bg-blue-500 hover:bg-blue-600 rounded-sm" >Enregistrer</x-button>
-
+        <div class="flex gap-x-3 justify-end">
+            <x-button type="button" wire:click="$emit('closeModal')" variant="neutral" class="w-36" >   {{ __('Annuler') }} </x-button>
+            <x-button type="submit" wire:click="store" class="w-36" >   {{ __('Enregistrer') }} </x-button>
+        </div>
     </div>
+</div>
 </div>

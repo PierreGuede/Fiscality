@@ -1,3 +1,8 @@
+<div class="py-10 px-10 w-full " >
+    <div>
+        <h5 class="text-base text-gray-600 font-semibold" >Provision pour risque d'exploitation</h5>
+    </div>
+
 <div>
     <div>
         <div class="w-full mt-4 space-y-8 ">
@@ -50,7 +55,7 @@
 
             <div>
 
-                <button type="button" wire:click="addProvisionInput"
+                <button type="button" wire:click="addProvisionsPersonnelInput"
                     class="flex items-center justify-center px-4 py-2.5 text-sm text-blue-600 cursor-pointer">
                     <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"
                         xmlns="http://www.w3.org/2000/svg">
@@ -61,9 +66,12 @@
                     <p class="ml-2">Ajouter</p>
                 </button>
             </div>
-            <x-button wire:click='store' class="p-2 bg-blue-500 hover:bg-blue-600 rounded-sm" >Enregistrer</x-button>
-
+            <div class="flex gap-x-3 justify-end">
+                <x-button type="button" wire:click="$emit('closeModal')" variant="neutral" class="w-36" >   {{ __('Annuler') }} </x-button>
+                <x-button type="submit" wire:click="store" class="w-36" >   {{ __('Enregistrer') }} </x-button>
+            </div>
         </div>
     </div>
 
+</div>
 </div>
