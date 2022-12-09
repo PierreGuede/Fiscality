@@ -68,11 +68,6 @@ COPY --chown=www:www . /var/www/html
 # Change current user to www
 USER www
 
-RUN composer install
-
-COPY . /var/www/html
-
-
 EXPOSE 8000
 
 ENTRYPOINT ["start-container"]

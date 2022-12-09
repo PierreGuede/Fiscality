@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 if [ ! -z "$WWWUSER" ]; then
-    usermod -u $WWWUSER sail
+    usermod -u $WWWUSER www
 fi
 
 if [ ! -d /.composer ]; then
