@@ -1,6 +1,6 @@
 FROM ubuntu:22.04
 
-LABEL maintainer="TEC-SARL
+LABEL maintainer="TEC-SARL"
 
 ARG WWWGROUP=1000
 ARG NODE_VERSION=16
