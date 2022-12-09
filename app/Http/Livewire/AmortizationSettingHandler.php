@@ -51,19 +51,20 @@ class AmortizationSettingHandler extends Component
             $this->amortizationSetting->depreciation_base_limit = $this->depreciation_base_limit;
             $this->amortizationSetting->save();
             $this->notification()->success(
-                 "Succès",
-                 "Modification effectuée avec succès!"
+                'Succès',
+                'Modification effectuée avec succès!'
             );
         }
     }
 
-    public function resetDepreciationBaseLimit() {
+    public function resetDepreciationBaseLimit()
+    {
         $this->depreciation_base_limit = $this->guruAmortizationSetting->depreciation_base_limit;
         $this->amortizationSetting->depreciation_base_limit = $this->guruAmortizationSetting->depreciation_base_limit;
         $this->amortizationSetting->save();
         $this->notification()->success(
-            "Succès",
-            "Réinitialisation effectuée avec succès!"
+            'Succès',
+            'Réinitialisation effectuée avec succès!'
         );
     }
 
@@ -74,19 +75,20 @@ class AmortizationSettingHandler extends Component
             $this->amortizationSetting->recommended_rate = $this->recommended_rate;
             $this->amortizationSetting->save();
             $this->notification()->success(
-                "Succès",
-                "Modification effectuée avec succès!"
+                'Succès',
+                'Modification effectuée avec succès!'
             );
         }
     }
 
-    public function resetRecommendedRate(){
+    public function resetRecommendedRate()
+    {
         $this->recommended_rate = $this->guruAmortizationSetting->recommended_rate;
         $this->amortizationSetting->recommended_rate = $this->guruAmortizationSetting->recommended_rate;
         $this->amortizationSetting->save();
         $this->notification()->success(
-            "Succès",
-            "Réinitialisation effectuée avec succès!"
+            'Succès',
+            'Réinitialisation effectuée avec succès!'
         );
     }
 

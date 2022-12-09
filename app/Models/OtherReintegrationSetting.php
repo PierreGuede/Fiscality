@@ -24,6 +24,6 @@ class OtherReintegrationSetting extends Model
         'excess_rent_applicable_deduction_limit',
         'annual_deduction_limit',
         'company_id',
-        'user_id'
-    ] ;
+        'user_id',
+    ];
 }

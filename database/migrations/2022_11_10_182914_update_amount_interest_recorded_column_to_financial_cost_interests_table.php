@@ -13,7 +13,7 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::table('financial_cost_interests', function (Blueprint $table) {
+        Schema::whenTableDoesntHaveColumn('financial_cost_interests', 'amount_interest_recorded', function (Blueprint $table) {
             $table->decimal('amount_interest_recorded', 15, 2)->nullable();
         });
     }

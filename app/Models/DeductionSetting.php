@@ -15,6 +15,6 @@ class DeductionSetting extends Model
         'rate_proceed_government',
         'rcm_product_rate',
         'company_id',
-        'user_id'
+        'user_id',
     ];
 }

@@ -21,7 +21,7 @@ class Details extends Component
 
     public $data;
 
-    public  $total = 0;
+    public $total = 0;
 
     public $listeners = ['updateMaxValue' => 'handleMaxValue'];
 

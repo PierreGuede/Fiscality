@@ -29,6 +29,7 @@ class DetailHeadOfficeCost extends Component
     public $deductible_head_office_costs = 0;
 
     public $non_deductible_head_office_costs = 0;
+
     public $arr_sum;
 
     public function add()

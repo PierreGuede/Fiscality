@@ -16,7 +16,7 @@ class TypeCompanyTypeImpotSeeder extends Seeder
     {
 //        2 - Personnes morales
         TypeCompanyTypeImpot::updateOrCreate([
-            'type_company_id' => 2,
+            'type_company_id' => 1,
             'type_impot_id' => 1,
         ]);
 
@@ -27,23 +27,23 @@ class TypeCompanyTypeImpotSeeder extends Seeder
 
         //        3 - Etablissement stable
         TypeCompanyTypeImpot::updateOrCreate([
-            'type_company_id' => 3,
+            'type_company_id' => 2,
             'type_impot_id' => 1,
         ]);
 
         TypeCompanyTypeImpot::updateOrCreate([
-            'type_company_id' => 3,
+            'type_company_id' => 2,
             'type_impot_id' => 3,
         ]);
 
         TypeCompanyTypeImpot::updateOrCreate([
-            'type_company_id' => 3,
+            'type_company_id' => 2,
             'type_impot_id' => 4,
         ]);
 
         //        4 - Personne physique
         TypeCompanyTypeImpot::updateOrCreate([
-            'type_company_id' => 4,
+            'type_company_id' => 3,
             'type_impot_id' => 2,
         ]);
     }

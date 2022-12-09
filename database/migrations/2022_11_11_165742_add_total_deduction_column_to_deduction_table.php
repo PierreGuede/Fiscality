@@ -13,7 +13,7 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::table('deduction', function (Blueprint $table) {
+        Schema::whenTableDoesntHaveColumn('deduction', 'total_deduction', function (Blueprint $table) {
             $table->decimal('total_deduction', 15, 2);
         });
     }

@@ -16,7 +16,7 @@ class GuruOtherReintegrationSettingSeeder extends Seeder
     {
         $exist = GuruOtherReintegrationSetting::first();
 
-        if(is_null($exist)){
+        if (is_null($exist)) {
             GuruOtherReintegrationSetting::create([
                 'bceao_interest_rate' => 4,
                 'minimum_rate' => 3,

@@ -19,7 +19,6 @@ return new class extends Migration
             $table->decimal('rcm_product_rate', 15, 2);
             $table->timestamps();
             $table->softDeletes();
-
         });
     }
 

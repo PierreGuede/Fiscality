@@ -13,13 +13,17 @@ class DeductionSettingHandler extends Component
     use Actions;
 
     public $rate_proceed_government;
+
     public $rcm_product_rate;
 
     public $edit_rate_proceed_government = true;
+
     public $edit_rcm_product_rate = true;
 
     public ?Company $company;
+
     public ?GuruDeductionSetting $guruDeductionSetting;
+
     public ?DeductionSetting $deductionSetting;
 
     public function mount($company)
@@ -30,9 +34,8 @@ class DeductionSettingHandler extends Component
 
         $this->resetData();
 
-        $this->rate_proceed_government = is_null($this->deductionSetting) ? $this->guruDeductionSetting->rate_proceed_government : $this->deductionSetting->rate_proceed_government ;
-        $this->rcm_product_rate = is_null($this->deductionSetting) ? $this->guruDeductionSetting->rcm_product_rate : $this->deductionSetting->rcm_product_rate ;
-
+        $this->rate_proceed_government = is_null($this->deductionSetting) ? $this->guruDeductionSetting->rate_proceed_government : $this->deductionSetting->rate_proceed_government;
+        $this->rcm_product_rate = is_null($this->deductionSetting) ? $this->guruDeductionSetting->rcm_product_rate : $this->deductionSetting->rcm_product_rate;
     }
 
     public function render()
@@ -48,8 +51,8 @@ class DeductionSettingHandler extends Component
             $this->deductionSetting->rate_proceed_government = $this->rate_proceed_government;
             $this->deductionSetting->save();
             $this->notification()->success(
-                "Succès",
-                "Modification effectuée avec succès!"
+                'Succès',
+                'Modification effectuée avec succès!'
             );
         }
     }
@@ -60,11 +63,10 @@ class DeductionSettingHandler extends Component
         $this->deductionSetting->rate_proceed_government = $this->guruDeductionSetting->rate_proceed_government;
         $this->deductionSetting->save();
         $this->notification()->success(
-            "Succès",
-            "Réinitialisation effectuée avec succès!"
+            'Succès',
+            'Réinitialisation effectuée avec succès!'
         );
     }
-
 
     public function editRcmProductRate()
     {
@@ -74,8 +76,8 @@ class DeductionSettingHandler extends Component
             $this->deductionSetting->rcm_product_rate = $this->rcm_product_rate;
             $this->deductionSetting->save();
             $this->notification()->success(
-                "Succès",
-                "Modification effectuée avec succès!"
+                'Succès',
+                'Modification effectuée avec succès!'
             );
         }
     }
@@ -86,22 +88,20 @@ class DeductionSettingHandler extends Component
         $this->deductionSetting->rcm_product_rate = $this->guruDeductionSetting->rcm_product_rate;
         $this->deductionSetting->save();
         $this->notification()->success(
-            "Succès",
-            "Réinitialisation effectuée avec succès!"
+            'Succès',
+            'Réinitialisation effectuée avec succès!'
         );
     }
 
     public function resetData()
     {
-
         if ($this->deductionSetting == null) {
             DeductionSetting::create([
                 'rate_proceed_government' => $this->guruDeductionSetting->rate_proceed_government,
                 'rcm_product_rate' => $this->guruDeductionSetting->rcm_product_rate,
                 'company_id' => $this->company->id,
-                'user_id' => auth()->user()->id
+                'user_id' => auth()->user()->id,
             ]);
         }
     }
-
 }

@@ -15,26 +15,36 @@ class DomainSeeder extends Seeder
      */
     public function run()
     {
-        Domain::create([
-            'name' => 'Technologie',
-            'code' => 'Technologie',
-        ]);
-        Domain::create([
-            'name' => 'Banque et assurance',
-            'code' => 'Banque_et_assurance',
-        ]);
-        Domain::create([
-            'name' => 'BTP et Matériaux de construction',
-            'code' => 'BTP_et_Matériaux_de_construction',
-        ]);
-        Domain::create([
-            'name' => 'Chimie et para-Chimie',
-            'code' => 'Chimie_et_para-Chimie',
-        ]);
-        Domain::create([
-            'name' => 'Niveaux',
-            'code' => 'Niveaux',
-        ]);
+        Domain::updateOrCreate(
+            [
+                'code' => 'Technologie',
+            ], [
+                'name' => 'Technologie',
+            ]);
+        Domain::updateOrCreate(
+            [
+                'code' => 'Banque_et_assurance',
+            ], [
+                'name' => 'Banque et assurance',
+            ]);
+        Domain::updateOrCreate(
+            [
+                'code' => 'BTP_et_Matériaux_de_construction',
+            ], [
+                'name' => 'BTP et Matériaux de construction',
+            ]);
+        Domain::updateOrCreate(
+            [
+                'code' => 'Chimie_et_para-Chimie',
+            ], [
+                'name' => 'Chimie et para-Chimie',
+            ]);
+        Domain::updateOrCreate(
+            [
+                'code' => 'Niveaux',
+            ], [
+                'name' => 'Niveaux',
+            ]);
 
         PrincipalActivity::create([
             'name' => 'Type d\'activité 1',

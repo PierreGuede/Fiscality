@@ -13,8 +13,8 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::table('deduction', function (Blueprint $table) {
-            $table->removeColumn('financial_product');
+        Schema::whenTableHasColumn('deduction', 'financial_product', function (Blueprint $table) {
+            $table->dropColumn('financial_product');
         });
     }
 };

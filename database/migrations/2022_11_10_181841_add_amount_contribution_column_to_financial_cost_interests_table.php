@@ -1,3 +1,4 @@
+
 <?php
 
 use Illuminate\Database\Migrations\Migration;
@@ -13,7 +14,7 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::table('financial_cost_interests', function (Blueprint $table) {
+        Schema::whenTableDoesntHaveColumn('financial_cost_interests', 'amount_contribution', function (Blueprint $table) {
             $table->decimal('amount_contribution', 15, 2);
         });
     }

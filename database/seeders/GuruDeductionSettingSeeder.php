@@ -16,7 +16,7 @@ class GuruDeductionSettingSeeder extends Seeder
     {
         $exist = GuruDeductionSetting::first();
 
-        if(is_null($exist)) {
+        if (is_null($exist)) {
             GuruDeductionSetting::create([
                 'rate_proceed_government' => 2,
                 'rcm_product_rate' => 4,

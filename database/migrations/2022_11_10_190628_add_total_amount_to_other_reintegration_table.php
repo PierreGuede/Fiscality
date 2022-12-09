@@ -13,7 +13,7 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::table('other_reintegration', function (Blueprint $table) {
+        Schema::whenTableDoesntHaveColumn('other_reintegration', 'total_amount', function (Blueprint $table) {
             $table->decimal('total_amount', 15, 2);
         });
     }
