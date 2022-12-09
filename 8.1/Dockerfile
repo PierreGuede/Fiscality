@@ -1,8 +1,8 @@
 FROM ubuntu:22.04
 
-LABEL maintainer="TEC-SARL"
+LABEL maintainer="Taylor Otwell"
 
-ARG WWWGROUP=1000
+ARG WWWGROUP
 ARG NODE_VERSION=16
 ARG POSTGRES_VERSION=14
 
@@ -23,7 +23,7 @@ RUN apt-get update \
     && gpg --export 0x14aa40ec0831756756d7f66c4f4ea0aae5267a6c > /usr/share/keyrings/ppa_ondrej_php.gpg \
     && echo "deb [signed-by=/usr/share/keyrings/ppa_ondrej_php.gpg] https://ppa.launchpadcontent.net/ondrej/php/ubuntu jammy main" > /etc/apt/sources.list.d/ppa_ondrej_php.list \
     && apt-get update \
-    && apt-get install -y php8.1-cli php8.1-dev \
+    && apt-get install -y php8.1 php8.1-cli php8.1-dev \
        php8.1-pgsql php8.1-sqlite3 php8.1-gd \
        php8.1-curl \
        php8.1-imap php8.1-mysql php8.1-mbstring \
@@ -46,7 +46,7 @@ RUN apt-get update \
     && apt-get install -y postgresql-client-$POSTGRES_VERSION \
     && apt-get -y autoremove \
     && apt-get clean \
-    && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* \
+    && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 RUN setcap "cap_net_bind_service=+ep" /usr/bin/php8.1
 
