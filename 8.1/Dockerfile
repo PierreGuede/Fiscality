@@ -3,9 +3,6 @@ FROM php:8.1-fpm-alpine
 ARG UID
 ARG GID
 
-ENV UID=${UID}
-ENV GID=${GID}
-
 RUN mkdir -p /var/www/html
 
 WORKDIR /var/www/html
