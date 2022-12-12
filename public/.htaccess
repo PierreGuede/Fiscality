@@ -5,12 +5,6 @@
 
     RewriteEngine On
 
-    # Added to Force HTTPS
-    RewriteCond %{HTTP_HOST} it.tec-sarl\.com [NC]
-    RewriteCond %{SERVER_PORT} 80
-    RewriteRule ^(.*)$ https://it.tec-sarl.com/ [R,L]
-
-
     # Handle Authorization Header
     RewriteCond %{HTTP:Authorization} .
     RewriteRule .* - [E=HTTP_AUTHORIZATION:%{HTTP:Authorization}]
@@ -23,5 +17,5 @@
     # Send Requests To Front Controller...
     RewriteCond %{REQUEST_FILENAME} !-d
     RewriteCond %{REQUEST_FILENAME} !-f
-    RewriteRule ^ / index.php [L]
+    RewriteRule ^ index.php [L]
 </IfModule>
