@@ -104,11 +104,12 @@ class IndexSetupAccount extends Component
         $user = request()->user();
 
         $getPack = Pack::whereId($this->pack)->first();
-        $ifu_filename = 'IFU_DU_'.time().'.'.$this->ifu_file->getClientOriginalName();
-        $rccm_filename = 'RCCM_DU_'.time().'.'.$this->rccm_file->getClientOriginalName();
+        $ifu_filename = is_null($this->ifu_file) ? '' :  'IFU_DU_'.time().'.'.$this->ifu_file->getClientOriginalName();
+        $rccm_filename = is_null($this->rccm_file) ? ''  : 'RCCM_DU_'.time().'.'.$this->rccm_file->getClientOriginalName();
 
-        $ifu_file_path = $this->ifu_file->storeAs('IFU', $ifu_filename, 'public');
-        $rccm_file_path = $this->rccm_file->storeAs('RCCM', $rccm_filename, 'public');
+
+        $ifu_file_path = is_null($this->ifu_file) ? '' : $this->ifu_file->storeAs('IFU', $ifu_filename, 'public');
+        $rccm_file_path = is_null($this->rccm_file) ? '' : $this->rccm_file->storeAs('RCCM', $rccm_filename, 'public');
 
         try {
             DB::beginTransaction();
