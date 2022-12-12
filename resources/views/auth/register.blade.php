@@ -26,14 +26,10 @@
                 <form method="POST" action="{{ route('register') }}" class="space-y-6">
                     @csrf
                     <div class="flex gap-x-4 ">
-                        <div class="mt-4">
                             <x-input label="Nom" type="text" id="name" name="name" class="block w-full"
                                 value="{{ old('name') }}" required autofocus />
-                        </div>
-                        <div class="mt-4">
                             <x-input label="Prénom" type="text" id="firstname" name="firstname" class="block w-full"
                                 value="{{ old('firstname') }}" required autofocus />
-                        </div>
                     </div>
                     <div class="mt-4">
                         <x-input label="Email" name="email" type="email" class="block w-full"
