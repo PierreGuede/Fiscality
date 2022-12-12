@@ -21,18 +21,21 @@ class VerifyEmailController extends Controller
         $user = User::whereId($id)->first();
 
         if (! hash_equals((string) $hash, sha1($user->getEmailForVerification()))) {
+            notify()->success('Invalid');
             return redirect()->route('login');
         }
 
         if ($user->hasVerifiedEmail()) {
-            return redirect()->intended(RouteServiceProvider::HOME.'?verified=1');
+//            return redirect()->intended(RouteServiceProvider::HOME.'?verified=1');
+            return redirect()->route('login');
         }
 
         if ($user->markEmailAsVerified()) {
             notify()->success('Email vérifié avec succès!');
             event(new Verified($user));
+            return redirect()->route('login');
         }
 
-        return redirect()->intended(RouteServiceProvider::HOME.'?verified=1');
+//        return redirect()->intended(RouteServiceProvider::HOME.'?verified=1');
     }
 }

@@ -50,7 +50,7 @@ class RegisteredUserController extends Controller
         $user->givePermissionTo('create', 'read', 'edit', 'delete');
 
         event(new Registered($user));
-        \Mail::to($request->email)->send(new SendUserCredential($user->name, $user->username, $user->email, $request->password));
+//        \Mail::to($request->email)->send(new SendUserCredential($user->name, $user->username, $user->email, $request->password));
 
 //        Auth::login($user);
 

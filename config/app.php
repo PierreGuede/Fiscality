@@ -154,6 +154,10 @@ return [
     |
     */
 
+    'verification' => [
+        'expire' => 100, // One year in minutes - enter as many minutes as you would like here
+    ],
+
     'providers' => [
 
         /*
