@@ -32,7 +32,7 @@
 
             <x-app-sidebar.nav-link  label="Résultat Fiscale" href="{{ route('tax-result', $company->id)  }}"  icon="office-building" />
             <x-app-sidebar.nav-link  label="Impôt" href="{{ route('corporate-tax', $company->id)  }}"  icon="office-building" :active="request()->routeIs('corporate-tax')" />
-            <x-app-sidebar.nav-link  label="Document" href="{{ route('company.index') }}"  icon="office-building" />
+{{--            <x-app-sidebar.nav-link  label="Document" href="{{ route('company.index') }}"  icon="office-building" />--}}
             <x-app-sidebar.nav-link label="Paramètre" href="{{ route('company.setting', $company->id) }}"  icon="cog" />
 
         </div>
@@ -98,7 +98,7 @@
     <div x-show="openDropdown" class=" absolute -top-[180%] left-0 ml-2 w-[90%] bg-blue-100 p-2 rounded-sm"
          x-transition.scale>
 
-        <button class=" w-full text-left p-2 text-slate-700 hover:bg-blue-50">Profile</button>
+{{--        <button class=" w-full text-left p-2 text-slate-700 hover:bg-blue-50">Profile</button>--}}
         <form method="POST" action="{{ route('logout')  }}">
             @csrf
             <a href="{{ route('logout')  }}" onclick="event.preventDefault();this.closest('form').submit()"  class=" block w-full text-left p-2 text-slate-700 hover:bg-blue-50">Déconnexion</a>

@@ -6,6 +6,7 @@ use App\Fiscality\Companies\Company;
 use App\Mail\SendUserCredential;
 use App\Models\User;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
@@ -72,21 +73,31 @@ class CreateUser extends ModalComponent
             $this->user_code = $this->generateUserCode(self::USER_CODE_LENGTH);
         }
 
-        $user = User::create([
-            'username' => $this->user_code,
-            'email' => $this->email,
-            'firstname' => $this->firstname,
-            'name' => $this->name,
-            'password' => Hash::make($this->password),
-            'user_id' => auth()->user()->id,
-            'email_verified' => Carbon::now(),
-        ])->assignRole('Ressource');
+        try {
 
-        \Mail::to($this->email)->send(new SendUserCredential($user->name, $user->username, $user->email, $this->password));
+            DB::beginTransaction();
 
-        $this->emit('getUserData');
+            $user = User::create([
+                'username' => $this->user_code,
+                'email' => $this->email,
+                'firstname' => $this->firstname,
+                'name' => $this->name,
+                'password' => Hash::make($this->password),
+                'user_id' => auth()->user()->id,
+                'email_verified' => Carbon::now(),
+            ])->assignRole('Ressource');
 
-        $this->closeModal();
+            \Mail::to($this->email)->send(new SendUserCredential($user->name, $user->username, $user->email, $this->password));
+
+            $this->emit('getUserData');
+
+            DB::commit();
+            $this->closeModal();
+
+        } catch (\Throwable $th) {
+            DB::rollBack();
+            throw $th;
+        }
     }
 
     private function generateUserCode($n)

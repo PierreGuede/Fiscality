@@ -27,7 +27,7 @@
         <div class="py-4" >
             <div class="flex items-center gap-x-2" >
                 <p class="text-sm font-semibold text-slate-800 w-32 " >Email</p>
-                <x-input name="email" label="" placeholder="Prénom" id="email" value="{{ old('email', auth()->user()->email)  }}" />
+                <x-input :disabled="true" name="email" label="" placeholder="Prénom" id="email" value="{{ old('email', auth()->user()->email)  }}" />
             </div>
         </div>
 

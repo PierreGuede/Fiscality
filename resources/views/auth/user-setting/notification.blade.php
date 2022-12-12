@@ -4,7 +4,7 @@
         @csrf
         <div class="py-4">
             <div class="flex items-center gap-x-2">
-                <x-toggle name="email_notification" value="email" checked="{{ auth()->user()->userSetting->email_notification == 1  }}"  />
+                <x-toggle name="email_notification" value="email" checked="{{ auth()->user()->userSetting?->email_notification == 1  }}"  />
                 <p class="text-sm font-medium text-slate-900">Envoyez les rapports par emails</p>
             </div>
             <small class="block text-xs text-slate-500 mt-2.5">Envoyez les rapports à chaque entreprise après avoirs
@@ -13,7 +13,7 @@
 
         <div class="py-4">
             <div class="flex items-center gap-x-2">
-                <x-toggle  name="sms_notification" value="sms" checked="{{ auth()->user()->userSetting->sms_notification == 1  }}" />
+                <x-toggle  name="sms_notification" value="sms" checked="{{ auth()->user()->userSetting?->sms_notification == 1  }}" />
                 <p class="text-sm font-medium text-slate-900">Notifiez les entreprises par SMS</p>
             </div>
             <small class="block text-xs text-slate-500 mt-2.5">Envoyez un sms à toutes les entreprises lorsque leurs

@@ -23,5 +23,11 @@ class RoleSeeder extends Seeder
         Role::updateOrCreate(
             ['name' => 'enterprise'],
             ['name' => 'enterprise']);
+
+        Role::updateOrCreate(
+            ['name' => 'Ressource'],
+            ['name' => 'Ressource']);
+
+
     }
 }

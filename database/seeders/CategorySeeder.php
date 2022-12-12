@@ -15,7 +15,7 @@ class CategorySeeder extends Seeder
      */
     public function run()
     {
-        \DB::table('categories')->insert([
+        \DB::table('categories')->upsert([
             [
                 'code' => 'IMPOT_REEL',
                 'name' => 'Impôt réel',
@@ -28,7 +28,7 @@ class CategorySeeder extends Seeder
                 'code' => 'IMPOT_MINIMUM_FORFETAIRE',
                 'name' => 'Impôt minimum forfaitaire',
             ],
-        ]);
+        ], 'code');
 //       $ir =  Category::create([
 //            'code' => 'IMPOT_REEL',
 //            'name' => 'Impôt réel',
@@ -103,7 +103,7 @@ class CategorySeeder extends Seeder
 //            'article' => 'article',
 //        ]);
 
-        \DB::table('detail_types')->insert([
+        \DB::table('detail_types')->upsert([
             [
                 'code' => '508573',
                 'name' => 'Entreprise à prépondérance immobilière',
@@ -144,6 +144,30 @@ class CategorySeeder extends Seeder
                 'description' => 'null',
                 'article' => 'article',
             ],
-        ]);
+            [
+                'code' => '508577',
+                'name' => 'Industries',
+                'category_id' => 1,
+                'base_id' => 1,
+                'taux' => '20',
+                'type_impot_id' => 1,
+                'description' => 'null',
+                'article' => 'article',
+            ],
+            [
+                'code' => '508578',
+                'name' => 'Ecoles privées',
+                'category_id' => 1,
+                'base_id' => 1,
+                'taux' => '25',
+                'type_impot_id' => 1,
+                'description' => 'null',
+                'article' => 'article',
+            ]
+        ], 'code');
+
+
+
+
     }
 }

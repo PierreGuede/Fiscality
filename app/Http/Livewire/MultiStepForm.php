@@ -206,7 +206,7 @@ class MultiStepForm extends Component
 
             $company = Company::create([
                 'name' => $this->name,
-                'logo' => $this->logo,
+                'logo' => is_null($this->logo) ? '' : $this->logo,
                 'rccm' => $this->rccm,
                 'rccm_file' => '', //$RCCMRequest,
                 'created_date' => $this->created_date,
