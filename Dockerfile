@@ -28,8 +28,6 @@ COPY ./docker/nginx/nginx.conf /etc/nginx/nginx.conf
 
 COPY --from=composer:2.3.5 /usr/bin/composer /usr/bin/composer
 
-USER www-data
-
 RUN chmod -R 755 /var/www/storage
 RUN chmod -R 777 /var/www/bootstrap
 RUN chown -R www-data:www-data /var/www/bootstrap
