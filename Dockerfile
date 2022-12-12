@@ -28,6 +28,7 @@ COPY ./docker/nginx/nginx.conf /etc/nginx/nginx.conf
 
 COPY --from=composer:2.3.5 /usr/bin/composer /usr/bin/composer
 
+RUN mkdir -p /var/www/bootstrap
 RUN chmod -R 755 /var/www
 RUN chmod -R 755 /var/www/storage
 RUN chmod -R 755 /var/www/bootstrap

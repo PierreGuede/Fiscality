@@ -1,7 +1,8 @@
 <?php
 
 return [
-
+//    Disable view cache
+    'cache' => false,
     /*
     |--------------------------------------------------------------------------
     | View Storage Paths
