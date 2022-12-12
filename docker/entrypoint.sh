@@ -7,11 +7,11 @@ fi
 if [ ! -f ".env" ]; then
     echo "Creating env file for env $APP_ENV"
     cp .env.example .env
+    php artisan key:generate
 else
     echo "env file exists."
 fi
 
-php artisan key:generate
 php artisan config:clear
 php artisan view:clear
 php artisan cache:clear
