@@ -15,7 +15,7 @@ RUN docker-php-ext-install pdo pdo_mysql bcmath curl opcache zip
 # RUN docker-php-ext-enable opcache
 RUN curl -sLS https://deb.nodesource.com/setup_$NODE_VERSION.x | bash - \
     && apt-get install -y nodejs \
-    && npm install -g npm 
+    && npm install -g npm
 
 WORKDIR /var/www
 
@@ -29,6 +29,6 @@ COPY ./docker/nginx/nginx.conf /etc/nginx/nginx.conf
 COPY --from=composer:2.3.5 /usr/bin/composer /usr/bin/composer
 
 RUN chmod -R 755 /var/www/storage
-RUN chmod -R 755 /var/www/bootstrap
+RUN chmod -R 777 /var/www/bootstrap
 
 ENTRYPOINT [ "docker/entrypoint.sh" ]
