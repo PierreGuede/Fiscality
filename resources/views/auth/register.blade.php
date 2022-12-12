@@ -25,10 +25,10 @@
 
                 <form method="POST" action="{{ route('register') }}" class="space-y-6">
                     @csrf
-                    <div class="flex gap-x-4 ">
-                            <x-input label="Nom" type="text" id="name" name="name" class="block w-full"
+                    <div class="grid grid-cols-2 gap-x-4 ">
+                            <x-input label="Nom" type="text" id="name" name="name" class="block col-span-1"
                                 value="{{ old('name') }}" required autofocus />
-                            <x-input label="Prénom" type="text" id="firstname" name="firstname" class="block w-full"
+                            <x-input label="Prénom" type="text" id="firstname" name="firstname" class="block col-span-1"
                                 value="{{ old('firstname') }}" required autofocus />
                     </div>
                     <div class="mt-4">
