@@ -1,5 +1,6 @@
     <x-company-layout :company="$company" >
-
+        <x-tax-result.content-wrapper :company="$company">
+            <x-title>{{$provision->designation}}</x-title>
     <div class="w-full  min-h-screen" >
 
         <div class="max-w-5xl w-full mx-auto">
@@ -39,5 +40,6 @@
         </div>
 
     </div>
+        </x-tax-result.content-wrapper>
 
 </x-company-layout>

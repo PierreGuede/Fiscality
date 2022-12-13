@@ -85,32 +85,28 @@
                         @endforeach
                     </div>
                 @endif
+    @endhasanyrole
 
             </div>
         </div>
-    @endhasanyrole
 
     </div>
 
-<div class=" relative mt-auto w-full">
+<div class=" relative mt-auto w-full flex items-center  bg-blue-800 px-2 ">
+
     <button @click=" openDropdown = !openDropdown " type="button" :class="!openSidebar && 'justify-center'"
-            class=" flex h-16 w-full focus:outline-none items-center justify-start bg-blue-800 px-4 hover:bg-blue-700" href="#">
-        <svg class="h-6 w-6 stroke-current" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-             stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                  d="M5.121 17.804A13.937 13.937 0 0112 16c2.5 0 4.847.655 6.879 1.804M15 10a3 3 0 11-6 0 3 3 0 016 0zm6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
-        </svg>
+            class=" flex h-16 w-full focus:outline-none items-center justify-start bg-blue-800 px-4" href="#">
         <span x-show="openSidebar"
               class="ml-2 text-sm font-medium transition-all line-clamp-1"> {{ auth()->user()->name . ' ' . auth()->user()->firstname  }}</span>
     </button>
 
-    <div x-show="openDropdown" class=" absolute -top-[180%] left-0 ml-2 w-[90%] bg-blue-100 p-2 rounded-sm z-50"
-         x-transition.scale>
         <form method="POST" action="{{ route('logout')  }}">
             @csrf
-            <a href="{{ route('logout')  }}" onclick="event.preventDefault();this.closest('form').submit()"  class=" block w-full text-left p-2 text-slate-700 hover:bg-blue-50">Déconnexion</a>
+            <a href="{{ route('logout')  }}" onclick="event.preventDefault();this.closest('form').submit()"  class=" block w-full p-2 ">
+                <x-icon name="logout" class="w-6 h-6 stroke-2 stroke-blue-50 shrink-0" />
+
+            </a>
         </form>
-    </div>
 
 </div>
 

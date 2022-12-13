@@ -45,12 +45,12 @@
         </div>
 
         <div>
-            <x-input   type="text" label="Ecart sur le taux d'amortissement" id="ecart" name="ecart"
+            <x-input   type="number" step="any" label="Ecart sur le taux d'amortissement" id="ecart" name="ecart"
                      x-bind:value="taux_use - taux_recommended" class="block w-full" required autofocus />
         </div>
 
         <div>
-            <x-input   type="text" label="Amortisement non déductible" id="ecart" name="ecart"
+            <x-input   type="number" step="any" label="Amortisement non déductible" id="ecart" name="ecart"
                        x-bind:value="taux_recommended > 0 ? (dotation*((taux_use - taux_recommended)/100 )) / (taux_use/100) : 0 " class="block w-full" required autofocus />
         </div>
 

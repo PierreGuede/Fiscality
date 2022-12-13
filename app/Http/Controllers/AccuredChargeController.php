@@ -112,8 +112,9 @@ class AccuredChargeController extends Controller
         ]);
     }
 
-    public function update(Request $data, Company $company, AccuredChargeCompany $provision)
+    public function update(Request $data, Company $company,  $id)
     {
+        $provision=AccuredChargeCompany::find($id);
         $provision->update([
             'compte' => $data['compte'],
             'designation' => $data['designation'],
@@ -123,6 +124,9 @@ class AccuredChargeController extends Controller
             return redirect()->route('tax-result.reintegration.accured-charge.detailProvision', $company->id);
         } elseif ($provision->type == AccuredChargeCompany::EXPENSE_PROVISIONED) {
             return redirect()->route('tax-result.reintegration.accured-charge.detailexpenseProvisioned', $company->id);
+        }
+        else {
+            return redirect()->route('tax-result.reintegration.accured-charge.detailPersonalProvision', $company->id);
         }
     }
 }
