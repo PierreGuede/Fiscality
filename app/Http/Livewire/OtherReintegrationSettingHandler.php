@@ -410,7 +410,7 @@ class OtherReintegrationSettingHandler extends Component
 
     public static function setup($company_id)
     {
-        $guruOtherReintegrationSetting = GuruOtherReintegrationSetting::first($company_id);
+        $guruOtherReintegrationSetting = GuruOtherReintegrationSetting::first();
 
 
             OtherReintegrationSetting::create([
