@@ -16,7 +16,7 @@ class DeductionController extends Controller
 
     public function store(Request $request, Company $company)
     {
-        // dd($request->all());
+        // dd($request->validated());
         $sum = [];
         foreach ($request->name as $key => $value) {
             $deductible_amount = ($request->rate[$key] / 100) * $request->rcm_net_amount[$key];

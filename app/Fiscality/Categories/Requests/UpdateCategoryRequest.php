@@ -2,6 +2,7 @@
 
 namespace App\Fiscality\Categories\Requests;
 
+use Illuminate\Validation\Rule;
 use Illuminate\Foundation\Http\FormRequest;
 
 class UpdateCategoryRequest extends FormRequest
@@ -24,7 +25,7 @@ class UpdateCategoryRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'name' => ['sometimes', 'required', 'string', 'max:255', Rule::unique('categories')->ignore($this->id)],
         ];
     }
 }

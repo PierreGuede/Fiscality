@@ -23,7 +23,7 @@ class DomainController extends Controller
 
     public function store(CreateDomainRequest $request)
     {
-        $domain = $this->domainRepositoryInterface->store($request->all());
+        $domain = $this->domainRepositoryInterface->store($request->validated());
 
         return response()->json(['domain' => $domain, 'message' => 'Enregistrement bien effectué']);
     }
@@ -35,7 +35,7 @@ class DomainController extends Controller
 
     public function update(UpdateDomainRequest $request, $id)
     {
-        $domain = $this->domainRepositoryInterface->update($request->all(), $id);
+        $domain = $this->domainRepositoryInterface->update($request->validated(), $id);
 
         return response()->json(['domain' => $domain, 'message' => 'Modifié avec succès']);
     }

@@ -19,17 +19,17 @@
         </div>
     </a>
         <ul class="mt-6 w-full px-2 pb-2">
-            <x-app-sidebar.admin-nav-link  label="Les entreprises"   icon="office-building" />
-            <x-app-sidebar.admin-nav-link label="Domaines" icon="cog" />
-            <x-app-sidebar.admin-nav-link  label="Les packs"   icon="collection" />
-            <x-app-sidebar.admin-nav-link  label="Activités principale"   icon="office-building"  />
-            <x-app-sidebar.admin-nav-link  label="Catégories"   icon="office-building" />
-            <x-app-sidebar.admin-nav-link label="Centre d'impot" icon="cog" />
-            <x-app-sidebar.admin-nav-link  label="Produits et charges "   icon="office-building" />
-            <x-app-sidebar.admin-nav-link  label="Les Bases"   icon="office-building"  />
-            <x-app-sidebar.admin-nav-link  label="Type d'entreprises"   icon="office-building" />
-            <x-app-sidebar.admin-nav-link label="Type d'impôt" icon="cog" />
-            <x-app-sidebar.admin-nav-link label="Type Detail" icon="cog" />
+            <x-app-sidebar.admin-nav-link :active="request()->routeIs('company.*')"  href="{{ route('company.index') }}" label="Les entreprises"   icon="office-building" />
+            <x-app-sidebar.admin-nav-link :active="request()->routeIs('domain.*')" href="{{ route('domain.index') }}" label="Domaines" icon="cog" />
+            <x-app-sidebar.admin-nav-link :active="request()->routeIs('pack.*')"  href="{{ route('pack.index') }}" label="Les packs"   icon="collection" />
+            <x-app-sidebar.admin-nav-link :active="request()->routeIs('typeAct.*')"  href="{{ route('typeAct.index') }}" label="Activités principale"   icon="clipboard-list"  />
+            <x-app-sidebar.admin-nav-link :active="request()->routeIs('category.*')"  href="{{ route('category.index') }}" label="Catégories"   icon="color-swatch" />
+            <x-app-sidebar.admin-nav-link :active="request()->routeIs('taxCenter.*')" href="{{ route('taxCenter.index') }}" label="Centre d'impot" icon="map" />
+            <x-app-sidebar.admin-nav-link :active="request()->routeIs('accounting-product.*')"  href="{{ route('accounting-product.index') }}" label="Produits et charges "   icon="newspaper" />
+            <x-app-sidebar.admin-nav-link :active="request()->routeIs('base.*')"  href="{{ route('base.index') }}" label="Les Bases"   icon="table"  />
+            <x-app-sidebar.admin-nav-link :active="request()->routeIs('type.*')"  href="{{ route('type.index') }}" label="Type d'entreprises"   icon="template" />
+            <x-app-sidebar.admin-nav-link :active="request()->routeIs('typeImpot.*')" href="{{ route('typeImpot.index') }}" label="Type d'impôt" icon="cube-transparent" />
+            <x-app-sidebar.admin-nav-link :active="request()->routeIs('subCategory.*')" href="{{ route('subCategory.index') }}" label="Type Detail" icon="cog" />
         </ul>
 
 </div>

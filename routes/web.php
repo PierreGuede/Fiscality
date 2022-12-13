@@ -48,9 +48,6 @@ Route::middleware('auth', 'two-factor', 'hasOneRole', 'email_verified')->group(f
 //    Route::middleware('hasOneRole')->group(function () {
     Route::get('company', [\App\Http\Controllers\CompanyController::class, 'index'])->name('company.index');
     Route::get('company/set-other-information', [\App\Http\Controllers\CompanyController::class, 'setEntrepriseInformation'])->name('company.set_entreprise_information');
-    Route::get('company/{id}', [\App\Http\Controllers\CompanyController::class, 'edit'])->name('company.edit');
-    Route::get('company/downlad-ifu/{id}', [\App\Http\Controllers\CompanyController::class, 'downloadIfu'])->name('company.downladIFU');
-    Route::get('company/downlad-rcccm/{id}', [\App\Http\Controllers\CompanyController::class, 'downloadRCCM'])->name('company.downladRCCM');
     Route::post('company/{id}', [\App\Http\Controllers\CompanyController::class, 'update'])->name('company.update');
     Route::delete('company/{id}', [\App\Http\Controllers\CompanyController::class, 'destroy'])->name('company.delete');
 //    });
@@ -135,6 +132,8 @@ Route::middleware('auth', 'two-factor', 'hasOneRole', 'email_verified')->group(f
     Route::post('user/setting/notification', [\App\Http\Controllers\UserSettingController::class, 'storeNotification'])->name('user.setting.notification');
 });
 Route::middleware('auth', 'role:Super-Admin|cabinet|enterprise')->group(function () {
+    Route::get('company/{company}', [\App\Http\Controllers\CompanyController::class, 'edit'])->name('company.edit');
+
     Route::get('role', [\App\Http\Controllers\RoleController::class, 'index'])->name('role.index');
     Route::post('role', [\App\Http\Controllers\RoleController::class, 'store'])->name('role.store');
     Route::get('role/{id}', [\App\Http\Controllers\RoleController::class, 'edit'])->name('role.edit');
@@ -149,13 +148,9 @@ Route::middleware('auth', 'role:Super-Admin|cabinet|enterprise')->group(function
 });
 
 Route::middleware('auth', 'role:Super-Admin')->group(function () {
-    Route::get('company/accept/{id}', [\App\Http\Controllers\CompanyController::class, 'acceptCompany'])->name('company.acceptCompany');
-    Route::get('company/reject/{id}', [\App\Http\Controllers\CompanyController::class, 'rejectCompany'])->name('company.rejectCompany');
-    Route::get('company/active/{id}', [\App\Http\Controllers\CompanyController::class, 'activeCompany'])->name('company.activeCompany');
-    Route::get('company/block/{id}', [\App\Http\Controllers\CompanyController::class, 'blockCompany'])->name('company.blockCompany');
-    Route::get('company/unblock/{id}', [\App\Http\Controllers\CompanyController::class, 'unblockCompany'])->name('company.unblockCompany');
 
     Route::get('category', [\App\Http\Controllers\CategoryController::class, 'index'])->name('category.index');
+    Route::get('category/create', [\App\Http\Controllers\CategoryController::class, 'create'])->name('category.create');
     Route::post('category', [\App\Http\Controllers\CategoryController::class, 'store'])->name('category.store');
     Route::post('category-affect/{id}', [\App\Http\Controllers\CategoryController::class, 'affect'])->name('category.affect');
     Route::get('category/{id}', [\App\Http\Controllers\CategoryController::class, 'edit'])->name('category.edit');
@@ -169,48 +164,56 @@ Route::middleware('auth', 'role:Super-Admin')->group(function () {
     Route::delete('sub_category/{id}', [\App\Http\Controllers\DetailTypeController::class, 'destroy'])->name('subCategory.delete');
 
     Route::get('domain', [\App\Http\Controllers\DomainController::class, 'index'])->name('domain.index');
+    Route::get('domain/create', [\App\Http\Controllers\DomainController::class, 'create'])->name('domain.create');
     Route::post('domain', [\App\Http\Controllers\DomainController::class, 'store'])->name('domain.store');
     Route::get('domain/{id}', [\App\Http\Controllers\DomainController::class, 'edit'])->name('domain.edit');
     Route::post('domain/{id}', [\App\Http\Controllers\DomainController::class, 'update'])->name('domain.update');
     Route::delete('domain/{id}', [\App\Http\Controllers\DomainController::class, 'destroy'])->name('domain.delete');
 
     Route::get('base', [\App\Http\Controllers\BaseController::class, 'index'])->name('base.index');
+    Route::get('base/create', [\App\Http\Controllers\BaseController::class, 'create'])->name('base.create');
     Route::post('base', [\App\Http\Controllers\BaseController::class, 'store'])->name('base.store');
     Route::get('base/{id}', [\App\Http\Controllers\BaseController::class, 'edit'])->name('base.edit');
     Route::post('base/{id}', [\App\Http\Controllers\BaseController::class, 'update'])->name('base.update');
     Route::delete('base/{id}', [\App\Http\Controllers\BaseController::class, 'destroy'])->name('base.delete');
 
     Route::get('pack', [\App\Http\Controllers\PackController::class, 'index'])->name('pack.index');
+    Route::get('pack/create', [\App\Http\Controllers\PackController::class, 'create'])->name('pack.create');
     Route::post('pack', [\App\Http\Controllers\PackController::class, 'store'])->name('pack.store');
     Route::get('pack/{id}', [\App\Http\Controllers\PackController::class, 'edit'])->name('pack.edit');
     Route::post('pack/{id}', [\App\Http\Controllers\PackController::class, 'update'])->name('pack.update');
     Route::delete('pack/{id}', [\App\Http\Controllers\PackController::class, 'destroy'])->name('pack.delete');
 
     Route::get('accounting-product', [\App\Http\Controllers\IncomeExpenseController::class, 'index'])->name('accounting-product.index');
+    Route::get('accounting-product/create', [\App\Http\Controllers\IncomeExpenseController::class, 'create'])->name('accounting-product.create');
     Route::post('accounting-product', [\App\Http\Controllers\IncomeExpenseController::class, 'store'])->name('accounting-product.store');
     Route::get('accounting-product/{id}', [\App\Http\Controllers\IncomeExpenseController::class, 'edit'])->name('accounting-product.edit');
     Route::post('accounting-product/{id}', [\App\Http\Controllers\IncomeExpenseController::class, 'update'])->name('accounting-product.update');
     Route::delete('accounting-product/{id}', [\App\Http\Controllers\IncomeExpenseController::class, 'destroy'])->name('accounting-product.delete');
 
     Route::get('taxCenter', [\App\Http\Controllers\TaxCenterController::class, 'index'])->name('taxCenter.index');
+    Route::get('taxCenter/create', [\App\Http\Controllers\TaxCenterController::class, 'create'])->name('taxCenter.create');
     Route::post('taxCenter', [\App\Http\Controllers\TaxCenterController::class, 'store'])->name('taxCenter.store');
     Route::get('taxCenter/{id}', [\App\Http\Controllers\TaxCenterController::class, 'edit'])->name('taxCenter.edit');
     Route::post('taxCenter/{id}', [\App\Http\Controllers\TaxCenterController::class, 'update'])->name('taxCenter.update');
     Route::delete('taxCenter/{id}', [\App\Http\Controllers\TaxCenterController::class, 'destroy'])->name('taxCenter.delete');
 
     Route::get('principalActivity', [\App\Http\Controllers\PrincipalActivityController::class, 'index'])->name('typeAct.index');
+    Route::get('principalActivity/create', [\App\Http\Controllers\PrincipalActivityController::class, 'create'])->name('typeAct.create');
     Route::post('principalActivity', [\App\Http\Controllers\PrincipalActivityController::class, 'store'])->name('typeAct.store');
     Route::get('principalActivity/{id}', [\App\Http\Controllers\PrincipalActivityController::class, 'edit'])->name('typeAct.edit');
     Route::post('principalActivity/{id}', [\App\Http\Controllers\PrincipalActivityController::class, 'update'])->name('typeAct.update');
     Route::delete('principalActivity/{id}', [\App\Http\Controllers\PrincipalActivityController::class, 'destroy'])->name('typeAct.delete');
 
     Route::get('type-impot', [\App\Http\Controllers\TypeImpotController::class, 'index'])->name('typeImpot.index');
+    Route::get('type-impot/create', [\App\Http\Controllers\TypeImpotController::class, 'create'])->name('typeImpot.create');
     Route::post('type-impot', [\App\Http\Controllers\TypeImpotController::class, 'store'])->name('typeImpot.store');
     Route::get('type-impot/{id}', [\App\Http\Controllers\TypeImpotController::class, 'edit'])->name('typeImpot.edit');
     Route::post('type-impot/{id}', [\App\Http\Controllers\TypeImpotController::class, 'update'])->name('typeImpot.update');
     Route::delete('type-impot/{id}', [\App\Http\Controllers\TypeImpotController::class, 'destroy'])->name('typeImpot.delete');
 
     Route::get('type_company', [\App\Http\Controllers\TypeCompanyController::class, 'index'])->name('type.index');
+    Route::get('type_company/create', [\App\Http\Controllers\TypeCompanyController::class, 'create'])->name('type.create');
     Route::post('type_company', [\App\Http\Controllers\TypeCompanyController::class, 'store'])->name('type.store');
     Route::get('type_company/{id}', [\App\Http\Controllers\TypeCompanyController::class, 'edit'])->name('type.edit');
     Route::post('type_company/{id}', [\App\Http\Controllers\TypeCompanyController::class, 'update'])->name('type.update');

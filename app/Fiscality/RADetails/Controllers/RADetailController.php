@@ -23,7 +23,7 @@ class RADetailController extends Controller
 
     public function store(CreateRADetailRequest $request)
     {
-        $raDetail = $this->raDetailRepositoryInterface->store($request->all());
+        $raDetail = $this->raDetailRepositoryInterface->store($request->validated());
 
         return response()->json(['raDetail' => $raDetail, 'message' => 'Enregistrement bien effectué']);
     }
@@ -35,7 +35,7 @@ class RADetailController extends Controller
 
     public function update(UpdateRADetailRequest $request, $id)
     {
-        $raDetail = $this->raDetailRepositoryInterface->update($request->all(), $id);
+        $raDetail = $this->raDetailRepositoryInterface->update($request->validated(), $id);
 
         return response()->json(['raDetail' => $raDetail, 'message' => 'Modifié avec succès']);
     }

@@ -52,7 +52,7 @@ class AccuredChargeCompanyController extends Controller
             'designation' => ['sometimes', 'required', 'string', 'max:255', Rule::unique('accured_charge_companies')->ignore($accuredChargeCompany)->where('company_id', $company->id)],
         ]);
         $update = AccuredChargeCompany::find($accuredChargeCompany);
-        $update->update($request->all());
+        $update->update($request->validated());
         if ($update->type == 'provision') {
             return redirect()->route('work.provision.details', $company->id);
         } elseif ($update->type == 'expense_provisioned') {

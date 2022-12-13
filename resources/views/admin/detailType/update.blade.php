@@ -1,11 +1,10 @@
-<x-app-layout>
+<x-admin-space-layout>
     <x-slot name="header">
 
                 {{ __($domain->name) }}
 
     </x-slot>
-    <div class="p-4 bg-white rounded-lg shadow-xs">
-
+    <div class="p-4 rounded-lg shadow-xs">
             <form action="{{ route('domain.update',$domain->id) }}" method="POST" class="space-y-4">
                 @csrf
                 <input type="text" name="name" class="block w-full mt-1 border-gray-300 rounded-md shadow-sm " value="{{ old('name',$domain->name) }}">
@@ -14,4 +13,4 @@
 
     </div>
 
-</x-app-layout>
+</x-admin-space-layout>

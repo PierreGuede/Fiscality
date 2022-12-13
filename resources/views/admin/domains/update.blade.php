@@ -1,17 +1,27 @@
-<x-app-layout>
-    <x-slot name="header">
+<x-admin-space-layout>
 
-                {{ __($domain->name) }}
+    <div class=" p-4">
+        <div class="flex justify-between items-center pb-3">
+            <p class="text-2xl font-bold">{{ __($domain->name) }}</p>
+        </div>
 
-    </x-slot>
-    <div class="p-4 bg-white rounded-lg shadow-xs">
+        <form action="{{ route('domain.update',$domain->id) }}" method="POST" class="space-y-4 p-4 max-w-lg" >
+            @csrf
+            <div class="">
+                <x-input class="w-full" for="name"
+                type="text" id="name" name="name" value="{{ old('name',$domain->name) }}" label='Nom du domaine'
+                placeholder="Nom du domaine" class="" required autofocus />
+            </div>
+            <div class="flex gap-x-3 justify-end">
+                <x-button type="button" variant="neutral" class="w-36" >   {{ __('Annuler') }} </x-button>
+                <x-button type="submit" class="w-36" >   {{ __('Enregistrer') }} </x-button>
+            </div>
 
-            <form action="{{ route('domain.update',$domain->id) }}" method="POST" class="space-y-4">
-                @csrf
-                <input type="text" name="name" class="block w-full mt-1 border-gray-300 rounded-md shadow-sm " value="{{ old('name',$domain->name) }}">
-                <button type="submit" class="px-4 py-2 text-sm font-medium leading-5 text-center text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-lg active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:ring">Modifier</button>
-            </form>
+        </form>
+        <!--Footer-->
 
-    </div>
 
-</x-app-layout>
+
+</div>
+
+</x-admin-space-layout>
