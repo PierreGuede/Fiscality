@@ -16,14 +16,14 @@
     @livewire('other-reintegration.create-advertising-gift', ['company' => $company ])
     @livewire('other-reintegration.create-excess-rent', ['company' => $company ])
 
-    <form class="space-y-4" wire:submit.prevent="save">
+    <form class="space-y-4 text-sm" wire:submit.prevent="save">
 
 
         <div class=" grid grid-cols-12   ">
             <p class="col-span-7 my-auto px-2">Charges ne se rapportant pas à l'exercice (et non provisionnées)</p>
             <div class="col-span-3 ">
                 <x-input step="any" type="number" label="" id="username" name="username"
-                         wire:model.defer="expense_not_related" value="{{ old('username') }}" class="w-full " required
+                         wire:model.defer="expense_not_related" value="{{ old('username') }}" class="w-full "
                          autofocus/>
             </div>
             <div class="col-span-2">
@@ -36,7 +36,7 @@
             </p>
             <div class="col-span-3 ">
                 <x-input step="any" type="number" label="" id="username" name="username"
-                         wire:model.defer="unjustfified_expense" value="{{ old('username') }}" class="w-full " required
+                         wire:model.defer="unjustfified_expense" value="{{ old('username') }}" class="w-full "
                          autofocus/>
             </div>
             <div class="col-span-2">
@@ -50,7 +50,7 @@
             <div class="col-span-3 ">
                 <x-input step="any" type="number" label="" id="username" name="username"
                          wire:model.defer="remuneration_not_subject_withholding_tax" value="{{ old('username') }}"
-                         class="w-full " required autofocus/>
+                         class="w-full "  autofocus/>
             </div>
             <div class="col-span-2">
 
@@ -63,19 +63,14 @@
             </p>
             <div class="col-span-3 ">
                 <x-input step="any" :disabled="true" type="number" label="" id="username" name="username"
-                         wire:model.defer="financial_cost" value="{{ old('username') }}" class="w-full " required
+                         wire:model.defer="financial_cost" value="{{ old('username') }}" class="w-full "
                          autofocus/>
             </div>
             <div class="col-span-1 mx-auto my-auto ">
 
                 <button type="button" onclick=" Livewire.emitTo('other-reintegration.create-financial-cost', 'openASide')"
                         class="focus:outline-none hover:bg-blue-100 p-1.5 rounded-md">
-                    <svg class="  stroke-2 stroke-blue-50 w-6 w-6 stroke-blue-500 " xmlns="http://www.w3.org/2000/svg"
-                         fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round"
-                              d="M12 9v6m3-3H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z"/>
-                    </svg>
-
+                    <x-icon name="plus-circle" class="w-6 w-6 stroke-blue-500" />
                 </button>
 
             </div>
@@ -88,17 +83,12 @@
             <div class="col-span-3 ">
                 <x-input step="any" :disabled="true" type="number" label="" id="username" name="username"
                          wire:model.defer="commission_on_purchase" value="{{ old('username') }}" class="w-full "
-                         required autofocus/>
+                          autofocus/>
             </div>
             <div class="col-span-1 mx-auto my-auto">
                 <button type="button" onclick="Livewire.emitTo('other-reintegration.create-commission-on-purchases', 'openASide')"
                         class="focus:outline-none hover:bg-blue-100 p-1.5 rounded-md">
-                    <svg class="stroke-2 stroke-blue-500 stroke-blue-50 w-6 w-6 " xmlns="http://www.w3.org/2000/svg"
-                         fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round"
-                              d="M12 9v6m3-3H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z"/>
-                    </svg>
-
+                    <x-icon name="plus-circle" class="w-6 w-6 stroke-blue-500" />
                 </button>
 
             </div>
@@ -112,7 +102,7 @@
             <div class="col-span-3 ">
                 <x-input step="any" type="number" label="" id="username" name="username"
                          wire:model.defer="commission_insurance_broker" value="{{ old('username') }}" class="w-full "
-                         required autofocus/>
+                          autofocus/>
             </div>
             <div class="col-span-2">
 
@@ -125,17 +115,12 @@
             </p>
             <div class="col-span-3 ">
                 <x-input step="any" :disabled="true" type="number" label="" id="username" name="username"
-                         wire:model.defer="redevance" value="{{ old('username') }}" class="w-full " required autofocus/>
+                         wire:model.defer="redevance" value="{{ old('username') }}" class="w-full "  autofocus/>
             </div>
             <div class="col-span-1 mx-auto my-auto">
                 <button type="button"  onclick="Livewire.emitTo('other-reintegration.create-redevance', 'openASide')"
                         class="focus:outline-none hover:bg-blue-100 p-1.5 rounded-md">
-                    <svg class="stroke-2 stroke-blue-500 stroke-blue-50 w-6 w-6 " xmlns="http://www.w3.org/2000/svg"
-                         fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round"
-                              d="M12 9v6m3-3H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z"/>
-                    </svg>
-
+                    <x-icon name="plus-circle" class="w-6 w-6 stroke-blue-500" />
                 </button>
 
             </div>
@@ -148,18 +133,13 @@
             <div class="col-span-3 ">
                 <x-input step="any" :disabled="true" type="number" label="" id="username" name="username"
                          wire:model.defer="accountind_financial_technical_assistance_costs"
-                         value="{{ old('username') }}" class="w-full " required autofocus/>
+                         value="{{ old('username') }}" class="w-full "  autofocus/>
             </div>
             <div class="col-span-1 mx-auto my-auto">
                 <button type="button"
                          onclick="Livewire.emitTo('other-reintegration.create-assistance-cost', 'openASide')"
                         class="focus:outline-none hover:bg-blue-100 p-1.5 rounded-md">
-                    <svg class="stroke-2 stroke-blue-500 stroke-blue-50 w-6 w-6 " xmlns="http://www.w3.org/2000/svg"
-                         fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round"
-                              d="M12 9v6m3-3H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z"/>
-                    </svg>
-
+                    <x-icon name="plus-circle" class="w-6 w-6 stroke-blue-500" />
                 </button>
 
             </div>
@@ -172,7 +152,7 @@
             </p>
             <div class="col-span-3 ">
                 <x-input step="any" type="number" label="" id="username" name="username"
-                         wire:model.defer="interest_paid" value="{{ old('username') }}" class="w-full " required
+                         wire:model.defer="interest_paid" value="{{ old('username') }}" class="w-full "
                          autofocus/>
             </div>
             <div class="col-span-2">
@@ -187,18 +167,13 @@
             <div class="col-span-3 ">
                 <x-input step="any" :disabled="true" type="number" label="" id="username" name="username"
                          wire:model.defer="donation_grant_contribution" value="{{ old('username') }}" class="w-full "
-                         required autofocus/>
+                          autofocus/>
             </div>
             <div class="col-span-1 mx-auto my-auto">
                 <button type="button"
                          onclick="Livewire.emitTo('other-reintegration.create-donation-grant-contributions', 'openASide')"
                         class="focus:outline-none hover:bg-blue-100 p-1.5 rounded-md">
-                    <svg class="stroke-2 stroke-blue-500 w-6 w-6 " xmlns="http://www.w3.org/2000/svg" fill="none"
-                         viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round"
-                              d="M12 9v6m3-3H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z"/>
-                    </svg>
-
+                    <x-icon name="plus-circle" class="w-6 w-6 stroke-blue-500" />
                 </button>
 
             </div>
@@ -210,19 +185,14 @@
             </p>
             <div class="col-span-3 ">
                 <x-input step="any" :disabled="true" type="number" label="" id="username" name="username"
-                         wire:model.defer="advertising_gift" value="{{ old('username') }}" class="w-full " required
+                         wire:model.defer="advertising_gift" value="{{ old('username') }}" class="w-full "
                          autofocus/>
             </div>
             <div class="col-span-1 mx-auto my-auto">
                 <button type="button"
                          onclick="Livewire.emitTo('other-reintegration.create-advertising-gift', 'openASide')"
                         class="focus:outline-none hover:bg-blue-100 p-1.5 rounded-md">
-                    <svg class="stroke-2 stroke-blue-500 w-6 w-6 " xmlns="http://www.w3.org/2000/svg" fill="none"
-                         viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round"
-                              d="M12 9v6m3-3H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z"/>
-                    </svg>
-
+                    <x-icon name="plus-circle" class="w-6 w-6 stroke-blue-500" />
                 </button>
 
             </div>
@@ -234,7 +204,7 @@
             </p>
             <div class="col-span-3 ">
                 <x-input step="any" type="number" label="" id="username" name="username"
-                         wire:model.defer="sumptuary_expenses" value="{{ old('username') }}" class="w-full " required
+                         wire:model.defer="sumptuary_expenses" value="{{ old('username') }}" class="w-full "
                          autofocus/>
             </div>
             <div class="col-span-2">
@@ -248,7 +218,7 @@
             </p>
             <div class="col-span-3 ">
                 <x-input step="any" type="number" label="" id="username" name="username"
-                         wire:model.defer="occult_remuneration" value="{{ old('username') }}" class="w-full " required
+                         wire:model.defer="occult_remuneration" value="{{ old('username') }}" class="w-full "
                          autofocus/>
             </div>
             <div class="col-span-2">
@@ -262,7 +232,7 @@
             </p>
             <div class="col-span-3 ">
                 <x-input step="any" type="number" label="" id="username" name="username"
-                         wire:model.defer="motor_vehicle_tax" value="{{ old('username') }}" class="w-full " required
+                         wire:model.defer="motor_vehicle_tax" value="{{ old('username') }}" class="w-full "
                          autofocus/>
             </div>
             <div class="col-span-2">
@@ -276,7 +246,7 @@
             </p>
             <div class="col-span-3 ">
                 <x-input step="any" type="number" label="" id="username" name="username"
-                         wire:model.defer="income_tax" value="{{ old('username') }}" class="w-full " required
+                         wire:model.defer="income_tax" value="{{ old('username') }}" class="w-full "
                          autofocus/>
             </div>
             <div class="col-span-2">
@@ -290,7 +260,7 @@
             </p>
             <div class="col-span-3 ">
                 <x-input step="any" type="number" label="" id="username" name="username"
-                         wire:model.defer="fines_penalities" value="{{ old('username') }}" class="w-full " required
+                         wire:model.defer="fines_penalities" value="{{ old('username') }}" class="w-full "
                          autofocus/>
             </div>
             <div class="col-span-2">
@@ -313,7 +283,7 @@
             </p>
             <div class="col-span-3 ">
                 <x-input step="any" type="number" label="" id="username" name="username"
-                         wire:model.defer="past_assets" value="{{ old('username') }}" class="w-full " required
+                         wire:model.defer="past_assets" value="{{ old('username') }}" class="w-full "
                          autofocus/>
             </div>
             <div class="col-span-2">
@@ -328,7 +298,7 @@
             <div class="col-span-3 ">
                 <x-input step="any" type="number" label="" id="username" name="username"
                          wire:model.defer="other_non_deductible_expense" value="{{ old('username') }}" class="w-full "
-                         required autofocus/>
+                          autofocus/>
             </div>
             <div class="col-span-2">
 
@@ -342,7 +312,7 @@
             <div class="col-span-3 ">
                 <x-input step="any" type="number" label="" id="username" name="username"
                          wire:model.defer="variation_conversation_gap" value="{{ old('username') }}" class="w-full "
-                         required autofocus/>
+                          autofocus/>
             </div>
             <div class="col-span-2">
 
@@ -355,18 +325,13 @@
             </p>
             <div class="col-span-3 ">
                 <x-input step="any" :disabled="true" type="number" label="" id="username" name="username"
-                         wire:model.defer="excess_rent" value="{{ old('username') }}" class="w-full " required
+                         wire:model.defer="excess_rent" value="{{ old('username') }}" class="w-full "
                          autofocus/>
             </div>
             <div class="col-span-1 mx-auto my-auto ">
                 <button type="button"  onclick="Livewire.emitTo('other-reintegration.create-excess-rent', 'openASide')"
                         class="focus:outline-none hover:bg-blue-100 p-1.5 rounded-md">
-                    <svg class="stroke-2 stroke-blue-500 w-6 w-6 " xmlns="http://www.w3.org/2000/svg" fill="none"
-                         viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round"
-                              d="M12 9v6m3-3H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z"/>
-                    </svg>
-
+                    <x-icon name="plus-circle" class="w-6 w-6 stroke-blue-500" />
                 </button>
 
             </div>
@@ -379,7 +344,7 @@
             <div class="col-span-3 ">
                 <x-input step="any" type="number" label="" id="username" name="username"
                          wire:model.defer="other_non_deductible_expenses" value="{{ old('username') }}" class="w-full "
-                         required autofocus/>
+                          autofocus/>
             </div>
             <div class="col-span-2">
 

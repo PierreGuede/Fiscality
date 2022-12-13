@@ -3,7 +3,7 @@
 
     <div class="w-full  min-h-screen" >
         <div class="max-w-5xl w-full mx-auto">
-        <x-title>Surplus d'amortissement</x-title>
+        <x-title>Provisions sur charges de personnel</x-title>
 
             <table class="w-full" >
                 <thead class="bg-transparent uppercase py-2 text-gray-600" >
@@ -14,7 +14,7 @@
                     <th class="text-xs py-3.5 font-semibold" >Date </th>
                 </thead>
                 <tbody>
-                @foreach($cahrgesCompany as $key => $value)
+                @foreach($personnalProvision as $key => $value)
                     <tr class="w-full shadow-lg shadow-blue-200 border-b-4 border-blue-200 bg-white">
                         <td class=" text-center text-xs font-semibold py-4 px-4  my-10" >{{ $key +1  }}</td>
                         <td class=" text-center text-xs font-semibold py-4  my-10" > {{$value->compte}} </td>

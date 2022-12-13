@@ -104,4 +104,16 @@ class DeductionSettingHandler extends Component
             ]);
         }
     }
+
+    public static function setup($company_id)
+    {
+        $guruDeductionSetting = GuruDeductionSetting::first();
+
+        DeductionSetting::create([
+            'rate_proceed_government' => $guruDeductionSetting->rate_proceed_government,
+            'rcm_product_rate' => $guruDeductionSetting->rcm_product_rate,
+            'company_id' => $company_id,
+            'user_id' => auth()->user()->id,
+        ]);
+    }
 }

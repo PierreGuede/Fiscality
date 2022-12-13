@@ -40,6 +40,12 @@ class DetailsHandler extends Component
         ]);
 
         $this->emit('changeToRead');
-        $this->emit('editt');
+//        $this->emit('editt');
     }
+
+    public function changeToRead()
+    {
+        $this->emit('edit');
+    }
+
 }

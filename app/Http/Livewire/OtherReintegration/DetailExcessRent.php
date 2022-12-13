@@ -39,11 +39,11 @@ class DetailExcessRent extends Component
         $excess_rent = ExcessRent::whereCompanyId($this->company->id)->whereYear('created_at', Carbon::now()->year)->first();
 
         $this->fill([
-            'rent_amount' => $excess_rent->rent_amount,
-            'rental_period_year' => $excess_rent->rental_period_year,
-            'annual_deduction_limit' => $excess_rent->annual_deduction_limit,
-            'applicable_deduction_limit' => $excess_rent->applicable_deduction_limit,
-            'amount_rent_reintegrated' => $excess_rent->amount_rent_reintegrated,
+            'rent_amount' => is_null($excess_rent?->rent_amount) ? 0 : $excess_rent->rent_amount,
+            'rental_period_year' => is_null($excess_rent?->rental_period_year) ? 0 : $excess_rent->rental_period_year,
+            'annual_deduction_limit' => is_null($excess_rent?->annual_deduction_limit) ? 0 : $excess_rent->annual_deduction_limit,
+            'applicable_deduction_limit' => is_null($excess_rent?->applicable_deduction_limit) ? 0 : $excess_rent->applicable_deduction_limit,
+            'amount_rent_reintegrated' => is_null($excess_rent?->amount_rent_reintegrated) ? 0 : $excess_rent->amount_rent_reintegrated,
         ]);
     }
 

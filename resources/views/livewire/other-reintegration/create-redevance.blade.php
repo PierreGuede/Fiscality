@@ -33,9 +33,7 @@
                                              class="block w-full" required
                                              wire:model.defer="inputs.{{ $key }}.account"
                                              autofocus/>
-                                    @error('inputs.' . $key . '.account')
-                                    <span class="text-xs text-red-600">{{ $message }}</span>
-                                    @enderror
+
                                 </div>
 
                                 <div class="col-span-7">
@@ -44,9 +42,7 @@
                                              class="block w-full" required
                                              wire:model.defer="inputs.{{ $key }}.designation"
                                              autofocus/>
-                                    @error('inputs.' . $key . '.designation')
-                                    <span class="text-xs text-red-600">{{ $message }}</span>
-                                    @enderror
+
                                 </div>
 
                                 <div class="col-span-3">
@@ -55,9 +51,7 @@
                                               class="block w-full" required
                                              wire:model.defer="inputs.{{ $key }}.amount"
                                              autofocus/>
-                                    @error('inputs.' . $key . '.amount')
-                                        <span class="text-xs text-red-600">{{ $message }}</span>
-                                    @enderror
+
                                 </div>
 
 
@@ -105,13 +99,11 @@
 
                     <x-input x-model="turnover" wire:model.defer="turnover" type="number" step="0.01" label="Chiffre d'affaires" id="turnover" name="turnover"
                              value="{{ old('turnover') }}" class="block w-full" required autofocus/>
-                    @error('turnover')
-                    <span class="text-xs text-red-600">{{ $message }}</span>
-                    @enderror
+
 
                     <x-input  type="number" wire:model.defer="deduction_limit" step="0.01" label="Limite de déduction" id="delay_condition" name=""
                              x-bind:value="turnover * 0.05" class="block w-full" step="0.01" required autofocus/>
-                    <x-input type="number" wire:model.defer="amount_reintegrated" step="0.01" label="Montant à réintégrer" id="reintegration_amount" name=""
+                    <x-input :disabled="true" type="number" wire:model.defer="amount_reintegrated" step="0.01" label="Montant à réintégrer" id="reintegration_amount" name=""
                              x-bind:value="array_of_amount.length > 0 ? array_of_amount.reduce((acc, next) => Number(acc) + Number(next)  , 0) - (turnover * 0.05) : 0" class="block w-full" required autofocus/>
                 </div>
 

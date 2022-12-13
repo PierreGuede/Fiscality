@@ -23,7 +23,7 @@ Route::get('/', function () {
 
 Route::get('/dashboard', function () {
     return view('dashboard');
-//email_verified
+    //email_verified
 })->middleware(['auth', 'two-factor', 'hasOneRole'])->name('dashboard');
 
 //'email_verified'

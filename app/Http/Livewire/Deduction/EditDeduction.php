@@ -7,9 +7,12 @@ use App\Models\Deduction;
 use App\Models\FinancialProduct;
 use Carbon\Carbon;
 use Livewire\Component;
+use WireUi\Traits\Actions;
 
 class EditDeduction extends Component
 {
+    use Actions;
+
     public Company $company;
 
     public Deduction $deduction;
@@ -75,6 +78,7 @@ class EditDeduction extends Component
         $this->deduction->save();
 
         $this->emit('refreshState');
+        $this->notification()->success('Succès', 'Opération effectuée avec succès!');
     }
 
     public function refreshDeductionData()
@@ -92,6 +96,8 @@ class EditDeduction extends Component
         ]);
 
         $this->deduction->save();
+
+        $this->emit('refreshState');
     }
 
     public function refreshFinancialCost()

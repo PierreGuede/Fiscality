@@ -12,9 +12,12 @@ use App\Models\MinimumTax;
 use App\Models\MinimumTaxDetail;
 use Illuminate\Support\Facades\DB;
 use LivewireUI\Modal\ModalComponent;
+use WireUi\Traits\Actions;
 
 class CreateMinimumTax extends ModalComponent
 {
+    use Actions;
+
     public Amortization $model;
 
     public $company;
@@ -120,6 +123,10 @@ class CreateMinimumTax extends ModalComponent
             DB::commit();
 
             $this->emit('updateMaxValue');
+            $this->emit('updateMinimumTax');
+
+            $this->notification()->success('Succès', 'Opération effectuée avec succès!');
+
 
             $this->closeModal();
         } catch (\Throwable $th) {

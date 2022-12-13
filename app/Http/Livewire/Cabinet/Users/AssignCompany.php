@@ -32,9 +32,9 @@ class AssignCompany extends ModalComponent
             array_push($this->id_company, $value->id);
         }
         $this->user = $user;
-        dump($user->getWorkspaceCompany);
-        $this->companies = Company::whereUserId(auth()->user()->id)->join('company_user', 'companies.id', '=', 'company_user.company_id')->get();
-            $this->companies = auth()->user()->companies;
+//        dump($user->getWorkspaceCompany);
+        $this->companies = Company::whereUserId(auth()->user()->id)->get();
+
         $this->fill([
             'name' => $user->name,
             'firstname' => $user->firstname,

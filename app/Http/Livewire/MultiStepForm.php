@@ -233,6 +233,10 @@ class MultiStepForm extends Component
                 $company->detailType()->attach($value);
             }
 
+            AmortizationSettingHandler::setup($company->id);
+            OtherReintegrationSettingHandler::setup($company->id);
+            DeductionSettingHandler::setup($company->id);
+
 //            $type_impot = TypeImpot::where
 //
 //            $res = TypeCompanyTypeImpot::create([
@@ -248,6 +252,8 @@ class MultiStepForm extends Component
             if (auth()->user()->roles[0]->name == 'enterprise') {
                 return redirect()->route('tax-result', $company->id);
             }
+
+
 
             return redirect()->route('company.index');
         } catch (\Throwable $th) {

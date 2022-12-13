@@ -14,19 +14,19 @@ class CreateDeduction extends Component
 
     public $total_financial_product;
 
-    public $reversals_provisions;
+    public $reversals_provisions = 0;
 
-    public $capital_gain;
+    public $capital_gain = 0;
 
-    public $currency_transaction_change;
+    public $currency_transaction_change = 0;
 
     public $listeners = ['refreshFinancialCost'];
 
     public $rules = [
-        'reversals_provisions' => 'required|min:1',
+        'reversals_provisions' => 'required',
         //        'total_fiancial_product' => 'required|min:1',
-        'capital_gain' => 'required|min:1',
-        'currency_transaction_change' => 'required|min:1',
+        'capital_gain' => 'required',
+        'currency_transaction_change' => 'required',
     ];
 
     public $messages = [
@@ -49,7 +49,7 @@ class CreateDeduction extends Component
 
     public function save()
     {
-        $this->validate();
+//        $this->validate();
 
         $total_deduction = $this->reversals_provisions + $this->total_financial_product + $this->capital_gain + $this->currency_transaction_change;
         Deduction::create([
@@ -60,6 +60,8 @@ class CreateDeduction extends Component
             'total_deduction' => $total_deduction,
             'company_id' => $this->company->id,
         ]);
+
+        $this->emit('refreshState');
     }
 
     public function refreshFinancialCost()

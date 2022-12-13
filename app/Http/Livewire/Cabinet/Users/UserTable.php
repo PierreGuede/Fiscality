@@ -33,26 +33,25 @@ class UserTable extends Component
     public function resendConfirmationMail($user_id)
     {
         try {
+            $password = User::generatePassword(User::PASSWORD_LENGTH);
+            $user = User::whereId($user_id)->first();
+            $user->password = \Hash::make($password);
+            $user->save();
+            $user->assignRole(User::DEFAULT_ROLE);
 
-        $password = User::generatePassword(User::PASSWORD_LENGTH);
-        $user = User::whereId($user_id)->first();
-        $user->password = \Hash::make($password);
-        $user->save();
-        $user->assignRole(User::DEFAULT_ROLE);
+            \Mail::to($user->email)->send(new SendUserCredential($user->name, $user->username, $user->email, $password));
 
-        \Mail::to($user->email)->send(new SendUserCredential($user->name, $user->username, $user->email, $password));
-
-        $this->notification()->success(
-            $title = 'Succès',
-            $description = 'Email renvoyé avec succès!'
-        );
+            $this->notification()->success(
+                $title = 'Succès',
+                $description = 'Email renvoyé avec succès!'
+            );
         } catch (\Throwable $th) {
             $this->notification()->success(
                 $title = 'Erreur',
                 $description = 'Une erreur est survenue lors du renvoie du mail'
             );
+
             return $th;
         }
-
     }
 }

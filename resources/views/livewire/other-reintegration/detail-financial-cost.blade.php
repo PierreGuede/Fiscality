@@ -182,11 +182,11 @@
 
                 <p class="text-sm text-gray-400">Réslultat avant impôt</p>
                 <p class="w-full h-10 p-2 px-3 text-gray-900 placeholder-transparent border border-gray-300 rounded-sm peer focus:ring-blue-500/40 focus:ring-4 focus:outline-none align-center focus:border-blue-600"
-                   x-text="{{ $accounting_result->ar_value }}"></p>
+                   x-text="{{ $accounting_result?->ar_value }}"></p>
 
                 {{--Réslultat avant impôt--}}
                 <x-input :disabled="true" type="number" label="Montant des intérêts déductibles" id="delay_condition"
-                         x-bind:value="{{ $accounting_result->ar_value }}"  class="block w-full" required autofocus/>
+                         x-bind:value="{{ $accounting_result?->ar_value }}"  class="block w-full" required autofocus/>
 
                 {{--                    Interet comptabilisé--}}
                 <x-input type="number" label="Interet comptabilisé" id="delay_condition" name=""
@@ -205,12 +205,12 @@
 
                 {{--Base de calcul--}}
                 <x-input :disabled="true" type="number" label="Base de calcul" id="delay_condition"
-                         x-bind:value=" {{  $accounting_result->ar_value }} + fnBaseCalcul()"  class="block w-full" required autofocus/>
+                         x-bind:value=" {{  $accounting_result?->ar_value }} + fnBaseCalcul()"  class="block w-full" required autofocus/>
 
 
                 {{--Plafond de déductibilité--}}
                 <x-input :disabled="true" type="number" label="Plafond de déductibilité" id="delay_condition"
-                         x-bind:value="  ({{  $accounting_result->ar_value }} + fnBaseCalcul()) * (30/100)"  class="block w-full" required autofocus/>
+                         x-bind:value="  ({{  $accounting_result?->ar_value }} + fnBaseCalcul()) * (30/100)"  class="block w-full" required autofocus/>
 
 
                 {{-- <x-input type="number"  label="Plafond de déductibilité" id="delay_condition" name="" wire:model="deductibility_limit"
@@ -218,7 +218,7 @@
 
                 <p class="text-sm text-gray-400">Montant à réintégrer</p>
                 <p class="w-full h-10 p-2 px-3 text-gray-900 placeholder-transparent border border-gray-300 rounded-sm peer focus:ring-blue-500/40 focus:ring-4 focus:outline-none align-center focus:border-blue-600"
-                   x-text="((Number(amount_of_interest_recorded) - fnCalculateAmount()) - (({{  $accounting_result->ar_value }} + fnBaseCalcul()) * (30/100) * (30/100))) > 0 ? ((Number(amount_of_interest_recorded) - fnCalculateAmount()) - (({{  $accounting_result->ar_value }} + fnBaseCalcul()) * (30/100) * (30/100))) : 0 ">
+                   x-text="((Number(amount_of_interest_recorded) - fnCalculateAmount()) - (({{  $accounting_result?->ar_value }} + fnBaseCalcul()) * (30/100) * (30/100))) > 0 ? ((Number(amount_of_interest_recorded) - fnCalculateAmount()) - (({{  $accounting_result?->ar_value }} + fnBaseCalcul()) * (30/100) * (30/100))) : 0 ">
 
                 {{-- <x-input type="number"  label="Montant à réintégrer" id="delay_condition" name="" wire:model="amount_reintegrate"
                          value="{{ old('delay_condition') }}" class="block w-full" required autofocus /> --}}

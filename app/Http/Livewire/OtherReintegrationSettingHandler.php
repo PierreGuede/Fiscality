@@ -407,4 +407,27 @@ class OtherReintegrationSettingHandler extends Component
         $this->excess_rent_applicable_deduction_limit = is_null($this->otherReintegrationSetting) ? $this->guruOtherReintegrationSetting->excess_rent_applicable_deduction_limit : $this->otherReintegrationSetting->excess_rent_applicable_deduction_limit;
         $this->annual_deduction_limit = is_null($this->otherReintegrationSetting) ? $this->guruOtherReintegrationSetting->annual_deduction_limit : $this->otherReintegrationSetting->annual_deduction_limit;
     }
+
+    public static function setup($company_id)
+    {
+        $guruOtherReintegrationSetting = GuruOtherReintegrationSetting::first($company_id);
+
+
+            OtherReintegrationSetting::create([
+                'bceao_interest_rate' => $guruOtherReintegrationSetting->bceao_interest_rate,
+                'minimum_rate' => $guruOtherReintegrationSetting->minimum_rate,
+                'rate_deductibility_limit' => $guruOtherReintegrationSetting->rate_deductibility_limit,
+                'commission_on_purchase_deduction_limit' => $guruOtherReintegrationSetting->commission_on_purchase_deduction_limit,
+                'redevance_deduction_rate_limit' => $guruOtherReintegrationSetting->redevance_deduction_rate_limit,
+                'assistance_cost_deduction_rate_limit' => $guruOtherReintegrationSetting->assistance_cost_deduction_rate_limit,
+                'state_donation_limit' => $guruOtherReintegrationSetting->state_donation_limit,
+                'state_donation_rate_thousandth' => $guruOtherReintegrationSetting->state_donation_rate_thousandth,
+                'advertising_gifts_deduction_limit' => $guruOtherReintegrationSetting->advertising_gifts_deduction_limit,
+                'excess_rent_applicable_deduction_limit' => $guruOtherReintegrationSetting->excess_rent_applicable_deduction_limit,
+                'annual_deduction_limit' => $guruOtherReintegrationSetting->annual_deduction_limit,
+                'company_id' => $company_id,
+                'user_id' => auth()->user()->id,
+            ]);
+        }
+
 }

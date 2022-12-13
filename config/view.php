@@ -1,7 +1,7 @@
 <?php
 
 return [
-//    Disable view cache
+    //    Disable view cache
     'cache' => false,
     /*
     |--------------------------------------------------------------------------

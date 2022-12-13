@@ -11,9 +11,9 @@ class EditExcessRent extends Component
 {
     public bool  $open_a_side = false;
 
-    public Company $company;
+    public ?Company $company;
 
-    public ExcessRent $excess_rent;
+    public ?ExcessRent $excess_rent;
 
     public $rent_amount;
 
@@ -52,11 +52,11 @@ class EditExcessRent extends Component
         $this->excess_rent = ExcessRent::whereCompanyId($this->company->id)->whereYear('created_at', Carbon::now()->year)->first();
 
         $this->fill([
-            'rent_amount' => $this->excess_rent->rent_amount,
-            'rental_period_year' => $this->excess_rent->rental_period_year,
-            'annual_deduction_limit' => $this->excess_rent->annual_deduction_limit,
-            'applicable_deduction_limit' => $this->excess_rent->applicable_deduction_limit,
-            'amount_rent_reintegrated' => $this->excess_rent->amount_rent_reintegrated,
+            'rent_amount' => is_null($this->excess_rent?->rent_amount) ? 0 : $this->excess_rent->rent_amount,
+            'rental_period_year' => is_null($this->excess_rent?->rental_period_year) ? 0 : $this->excess_rent->rental_period_year,
+            'annual_deduction_limit' => is_null($this->excess_rent?->annual_deduction_limit) ? 0 : $this->excess_rent->annual_deduction_limit,
+            'applicable_deduction_limit' => is_null($this->excess_rent?->applicable_deduction_limit) ? 0 : $this->excess_rent->applicable_deduction_limit,
+            'amount_rent_reintegrated' => is_null($this->excess_rent?->amount_rent_reintegrated) ? 0 : $this->excess_rent->amount_rent_reintegrated,
         ]);
     }
 

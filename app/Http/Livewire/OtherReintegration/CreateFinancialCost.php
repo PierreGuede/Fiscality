@@ -79,7 +79,7 @@ class CreateFinancialCost extends Component
         $rate_surplus = $this->interest_rate_charged - $maximum_rate;
         $amount_reintegrated = ($this->amount_interest_recorded * $rate_surplus) / $this->interest_rate_charged;
         $deductible_interest_amount = $this->amount_of_interest_recorded - $amount_reintegrated;
-        $calculation_base = array_sum([$this->rc->ar_value,
+        $calculation_base = array_sum([$this->rc?->ar_value,
             $this->interest_accrued,
             $this->depreciation_and_amortization,
             $this->allocations_to_provisions, ]);
@@ -134,7 +134,7 @@ class CreateFinancialCost extends Component
             'amount_of_interest_recorded' => $this->amount_of_interest_recorded,
             'non_deductible_interest_amount' => $amount_reintegrated,
             'deductible_interest_amount' => $deductible_interest_amount,
-            'profit_before_tax' => $this->rc->ar_value,
+            'profit_before_tax' => is_null($this->rc) ? 0 : $this->rc->ar_value,
             'interest_accrued' => $this->amount_of_interest_recorded,
             'depreciation_and_amortization' => $this->depreciation_and_amortization,
             'allocations_to_provisions' => $this->allocations_to_provisions,

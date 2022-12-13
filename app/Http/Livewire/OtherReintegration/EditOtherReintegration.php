@@ -18,6 +18,7 @@ use WireUi\Traits\Actions;
 class EditOtherReintegration extends Component
 {
     use Actions;
+
     public Company $company;
 
     public OtherReintegration $other_reintegration;
@@ -139,31 +140,6 @@ class EditOtherReintegration extends Component
     {
         $this->other_reintegration = OtherReintegration::whereCompanyId($this->company->id)->whereYear('created_at', Carbon::now()->year)->first();
 
-        $this->fill(
-            [
-                'expense_not_related' => $this->other_reintegration->expense_not_related,
-                'unjustfified_expense' => $this->other_reintegration->unjustfified_expense,
-                'remuneration_not_subject_withholding_tax' => $this->other_reintegration->remuneration_not_subject_withholding_tax,
-                'financial_cost' => $this->financial_cost,
-                'commission_on_purchase' => $this->commission_on_purchase,
-                'commission_insurance_broker' => $this->other_reintegration->commission_insurance_broker,
-                'redevance' => $this->redevance,
-                'accountind_financial_technical_assistance_costs' => $this->accountind_financial_technical_assistance_costs,
-                'interest_paid' => $this->other_reintegration->interest_paid,
-                'donation_grant_contribution' => $this->donation_grant_contribution,
-                'advertising_gift' => $this->advertising_gift,
-                'sumptuary_expenses' => $this->other_reintegration->sumptuary_expenses,
-                'occult_remuneration' => $this->other_reintegration->occult_remuneration,
-                'motor_vehicle_tax' => $this->other_reintegration->motor_vehicle_tax,
-                'income_tax' => $this->other_reintegration->income_tax,
-                'fines_penalities' => $this->other_reintegration->fines_penalities,
-                'past_assets' => $this->other_reintegration->past_assets,
-                'other_non_deductible_expense' => $this->other_reintegration->other_non_deductible_expense,
-                'variation_conversation_gap' => $this->other_reintegration->variation_conversation_gap,
-                'excess_rent' => $this->excess_rent,
-                'other_non_deductible_expenses' => $this->other_reintegration->other_non_deductible_expenses,
-            ]);
-
         $data = [
             'expense_not_related' => $this->expense_not_related,
             'unjustfified_expense' => $this->unjustfified_expense,
@@ -216,7 +192,6 @@ class EditOtherReintegration extends Component
 
         $this->emit('refreshState');
         $this->notification()->success('Succès', 'Opération effectuée avec succès!');
-
     }
 
         public function refreshFinancialCost()

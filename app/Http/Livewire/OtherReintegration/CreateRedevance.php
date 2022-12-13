@@ -9,9 +9,12 @@ use App\Models\GuruRedevance;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\DB;
 use Livewire\Component;
+use WireUi\Traits\Actions;
 
 class CreateRedevance extends Component
 {
+    use Actions;
+
     public bool  $open_a_side = false;
 
     public string  $response = 'no';
@@ -107,6 +110,7 @@ class CreateRedevance extends Component
                 'designation' => 0,
                 'amount' => $total_amount,
                 'turnover' => (float) $this->turnover,
+                'total_renumeration' => array_sum(array_column($this->inputs->toArray(), 'account')),
                 'deduction_limit' => (float) $this->turnover * 0.05,
                 'amount_reintegrated' => $amount_reintegrate,
                 'company_id' => $this->company->id,
@@ -123,7 +127,7 @@ class CreateRedevance extends Component
             }
 
             $this->emit('refresh');
-            notify()->success('Redevances créées avec succès!');
+            $this->notification()->success('Succès', 'Opération effectuée avec succès!');
 
             DB::commit();
 

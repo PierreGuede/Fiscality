@@ -71,7 +71,7 @@ class CreatePersonnalProvisionHandler extends ModalComponent
             DB::beginTransaction();
 
             foreach ($this->inputs as  $value) {
-                AccuredChargeCompany::create( [
+                AccuredChargeCompany::create([
                     'compte' => $value['compte'],
                     'designation' => $value['designation'],
                     'type' => AccuredChargeCompany::PERSONNAL_PROVISION,
@@ -80,8 +80,6 @@ class CreatePersonnalProvisionHandler extends ModalComponent
                     'date' => date('Y'),
                 ]);
             }
-
-
 
             DB::commit();
             $this->emit('refreshProvision');

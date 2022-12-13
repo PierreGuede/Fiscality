@@ -10,8 +10,7 @@
     </div>
     <div class="w-52 text-center flex flex-col justify-between ">
         <h6 class="py-1.5 border-b-2 border-blue-50">Montant</h6>
-        <p class="my-auto">
-            {{$total}}
+        <p class="my-auto" x-text="formatNumber({{$total}}, false)" >
         </p>
 
         <div class="mt-auto ">

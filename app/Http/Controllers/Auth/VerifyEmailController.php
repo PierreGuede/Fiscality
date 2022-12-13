@@ -22,6 +22,7 @@ class VerifyEmailController extends Controller
 
         if (! hash_equals((string) $hash, sha1($user->getEmailForVerification()))) {
             notify()->success('Invalid');
+
             return redirect()->route('login');
         }
 
@@ -33,6 +34,7 @@ class VerifyEmailController extends Controller
         if ($user->markEmailAsVerified()) {
             notify()->success('Email vérifié avec succès!');
             event(new Verified($user));
+
             return redirect()->route('login');
         }
 

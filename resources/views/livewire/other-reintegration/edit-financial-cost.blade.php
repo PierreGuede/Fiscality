@@ -139,7 +139,7 @@
                 <p class="w-full h-10 p-2 px-3 text-gray-900 placeholder-transparent border border-gray-300 rounded-sm peer focus:ring-blue-500/40 focus:ring-4 focus:outline-none align-center focus:border-blue-600"  x-text="Number(amount_of_interest_recorded)-amount_reintegrated">
 
                 <p class="text-sm text-gray-400">Réslultat avant impôt</p>
-                <p class="w-full h-10 p-2 px-3 text-gray-900 placeholder-transparent border border-gray-300 rounded-sm peer focus:ring-blue-500/40 focus:ring-4 focus:outline-none align-center focus:border-blue-600"  x-text="{{ $rc->ar_value }}">
+                <p class="w-full h-10 p-2 px-3 text-gray-900 placeholder-transparent border border-gray-300 rounded-sm peer focus:ring-blue-500/40 focus:ring-4 focus:outline-none align-center focus:border-blue-600"  x-text="{{ $rc?->ar_value }}">
 
                 {{-- <x-input type="number"  label="Réslultat avant impôt" id="delay_condition" name="" wire:model="inputs.profit_before_tax"
                          value="{{ old('delay_condition') }}" class="block w-full" required autofocus /> --}}
@@ -154,7 +154,7 @@
                          value="{{ old('delay_condition') }}" class="block w-full" required autofocus />
 
                 <p class="text-sm text-gray-400">Base de calcul</p>
-                <p class="w-full h-10 p-2 px-3 text-gray-900 placeholder-transparent border border-gray-300 rounded-sm peer focus:ring-blue-500/40 focus:ring-4 focus:outline-none align-center focus:border-blue-600"  x-text="calculation_base={{ $rc->ar_value }} + amount_of_interest_recorded + depreciation_and_amortization +allocations_to_provisions  ">
+                <p class="w-full h-10 p-2 px-3 text-gray-900 placeholder-transparent border border-gray-300 rounded-sm peer focus:ring-blue-500/40 focus:ring-4 focus:outline-none align-center focus:border-blue-600"  x-text="calculation_base={{ $rc?->ar_value }} + amount_of_interest_recorded + depreciation_and_amortization +allocations_to_provisions  ">
 
                 <p class="text-sm text-gray-400">Plafond de déductibilité</p>
                 <p class="w-full h-10 p-2 px-3 text-gray-900 placeholder-transparent border border-gray-300 rounded-sm peer focus:ring-blue-500/40 focus:ring-4 focus:outline-none align-center focus:border-blue-600"  x-text="calculation_base*0.3">

@@ -25,7 +25,7 @@ class StorePersonalInformationRequest extends FormRequest
     public function rules()
     {
         return [
-//            'email' => ['required', 'max:255', Rule::unique('users', 'email')->ignore(auth()->user()->id)],
+            //            'email' => ['required', 'max:255', Rule::unique('users', 'email')->ignore(auth()->user()->id)],
             'name' => ['required'],
             'firstname' => ['required'],
         ];

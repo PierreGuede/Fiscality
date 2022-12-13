@@ -36,7 +36,7 @@ class EditHandler extends Component
         $deficit = Deficit::whereCompanyId($this->company->id)->whereYear('created_at', Carbon::now()->year)->first();
 
         $deficit->fill([
-            'amount' => $this->amount,
+            'amount' => (float)$this->amount,
         ]);
 
         $deficit->save();

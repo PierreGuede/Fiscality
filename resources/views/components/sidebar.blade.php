@@ -27,6 +27,14 @@
             @endif
         </div>
     </a>
+
+    @hasanyrole('cabinet|Ressource')
+        <div class=" w-full px-2 mt-6" >
+            <div class="border-t border-blue-300 w-full" >
+                <x-app-sidebar.nav-link  label="Espace des Entreprises" href="{{ route('company.index', $company->id)  }}"  icon="office-building" />
+            </div>
+        </div>
+    @endhasanyrole
     <div class="w-full px-2 pb-2">
         <div class="mt-3 flex w-full flex-col items-center border-t border-blue-300">
 
@@ -47,6 +55,7 @@
                     <x-icon name="chevron-down" class="w-5"/>
                 </button>
 
+                @hasanyrole('cabinet|Ressource')
                 @if(empty(auth()->user()->profile->social_reason))
                     <div x-show="expanded" class="absolute z-50 bg-blue-50 h-40 overscroll-y-auto text-blue-900 p-1 rounded-md "
                          x-transition>
@@ -79,7 +88,7 @@
 
             </div>
         </div>
-{{--    @endunlessrole--}}
+    @endhasanyrole
 
     </div>
 
@@ -95,7 +104,7 @@
               class="ml-2 text-sm font-medium transition-all line-clamp-1"> {{ auth()->user()->name . ' ' . auth()->user()->firstname  }}</span>
     </button>
 
-    <div x-show="openDropdown" class=" absolute -top-[100%] left-0 ml-2 w-[90%] bg-blue-100 p-2 rounded-sm"
+    <div x-show="openDropdown" class=" absolute -top-[180%] left-0 ml-2 w-[90%] bg-blue-100 p-2 rounded-sm z-50"
          x-transition.scale>
         <form method="POST" action="{{ route('logout')  }}">
             @csrf

@@ -88,11 +88,10 @@ class CreateUser extends ModalComponent
 
             \Mail::to($this->email)->send(new SendUserCredential($user->name, $user->username, $user->email, $this->password));
 
-            $this->emit('getUserData');
-
             DB::commit();
-            $this->closeModal();
 
+            $this->emit('getUserData');
+            $this->closeModal();
         } catch (\Throwable $th) {
             DB::rollBack();
             throw $th;

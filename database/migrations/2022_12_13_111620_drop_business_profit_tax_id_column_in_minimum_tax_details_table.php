@@ -1,6 +1,5 @@
 <?php
 
-use App\Fiscality\Companies\Company;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -14,13 +13,9 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('depreciations', function (Blueprint $table) {
-            $table->id();
-            $table->string('category_imo');
-            $table->string('designation');
-            $table->string('dotation');
-            $table->foreignIdFor(Company::class)->constrained();
-            $table->timestamps();
+        Schema::whenTableHasColumn('minimum_tax_details', 'business_profit_tax_id',function (Blueprint $table) {
+            $table->dropForeign('minimum_tax_details_business_profit_tax_id_foreign');
+            $table->dropColumn('business_profit_tax_id');
         });
     }
 
@@ -31,6 +26,8 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('depreciations');
+        Schema::table('minimum_tax_details', function (Blueprint $table) {
+            //
+        });
     }
 };

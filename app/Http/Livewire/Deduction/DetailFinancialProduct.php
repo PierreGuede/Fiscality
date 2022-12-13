@@ -2,7 +2,6 @@
 
 namespace App\Http\Livewire\Deduction;
 
-use App\Models\FinancialProduct;
 use App\Models\FinancialProductDetail;
 use Carbon\Carbon;
 use Livewire\Component;
@@ -73,42 +72,5 @@ class DetailFinancialProduct extends Component
     public function closeASide()
     {
         $this->open_a_side = false;
-    }
-
-    public function save()
-    {
-        $this->validate();
-
-//        protected $fillable = ['total_other_product_rcm', 'total_income_securities_issued' , 'total_financial_product_amount', 'type'];
-
-        $total_other_product_rcm = (float) $this->product_rate * (float) $this->product_net_ircm_amount;
-        $total_income_securities_issued = (float) $this->other_rate * (float) $this->other_net_ircm_amount;
-
-        $financial_product = FinancialProduct::create([
-            'total_other_product_rcm' => $total_other_product_rcm,
-            'total_income_securities_issued' => $total_income_securities_issued,
-            'total_financial_product_amount' => $total_other_product_rcm + $total_income_securities_issued,
-            'company_id' => $this->company->id,
-        ]);
-
-        FinancialProductDetail::create([
-            'net_ircm_amount' => $this->product_net_ircm_amount,
-            'rate' => $this->product_rate,
-            'amount_deduct' => $total_other_product_rcm,
-            'type' => FinancialProductDetail::INCOME,
-            'company_id' => $this->company->id,
-            'financial_product_id' => $financial_product->id,
-        ]);
-
-        FinancialProductDetail::create([
-            'net_ircm_amount' => $this->other_net_ircm_amount,
-            'rate' => $this->other_rate,
-            'amount_deduct' => $total_income_securities_issued,
-            'type' => FinancialProductDetail::OTHER,
-            'company_id' => $this->company->id,
-            'financial_product_id' => $financial_product->id,
-        ]);
-
-        $this->closeASide();
     }
 }

@@ -67,13 +67,13 @@ class DetailDonationGrantContributions extends Component
             'state_donation_data' => $this->reformViewFormData(collect($this->state_donation_detail)),
             'donation_gifts_inputs' => collect($this->donation_gift_detail),
             'donation_gift' => $this->reformViewFormData(collect($this->donation_gift_detail)),
-            'turnover' => $this->donation_grant_contribution->turnover,
-            'limit' => $this->donation_grant_contribution->limit,
-            'thousandth_turnover' => $this->donation_grant_contribution->thousandth_turnover,
-            'total_state_donation' => $this->donation_grant_contribution->total_state_donation,
-            'surplus_state_donation' => $this->donation_grant_contribution->surplus_state_donation,
-            'total_donation_gift' => $this->donation_grant_contribution->total_donation_gift,
-            'surplus_state' => $this->donation_grant_contribution->surplus_state,
+            'turnover' => $this->donation_grant_contribution?->turnover,
+            'limit' => $this->donation_grant_contribution?->limit,
+            'thousandth_turnover' => $this->donation_grant_contribution?->thousandth_turnover,
+            'total_state_donation' => $this->donation_grant_contribution?->total_state_donation,
+            'surplus_state_donation' => $this->donation_grant_contribution?->surplus_state_donation,
+            'total_donation_gift' => $this->donation_grant_contribution?->total_donation_gift,
+            'surplus_state' => $this->donation_grant_contribution?->surplus_state,
         ]);
     }
 

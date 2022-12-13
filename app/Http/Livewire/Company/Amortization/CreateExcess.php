@@ -70,7 +70,6 @@ class CreateExcess extends ModalComponent
     {
         $this->validate();
         try {
-
             DB::beginTransaction();
 
             $ecart = (float) $this->data['taux_use'] - (float) $this->data['taux_recommended'];
@@ -96,6 +95,7 @@ class CreateExcess extends ModalComponent
             $this->closeModal();
         } catch (\Throwable $th) {
             DB::rollBack();
+
             return $th;
         }
     }

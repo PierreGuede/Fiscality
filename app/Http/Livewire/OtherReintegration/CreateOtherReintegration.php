@@ -12,54 +12,58 @@ use App\Models\DonationGrantContribution;
 use App\Models\OtherReintegration;
 use Carbon\Carbon;
 use Livewire\Component;
+use WireUi\Traits\Actions;
 
 class CreateOtherReintegration extends Component
 {
-    public $company;
+    use Actions;
 
-    public $expense_not_related;
-
+    // TODO: Remove from here
     public $state = 'create';
 
-    public $unjustfified_expense;
+    public $company;
 
-    public $remuneration_not_subject_withholding_tax;
+    public $expense_not_related = 0;
 
-    public $financial_cost;
+    public $unjustfified_expense = 0;
 
-    public $commission_on_purchase;
+    public $remuneration_not_subject_withholding_tax = 0;
 
-    public $commission_insurance_broker;
+    public $financial_cost = 0;
 
-    public $redevance;
+    public $commission_on_purchase = 0;
+
+    public $commission_insurance_broker = 0;
+
+    public $redevance = 0;
 
     public $accountind_financial_technical_assistance_costs;
 
-    public $interest_paid;
+    public $interest_paid = 0;
 
-    public $donation_grant_contribution;
+    public $donation_grant_contribution = 0;
 
-    public $advertising_gift;
+    public $advertising_gift = 0;
 
-    public $sumptuary_expenses;
+    public $sumptuary_expenses = 0;
 
-    public $occult_remuneration;
+    public $occult_remuneration = 0;
 
-    public $motor_vehicle_tax;
+    public $motor_vehicle_tax = 0;
 
-    public $income_tax;
+    public $income_tax = 0;
 
-    public $fines_penalities;
+    public $fines_penalities = 0;
 
-    public $past_assets;
+    public $past_assets = 0;
 
-    public $other_non_deductible_expense;
+    public $other_non_deductible_expense = 0;
 
-    public $variation_conversation_gap;
+    public $variation_conversation_gap = 0;
 
-    public $excess_rent;
+    public $excess_rent = 0;
 
-    public $other_non_deductible_expenses;
+    public $other_non_deductible_expenses = 0;
 
     public $listeners = ['refresh'];
 
@@ -162,9 +166,8 @@ class CreateOtherReintegration extends Component
             'company_id' => $this->company->id,
         ]);
 
-        notify()->success('Enregistrer avec succès');
-
-        $this->state = 'update';
+        $this->emit('refreshState');
+        $this->notification()->success('Succès', 'Opération effectuée avec succès!');
     }
 
         public function refreshFinancialCost()

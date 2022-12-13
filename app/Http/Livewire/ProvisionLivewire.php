@@ -4,7 +4,6 @@ namespace App\Http\Livewire;
 
 use App\Fiscality\AccuredCharges\AccuredCharge;
 use App\Models\AccuredChargeCompany;
-use Livewire\Component;
 use LivewireUI\Modal\ModalComponent;
 
 class ProvisionLivewire extends ModalComponent

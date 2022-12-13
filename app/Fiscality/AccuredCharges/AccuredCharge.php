@@ -13,9 +13,7 @@ class AccuredCharge extends Model
     use HasFactory;
 
     public const EXPENSE_PROVISIONED = 'expense_provisioned';
-
     public const PERSONNAL_PROVISION = 'personnal_provision';
-
     public const PROVISION = 'provision';
 
     protected $fillable = [

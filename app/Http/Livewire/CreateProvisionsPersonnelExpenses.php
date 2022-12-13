@@ -3,7 +3,6 @@
 namespace App\Http\Livewire;
 
 use App\Models\AccuredChargeCompany;
-use Livewire\Component;
 use LivewireUI\Modal\ModalComponent;
 
 class CreateProvisionsPersonnelExpenses extends ModalComponent
@@ -23,6 +22,7 @@ class CreateProvisionsPersonnelExpenses extends ModalComponent
     {
         $this->inputs->pull($key);
     }
+
     protected $rules = [
         'inputs.*.compte' => 'required|distinct|integer',
         'inputs.*.designation' => 'required',
@@ -34,7 +34,7 @@ class CreateProvisionsPersonnelExpenses extends ModalComponent
         'inputs.*.compte.integer' => 'Le champ doit etre un entier',
         'inputs.*.designation.required' => 'champ obligatoire',
         'inputs.*.amount.distinct' => 'incohérent',
-        'inputs.*.designation.required' => 'champ obligatoire',
+        //        'inputs.*.designation.required' => 'champ obligatoire',
         'inputs.*.amount' => 'champ obligatoire',
 
     ];
@@ -43,7 +43,6 @@ class CreateProvisionsPersonnelExpenses extends ModalComponent
     {
         return false;
     }
-
 
     public function mount($company)
     {
@@ -78,7 +77,7 @@ class CreateProvisionsPersonnelExpenses extends ModalComponent
             ]);
         }
 
-        $this->emit('refreshProvisionPersonnal');
+        $this->emit('refreshProvision');
         $this->emit('refreshTotalCard');
 
         $this->closeModal();

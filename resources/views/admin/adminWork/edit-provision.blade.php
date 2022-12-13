@@ -1,4 +1,4 @@
-<x-company-layout :company="$company" >
+    <x-company-layout :company="$company" >
 
     <div class="w-full  min-h-screen" >
 

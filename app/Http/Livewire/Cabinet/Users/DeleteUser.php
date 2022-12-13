@@ -22,6 +22,7 @@ class DeleteUser extends ModalComponent
     public function delete()
     {
         $this->user->delete();
+
         return redirect(request()->header('Referer'));
     }
 }

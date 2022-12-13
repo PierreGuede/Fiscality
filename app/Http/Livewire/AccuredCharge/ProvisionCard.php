@@ -31,6 +31,6 @@ class ProvisionCard extends Component
 
     public function refreshProvision()
     {
-        $this->total = AccuredChargeCompany::where('type', 'provision')->whereCompanyId($this->company->id)->whereYear('created_at',Carbon::now()->year)->first();
+        $this->total = AccuredChargeCompany::where('type', 'provision')->whereCompanyId($this->company->id)->whereYear('created_at', Carbon::now()->year)->first();
     }
 }

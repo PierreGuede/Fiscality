@@ -3,7 +3,7 @@
 
     <div class="w-full  min-h-screen" >
         <div class="max-w-5xl w-full mx-auto">
-        <x-title>Surplus d'amortissement</x-title>
+        <x-title>Provisions pour risque d'exploitation</x-title>
 
             <table class="w-full" >
                 <thead class="bg-transparent uppercase py-2 text-gray-600" >

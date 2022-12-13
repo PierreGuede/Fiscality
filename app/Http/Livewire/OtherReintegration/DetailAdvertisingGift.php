@@ -36,10 +36,10 @@ class DetailAdvertisingGift extends Component
 
         $this->fill([
             'inputs' => collect($advertising_gift_detail),
-            'turnover' => $advertising_gift->turnover,
-            'total_amount' => $advertising_gift->total_amount,
-            'surplus_reintegrated' => $advertising_gift->surplus_reintegrated,
-            'deduction_limit' => $advertising_gift->deduction_limit,
+            'turnover' => is_null($advertising_gift?->turnover) ? 0 : $advertising_gift->turnover,
+            'total_amount' => is_null($advertising_gift?->total_amount) ? 0 : $advertising_gift->total_amount,
+            'surplus_reintegrated' => is_null($advertising_gift?->surplus_reintegrated) ? 0 : $advertising_gift->surplus_reintegrated,
+            'deduction_limit' => is_null($advertising_gift?->deduction_limit) ? 0 : $advertising_gift->deduction_limit,
         ]);
     }
 

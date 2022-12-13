@@ -67,7 +67,7 @@ class EditAdvertisingGift extends Component
 
         $this->fill([
             'inputs' => collect($this->advertising_gift_detail),
-            'turnover' => $this->advertising_gift->turnover,
+            'turnover' => $this->advertising_gift?->turnover,
         ]);
     }
 

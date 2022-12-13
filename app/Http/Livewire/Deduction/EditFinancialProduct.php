@@ -108,7 +108,8 @@ class EditFinancialProduct extends Component
         ]);
         $this->second_financial_product->save();
 
-        $this->emit('refreshDeductionData');
+        $this->emit('refreshFinancialCost');
+
 
         $this->closeASide();
     }

@@ -10,9 +10,12 @@ use App\Models\MinimumTaxDetail;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
 use LivewireUI\Modal\ModalComponent;
+use WireUi\Traits\Actions;
 
 class EditMinimumTax extends ModalComponent
 {
+    use Actions;
+
     public Amortization $model;
 
     public $company;
@@ -107,6 +110,9 @@ class EditMinimumTax extends ModalComponent
             DB::commit();
 
             $this->emit('updateMaxValue');
+            $this->emit('updateMinimumTax');
+
+            $this->notification()->success('Succès', 'Opération effectuée avec succès!');
 
             $this->closeModal();
         } catch (\Throwable $th) {

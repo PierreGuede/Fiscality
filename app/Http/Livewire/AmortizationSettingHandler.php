@@ -108,6 +108,19 @@ class AmortizationSettingHandler extends Component
         }
     }
 
+    public static function setup($company_id)
+    {
+        $guruAmortizationSetting = GuruAmortizationSetting::first();
+
+            AmortizationSetting::create([
+                'depreciation_base_limit' => $guruAmortizationSetting->depreciation_base_limit,
+                'recommended_rate' => $guruAmortizationSetting->recommended_rate,
+                'company_id' => $company_id,
+                'user_id' => auth()->user()->id,
+            ]);
+
+    }
+
     public function toggleEditDepreciationBaseLimit()
     {
         $this->edit_depreciation_base_limit = ! $this->edit_depreciation_base_limit;

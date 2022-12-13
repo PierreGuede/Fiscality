@@ -137,7 +137,7 @@
                          wire:model.defer="interest_rate_charged" x-model="interest_rate_charged"
                          value="{{ old('delay_condition') }}" class="block w-full" required autofocus/>
 
-                <x-input type="number" label="Taux d'intérêt de la BCEAO de l'année" id="delay_condition" name=""
+                <x-input :disabled="true" type="number" label="Taux d'intérêt de la BCEAO de l'année" id="delay_condition" name=""
                          wire:model.defer="bceao_interest_rate_for_the_year"
                          value="4" class="block w-full" required autofocus x-model="bceaoRate"/>
 

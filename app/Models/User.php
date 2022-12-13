@@ -134,7 +134,7 @@ class User extends Authenticatable implements MustVerifyEmail
     }
 
     /**
-     * @param  $n
+     * @param    $n
      * @return string
      */
     public static function generatePassword(int $n)
