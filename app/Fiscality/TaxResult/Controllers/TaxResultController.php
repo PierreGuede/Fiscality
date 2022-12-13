@@ -26,6 +26,8 @@ class TaxResultController extends Controller
         $head_office_cost = HeadOfficeCost::whereCompanyId($company->id)->whereYear('created_at', Carbon::now()->year)->first();
         $head_office_cost_total = $head_office_cost?->non_deductible_head_office_costs;
 
+//      dump($data['other_reintegration']);
+
         return view('admin.tax-result.index', compact('company', 'data', 'total_tax_result_before_head_office_cost', 'total_tax_result_before_deficit_report', 'deficit_total', 'head_office_cost_total'));
     }
 

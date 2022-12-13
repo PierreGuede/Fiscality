@@ -45,6 +45,7 @@ class TaxResultRepository implements TaxResultRepositoryInterface
         $deduction = Deduction::whereCompanyId($this->company->id)->whereYear('created_at', Carbon::now()->year)->first();
 
         $other_reintegration = OtherReintegration::whereCompanyId($this->company->id)->whereYear('created_at', Carbon::now()->year)->first();
+
         $other_reintegration_data = [
             'expense_not_related' => $other_reintegration?->expense_not_related,
             'unjustfified_expense' => $other_reintegration?->unjustfified_expense,
@@ -59,6 +60,7 @@ class TaxResultRepository implements TaxResultRepositoryInterface
             'other_non_deductible_expense' => $other_reintegration?->other_non_deductible_expense,
             'variation_conversation_gap' => $other_reintegration?->variation_conversation_gap,
             'other_non_deductible_expenses' => $other_reintegration?->other_non_deductible_expenses,
+            'interest_paid' => $other_reintegration?->interest_paid,
         ];
 
         $data = [
