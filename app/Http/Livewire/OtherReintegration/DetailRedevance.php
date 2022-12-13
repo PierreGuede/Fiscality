@@ -76,10 +76,10 @@ class DetailRedevance extends Component
         $this->reformInputsDataForArraySum($this->redevance_details);
         $this->fill([
             'inputs' => collect($this->redevance_details),
-            'amount' => $this->redevance->amount,
-            'turnover' => (float) $this->redevance->turnover,
-            'deduction_limit' => (float) $this->redevance->turnover * 0.05,
-            'amount_reintegrated' => $this->redevance->amount_reintegrated,
+            'amount' => is_null($this->redevance?->amount) ? 0 : $this->redevance?->amount,
+            'turnover' => is_null($this->redevance?->turnover) ? 0 : (float) $this->redevance->turnover,
+            'deduction_limit' => is_null($this->redevance?->turnover) ? 0 : (float) $this->redevance->turnover * 0.05,
+            'amount_reintegrated' => is_null($this->redevance?->amount_reintegrated) ? 0 : $this->redevance?->amount_reintegrated,
         ]);
     }
 
