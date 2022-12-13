@@ -134,6 +134,7 @@
                                         <x-input type="text"
                                                  label="Raison sociale"
                                                  id="name"
+                                                 name="name"
                                                  wire:model="name" {{-- name="name" --}}
                                                  class="block w-full"
                                                  value="{{ old('name')}}"
@@ -145,6 +146,7 @@
                                     <div class="mt-4">
                                         <x-input wire:model="email" label="Email"
                                         type="email"
+                                                 name="email"
                                                  class="block w-full"
                                                  value="{{ old('email') }}"/>
                                     </div>
@@ -153,6 +155,7 @@
                                     <x-label for="created_date" :value="__('Date de création')"/>
                                     <x-datetime-picker
                                         label=""
+                                        name="created_date"
                                         wire:model="created_date"
                                         class="rounded-sm shadow-none border-gray-300"
                                         without-time="true"
@@ -164,7 +167,8 @@
                                     <div class="mt-4 ">
                                         <x-label for="ifu" :value="__('IFU')"/>
                                         <x-input label="IFU" wire:model="ifu" {{-- name="ifu" --}}
-                                        type="text"
+                                                type="text"
+                                                 name="ifu"
                                                  class="block w-full"
                                                  value="{{ old('ifu') }}"/>
                                     </div>
@@ -175,15 +179,17 @@
                                     <div class="mt-4">
                                         <x-label for="rccm" :value="__('RCCM')"/>
                                         <x-input wire:model="rccm" {{-- name="rccm" --}}
-                                        type="text"
-                                        label="RCCM"
-                                        class="block w-full"
-                                        value="{{ old('rccm') }}"/>
+                                                type="text"
+                                                 name="rccm"
+                                                label="RCCM"
+                                                class="block w-full"
+                                                value="{{ old('rccm') }}"/>
                                     </div>
                                     <div class="mt-4">
                                         <x-label id="celphone" :value="__('Numéro de téléphone')"/>
                                         <x-input label="Numéro de téléphone" wire:model="celphone" {{-- name="celphone" --}}
                                         type="text"
+                                         name="celphone"
                                         class="block w-full"
                                         value="{{ old('celphone') }}"/>
                                     </div>

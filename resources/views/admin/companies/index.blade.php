@@ -4,8 +4,10 @@
             <h5 class="text-2xl font-semibold text-blue-900">Espace entreprise</h5>
 
             @hasrole('cabinet')
-                <x-form.button href="{{ route('company.enterprise') }}" primary outline right-icon="plus-circle"
-                           label="Ajouter"/>
+                @if(count(auth()->user()->company) < auth()->user()->subscription->packs->max)
+                    <x-form.button href="{{ route('company.enterprise') }}" primary outline right-icon="plus-circle"
+                               label="Ajouter"/>
+                @endif
             @endhasrole
         </div>
 

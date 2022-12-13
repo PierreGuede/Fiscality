@@ -41,9 +41,9 @@ class TwoFactorCode extends Notification
     {
         return (new MailMessage)
             ->line('Voici votre code '.$notifiable->two_factor_code)
-            ->action('Cliquez ici pour vérifiez', route('verify.index'))
+            ->action('Cliquez ici pour vérifier', route('verify.index'))
             ->line('Ce code va s\'expirer dans 10min')
-            ->line('Vous pouvez ignorez ce message si vous n\'avez pas essayé de vous authentifié.');
+            ->line('Vous pouvez ignorer ce message si vous n\'avez pas essayé de vous authentifier.');
     }
 
     /**

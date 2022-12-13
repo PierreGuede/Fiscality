@@ -24,7 +24,6 @@ return new class extends Migration
             $table->string('ecart');
             $table->string('dotation');
             $table->string('deductible_amortization');
-            $table->foreignIdFor(Amortization::class)->constrained();
             $table->foreignIdFor(Company::class)->constrained();
             $table->timestamps();
         });

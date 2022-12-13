@@ -1,4 +1,6 @@
 <table class="w-full mt-12" >
+    <x-notifications position="top-right" />
+
     <thead class="bg-transparent uppercase py-2 text-gray-600" >
     <th class="text-left text-xs py-3.5 font-semibold" >#</th>
     <th class="text-left text-xs py-3.5 font-semibold" >Nom</th>
@@ -25,7 +27,11 @@
             <td class=" text-left text-xs font-semibold py-4  my-10" >
                 <x-dropdown>
                     <x-dropdown.item @click="Livewire.emit('openModal', 'cabinet.users.detail-user', {{ json_encode([$user->id]) }})" >
-                        <span class="font-medium" > Voir</span>
+                        <span class="font-medium" >Voir</span>
+                    </x-dropdown.item>
+
+                    <x-dropdown.item wire:click="resendConfirmationMail({{$user->id}})" >
+                        <span class="font-medium" >Renvoyer le mail</span>
                     </x-dropdown.item>
 
                     <x-dropdown.item @click="Livewire.emit('openModal', 'cabinet.users.edit-user', {{ json_encode([$user->id]) }})" >

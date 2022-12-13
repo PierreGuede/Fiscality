@@ -20,6 +20,10 @@ class User extends Authenticatable implements MustVerifyEmail
 {
     use HasApiTokens, HasFactory, Notifiable, HasRoles;
 
+    public const PASSWORD_LENGTH = 8;
+
+    public const DEFAULT_ROLE = 'Ressource';
+
     protected $dates = [
         'updated_at',
         'created_at',
@@ -127,6 +131,23 @@ class User extends Authenticatable implements MustVerifyEmail
         $this->two_factor_code = null;
         $this->two_factor_expires_at = null;
         $this->save();
+    }
+
+    /**
+     * @param  $n
+     * @return string
+     */
+    public static function generatePassword(int $n)
+    {
+        $characters = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+        $randomString = '';
+
+        for ($i = 0; $i < $n; $i++) {
+            $index = rand(0, strlen($characters) - 1);
+            $randomString .= $characters[$index];
+        }
+
+        return $randomString;
     }
 
 //    protected static function boot()

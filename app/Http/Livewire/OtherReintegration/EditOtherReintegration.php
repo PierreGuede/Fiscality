@@ -13,9 +13,11 @@ use App\Models\DonationGrantContribution;
 use App\Models\OtherReintegration;
 use Carbon\Carbon;
 use Livewire\Component;
+use WireUi\Traits\Actions;
 
 class EditOtherReintegration extends Component
 {
+    use Actions;
     public Company $company;
 
     public OtherReintegration $other_reintegration;
@@ -212,9 +214,9 @@ class EditOtherReintegration extends Component
         ]);
         $this->other_reintegration->save();
 
-        notify()->success('Enregistrer avec succès');
-
         $this->emit('refreshState');
+        $this->notification()->success('Succès', 'Opération effectuée avec succès!');
+
     }
 
         public function refreshFinancialCost()

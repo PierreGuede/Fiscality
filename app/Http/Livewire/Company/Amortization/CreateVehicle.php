@@ -6,9 +6,12 @@ use App\Fiscality\Amortizations\Amortization;
 use App\Fiscality\Companies\Company;
 use App\Fiscality\Vehicles\Vehicle;
 use LivewireUI\Modal\ModalComponent;
+use WireUi\Traits\Actions;
 
 class CreateVehicle extends ModalComponent
 {
+    use Actions;
+
     public Amortization $model;
 
     public $company;
@@ -59,7 +62,6 @@ class CreateVehicle extends ModalComponent
     {
         $this->validate();
 
-        $armortization = Amortization::create([]);
         try {
             $ecart = $this->data['value'] - $this->data['plafond'];
             $deductibleAmortization = ((float) $this->data['dotation'] * (float) $ecart) / (float) $this->data['value'];
@@ -71,11 +73,14 @@ class CreateVehicle extends ModalComponent
                 'dotation' => $this->data['dotation'],
                 'deductible_amortization' => $deductibleAmortization,
                 'date' => $this->data['date'],
-                'amortization_id' => $armortization->id,
                 'company_id' => $this->company->id,
             ]);
 
             $this->emit('newVehicle');
+            $this->notification()->success(
+                $title = 'Succès',
+                $description = 'Opération effectuée avec succès!'
+            );
 
             $this->closeModal();
         } catch (\Throwable $th) {

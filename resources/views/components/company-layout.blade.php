@@ -25,6 +25,7 @@
 <body class="selection:bg-blue-500 font-sans selection:text-white"
       @keydown.escape="showModal = false"
       x-cloak>
+<x-notifications position="top-right" />
 
 <div x-data="globalData" class="w-full flex bg-blue-50 max-h-screen overflow-hidden min-h-screen">
     <div>

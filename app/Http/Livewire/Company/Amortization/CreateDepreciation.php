@@ -7,9 +7,12 @@ use App\Fiscality\Companies\Company;
 use App\Fiscality\Depreciations\Depreciation;
 use App\Fiscality\Vehicles\Vehicle;
 use LivewireUI\Modal\ModalComponent;
+use WireUi\Traits\Actions;
 
 class CreateDepreciation extends ModalComponent
 {
+    use Actions;
+
     public Amortization $model;
 
     public Vehicle $amortisation;
@@ -58,17 +61,19 @@ class CreateDepreciation extends ModalComponent
     {
         $this->validate();
 
-        $armortization = Amortization::create([]);
         try {
             $amortisationDetails = Depreciation::create([
                 'category_imo' => $this->data['category_imo'],
                 'designation' => $this->data['designation'],
                 'dotation' => $this->data['dotation'],
-                'amortization_id' => $armortization->id,
                 'company_id' => $this->company->id,
             ]);
 
             $this->emit('newDepreciation');
+            $this->notification()->success(
+                $title = 'Succès',
+                $description = 'Opération effectuée avec succès!'
+            );
 
             $this->closeModal();
         } catch (\Throwable $th) {

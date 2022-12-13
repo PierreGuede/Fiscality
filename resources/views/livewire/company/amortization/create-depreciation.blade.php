@@ -22,7 +22,7 @@
         </div>
 
         <div>
-            <x-input x-model="dotation" wire:model.defer="data.dotation" type="text" label="Dotation comptabilisée" id="dotation" name="dotation"
+            <x-input x-model="dotation" wire:model.defer="data.dotation" type="number" label="Dotation comptabilisée" id="dotation" name="dotation"
                      value="{{ old('dotation') }}" class="block w-full" required autofocus />
             @error('data.dotation')
             <span class="text-xs text-red-600">{{ $message }}</span>

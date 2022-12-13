@@ -19,22 +19,22 @@ class CreatePersonnalProvisionHandler extends ModalComponent
     public $inputs;
 
     protected $rules = [
-        'inputs.*.account' => 'required|distinct|integer',
-        'inputs.*.name' => 'required',
+        'inputs.*.compte' => 'required|distinct|integer',
+        'inputs.*.designation' => 'required',
         'inputs.*.amount' => 'required',
     ];
 
     protected $messages = [
-        'inputs.*.account.required' => 'champ obligatoire',
-        'inputs.*.account.distinct' => 'incohérent',
-        'inputs.*.name.required' => 'champ obligatoire',
+        'inputs.*.compte.required' => 'champ obligatoire',
+        'inputs.*.compte.distinct' => 'incohérent',
+        'inputs.*.designation.required' => 'champ obligatoire',
         'inputs.*.amount' => 'champ obligatoire',
 
     ];
 
     public function add()
     {
-        $this->inputs->push(['account' => '', 'name' => '', 'amount' => '', 'type' => AccuredChargeCompany::PERSONNAL_PROVISION]);
+        $this->inputs->push(['compte' => '', 'designation' => '', 'amount' => '', 'type' => AccuredChargeCompany::PERSONNAL_PROVISION]);
     }
 
     public function remove($key)
@@ -70,7 +70,22 @@ class CreatePersonnalProvisionHandler extends ModalComponent
         try {
             DB::beginTransaction();
 
+            foreach ($this->inputs as  $value) {
+                AccuredChargeCompany::create( [
+                    'compte' => $value['compte'],
+                    'designation' => $value['designation'],
+                    'type' => AccuredChargeCompany::PERSONNAL_PROVISION,
+                    'amount' => $value['amount'],
+                    'company_id' => $this->company['id'],
+                    'date' => date('Y'),
+                ]);
+            }
+
+
+
             DB::commit();
+            $this->emit('refreshProvision');
+            $this->emit('refreshTotalCard');
             $this->closeModal();
         } catch (\Throwable $th) {
             DB::rollBack();

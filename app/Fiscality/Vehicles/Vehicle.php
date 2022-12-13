@@ -24,7 +24,6 @@ class Vehicle extends Model
         'ecart',
         'deductible_amortization',
         'date',
-        'amortization_id',
         'company_id',
     ];
 

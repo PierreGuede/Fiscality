@@ -21,13 +21,13 @@
       x-cloak>
 
 <div x-data="globalData" class="w-full flex bg-blue-50 max-h-screen overflow-hidden min-h-screen">
+{{--        Wire Ui--}}
 
 {{--    @if($hide)--}}
-    @hasrole('cabinet')
-
-    <div  class="  " >
-        <x-app-sidebar  />
-    </div>
+    @hasanyrole('cabinet|Ressource')
+        <div  class="  " >
+            <x-app-sidebar  />
+        </div>
     @endhasrole
 
     {{--    @endif--}}

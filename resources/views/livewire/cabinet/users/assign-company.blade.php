@@ -12,7 +12,7 @@
                     wire:model.defer="assign_companies"
                 />
         </div>
-@dump($companies)
+{{--@dump($companies)--}}
         <div class="flex justify-end gap-x-3.5 mt-6">
             <x-button type="button" wire:click=""  onclick="Livewire.emit('closeModal', 'create-user')" variant="neutral"> Annuler</x-button>
             <x-button type="submit">Confirmer</x-button>

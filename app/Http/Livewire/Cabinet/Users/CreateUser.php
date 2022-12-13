@@ -74,7 +74,6 @@ class CreateUser extends ModalComponent
         }
 
         try {
-
             DB::beginTransaction();
 
             $user = User::create([

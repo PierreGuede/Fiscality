@@ -11,22 +11,22 @@
                     <div class="flex gap-x-4 ">
                         <div class="w-12">
                             <x-input :disabled="count($data) > $key"
-                                     class="w-full" for="input_{{ $key }}_account"
-                                     type="number" id="input_{{ $key }}_account" label=''
-                                     wire:model.defer="inputs.{{ $key }}.account"
+                                     class="w-full" for="input_{{ $key }}_compte"
+                                     type="number" id="input_{{ $key }}_compte" label=''
+                                     wire:model.defer="inputs.{{ $key }}.compte"
                                      placeholder="Compte" class="" required autofocus/>
-                            @error('inputs.' . $key . '.account')
+                            @error('inputs.' . $key . '.compte')
                             <span class="text-xs text-red-600">{{ $message }}</span>
                             @enderror
                         </div>
 
                         <div class="flex-1 w-full">
-                            <x-input :disabled="count($data) > $key" for="input_{{ $key }}_name"
-                                     type="text" id="input_{{ $key }}_name" label='Nom'
-                                     wire:model.defer="inputs.{{ $key }}.name"
+                            <x-input :disabled="count($data) > $key" for="input_{{ $key }}_designation"
+                                     type="text" id="input_{{ $key }}_designation" label='Nom'
+                                     wire:model.defer="inputs.{{ $key }}.designation"
                                      placeholder="Nom"
                                      class="" required autofocus/>
-                            @error('inputs.' . $key . '.name')
+                            @error('inputs.' . $key . '.designation')
                             <span class="text-xs text-red-600">{{ $message }}</span>
                             @enderror
                         </div>

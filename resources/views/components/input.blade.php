@@ -12,7 +12,7 @@
             {{ $label  }}
            </label>
     </div>
-    @error($name)
-        <span class="text-xs text-red-600">{{ $message }}</span>
-    @enderror
+    @if($errors->has($name))
+        <span class="text-xs text-red-600"> {{ $errors->first($name) }}</span>
+    @endif
 </div>

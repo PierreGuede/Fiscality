@@ -53,10 +53,7 @@
                   class="ml-2 text-sm font-medium transition-all line-clamp-1"> {{ auth()->user()->name . ' ' . auth()->user()->firstname  }}</span>
         </button>
 
-        <div x-show="openDropdown" class=" absolute -top-[180%] left-0 ml-2 w-[90%] bg-blue-100 p-2 rounded-sm"
-             x-transition.scale>
-
-{{--            <button class=" w-full text-left p-2 text-slate-700 hover:bg-blue-50">Profile</button>--}}
+        <div x-show="openDropdown" class=" absolute -top-[100%] left-0 ml-2 w-[90%] bg-blue-100 p-2 rounded-sm" x-transition.scale>
             <form method="POST" action="{{ route('logout')  }}">
                 @csrf
                 <a href="{{ route('logout')  }}" onclick="event.preventDefault();this.closest('form').submit()"

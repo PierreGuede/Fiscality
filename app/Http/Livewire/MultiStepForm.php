@@ -189,11 +189,20 @@ class MultiStepForm extends Component
 
         $this->validate([
             'name' => ['required', 'string', 'max:255'],
-            'rccm' => ['required', 'string', 'max:14', 'unique:companies'],
+            'rccm' => ['required', 'string', 'max:200', 'unique:companies'],
             'created_date' => ['required', 'date'],
             'ifu' => ['required', 'integer', 'digits:13', 'unique:companies'],
             'email' => ['required', 'string', 'max:255', 'unique:companies'],
             'celphone' => ['required', 'max:255', 'unique:companies'],
+        ], [
+            'name.required' => 'champ obligatoire',
+            'rccm.required' => 'champ obligatoire',
+            'created_date.required' => 'champ obligatoire',
+            'ifu.required' => 'champ obligatoire',
+            'ifu.digits' => '13 chiffres maximum',
+            'ifu.unique' => 'Le numéro IFU existe déjà',
+            'email.required' => 'champ obligatoire',
+            'celphone.required' => 'champ obligatoire',
         ]);
         /*         $ifuFile = 'IFU_DU_'.time().'.'.$this->path->getClientOriginalName();
                 $rccmFile = 'RCCM_DU_'.time().'.'.$this->path_rccm->getClientOriginalName();

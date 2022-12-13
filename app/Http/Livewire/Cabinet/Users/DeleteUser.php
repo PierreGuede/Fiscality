@@ -9,8 +9,9 @@ class DeleteUser extends ModalComponent
 {
     public User $user;
 
-    public function mount(User $user)
+    public function mount($user_id)
     {
+        $this->user = User::whereId($user_id)->first();
     }
 
     public function render()
@@ -21,7 +22,6 @@ class DeleteUser extends ModalComponent
     public function delete()
     {
         $this->user->delete();
-
-        $this->closeModal();
+        return redirect(request()->header('Referer'));
     }
 }

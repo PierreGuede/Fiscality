@@ -6,10 +6,14 @@ use App\Fiscality\Amortizations\Amortization;
 use App\Fiscality\Companies\Company;
 use App\Fiscality\Excesss\Excess;
 use App\Fiscality\Vehicles\Vehicle;
+use Illuminate\Support\Facades\DB;
 use LivewireUI\Modal\ModalComponent;
+use WireUi\Traits\Actions;
 
 class CreateExcess extends ModalComponent
 {
+    use Actions;
+
     public Amortization $model;
 
     public Vehicle $amortisation;
@@ -65,24 +69,34 @@ class CreateExcess extends ModalComponent
     public function save()
     {
         $this->validate();
+        try {
 
-        $armortization = Amortization::create([]);
-        $ecart = (float) $this->data['taux_use'] - (float) $this->data['taux_recommended'];
-        $deductibleAmortization = ((float) $this->data['dotation'] * (float) $ecart) / (float) $this->data['taux_use'];
-        Excess::create([
-            'category_imo' => $this->data['category_imo'],
-            'designation' => $this->data['designation'],
-            'taux_use' => $this->data['taux_use'],
-            'taux_recommended' => $this->data['taux_recommended'],
-            'ecart' => $ecart,
-            'dotation' => $this->data['dotation'],
-            'deductible_amortization' => $deductibleAmortization,
-            'amortization_id' => $armortization->id,
-            'company_id' => $this->company->id,
-        ]);
+            DB::beginTransaction();
 
-        $this->emit('newExcess');
+            $ecart = (float) $this->data['taux_use'] - (float) $this->data['taux_recommended'];
+            $deductibleAmortization = ((float) $this->data['dotation'] * (float) $ecart) / (float) $this->data['taux_use'];
+            Excess::create([
+                'category_imo' => $this->data['category_imo'],
+                'designation' => $this->data['designation'],
+                'taux_use' => $this->data['taux_use'],
+                'taux_recommended' => $this->data['taux_recommended'],
+                'ecart' => $ecart,
+                'dotation' => $this->data['dotation'],
+                'deductible_amortization' => $deductibleAmortization,
+                'company_id' => $this->company->id,
+            ]);
 
-        $this->closeModal();
+            $this->emit('newExcess');
+            $this->notification()->success(
+                $title = 'Succès',
+                $description = 'Opération effectuée avec succès!'
+            );
+
+            DB::commit();
+            $this->closeModal();
+        } catch (\Throwable $th) {
+            DB::rollBack();
+            return $th;
+        }
     }
 }

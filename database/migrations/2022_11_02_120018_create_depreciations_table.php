@@ -20,7 +20,6 @@ return new class extends Migration
             $table->string('category_imo');
             $table->string('designation');
             $table->string('dotation');
-            $table->foreignIdFor(Amortization::class)->constrained();
             $table->foreignIdFor(Company::class)->constrained();
             $table->timestamps();
         });
