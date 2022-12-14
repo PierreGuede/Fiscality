@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Fiscality\Domains\Domain;
 use App\Fiscality\PrincipalActivities\PrincipalActivity;
+use App\Fiscality\PrincipalActivities\Requests\CreatePrincipalActivityRequest;
+use App\Fiscality\PrincipalActivities\Requests\UpdatePrincipalActivityRequest;
 use Illuminate\Http\Request;
 
 class PrincipalActivityController extends Controller
@@ -15,12 +17,15 @@ class PrincipalActivityController extends Controller
 
         return view('admin.principalActivity.index', ['typeAct' => $typeAct, 'domain' => $domain]);
     }
-
-    public function store(Request $request)
+    public function create()
     {
-        $request->validate([
-            'name' => ['required', 'string', 'max:255', 'unique:type_impots'],
-        ]);
+        $domain = Domain::all();
+
+        return view('admin.principalActivity.create', [ 'domain' => $domain]);
+    }
+
+    public function store(CreatePrincipalActivityRequest $request)
+    {
         $typeAct = PrincipalActivity::create([
             'name' => $request['name'],
             'domain_id' => $request['domain_id'],
@@ -31,13 +36,15 @@ class PrincipalActivityController extends Controller
 
     public function edit(PrincipalActivity $id)
     {
-        return view('admin.principalActivity.update', ['typeAct' => $id]);
+        $domain = Domain::all();
+
+        return view('admin.principalActivity.update', ['typeAct' => $id,'domain' => $domain]);
     }
 
-    public function update(Request $request, $id)
+    public function update(UpdatePrincipalActivityRequest $request, $id)
     {
         $typeAct = PrincipalActivity::find($id);
-        $typeAct->update(['name' => $request['name']]);
+        $typeAct->update($request->validated());
 
         return redirect()->route('typeAct.index');
     }

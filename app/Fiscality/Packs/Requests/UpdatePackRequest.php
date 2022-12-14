@@ -2,6 +2,7 @@
 
 namespace App\Fiscality\Packs\Requests;
 
+use Illuminate\Validation\Rule;
 use Illuminate\Foundation\Http\FormRequest;
 
 class UpdatePackRequest extends FormRequest
@@ -24,7 +25,9 @@ class UpdatePackRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'name' => ['sometimes', 'required', 'string', 'max:255', Rule::unique('packs')->ignore($this->id)],
+            'max' => ['required', 'integer', 'max:255',],
+            'description' => ['required', 'string', 'max:255',],
         ];
     }
 }

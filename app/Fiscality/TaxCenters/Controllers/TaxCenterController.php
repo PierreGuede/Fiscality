@@ -23,7 +23,7 @@ class TaxCenterController extends Controller
 
     public function store(CreateTaxCenterRequest $request)
     {
-        $taxCenter = $this->taxCenterRepositoryInterface->store($request->all());
+        $taxCenter = $this->taxCenterRepositoryInterface->store($request->validated());
 
         return response()->json(['taxCenter' => $taxCenter, 'message' => 'Enregistrement bien effectué']);
     }
@@ -35,7 +35,7 @@ class TaxCenterController extends Controller
 
     public function update(UpdateTaxCenterRequest $request, $id)
     {
-        $taxCenter = $this->taxCenterRepositoryInterface->update($request->all(), $id);
+        $taxCenter = $this->taxCenterRepositoryInterface->update($request->validated(), $id);
 
         return response()->json(['taxCenter' => $taxCenter, 'message' => 'Modifié avec succès']);
     }

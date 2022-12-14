@@ -1,6 +1,6 @@
 @props(['footer'])
 
-<x-app-layout>
+<x-admin-space-layout>
 
     <h5 class="text-3xl font-semibold text-blue-900">Paramètre</h5>
 
@@ -19,4 +19,4 @@
             </div>
         </div>
     </div>
-</x-app-layout>
+</x-admin-space-layout>

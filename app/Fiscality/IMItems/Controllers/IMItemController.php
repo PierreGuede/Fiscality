@@ -23,7 +23,7 @@ class IMItemController extends Controller
 
     public function store(CreateIMItemRequest $request)
     {
-        $imItem = $this->imItemRepositoryInterface->store($request->all());
+        $imItem = $this->imItemRepositoryInterface->store($request->validated());
 
         return response()->json(['imItem' => $imItem, 'message' => 'Enregistrement bien effectué']);
     }
@@ -35,7 +35,7 @@ class IMItemController extends Controller
 
     public function update(UpdateIMItemRequest $request, $id)
     {
-        $imItem = $this->imItemRepositoryInterface->update($request->all(), $id);
+        $imItem = $this->imItemRepositoryInterface->update($request->validated(), $id);
 
         return response()->json(['imItem' => $imItem, 'message' => 'Modifié avec succès']);
     }

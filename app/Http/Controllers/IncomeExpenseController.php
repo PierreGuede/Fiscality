@@ -16,6 +16,12 @@ class IncomeExpenseController extends Controller
         return view('admin.accounting-products.index', ['productCountable' => $productCountable]);
     }
 
+    public function create()
+    {
+
+        return view('admin.accounting-products.create');
+    }
+
     public function store(Request $request)
     {
         $request->validate([

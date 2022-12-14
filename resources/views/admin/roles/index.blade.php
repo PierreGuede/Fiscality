@@ -1,4 +1,4 @@
-<x-app-layout>
+<x-admin-space-layout>
 
     <div class="p-4 " >
         <div class="flex justify-between ">
@@ -139,4 +139,4 @@
 {{--    </section>--}}
 
 
-</x-app-layout>
+</x-admin-space-layout>

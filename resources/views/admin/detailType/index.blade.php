@@ -1,19 +1,14 @@
-<x-app-layout>
+<x-admin-space-layout>
     <x-slot name="header">
 
         {{ __('Les Details') }}
 
     </x-slot>
-    <div class="p-4 bg-white rounded-lg shadow-xs">
-        <div class="flex p-2">
+    <div class="p-4 rounded-lg shadow-xs">        <div class="flex p-2">
             <div class="w-4/5">
                 Liste
             </div>
-            <div class="w-1/5 items-center text-center">
-                <button type="button"
-                    class="bg-green-500 border border-gray-500 text-white font-bold py-2 px-4 rounded-md"
-                    @click="showModal = true">Creer un Type</button>
-            </div>
+
         </div>
         <table class="p-2 w-full text-sm text-left text-gray-500    ">
             <thead class="text-xs text-gray-700 uppercase bg-gray-200      ">
@@ -208,4 +203,4 @@
         </div><!-- /Overlay -->
 
     </section>
-</x-app-layout>
+</x-admin-space-layout>

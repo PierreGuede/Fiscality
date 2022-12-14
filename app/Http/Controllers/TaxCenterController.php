@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Fiscality\TaxCenters\Requests\CreateTaxCenterRequest;
 use App\Fiscality\TaxCenters\TaxCenter;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
@@ -15,11 +16,13 @@ class TaxCenterController extends Controller
         return view('admin.taxCenters.index', ['taxCenter' => $taxCenter]);
     }
 
-    public function store(Request $request)
+    public function create()
     {
-        $request->validate([
-            'name' => ['required', 'string', 'max:255', 'unique:tax_centers'],
-        ]);
+        return view('admin.taxCenters.create');
+    }
+
+    public function store(CreateTaxCenterRequest $request)
+    {
         $standarcode = Str::slug($request['name'], '_');
         $taxCenter = TaxCenter::create([
             'name' => $request['name'],

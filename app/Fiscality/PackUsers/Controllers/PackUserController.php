@@ -23,14 +23,14 @@ class PackUserController extends Controller
 
     public function store(CreatePackUserRequest $request)
     {
-        $this->packUserRepositoryInterface->store($request->all());
+        $this->packUserRepositoryInterface->store($request->validated());
 
         return response()->json(['message' => 'success']);
     }
 
     public function update(UpdatePackUserRequest $request, $id)
     {
-        $this->packUserRepositoryInterface->update($request->all(), $id);
+        $this->packUserRepositoryInterface->update($request->validated(), $id);
 
         return response()->json(['message' => 'success']);
     }

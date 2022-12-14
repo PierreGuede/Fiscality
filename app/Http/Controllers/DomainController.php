@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Fiscality\Domains\Domain;
+use App\Fiscality\Domains\Requests\UpdateDomainRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
+use Illuminate\Validation\Rule;
 
 class DomainController extends Controller
 {
@@ -15,10 +17,14 @@ class DomainController extends Controller
         return view('admin.domains.index', ['domain' => $domain]);
     }
 
+    public function create()
+    {
+        return view('admin.domains.create');
+    }
     public function store(Request $request)
     {
         $request->validate([
-            'name' => ['required', 'string', 'max:255', 'unique:type_impots'],
+            'name' => ['required', 'string', 'max:255', 'unique:domains']
         ]);
         $standarcode = Str::slug($request['name'], '_');
         $domain = Domain::create([
@@ -34,9 +40,9 @@ class DomainController extends Controller
         return view('admin.domains.update', ['domain' => $id]);
     }
 
-    public function update(Request $request, $id)
+    public function update(UpdateDomainRequest $request, Domain $domain)
     {
-        $domain = Domain::find($id);
+        // $domain = Domain::find($id);
         $domain->update(['name' => $request['name']]);
 
         return redirect()->route('domain.index');

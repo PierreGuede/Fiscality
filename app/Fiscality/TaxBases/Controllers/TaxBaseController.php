@@ -23,7 +23,7 @@ class TaxBaseController extends Controller
 
     public function store(CreateTaxBaseRequest $request)
     {
-        $taxBase = $this->taxBaseRepositoryInterface->store($request->all());
+        $taxBase = $this->taxBaseRepositoryInterface->store($request->validated());
 
         return response()->json(['taxBase' => $taxBase, 'message' => 'Enregistrement bien effectué']);
     }
@@ -35,7 +35,7 @@ class TaxBaseController extends Controller
 
     public function update(UpdateTaxBaseRequest $request, $id)
     {
-        $taxBase = $this->taxBaseRepositoryInterface->update($request->all(), $id);
+        $taxBase = $this->taxBaseRepositoryInterface->update($request->validated(), $id);
 
         return response()->json(['taxBase' => $taxBase, 'message' => 'Modifié avec succès']);
     }

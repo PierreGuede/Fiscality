@@ -73,5 +73,6 @@ class Kernel extends HttpKernel
         'hasPack' => \App\Http\Middleware\packMidlle::class,
         'subscription' => \App\Http\Middleware\SubscriptionMiddleware::class,
         'two-factor' => \App\Http\Middleware\TwoFactor::class,
+        'acces-company' => \App\Http\Middleware\NotAccessOtherCompanyMiddleware::class,
     ];
 }

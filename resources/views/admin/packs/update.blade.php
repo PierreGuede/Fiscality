@@ -1,23 +1,31 @@
-<x-app-layout>
-    <x-slot name="header">
+<x-admin-space-layout>
 
-                {{ __($pack->name) }}
+    <div class=" p-4">
+        <div class="flex justify-between items-center pb-3">
+            <p class="text-2xl font-bold">{{ __($pack->name) }}</p>
+        </div>
 
-    </x-slot>
-    <div class="p-4 bg-white rounded-lg shadow-xs">
+        <form action="{{route('pack.update',$pack->id) }}" method="POST" class="space-y-4 p-4 max-w-lg" >
+            @csrf
+            <div class="space-y-2">
+                <x-input class="w-full" for="name"
+                type="text" id="name" name="name" value="{{ old('name',$pack->name) }}" label='Nom du pack'
+                placeholder="Nom du pack" class="" required autofocus />
 
-            <form action="{{ route('pack.update',$pack->id) }}" method="POST" class="space-y-4">
-                @csrf
-                <x-label :value="__('Nom')"/>
-                    <input type="text" name="name" class="block w-full mt-1 border-gray-300 rounded-md shadow-sm" placeholder="Numero account" value="{{ old('name',$pack->name) }}"">
-                    <x-label :value="__('nombre maximum entreprise')"/>
-                    <input type="text" name="max" class="block w-full mt-1 border-gray-300 rounded-md shadow-sm" placeholder="nom" value="{{ old('name',$pack->max) }}"">
-                    <x-label :value="__('description')"/>
-                    <input type="text" name="description" class="block w-full mt-1 border-gray-300 rounded-md shadow-sm" placeholder="montant" value="{{ old('name',$pack->description) }}"">
+                <x-input class="w-full" for="max"
+                type="text" id="max" name="max" value="{{ old('max',$pack->max) }}" label='Nombre maximum entreprise'
+                placeholder="Nombre maximum entreprise" class="" required autofocus />
+                <x-input class="w-full" for="description"
+                type="text" id="description" name="description" value="{{ old('description',$pack->description) }}" label='description'
+                placeholder="description" class="" required autofocus />
+            </div>
+            <div class="flex gap-x-3 justify-end">
+                <x-button type="button" variant="neutral" class="w-36" >   {{ __('Annuler') }} </x-button>
+                <x-button type="submit" class="w-36" >   {{ __('Enregistrer') }} </x-button>
+            </div>
 
-                <button type="submit" class="px-4 py-2 text-sm font-medium leading-5 text-center text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-lg active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:ring">Modifier</button>
-            </form>
+        </form>
 
     </div>
 
-</x-app-layout>
+</x-admin-space-layout>
