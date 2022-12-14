@@ -1,6 +1,6 @@
 <div class="py-10 px-10 w-full " >
     <div>
-        <h5 class="text-base text-gray-600 font-semibold" >Provision pour risque d'exploitation</h5>
+        <h5 class="text-base text-gray-600 font-semibold" >Provisions sur charges de personnel</h5>
     </div>
 
 <div>

@@ -45,7 +45,7 @@
         </div>
 
         <div>
-            <x-input   type="number" step="any" label="Ecart sur le taux d'amortissement" id="ecart" name="ecart"
+            <x-input :disabled="true"  type="number" step="any" label="Ecart sur le taux d'amortissement" id="ecart" name="ecart"
                      x-bind:value="taux_use - taux_recommended" class="block w-full" required autofocus />
         </div>
 

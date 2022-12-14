@@ -1,4 +1,4 @@
-<div class="py-10 px-10 w-full " >
+<div x-data="{ today: new Date().toISOString().substring(0,10) }" class="py-10 px-10 w-full " >
     <div>
         <h5 class="text-base text-gray-600 font-semibold" >Véhicule de Toursime</h5>
     </div>
@@ -38,7 +38,7 @@
             <span class="text-xs text-red-600">{{ $message }}</span>
             @enderror
 
-        <x-input wire:model.defer="data.date" type="date" max="{{ \Carbon\Carbon::now()  }}" label="Date d'achat" id="date" name="date"
+        <x-input wire:model.defer="data.date" type="date" x-bind:max="today" label="Date d'achat" id="date" name="date"
                  value="{{ old('date') }}" class="block w-full"  autofocus />
 {{--                  @error('data.date')--}}
 {{--            <span class="text-xs text-red-600">{{ $message }}</span>--}}

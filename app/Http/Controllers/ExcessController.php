@@ -59,16 +59,16 @@ class ExcessController extends Controller
     public function update(Company $company, $excess, Request $request)
     {
         $validated = $request->validate([
-            'category_imo' => ['sometimes', 'required', 'string', 'max:255', Rule::unique('excesses')->ignore($excess)],
-            'designation' => ['sometimes', 'required', 'string', 'max:255', Rule::unique('excesses')->ignore($excess)],
+            'category_imo' => ['sometimes', 'required', 'string', 'max:255'],
+            'designation' => ['sometimes', 'required', 'string', 'max:255'],
             'taux_use' => ['sometimes', 'required', 'string', 'max:255'],
             'taux_recommended' => ['sometimes', 'required', 'string', 'max:255'],
             'ecart' => ['sometimes', 'required', 'string', 'max:255'],
             'dotation' => ['sometimes', 'required', 'string', 'max:255'],
             'deductible_amortization' => ['sometimes', 'required', 'string', 'max:255'],
         ]);
-
         $res = Excess::find($excess);
+
         $ecart = (float) $request->input('taux_use') - (float) $request->input('taux_recommended');
         $deductibleAmortization = ((float) $request->input('dotation') * (float) $ecart) / (float) $request->input('taux_use');
         $res->fill($validated);

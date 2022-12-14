@@ -9,7 +9,7 @@
     <div class="w-52 text-center flex flex-col justify-between " >
         <h6 class="py-1.5 border-b-2 border-blue-50" >Montant</h6>
         @if(!is_null($total))
-            <p class="my-auto" x-text="formatNumber({{$total['amount']}}, false)" ></p>
+            <p class="my-auto" x-text="formatNumber({{$total}}, false)" ></p>
         @endif
 
         <div class="mt-auto ">

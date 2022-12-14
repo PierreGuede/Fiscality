@@ -5,7 +5,7 @@
     <div class="w-full  min-h-screen" >
         <x-title>Surplus d'amortissement</x-title>
 
-        <div class="max-w-5xl w-full mx-auto">
+        <div class="max-w-md w-full">
             <form x-data="{ taux_use: {{ $excess->taux_use }} , taux_recommended: {{ $excess->taux_recommended }}, dotation: {{ $excess->dotation }} }" class="mt-10 space-y-5" action="{{ route('amortization.amortization-excess.update',['company'=>$company->id,'excess'=>$excess->id]) }}" method="POST">
                 @method('PUT')
                 @csrf
@@ -26,7 +26,7 @@
                 </div>
 
                 <div>
-                    <x-input x-model="dotation" type="text" label="Dotation comptabilisée" id="dotation" name="dotation"
+                    <x-input x-model="dotation" type="number" label="Dotation comptabilisée" id="dotation" name="dotation"
                              value="{{ old('dotation',$excess->dotation) }}" class="block w-full" required autofocus />
                     @error('data.dotation')
                     <span class="text-xs text-red-600">{{ $message }}</span>
@@ -50,12 +50,12 @@
                 </div>
 
                 <div>
-                    <x-input   type="text" label="Ecart sur le taux d'amortissement" id="ecart" name="ecart"
+                    <x-input :disabled="true"  type="text" label="Ecart sur le taux d'amortissement" id="ecart" name="ecart"
                              x-bind:value="taux_use - taux_recommended" class="block w-full" required autofocus />
                 </div>
 
                 <div>
-                    <x-input   type="text" label="Amortisement non déductible" id="ecart" name="ecart"
+                    <x-input :disabled="true"  type="number" label="Amortisement non déductible" id="ecart" name="ecart"
                                x-bind:value="((taux_use - taux_recommended) * dotation) / taux_use " class="block w-full" required autofocus />
                 </div>
 
