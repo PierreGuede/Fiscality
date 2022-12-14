@@ -33,7 +33,7 @@
                 <div class="col-span-1 mx-auto my-auto ">
                     <button type="button" onclick=" Livewire.emitTo('deduction.create-financial-product', 'openASide')"
                             class="focus:outline-none hover:bg-blue-100 p-1.5 rounded-md">
-                        <svg class="  stroke-2 stroke-blue-50 w-6 w-6 stroke-blue-500 "
+                        <svg class="  stroke-2 w-6 w-6 stroke-blue-500 "
                              xmlns="http://www.w3.org/2000/svg"
                              fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round"

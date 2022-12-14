@@ -9,9 +9,12 @@ use App\Models\GuruRedevance;
 use Carbon\Carbon;
 use Illuminate\Support\Collection;
 use Livewire\Component;
+use WireUi\Traits\Actions;
 
 class EditRedevance extends Component
 {
+    use Actions;
+
     public bool  $open_a_side = false;
 
     public string  $response = 'no';
@@ -131,7 +134,7 @@ class EditRedevance extends Component
             'amount' => $total_amount,
             'turnover' => (float) $this->turnover,
             'deduction_limit' => (float) $this->turnover * 0.05,
-            'amount_reintegrated' => $amount_reintegrate,
+            'amount_reintegrated' => $amount_reintegrate > 0 ? $amount_reintegrate : 0,
         ]);
 
         $this->redevance->save();
@@ -147,9 +150,9 @@ class EditRedevance extends Component
                 ]);
         }
 
-        $this->emit('refreshExcessRent');
+        $this->emit('refresh');
+        $this->notification()->success('Succès', 'Opération effectuée avec succès!');
 
-        notify()->success('Redevances créées avec succès!');
         $this->closeASide();
     }
 }

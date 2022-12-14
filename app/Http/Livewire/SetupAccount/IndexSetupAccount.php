@@ -46,15 +46,15 @@ class IndexSetupAccount extends Component
 
     public $listeners = ['save'];
 
-//    protected $rules =[
+    protected $rules =[
 //        'pack' => 'required|string',
 //        'management_type' => 'required|string',
-//        'normal_picker' => 'required|date',
-//        'ifu' => 'required|number',
-//        'rccm' => 'required|number',
+        'normal_picker' => 'required|date',
+        'ifu' => 'required|number',
+        'rccm' => 'required|number',
 //        'ifu_file' => 'required|mimes:pdf|max:1024',
 //        'rccm_file' => 'required|mimes:pdf|max:1024',
-//    ];
+    ];
 
     public function mount()
     {
@@ -67,6 +67,16 @@ class IndexSetupAccount extends Component
             'price' => $cabinet_packs[0]->price,
             //            'pack_entreprise' => Pack::whereType('enterprise')->get(),
         ]);
+    }
+
+    public function updatedState()
+    {
+
+    }
+
+
+    public function validateLastStep(){
+        $this->validate();
     }
 
     public function updatedManagementType($value)
@@ -88,7 +98,7 @@ class IndexSetupAccount extends Component
 
     public function save($ref_payement = '')
     {
-//        $this->validate();
+        $this->validate();
 
 //        dd([
 //            'ref_payment' => $ref_payement,
