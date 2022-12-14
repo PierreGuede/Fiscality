@@ -18,7 +18,6 @@ class IncomeExpenseController extends Controller
 
     public function create()
     {
-
         return view('admin.accounting-products.create');
     }
 

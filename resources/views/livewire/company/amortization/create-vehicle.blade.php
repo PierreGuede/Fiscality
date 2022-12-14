@@ -38,11 +38,11 @@
             <span class="text-xs text-red-600">{{ $message }}</span>
             @enderror
 
-        <x-input wire:model.defer="data.date" type="date" label="Date d'achat" id="date" name="date"
+        <x-input wire:model.defer="data.date" type="date" max="{{ \Carbon\Carbon::now()  }}" label="Date d'achat" id="date" name="date"
                  value="{{ old('date') }}" class="block w-full"  autofocus />
-                  @error('data.date')
-            <span class="text-xs text-red-600">{{ $message }}</span>
-            @enderror
+{{--                  @error('data.date')--}}
+{{--            <span class="text-xs text-red-600">{{ $message }}</span>--}}
+{{--            @enderror--}}
 
         <div class="flex gap-x-3 justify-end">
             <x-button type="button" wire:click="$emit('closeModal')" variant="neutral" class="w-36" >   {{ __('Annuler') }} </x-button>

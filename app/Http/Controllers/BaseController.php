@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Fiscality\Bases\Base;
 use App\Fiscality\Bases\Requests\CreateBaseRequest;
 use App\Fiscality\Bases\Requests\UpdateBaseRequest;
-use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 
 class BaseController extends Controller
@@ -16,9 +15,9 @@ class BaseController extends Controller
 
         return view('admin.base.index', ['base' => $base]);
     }
+
     public function create()
     {
-
         return view('admin.base.create');
     }
 

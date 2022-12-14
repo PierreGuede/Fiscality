@@ -60,8 +60,8 @@ class EditCommissionOnPurchases extends Component
 
     public function mount($company)
     {
-        $otherReintegrationSettingHandler =  OtherReintegrationSettingHandler::getValue($company->id);
-        $this->rate = (float)$otherReintegrationSettingHandler->commission_on_purchase_deduction_limit;
+        $otherReintegrationSettingHandler = OtherReintegrationSettingHandler::getValue($company->id);
+        $this->rate = (float) $otherReintegrationSettingHandler->commission_on_purchase_deduction_limit;
 
         $this->redevances = [];
         $this->currentStep = 1;

@@ -2,8 +2,6 @@
 
 namespace App\Http\Middleware;
 
-use App\Fiscality\Companies\Company;
-use App\Models\CompanyUser;
 use Closure;
 use DB;
 use Illuminate\Http\Request;
@@ -19,13 +17,12 @@ class NotAccessOtherCompanyMiddleware
      */
     public function handle(Request $request, Closure $next)
     {
-        $id=$request->route()->parameters();
-        $user=request()->user()->id;
-        $company_user=DB::table('company_user')->where('user_id',$user)->where('company_id',$id['company']->id)->first();
-        if ($id['company']->user_id == $user || $company_user !=null) {
+        $id = $request->route()->parameters();
+        $user = request()->user()->id;
+        $company_user = DB::table('company_user')->where('user_id', $user)->where('company_id', $id['company']->id)->first();
+        if ($id['company']->user_id == $user || $company_user != null) {
             return $next($request);
-        }
-        else{
+        } else {
             return response()->view('errors.no-found-company');
         }
     }

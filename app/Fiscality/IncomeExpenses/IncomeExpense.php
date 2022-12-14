@@ -11,8 +11,10 @@ use Illuminate\Database\Eloquent\Model;
 class IncomeExpense extends Model
 {
     use HasFactory;
-    public const INCOME="income";
-    public const EXPENSE="expense";
+
+    public const INCOME = 'income';
+
+    public const EXPENSE = 'expense';
 
     protected $fillable = [
         'account',

@@ -2,8 +2,8 @@
 
 namespace App\Fiscality\Domains\Requests;
 
-use Illuminate\Validation\Rule;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class UpdateDomainRequest extends FormRequest
 {

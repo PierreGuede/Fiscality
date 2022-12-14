@@ -17,15 +17,15 @@ class CategoryController extends Controller
 
         return view('admin.categories.index', ['category' => $category]);
     }
+
     public function create()
     {
-
         return view('admin.categories.create');
     }
 
     public function store(CreateCategoryRequest $request)
     {
-        $upper= strtoupper($request['name']);
+        $upper = strtoupper($request['name']);
         $standarcode = Str::slug($upper, '_');
         $category = Category::create([
             'name' => $request['name'],
@@ -54,8 +54,9 @@ class CategoryController extends Controller
 
     public function update(UpdateCategoryRequest $request, $id)
     {
-        $category=Category::find($id);
+        $category = Category::find($id);
         $category->update($request->validated());
+
         return redirect()->route('category.index');
     }
 

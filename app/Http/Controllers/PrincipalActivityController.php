@@ -6,7 +6,6 @@ use App\Fiscality\Domains\Domain;
 use App\Fiscality\PrincipalActivities\PrincipalActivity;
 use App\Fiscality\PrincipalActivities\Requests\CreatePrincipalActivityRequest;
 use App\Fiscality\PrincipalActivities\Requests\UpdatePrincipalActivityRequest;
-use Illuminate\Http\Request;
 
 class PrincipalActivityController extends Controller
 {
@@ -17,11 +16,12 @@ class PrincipalActivityController extends Controller
 
         return view('admin.principalActivity.index', ['typeAct' => $typeAct, 'domain' => $domain]);
     }
+
     public function create()
     {
         $domain = Domain::all();
 
-        return view('admin.principalActivity.create', [ 'domain' => $domain]);
+        return view('admin.principalActivity.create', ['domain' => $domain]);
     }
 
     public function store(CreatePrincipalActivityRequest $request)
@@ -38,7 +38,7 @@ class PrincipalActivityController extends Controller
     {
         $domain = Domain::all();
 
-        return view('admin.principalActivity.update', ['typeAct' => $id,'domain' => $domain]);
+        return view('admin.principalActivity.update', ['typeAct' => $id, 'domain' => $domain]);
     }
 
     public function update(UpdatePrincipalActivityRequest $request, $id)

@@ -6,7 +6,6 @@ use App\Fiscality\Domains\Domain;
 use App\Fiscality\Domains\Requests\UpdateDomainRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
-use Illuminate\Validation\Rule;
 
 class DomainController extends Controller
 {
@@ -21,10 +20,11 @@ class DomainController extends Controller
     {
         return view('admin.domains.create');
     }
+
     public function store(Request $request)
     {
         $request->validate([
-            'name' => ['required', 'string', 'max:255', 'unique:domains']
+            'name' => ['required', 'string', 'max:255', 'unique:domains'],
         ]);
         $standarcode = Str::slug($request['name'], '_');
         $domain = Domain::create([

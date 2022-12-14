@@ -13,31 +13,55 @@ class OtherReintegrationSettingHandler extends Component
     use Actions;
 
     public $bceao_interest_rate;
+
     public $minimum_rate;
+
     public $rate_deductibility_limit;
+
     public $commission_on_purchase_deduction_limit;
+
     public $redevance_deduction_rate_limit;
+
     public $assistance_cost_deduction_rate_limit;
+
     public $state_donation_limit;
+
     public $state_donation_rate_thousandth;
+
     public $advertising_gifts_deduction_limit;
+
     public $excess_rent_applicable_deduction_limit;
+
     public $annual_deduction_limit;
 
     public $edit_bceao_interest_rate = true;
+
     public $edit_minimum_rate = true;
+
     public $edit_rate_deductibility_limit = true;
+
     public $edit_commission_on_purchase_deduction_limit = true;
+
     public $edit_redevance_deduction_rate_limit = true;
+
     public $edit_assistance_cost_deduction_rate_limit = true;
+
     public $edit_state_donation_limit = true;
+
     public $edit_state_donation_rate_thousandth = true;
+
     public $edit_advertising_gifts_deduction_limit = true;
+
     public $edit_excess_rent_applicable_deduction_limit = true;
+
     public $edit_annual_deduction_limit = true;
+
     public ?Company $company;
+
     public ?GuruOtherReintegrationSetting $guruOtherReintegrationSetting;
+
     public ?GuruOtherReintegrationSetting $testingGuruData;
+
     public ?OtherReintegrationSetting $otherReintegrationSetting;
 
     public function mount($company)
@@ -407,6 +431,6 @@ class OtherReintegrationSettingHandler extends Component
 
     public static function getValue($company_id)
     {
-       return OtherReintegrationSetting::whereCompanyId($company_id)->first();
+        return OtherReintegrationSetting::whereCompanyId($company_id)->first();
     }
 }

@@ -2,8 +2,8 @@
 
 namespace App\Fiscality\TypeCompanies\Requests;
 
-use Illuminate\Validation\Rule;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class UpdateTypeCompanyRequest extends FormRequest
 {

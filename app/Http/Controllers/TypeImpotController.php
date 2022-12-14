@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Fiscality\TypeImpots\Requests\CreateTypeImpotRequest;
 use App\Fiscality\TypeImpots\Requests\UpdateTypeImpotRequest;
 use App\Fiscality\TypeImpots\TypeImpot;
-use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 
 class TypeImpotController extends Controller
@@ -17,10 +16,8 @@ class TypeImpotController extends Controller
         return view('admin.typeImpots.index', ['typeImpot' => $typeImpot]);
     }
 
-
     public function create()
     {
-
         return view('admin.typeImpots.create');
     }
 

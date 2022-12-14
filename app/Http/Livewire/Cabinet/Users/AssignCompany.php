@@ -4,7 +4,6 @@ namespace App\Http\Livewire\Cabinet\Users;
 
 use App\Fiscality\Companies\Company;
 use App\Models\User;
-use DB;
 use LivewireUI\Modal\ModalComponent;
 
 class AssignCompany extends ModalComponent

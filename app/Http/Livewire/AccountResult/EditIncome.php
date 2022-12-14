@@ -91,7 +91,7 @@ class EditIncome extends ModalComponent
         for ($i = 0; $i < count($data); $i++) {
             RADetail::upsert(
                 [
-//                    'id' => $data[$i]['id'],
+                    //                    'id' => $data[$i]['id'],
                     'account' => (int) $data[$i]['account'],
                     'name' => $data[$i]['name'],
                     'amount' => (int) $data[$i]['amount'],
@@ -142,11 +142,11 @@ class EditIncome extends ModalComponent
             }
 
             $this->emit('refreshIncome');
+            DB::commit();
             $this->notification()->success(
                 $title = 'Succès',
-                $description = 'Charges modifiés avec succès!'
+                $description = 'Produits modifiés avec succès!'
             );
-            DB::commit();
 
             $this->closeModal();
         } catch (\Throwable $th) {

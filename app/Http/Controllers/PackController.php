@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Fiscality\Packs\Pack;
 use App\Fiscality\Packs\Requests\CreatePackRequest;
 use App\Fiscality\Packs\Requests\UpdatePackRequest;
-use Illuminate\Http\Request;
 
 class PackController extends Controller
 {

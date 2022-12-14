@@ -6,7 +6,6 @@ use App\Fiscality\TypeCompanies\Requests\CreateTypeCompanyRequest;
 use App\Fiscality\TypeCompanies\Requests\UpdateTypeCompanyRequest;
 use App\Fiscality\TypeCompanies\TypeCompany;
 use App\Fiscality\TypeImpots\TypeImpot;
-use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 
 class TypeCompanyController extends Controller
@@ -18,6 +17,7 @@ class TypeCompanyController extends Controller
 
         return view('admin.typesCompanies.index', ['type' => $type, 'impot' => $impot]);
     }
+
     public function create()
     {
         $impot = TypeImpot::all();
@@ -40,7 +40,8 @@ class TypeCompanyController extends Controller
     public function edit(TypeCompany $id)
     {
         $impot = TypeImpot::all();
-        return view('admin.typesCompanies.update', ['type' => $id,'impot' => $impot]);
+
+        return view('admin.typesCompanies.update', ['type' => $id, 'impot' => $impot]);
     }
 
     public function update(UpdateTypeCompanyRequest $request, $id)
