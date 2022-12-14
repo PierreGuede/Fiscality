@@ -253,8 +253,6 @@ class MultiStepForm extends Component
                 return redirect()->route('tax-result', $company->id);
             }
 
-
-
             return redirect()->route('company.index');
         } catch (\Throwable $th) {
             $this->notification()->error(

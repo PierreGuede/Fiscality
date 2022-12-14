@@ -13,7 +13,7 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::whenTableHasColumn('minimum_tax_details', 'business_profit_tax_id',function (Blueprint $table) {
+        Schema::whenTableHasColumn('minimum_tax_details', 'business_profit_tax_id', function (Blueprint $table) {
             $table->dropForeign('minimum_tax_details_business_profit_tax_id_foreign');
             $table->dropColumn('business_profit_tax_id');
         });

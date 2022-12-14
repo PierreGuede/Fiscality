@@ -47,5 +47,4 @@ class DetailsHandler extends Component
     {
         $this->emit('edit');
     }
-
 }

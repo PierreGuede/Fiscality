@@ -2,8 +2,6 @@
 
 namespace Database\Seeders;
 
-use App\Fiscality\Categories\Category;
-use App\Fiscality\DetailTypes\DetailType;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
@@ -30,9 +28,6 @@ class CategorySeeder extends Seeder
                 'name' => 'Impôt minimum forfaitaire',
             ],
         ], 'code');
-
-
-
 
 //        IS
 //        Impôt réel
@@ -120,7 +115,7 @@ class CategorySeeder extends Seeder
                 'type_impot_id' => 2,
                 'description' => 'null',
                 'article' => 'article',
-            ]
+            ],
         ], 'code');
 
         \DB::table('detail_types')->upsert([
@@ -143,7 +138,7 @@ class CategorySeeder extends Seeder
                 'type_impot_id' => 1,
                 'description' => 'null',
                 'article' => 'article',
-            ]
+            ],
 
         ], 'code');
 
@@ -159,6 +154,6 @@ class CategorySeeder extends Seeder
                 'description' => 'null',
                 'article' => 'article',
             ],
-        ] ,'code');
+        ], 'code');
     }
 }

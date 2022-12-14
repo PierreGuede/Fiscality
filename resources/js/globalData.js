@@ -77,6 +77,15 @@ const globalData =  () => ({
      */
     sumArray(args = []){
         return sumBy(args, (value) =>Number(value));
+    },
+
+    /**
+     *
+     * @param  value number
+     * @return number
+     */
+    rateInPercent(value= 0){
+        return value /100;
     }
 
 });

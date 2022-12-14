@@ -4,6 +4,7 @@ namespace App\Http\Livewire\OtherReintegration;
 
 use App\Fiscality\CommissionOnPurchaseDetails\CommissionOnPurchaseDetail;
 use App\Fiscality\CommissionOnPurchases\CommissionOnPurchase;
+use App\Http\Livewire\OtherReintegrationSettingHandler;
 use Livewire\Component;
 
 class CreateCommissionOnPurchases extends Component
@@ -21,6 +22,7 @@ class CreateCommissionOnPurchases extends Component
     public $total_limit;
 
     public $total_deduction;
+    public $rate = 5;
 
     protected $listeners = ['openASide', 'closeASide'];
 
@@ -41,7 +43,7 @@ class CreateCommissionOnPurchases extends Component
 
     public function add(): void
     {
-        $this->inputs->push(['Account' => '', 'designation' => '', 'total' => '', 'amount_commission' => '', 'limit' => '', 'no_deductible_amount' => '']);
+        $this->inputs->push(['Account' => 0, 'designation' => '', 'total' => 0, 'amount_commission' => 0, 'limit' => 0, 'no_deductible_amount' => 0]);
     }
 
     public function remove($key): void
@@ -51,6 +53,9 @@ class CreateCommissionOnPurchases extends Component
 
     public function mount($company)
     {
+       $otherReintegrationSettingHandler =  OtherReintegrationSettingHandler::getValue($company->id);
+       $this->rate = (float)$otherReintegrationSettingHandler->commission_on_purchase_deduction_limit;
+
         $this->redevances = [];
         $this->currentStep = 1;
         $this->company = $company;
@@ -81,17 +86,13 @@ class CreateCommissionOnPurchases extends Component
     {
         $this->validate();
 
-        $total = [];
-        foreach ($this->inputs as $value) {
-            array_push($total, $value['total']);
-        }
-        $total_sum = array_sum($total);
+        $total_sum = array_sum(array_column($this->inputs->toArray(), 'total'));
         $commission_create = CommissionOnPurchase::create([
             'renseigned_commission' => $total_sum,
             'company_id' => $this->company->id,
         ]);
         foreach ($this->inputs as $value) {
-            $this->total_limit = $value['total'] * 0.05;
+            $this->total_limit = $value['total'] * ($this->rate / 100);
             $this->total_deduction = $value['amount_commission'] - $this->total_limit;
 
             CommissionOnPurchaseDetail::create([
@@ -109,4 +110,9 @@ class CreateCommissionOnPurchases extends Component
         $this->emit('refresh');
         $this->closeASide();
     }
+
+//    public static function updateOnRateChange()
+//    {
+//
+//    }
 }
