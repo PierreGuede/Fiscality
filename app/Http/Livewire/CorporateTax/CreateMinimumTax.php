@@ -127,7 +127,6 @@ class CreateMinimumTax extends ModalComponent
 
             $this->notification()->success('Succès', 'Opération effectuée avec succès!');
 
-
             $this->closeModal();
         } catch (\Throwable $th) {
             DB::rollBack();

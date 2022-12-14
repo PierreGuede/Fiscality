@@ -13,9 +13,8 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::whenTableHasColumn('minimum_tax_details', 'business_profit_tax_id', function (Blueprint $table) {
-            $table->dropForeign('minimum_tax_details_business_profit_tax_id_foreign');
-            $table->dropColumn('business_profit_tax_id');
+        Schema::table('r_a_details', function (Blueprint $table) {
+            $table->decimal('amount', 20, 2)->change();
         });
     }
 
@@ -26,7 +25,7 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::table('minimum_tax_details', function (Blueprint $table) {
+        Schema::table('r_a_details', function (Blueprint $table) {
             //
         });
     }

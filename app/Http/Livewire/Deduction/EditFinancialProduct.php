@@ -110,7 +110,6 @@ class EditFinancialProduct extends Component
 
         $this->emit('refreshFinancialCost');
 
-
         $this->closeASide();
     }
 }

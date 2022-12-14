@@ -58,7 +58,7 @@ class DetailAssistanceCost extends Component
         $this->fill([
             'inputs' => collect($this->general_cost_detail),
             'arr_sum' => $this->reformInputsDataForArraySum(collect($this->general_cost_detail)),
-            'fat_amount' => is_null( $this->assistance_cost?->fat_amount)  ? 0 :  $this->assistance_cost->fat_amount,
+            'fat_amount' => is_null($this->assistance_cost?->fat_amount) ? 0 : $this->assistance_cost->fat_amount,
         ]);
     }
 

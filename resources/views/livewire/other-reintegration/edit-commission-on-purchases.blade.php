@@ -10,11 +10,11 @@
             <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/>
         </svg>
     </button>
-    <div x-data="{ arrayLimit: @js($arrayLimit), arrayCommission: @js($arrayCommission) }"
+    <div x-data="{ arrayLimit: @js($arrayLimit), arrayCommission: @js($arrayCommission), rate: @js($rate)/ 100 }"
          class="relative overflow-y-auto w-11/12 bg-white h-full ml-auto  px-12">
         <h2 class="text-2xl font-bold text-gray-7002 py-8">Commission sur achats (facturés par des résidents et des
             étrangers)</h2>
-
+        <p class="text-3xl" x-text="JSON.stringify(rate)"></p>
         <div class="">
             <div class="flex gap-x-3">
                 <p>2.</p>
@@ -42,9 +42,6 @@
                                 type="number" id="input_{{ $key }}_Account"
                                 wire:model.defer="inputs.{{ $key }}.Account"
                                 placeholder="Montant" class="" required autofocus />
-                                @error('inputs.' . $key . '.Account')
-                                <span class="text-xs text-red-600">{{ $message }}</span>
-                                @enderror
                             </div>
 
 
@@ -53,9 +50,6 @@
                                 type="text" id="input_{{ $key }}_designation"
                                 wire:model.defer="inputs.{{ $key }}.designation"
                                 placeholder="Intitulé" class="" required autofocus />
-                                @error('inputs.' . $key . '.designation')
-                                <span class="text-xs text-red-600">{{ $message }}</span>
-                                @enderror
                             </div>
 
                             <div class="col-span-2">
@@ -63,9 +57,6 @@
                                 type="number" id="input_{{ $key }}_total"
                                 wire:model.defer="inputs.{{ $key }}.total"
                                 placeholder="Total des achats" class="" x-model="arrayLimit[{{$key}}]" required autofocus />
-                                @error('inputs.' . $key . '.total')
-                                <span class="text-xs text-red-600">{{ $message }}</span>
-                                @enderror
                             </div>
 
                             <div class="col-span-2">
@@ -73,30 +64,17 @@
                                 type="number" id="input_{{ $key }}_amount_commission"
                                 wire:model.defer="inputs.{{ $key }}.amount_commission" x-model="arrayCommission[{{$key}}]"
                                 placeholder="Montant des commissions" class=""  required autofocus />
-
-
-                                @error('inputs.' . $key . '.amount_commission')
-                                <span class="text-xs text-red-600">{{ $message }}</span>
-                                @enderror
                             </div>
 
 
                             <div class="col-span-2">
-                                <p class="w-full h-10 p-2 px-3 text-gray-900 placeholder-transparent border border-gray-300 rounded-sm peer focus:ring-blue-500/40 focus:ring-4 focus:outline-none align-center focus:border-blue-600"  x-text=" arrayLimit[{{$key}}]*0.05 ">
-                                    @error('inputs.' . $key . '.limit')
-                                    <span class="text-xs text-red-600">{{ $message }}</span>
-                                @enderror
+                                <p class="w-full h-10 p-2 px-3 text-gray-900 placeholder-transparent border border-gray-300 rounded-sm peer focus:ring-blue-500/40 focus:ring-4 focus:outline-none align-center focus:border-blue-600"
+                                   x-text=" !isNaN(arrayLimit[{{$key}}]) ? arrayLimit[{{$key}}] * rate : 0 ">
                             </div>
 
                             <div class="col-span-2">
-                                <p class="w-full h-10 p-2 px-3 text-gray-900 placeholder-transparent border border-gray-300 rounded-sm peer focus:ring-blue-500/40 focus:ring-4 focus:outline-none align-center focus:border-blue-600" x-text="arrayCommission[{{$key}}]-(arrayLimit[{{$key}}]*0.05)">
-                                    {{-- <x-input disabled class="w-full" for="input_{{ $key }}_no_deductible_amount"
-                                    type="number" id="input_{{ $key }}_no_deductible_amount"
-                                    wire:model.defer="inputs.{{ $key }}.no_deductible_amount"
-                                    placeholder="Montant non déductible" class="" required autofocus /> --}}
-                                    @error('inputs.' . $key . '.no_deductible_amount')
-                                    <span class="text-xs text-red-600">{{ $message }}</span>
-                                @enderror
+                                <p class="w-full h-10 p-2 px-3 text-gray-900 placeholder-transparent border border-gray-300 rounded-sm peer focus:ring-blue-500/40 focus:ring-4 focus:outline-none align-center focus:border-blue-600"
+                                   x-text=" !isNaN(arrayCommission[{{$key}}])  && !isNaN(arrayLimit[{{$key}}]) ? arrayCommission[{{$key}}]-(arrayLimit[{{$key}}]* rate) : 0">
                             </div>
 
                         </div>
