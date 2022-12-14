@@ -23,14 +23,14 @@ class ProfileUserController extends Controller
 
     public function store(CreateProfileUserRequest $request)
     {
-        $this->profileUserRepositoryInterface->store($request->all());
+        $this->profileUserRepositoryInterface->store($request->validated());
 
         return response()->json(['message' => 'success']);
     }
 
     public function update(UpdateProfileUserRequest $request, $id)
     {
-        $this->profileUserRepositoryInterface->update($request->all(), $id);
+        $this->profileUserRepositoryInterface->update($request->validated(), $id);
 
         return response()->json(['message' => 'success']);
     }

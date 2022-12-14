@@ -2,6 +2,7 @@
 
 namespace App\Fiscality\PrincipalActivities\Requests;
 
+use Illuminate\Validation\Rule;
 use Illuminate\Foundation\Http\FormRequest;
 
 class UpdatePrincipalActivityRequest extends FormRequest
@@ -24,7 +25,7 @@ class UpdatePrincipalActivityRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'name' => ['sometimes', 'required', 'string', 'max:255', Rule::unique('packs')->ignore($this->id)],
         ];
     }
 }

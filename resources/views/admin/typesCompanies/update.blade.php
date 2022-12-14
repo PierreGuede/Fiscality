@@ -1,17 +1,35 @@
-<x-app-layout>
-    <x-slot name="header">
+<x-admin-space-layout>
+    <div class="p-4  rounded-lg ">
+        <div class="flex justify-between items-center pb-3">
 
-                {{ __($type->name) }}
+                    {{ __($type->name) }}
 
-    </x-slot>
-    <div class="p-4 bg-white rounded-lg shadow-xs">
+        </div>
 
-            <form action="{{ route('type.update',$type->id) }}" method="POST" class="space-y-4" >
+            <form action="{{ route('type.update',$type->id) }}" method="POST" class="space-y-4 p-4 max-w-lg" >
                 @csrf
-                <input type="text" name="name" value="{{ old('name',$type->name) }}" class="block w-full mt-1 border-gray-300 rounded-md shadow-sm ">
-                <button type="submit" class="px-4 py-2 text-sm font-medium leading-5 text-center text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-lg active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:ring">Modifier</button>
+                <div class="space-y-2">
+                    <x-input class="w-full" for="name"
+                    type="text" id="name" name="name"  label="Nom de l'activité"
+                    placeholder="Nom de l'activité" class="" value="{{ old('name',$type->name) }}" required autofocus />
+
+                    <div class="mt-4">
+                        <x-native-select label="Domaine d'activité"
+                                         name="impot_id"
+                                         class="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:border-primary-300 focus:ring focus:ring-primary-200 focus:ring-opacity-50 focus-within:text-primary-600">
+                            <option value=""></option>
+                            @foreach ($impot as $impot)
+                                <option @selected($impot->id == $type->impot[0]->id ? true : false) value="{{ $impot->id }}">{{ $impot->name }}</option>
+                            @endforeach
+                        </x-native-select>
+                    </div>
+                    </div>
+                    <div class="flex gap-x-3 justify-end">
+                        <x-button type="button" variant="neutral" class="w-36" >   {{ __('Annuler') }} </x-button>
+                        <x-button type="submit" class="w-36" >   {{ __('Enregistrer') }} </x-button>
+                    </div>
             </form>
 
     </div>
 
-</x-app-layout>
+</x-admin-space-layout>

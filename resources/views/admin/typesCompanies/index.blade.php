@@ -1,18 +1,12 @@
-<x-app-layout>
-    <x-slot name="header">
+<x-admin-space-layout>
 
-        {{ __('Les Type d\'entreprise') }}
-
-    </x-slot>
-    <div class="p-4 bg-white rounded-lg shadow-xs">
+    <div class="p-4 rounded-lg shadow-xs">
         <div class="flex p-2">
             <div class="w-4/5">
                 Liste
             </div>
-            <div class="w-1/5 items-center text-center">
-                <button type="button"
-                    class="bg-green-500 border border-gray-500 text-white font-bold py-2 px-4 rounded-md"
-                    @click="showModal = true">Creer un type de compagnie</button>
+            <div class="text-right w-1/5">
+                <x-form.button icon="plus-sm" primary class="" href="{{ route('type.create') }}">Ajouter</x-form.button>
             </div>
         </div>
         <table class="p-2 w-full text-sm text-left text-gray-500    ">
@@ -24,9 +18,7 @@
                     <th scope="col" class="px-6 py-3">
                         Type D'impot
                     </th>
-                    <th scope="col" class="px-6 py-3">
-                        Code
-                    </th>
+                   
                     <th scope="col" class="px-6 py-3">
                         action
                     </th>
@@ -34,20 +26,16 @@
             </thead>
             <tbody>
                 @foreach ($type as $type)
-                    <tr class="bg-white border-b      ">
-                        <th scope="row" class="px-6 py-4 font-medium text-gray-900    whitespace-nowrap">
+                    <tr class="bg-white border-b ">
+                        <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
                             {{ $type->name }}
                         </th>
-                        <th scope="row" class="px-6 py-4 font-medium text-gray-900    whitespace-nowrap">
+                        <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
                             @foreach ($type->impot as $impottype)
                                 {{ $impottype->name }}
                             @endforeach
                         </th>
-                        <th scope="row" class="px-6 py-4 font-medium text-gray-900    whitespace-nowrap">
-
-                            {{ $type->code }}
-
-                        </th>
+                       
                         <th scope="row"
                             class="flex space-x-4 px-6 py-4 font-medium text-gray-900    whitespace-nowrap">
                             <a href="{{ route('type.edit', $type->id) }}" class="text-blue-800">Editer</a>
@@ -112,25 +100,6 @@
                     </div>
                 </div>
 
-                <!-- content -->
-                <form action="{{ route('type.store') }}" method="POST" class="space-y-4 p-4">
-                    @csrf
-                    <input type="text" name="name"
-                        class="block w-full mt-1 border-gray-300 rounded-md shadow-sm ">
-                    <div class="mt-4">
-                        <x-label for="name" :value="__('Impôt')" />
-                        <select
-                            class="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:border-primary-300 focus:ring focus:ring-primary-200 focus:ring-opacity-50 focus-within:text-primary-600"
-                            name="impot_id">
-                            @foreach ($impot as $impot)
-                                <option value="{{ $impot->id }}">{{ $impot->name }}</option>
-                            @endforeach
-                        </select>
-                    </div>
-                    <button type="submit"
-                        class="px-4 py-2 text-sm font-medium leading-5 text-center text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-lg active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:ring">Créer</button>
-                </form>
-
 
 
             </div>
@@ -138,4 +107,4 @@
         </div><!-- /Overlay -->
 
     </section>
-</x-app-layout>
+</x-admin-space-layout>

@@ -25,6 +25,8 @@ class CreatePackRequest extends FormRequest
     {
         return [
             'name' => ['required', 'string', 'max:255', 'unique:packs'],
+            'max' => ['required', 'integer', 'max:255', 'unique:packs'],
+            'description' => ['required', 'string', 'max:255', 'unique:packs'],
         ];
     }
 }

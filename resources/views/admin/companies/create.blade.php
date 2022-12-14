@@ -1,11 +1,10 @@
-<x-app-layout>
+<x-admin-space-layout>
     <x-slot name="header">
 
                 {{ __('Créer une entreprise') }}
 
     </x-slot>
-    <div class="p-4 bg-white rounded-lg shadow-xs">
-
+    <div class="p-4 rounded-lg shadow-xs">
                 <div class="bg-white rounded shadow-lg py-4 text-left px-6"  >
                     <x-auth-validation-errors :errors="$errors"/>
 
@@ -130,4 +129,4 @@
 
     </div>
 
-</x-app-layout>
+</x-admin-space-layout>

@@ -1,11 +1,10 @@
-<x-app-layout>
+<x-admin-space-layout>
     <x-slot name="header">
 
         {{ __('L\'Entreprise') }}
 
     </x-slot>
-    <div class="p-4 bg-white rounded-lg shadow-xs">
-        <div class="flex p-2">
+    <div class="p-4 rounded-lg shadow-xs">        <div class="flex p-2">
             <div class="w-4/5">
                 Liste
             </div>
@@ -52,4 +51,4 @@
         </table>
     </div>
 
-</x-app-layout>
+</x-admin-space-layout>

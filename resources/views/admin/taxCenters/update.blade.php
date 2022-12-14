@@ -1,18 +1,28 @@
-<x-app-layout>
-    <x-slot name="header">
+<x-admin-space-layout>
 
-                {{ __($taxCenter->name) }}
+    <div class=" p-4">
+        <div class="flex justify-between items-center pb-3">
+            <p class="text-2xl font-bold">{{ __($taxCenter->name) }}</p>
+        </div>
 
-    </x-slot>
-    <div class="p-4 bg-white rounded-lg shadow-xs">
+        <form action="{{route('taxCenter.update',$taxCenter->id) }}" method="POST" class="space-y-4 p-4 max-w-lg" >
+            @csrf
+            <div class="space-y-2">
+                <x-input class="w-full" for="name"
+                type="text" id="name" name="name" value="{{ old('name',$taxCenter->name) }}" label='Nom du taxCenter'
+                placeholder="Nom du taxCenter" class="" required autofocus />
 
-            <form action="{{ route('taxCenter.update',$taxCenter->id) }}" method="POST" class="space-y-4">
-                @csrf
-                <input type="text" name="name" class="block w-full mt-1 border-gray-300 rounded-md shadow-sm " value="{{ old('name',$taxCenter->name) }}">
-                <input type="text" name="address" class="block w-full mt-1 border-gray-300 rounded-md shadow-sm " value="{{ old('address',$taxCenter->address) }}">
-                <button type="submit" class="px-4 py-2 text-sm font-medium leading-5 text-center text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-lg active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:ring">Modifier</button>
-            </form>
+                <x-input class="w-full" for="addresse"
+                type="text" id="addresse" name="addresse" value="{{ old('addresse',$taxCenter->addresse) }}" label='Addresse'
+                placeholder="Nombre maximum entreprise" class="" required autofocus />
+            </div>
+            <div class="flex gap-x-3 justify-end">
+                <x-button type="button" variant="neutral" class="w-36" >   {{ __('Annuler') }} </x-button>
+                <x-button type="submit" class="w-36" >   {{ __('Enregistrer') }} </x-button>
+            </div>
+
+        </form>
 
     </div>
 
-</x-app-layout>
+</x-admin-space-layout>

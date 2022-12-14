@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Fiscality\Bases\Base;
+use App\Fiscality\Bases\Requests\CreateBaseRequest;
+use App\Fiscality\Bases\Requests\UpdateBaseRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 
@@ -14,12 +16,14 @@ class BaseController extends Controller
 
         return view('admin.base.index', ['base' => $base]);
     }
-
-    public function store(Request $request)
+    public function create()
     {
-        $request->validate([
-            'name' => ['required', 'string', 'max:255', 'unique:type_impots'],
-        ]);
+
+        return view('admin.base.create');
+    }
+
+    public function store(CreateBaseRequest $request)
+    {
         $standarcode = Str::slug($request['name'], '_');
         $base = Base::create([
             'name' => $request['name'],
@@ -34,7 +38,7 @@ class BaseController extends Controller
         return view('admin.base.update', ['base' => $id]);
     }
 
-    public function update(Request $request, $id)
+    public function update(UpdateBaseRequest $request, $id)
     {
         $base = Base::find($id);
         $base->update(['name' => $request['name']]);

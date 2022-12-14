@@ -23,7 +23,7 @@ class CategoryController extends Controller
 
     public function store(CreateCategoryRequest $request)
     {
-        $category = $this->categoryRepositoryInterface->store($request->all());
+        $category = $this->categoryRepositoryInterface->store($request->validated());
 
         return response()->json(['category' => $category, 'message' => 'Enregistrement bien effectué']);
     }
@@ -35,7 +35,7 @@ class CategoryController extends Controller
 
     public function update(UpdateCategoryRequest $request, $id)
     {
-        $category = $this->categoryRepositoryInterface->update($request->all(), $id);
+        $category = $this->categoryRepositoryInterface->update($request->validated(), $id);
 
         return response()->json(['category' => $category, 'message' => 'Modifié avec succès']);
     }

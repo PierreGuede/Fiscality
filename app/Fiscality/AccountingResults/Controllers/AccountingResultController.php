@@ -23,14 +23,14 @@ class AccountingResultController extends Controller
 
     public function store(CreateAccountingResultRequest $request)
     {
-        $this->accountingResultInterface->store($request->all());
+        $this->accountingResultInterface->store($request->validated());
 
         return response()->json(['message' => 'success']);
     }
 
     public function update(UpdateAccountingResultRequest $request, $id)
     {
-        $this->accountingResultInterface->update($request->all(), $id);
+        $this->accountingResultInterface->update($request->validated(), $id);
 
         return response()->json(['message' => 'success']);
     }

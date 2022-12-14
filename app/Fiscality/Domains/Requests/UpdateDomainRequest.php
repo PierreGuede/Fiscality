@@ -2,6 +2,7 @@
 
 namespace App\Fiscality\Domains\Requests;
 
+use Illuminate\Validation\Rule;
 use Illuminate\Foundation\Http\FormRequest;
 
 class UpdateDomainRequest extends FormRequest
@@ -13,7 +14,7 @@ class UpdateDomainRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +25,7 @@ class UpdateDomainRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'name' => ['sometimes', 'required', 'string', 'max:255', Rule::unique('domains')->ignore($this->id)],
         ];
     }
 }

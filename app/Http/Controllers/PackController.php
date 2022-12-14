@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Fiscality\Packs\Pack;
+use App\Fiscality\Packs\Requests\CreatePackRequest;
+use App\Fiscality\Packs\Requests\UpdatePackRequest;
 use Illuminate\Http\Request;
 
 class PackController extends Controller
@@ -14,7 +16,12 @@ class PackController extends Controller
         return view('admin.packs.index', ['pack' => $pack]);
     }
 
-    public function store(Request $request)
+    public function create()
+    {
+        return view('admin.packs.create');
+    }
+
+    public function store(CreatePackRequest $request)
     {
         $request->validate([
             'name' => ['required', 'string', 'max:255', 'unique:packs'],
@@ -33,10 +40,10 @@ class PackController extends Controller
         return view('admin.packs.update', ['pack' => $id]);
     }
 
-    public function update(Request $request, $id)
+    public function update(UpdatePackRequest $request, Pack $pack)
     {
-        $pack = Pack::find($id);
-        $pack->update(['name' => strtoupper($request['name']),
+        $pack->update([
+            'name' => strtoupper($request['name']),
             'description' => $request['description'],
             'max' => $request['max'], ]);
 

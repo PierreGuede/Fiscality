@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Fiscality\Categories\Category;
+use App\Fiscality\Categories\Requests\CreateCategoryRequest;
+use App\Fiscality\Categories\Requests\UpdateCategoryRequest;
 use App\Fiscality\DetailTypes\DetailType;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
@@ -15,13 +17,16 @@ class CategoryController extends Controller
 
         return view('admin.categories.index', ['category' => $category]);
     }
-
-    public function store(Request $request)
+    public function create()
     {
-        $request->validate([
-            'name' => ['required', 'string', 'max:255', 'unique:type_impots'],
-        ]);
-        $standarcode = Str::slug($request['name'], '_');
+
+        return view('admin.categories.create');
+    }
+
+    public function store(CreateCategoryRequest $request)
+    {
+        $upper= strtoupper($request['name']);
+        $standarcode = Str::slug($upper, '_');
         $category = Category::create([
             'name' => $request['name'],
             'code' => $standarcode,
@@ -47,11 +52,10 @@ class CategoryController extends Controller
         return view('admin.categories.update', ['category' => $id]);
     }
 
-    public function update(Request $request, $id)
+    public function update(UpdateCategoryRequest $request, $id)
     {
-        $category = Category::find($id);
-        $category->update(['name' => $request['name']]);
-
+        $category=Category::find($id);
+        $category->update($request->validated());
         return redirect()->route('category.index');
     }
 

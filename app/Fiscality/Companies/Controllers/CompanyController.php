@@ -23,7 +23,7 @@ class CompanyController extends Controller
 
     public function store(CreateCompanyRequest $request)
     {
-        $this->companyInterface->store($request->all());
+        $this->companyInterface->store($request->validated());
 
         return response()->json(['message' => 'success']);
     }
@@ -37,7 +37,7 @@ class CompanyController extends Controller
 
     public function update(UpdateCompanyRequest $request, $id)
     {
-        $this->companyInterface->update($request->all(), $id);
+        $this->companyInterface->update($request->validated(), $id);
 
         return response()->json(['message' => 'success']);
     }

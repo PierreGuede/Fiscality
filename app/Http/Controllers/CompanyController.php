@@ -73,7 +73,7 @@ class CompanyController extends Controller
         }
     }
 
-    public function store(CreateCompanyRequest $data): Company
+    public function store(CreateCompanyRequest $data)
     {
         $ifuFile = 'IFU_DU'.time().'.'.$data['path']->extension();
         $rccmFile = 'RCCM_DU'.time().'.'.$data['path_rccm']->extension();

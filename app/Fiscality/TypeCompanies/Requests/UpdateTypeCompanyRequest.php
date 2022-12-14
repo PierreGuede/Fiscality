@@ -2,6 +2,7 @@
 
 namespace App\Fiscality\TypeCompanies\Requests;
 
+use Illuminate\Validation\Rule;
 use Illuminate\Foundation\Http\FormRequest;
 
 class UpdateTypeCompanyRequest extends FormRequest
@@ -24,7 +25,7 @@ class UpdateTypeCompanyRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'name' => ['sometimes', 'required', 'string', 'max:255', Rule::unique('type_companies')->ignore($this->id)],
         ];
     }
 }

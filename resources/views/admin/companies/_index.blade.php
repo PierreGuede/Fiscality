@@ -1,6 +1,5 @@
-<x-app-layout>
-    <div class="p-4 bg-white rounded-lg shadow-xs">
-        <div class="flex p-2">
+<x-admin-space-layout>
+    <div class="p-4 rounded-lg shadow-xs">        <div class="flex p-2">
             <div class="w-4/5">
                 Liste <span
                     class="text-blue-800">({{ count($company) . ' entreprise créé | restant:' . (Auth::user()->subscription->packs->max - count($company)) }})</span>
@@ -156,4 +155,4 @@
         </div><!-- /Overlay -->
 
     </section>
-</x-app-layout>
+</x-admin-space-layout>
