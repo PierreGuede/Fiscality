@@ -1,6 +1,6 @@
 
-<x-app-layout :hide >
+<x-admin-space-layout :hide >
     <div class="bg-blue-50" >
         @livewire('multi-step-form')
     </div>
-</x-app-layout>
+</x-admin-space-layout>

@@ -23,7 +23,7 @@ class IMCalculationDetailController extends Controller
 
     public function store(CreateIMCalculationDetailRequest $request)
     {
-        $imCalculationDetail = $this->imCalculationDetailRepositoryInterface->store($request->all());
+        $imCalculationDetail = $this->imCalculationDetailRepositoryInterface->store($request->validated());
 
         return response()->json(['imCalculationDetail' => $imCalculationDetail, 'message' => 'Enregistrement bien effectué']);
     }
@@ -35,7 +35,7 @@ class IMCalculationDetailController extends Controller
 
     public function update(UpdateIMCalculationDetailRequest $request, $id)
     {
-        $imCalculationDetail = $this->imCalculationDetailRepositoryInterface->update($request->all(), $id);
+        $imCalculationDetail = $this->imCalculationDetailRepositoryInterface->update($request->validated(), $id);
 
         return response()->json(['imCalculationDetail' => $imCalculationDetail, 'message' => 'Modifié avec succès']);
     }

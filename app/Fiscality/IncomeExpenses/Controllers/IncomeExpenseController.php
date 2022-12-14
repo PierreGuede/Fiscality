@@ -23,7 +23,7 @@ class IncomeExpenseController extends Controller
 
     public function store(CreateIncomeExpenseRequest $request)
     {
-        $incomeExpense = $this->incomeExpenseRepositoryInterface->store($request->all());
+        $incomeExpense = $this->incomeExpenseRepositoryInterface->store($request->validated());
 
         return response()->json(['incomeExpense' => $incomeExpense, 'message' => 'Enregistrement bien effectué']);
     }
@@ -35,7 +35,7 @@ class IncomeExpenseController extends Controller
 
     public function update(UpdateIncomeExpenseRequest $request, $id)
     {
-        $incomeExpense = $this->incomeExpenseRepositoryInterface->update($request->all(), $id);
+        $incomeExpense = $this->incomeExpenseRepositoryInterface->update($request->validated(), $id);
 
         return response()->json(['incomeExpense' => $incomeExpense, 'message' => 'Modifié avec succès']);
     }

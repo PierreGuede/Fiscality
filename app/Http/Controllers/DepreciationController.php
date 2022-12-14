@@ -58,7 +58,7 @@ class DepreciationController extends Controller
             'dotation' => ['sometimes', 'required', 'string', 'max:255', Rule::unique('depreciations')->ignore($depreciation)],
         ]);
         $update = Depreciation::find($depreciation);
-        $update->update($request->all());
+        $update->update($request->validated());
 
         return redirect()->route('amortization.depreciation-assets', $company);
     }

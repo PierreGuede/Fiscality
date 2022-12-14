@@ -23,14 +23,14 @@ class AmortizationController extends Controller
 
     public function store(CreateAmortizationRequest $request)
     {
-        $this->amortizationRepositoryInterface->store($request->all());
+        $this->amortizationRepositoryInterface->store($request->validated());
 
         return response()->json(['message' => 'success']);
     }
 
     public function update(UpdateAmortizationRequest $request, $id)
     {
-        $this->amortizationRepositoryInterface->update($request->all(), $id);
+        $this->amortizationRepositoryInterface->update($request->validated(), $id);
 
         return response()->json(['message' => 'success']);
     }

@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Fiscality\TypeCompanies\Requests\CreateTypeCompanyRequest;
+use App\Fiscality\TypeCompanies\Requests\UpdateTypeCompanyRequest;
 use App\Fiscality\TypeCompanies\TypeCompany;
 use App\Fiscality\TypeImpots\TypeImpot;
 use Illuminate\Http\Request;
@@ -16,12 +18,15 @@ class TypeCompanyController extends Controller
 
         return view('admin.typesCompanies.index', ['type' => $type, 'impot' => $impot]);
     }
-
-    public function store(Request $request)
+    public function create()
     {
-        $request->validate([
-            'name' => ['required', 'string', 'max:255', 'unique:type_impots'],
-        ]);
+        $impot = TypeImpot::all();
+
+        return view('admin.typesCompanies.create', ['impot' => $impot]);
+    }
+
+    public function store(CreateTypeCompanyRequest $request)
+    {
         $standarcode = Str::slug($request['name'], '_');
         $type = TypeCompany::create([
             'name' => $request['name'],
@@ -34,13 +39,14 @@ class TypeCompanyController extends Controller
 
     public function edit(TypeCompany $id)
     {
-        return view('admin.typesCompanies.update', ['type' => $id]);
+        $impot = TypeImpot::all();
+        return view('admin.typesCompanies.update', ['type' => $id,'impot' => $impot]);
     }
 
-    public function update(Request $request, $id)
+    public function update(UpdateTypeCompanyRequest $request, $id)
     {
         $type = TypeCompany::find($id);
-        $type->update(['name' => $request['name']]);
+        $type->update($request->validated());
 
         return redirect()->route('type.index');
     }

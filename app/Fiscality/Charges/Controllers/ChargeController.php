@@ -23,14 +23,14 @@ class ChargeController extends Controller
 
     public function store(CreateChargeRequest $request)
     {
-        $this->chargeRepositoryInterface->store($request->all());
+        $this->chargeRepositoryInterface->store($request->validated());
 
         return response()->json(['message' => 'success']);
     }
 
     public function update(UpdateChargeRequest $request, $id)
     {
-        $this->chargeRepositoryInterface->update($request->all(), $id);
+        $this->chargeRepositoryInterface->update($request->validated(), $id);
 
         return response()->json(['message' => 'success']);
     }

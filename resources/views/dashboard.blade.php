@@ -3,7 +3,6 @@
         {{ __('Dashboard') }}
     </x-slot>
 
-    <div class="p-4 bg-white rounded-lg shadow-xs">
-        {{ __('You are logged in!') }}
+    <div class="p-4 rounded-lg shadow-xs">        {{ __('You are logged in!') }}
     </div>
 </x-company-layout>

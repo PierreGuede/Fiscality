@@ -23,7 +23,7 @@ class PrincipalActivityController extends Controller
 
     public function store(CreatePrincipalActivityRequest $request)
     {
-        $principalActivity = $this->principalActivityRepositoryInterface->store($request->all());
+        $principalActivity = $this->principalActivityRepositoryInterface->store($request->validated());
 
         return response()->json(['principalActivity' => $principalActivity, 'message' => 'Enregistrement bien effectué']);
     }
@@ -35,7 +35,7 @@ class PrincipalActivityController extends Controller
 
     public function update(UpdatePrincipalActivityRequest $request, $id)
     {
-        $principalActivity = $this->principalActivityRepositoryInterface->update($request->all(), $id);
+        $principalActivity = $this->principalActivityRepositoryInterface->update($request->validated(), $id);
 
         return response()->json(['principalActivity' => $principalActivity, 'message' => 'Modifié avec succès']);
     }

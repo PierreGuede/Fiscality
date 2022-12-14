@@ -1,9 +1,8 @@
-<x-app-layout>
+<x-admin-space-layout>
     <x-slot name="header">
 
                 {{ __($company->name) }}
 
     </x-slot>
-    <div class="p-4 bg-white rounded-lg shadow-xs">
-    </div>
-</x-app-layout>
+    <div class="p-4 rounded-lg shadow-xs">    </div>
+</x-admin-space-layout>

@@ -23,7 +23,7 @@ class BaseController extends Controller
 
     public function store(CreateBaseRequest $request)
     {
-        $base = $this->baseRepositoryInterface->store($request->all());
+        $base = $this->baseRepositoryInterface->store($request->validated());
 
         return response()->json(['base' => $base, 'message' => 'Enregistrement bien effectué']);
     }
@@ -37,7 +37,7 @@ class BaseController extends Controller
 
     public function update(UpdateBaseRequest $request, $id)
     {
-        $base = $this->baseRepositoryInterface->update($request->all(), $id);
+        $base = $this->baseRepositoryInterface->update($request->validated(), $id);
 
         return response()->json(['base' => $base, 'message' => 'Modifié avec succès']);
     }

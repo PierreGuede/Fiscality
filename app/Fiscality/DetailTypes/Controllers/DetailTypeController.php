@@ -23,7 +23,7 @@ class DetailTypeController extends Controller
 
     public function store(CreateDetailTypeRequest $request)
     {
-        $detail_type = $this->detailTypeRepositoryInterface->store($request->all());
+        $detail_type = $this->detailTypeRepositoryInterface->store($request->validated());
 
         return response()->json(['detail_type' => $detail_type, 'message' => 'Enregistrement bien effectué']);
     }
@@ -35,7 +35,7 @@ class DetailTypeController extends Controller
 
     public function update(UpdateDetailTypeRequest $request, $id)
     {
-        $detail_type = $this->detailTypeRepositoryInterface->update($request->all(), $id);
+        $detail_type = $this->detailTypeRepositoryInterface->update($request->validated(), $id);
 
         return response()->json(['detail_type' => $detail_type, 'message' => 'Modifié avec succès']);
     }
