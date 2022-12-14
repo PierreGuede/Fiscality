@@ -91,7 +91,7 @@ class EditIncome extends ModalComponent
         for ($i = 0; $i < count($data); $i++) {
             RADetail::upsert(
                 [
-                    'id' => $data[$i]['id'],
+//                    'id' => $data[$i]['id'],
                     'account' => (int) $data[$i]['account'],
                     'name' => $data[$i]['name'],
                     'amount' => (int) $data[$i]['amount'],

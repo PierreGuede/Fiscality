@@ -95,14 +95,14 @@ class EditExpense extends ModalComponent
         for ($i = 0; $i < count($data); $i++) {
             RADetail::upsert(
                 [
-                    'id' => $data[$i]['id'],
+//                    'id' => $data[$i]['id'],
                     'account' => (int) $data[$i]['account'],
                     'name' => $data[$i]['name'],
                     'amount' => (int) $data[$i]['amount'],
                     'company_id' => $this->company->id,
                     'code' => Str::slug($data[$i]['name']).'_'.Carbon::now()->year.'_'.$this->company->id,
                     'accounting_result_id' => $accounting_result->id,
-                ], ['id', 'code']);
+                ], [ 'code']);
         }
 
         return $reform_income_data;
