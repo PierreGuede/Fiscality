@@ -82,8 +82,8 @@ class ProvisionLivewire extends ModalComponent
         }
         $this->emit('refreshProvision');
         $this->emit('refreshTotalCard');
-
-        $this->closeModal();
+//        $this->closeModal();
+        return redirect(request()->header('Referer'));
 
         return redirect()->route('tax-result.reintegration.accured-charge', $this->company['id']);
     }

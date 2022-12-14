@@ -31,7 +31,7 @@
 
                         <div class="flex-1 w-full">
                             <x-input class="w-full" for="input_{{ $key }}_amount"
-                                type="text" id="input_{{ $key }}_amount" label='Montant'
+                                type="number" id="input_{{ $key }}_amount" label='Montant'
                                 wire:model.defer="inputs.{{ $key }}.amount"
                                 placeholder="Montant" class="" required autofocus />
                             @error('inputs.' . $key . '.amount')

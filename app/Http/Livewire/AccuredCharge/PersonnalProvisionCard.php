@@ -14,6 +14,8 @@ class PersonnalProvisionCard extends Component
 
     public Company $company;
 
+    public bool $can_add = true;
+
     public $total = 0;
 
     protected $listeners = ['refreshProvision'];
@@ -22,6 +24,8 @@ class PersonnalProvisionCard extends Component
     {
         $this->company = $company;
         $data = AccuredChargeCompany::whereType(AccuredChargeCompany::PERSONNAL_PROVISION)->whereCompanyId($this->company->id)->whereYear('created_at', Carbon::now()->year)->get();
+        $this->can_add = count($data)> 0;
+
         $this->total =  array_sum(array_column($data->toArray(),'amount'));
 
     }

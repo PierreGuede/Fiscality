@@ -80,6 +80,7 @@ class CreateProvisionsPersonnelExpenses extends ModalComponent
         $this->emit('refreshProvision');
         $this->emit('refreshTotalCard');
 
-        $this->closeModal();
+        return redirect(request()->header('Referer'));
+//        $this->closeModal();
     }
 }
