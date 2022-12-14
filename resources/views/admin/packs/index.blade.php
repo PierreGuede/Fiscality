@@ -1,4 +1,4 @@
-<x-admin-space-layout>
+<x-app-layout>
 
     <div class="p-4 rounded-lg shadow-xs">        <div class="flex p-2">
             <div class="w-4/5">
@@ -93,4 +93,4 @@
         </div><!-- /Overlay -->
 
     </section>
-</x-admin-space-layout>
+</x-app-layout>

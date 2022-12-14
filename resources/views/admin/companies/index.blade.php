@@ -1,4 +1,4 @@
-<x-admin-space-layout>
+<x-app-layout>
     <div class="p-6">
         <div class=" w-full flex justify-between">
             <h5 class="text-2xl font-semibold text-blue-900">Espace entreprise</h5>
@@ -26,4 +26,4 @@
             @endif
         </div>
     </div>
-</x-admin-space-layout>
+</x-app-layout>

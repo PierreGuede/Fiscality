@@ -1,4 +1,4 @@
-<x-admin-space-layout>
+<x-app-layout>
     <div class="p-6">
         <div class="w-full  min-h-screen" >
             <div class="max-w-5xl w-full mx-auto">
@@ -20,4 +20,4 @@
 
 
     </div>
-</x-admin-space-layout>
+</x-app-layout>

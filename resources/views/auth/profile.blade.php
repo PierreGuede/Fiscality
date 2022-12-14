@@ -1,4 +1,4 @@
-<x-admin-space-layout>
+<x-app-layout>
     <x-slot name="header">
         {{ __('My profile') }}
     </x-slot>
@@ -73,4 +73,4 @@
         </form>
 
     </div>
-</x-admin-space-layout>
+</x-app-layout>

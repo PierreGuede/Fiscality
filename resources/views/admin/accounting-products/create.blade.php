@@ -1,4 +1,4 @@
-<x-admin-space-layout>
+<x-app-layout>
 
     <div class=" p-4">
         <div class="flex justify-between items-center pb-3">
@@ -36,4 +36,4 @@
 
 </div>
 
-</x-admin-space-layout>
+</x-app-layout>

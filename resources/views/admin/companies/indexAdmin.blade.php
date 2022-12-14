@@ -1,4 +1,4 @@
-<x-admin-space-layout>
+<x-app-layout>
     <x-slot name="header">
 
         {{ __('L\'Entreprise') }}
@@ -51,4 +51,4 @@
         </table>
     </div>
 
-</x-admin-space-layout>
+</x-app-layout>

@@ -1,4 +1,4 @@
-<x-admin-space-layout>
+<x-app-layout>
     <x-slot name="header">
 
         {{ __('Les Details') }}
@@ -203,4 +203,4 @@
         </div><!-- /Overlay -->
 
     </section>
-</x-admin-space-layout>
+</x-app-layout>

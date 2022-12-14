@@ -1,6 +1,6 @@
-<x-admin-space-layout>
+<x-app-layout>
 
-    <div class="p-4 rounded-lg shadow-xs">        
+    <div class="p-4 rounded-lg shadow-xs">
         <div class="flex p-2">
             <div class="w-4/5">
                 Liste
@@ -32,12 +32,12 @@
                             class="flex space-x-4 px-6 py-4 font-medium text-gray-900    whitespace-nowrap">
                             <a href="{{ route('typeImpot.edit', $typeImpot->id) }}" class="text-blue-800">Editer</a>
                             <p class="text-red-800 cursor-pointer" @click="showModalConfirm = true">Supprimer</p>
-                           
+
                         </th>
                     </tr>
                 @endforeach
             </tbody>
         </table>
     </div>
-    
-</x-admin-space-layout>
+
+</x-app-layout>

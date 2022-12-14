@@ -1,4 +1,4 @@
-<x-admin-space-layout>
+<x-app-layout>
 
     <div class="p-4 rounded-lg shadow-xs">
         <div class="flex p-2">
@@ -18,7 +18,7 @@
                     <th scope="col" class="px-6 py-3">
                         Type D'impot
                     </th>
-                   
+
                     <th scope="col" class="px-6 py-3">
                         action
                     </th>
@@ -35,7 +35,7 @@
                                 {{ $impottype->name }}
                             @endforeach
                         </th>
-                       
+
                         <th scope="row"
                             class="flex space-x-4 px-6 py-4 font-medium text-gray-900    whitespace-nowrap">
                             <a href="{{ route('type.edit', $type->id) }}" class="text-blue-800">Editer</a>
@@ -107,4 +107,4 @@
         </div><!-- /Overlay -->
 
     </section>
-</x-admin-space-layout>
+</x-app-layout>

@@ -1,4 +1,4 @@
-<x-admin-space-layout>
+<x-app-layout>
     <x-slot name="header">
 
                 {{ __('Créer une entreprise') }}
@@ -129,4 +129,4 @@
 
     </div>
 
-</x-admin-space-layout>
+</x-app-layout>
