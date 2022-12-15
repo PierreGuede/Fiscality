@@ -1,4 +1,4 @@
-<x-app-layout>
+<x-admin-space-layout>
     <div class="p-2 bg-white rounded-lg shadow-xs">
         <div class="p-4">
             <p class="text-xl font-semibold text-slate-700  ">
@@ -26,4 +26,4 @@
     </div>
 </div>
 
-</x-app-layout>
+</x-admin-space-layout>

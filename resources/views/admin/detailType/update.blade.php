@@ -1,4 +1,4 @@
-<x-app-layout>
+<x-admin-space-layout>
     <x-slot name="header">
 
                 {{ __($domain->name) }}
@@ -13,4 +13,4 @@
 
     </div>
 
-</x-app-layout>
+</x-admin-space-layout>

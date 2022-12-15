@@ -1,4 +1,4 @@
-<x-app-layout>
+<x-admin-space-layout>
 
     <div class="p-4 rounded-lg shadow-xs">
         <div class="flex p-2">
@@ -58,4 +58,4 @@
             </tbody>
         </table>
     </div>
-</x-app-layout>
+</x-admin-space-layout>
