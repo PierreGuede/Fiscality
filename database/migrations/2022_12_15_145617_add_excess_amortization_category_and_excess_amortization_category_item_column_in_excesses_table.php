@@ -14,7 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::whenTableDoesntHaveColumn('excesses', 'excess_amortzation_category_item_id', function (Blueprint $table) {
-            $table->addColumn('unsignedBigInteger', 'excess_amortzation_category_item_id');
+            $table->bigInteger( 'excess_amortzation_category_item_id')->unsigned();
             $table->foreign('excess_amortzation_category_item_id', 'excesses_and_excess_amortization_cat_item_foreign')->references('id')->on('excess_amortzation_category_items');
         });
 
