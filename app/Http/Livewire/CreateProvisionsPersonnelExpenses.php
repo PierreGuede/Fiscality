@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire;
 
+use App\Fiscality\AccuredCharges\AccuredCharge;
 use App\Models\AccuredChargeCompany;
 use LivewireUI\Modal\ModalComponent;
 
@@ -47,7 +48,7 @@ class CreateProvisionsPersonnelExpenses extends ModalComponent
     public function mount($company)
     {
         $this->company = $company;
-        $provisionsPersonnelExpenses = [];
+        $provisionsPersonnelExpenses = AccuredCharge::whereType(AccuredChargeCompany::PERSONNAL_PROVISION)->get();
         $this->fill([
             'inputs' => collect($provisionsPersonnelExpenses),
         ]);
