@@ -41,7 +41,7 @@ class ExpenseProvisionedLivewire extends ModalComponent
     public function mount($company)
     {
         $this->company = $company;
-        $charges = AccuredCharge::where('type', 'charges')->get();
+        $charges = AccuredCharge::whereType(AccuredChargeCompany::EXPENSE_PROVISIONED)->get();
         $this->fill([
             'inputs' => collect($charges),
         ]);
@@ -54,7 +54,7 @@ class ExpenseProvisionedLivewire extends ModalComponent
 
     public function render()
     {
-        $charges = AccuredCharge::where('type', 'charges')->get();
+        $charges = AccuredCharge::whereType(AccuredChargeCompany::EXPENSE_PROVISIONED)->get();
 
         return view('livewire.expense-provisioned-livewire', [
             'charges' => $charges,

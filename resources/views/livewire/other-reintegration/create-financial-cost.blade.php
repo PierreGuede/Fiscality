@@ -58,12 +58,13 @@
                     </span>
                 </div>
 
-                <div x-show="lib_condition_response == 'yes'" class="mt-5">
+                <div x-show="lib_condition_response == 'no'" class="mt-5">
                     <x-input type="text" label="Montant à réintégrer" id="lib_condition"
                              wire:model.defer="lib_condition" name="lib_condition"
                              value="{{ old('lib_condition') }}" class="block w-full" required autofocus/>
+
                 </div>
-                <div x-show="lib_condition_response == 'no'" class="mt-5">
+                <div x-show="lib_condition_response == 'yes'" class="mt-5">
                     <x-input :disabled="true" type="number" label="Montant à réintégrer" id="username" name=""
                              value="0" class="block w-full" required autofocus/>
                 </div>
@@ -96,6 +97,7 @@
                              label="Montants des intérêts déduits sur les fonds non remboursés sur plus de cinq ans"
                              id="delay_condition" wire:model.defer="delay_condition" name="delay_condition"
                              value="{{ old('delay_condition') }}" class="block w-full" required autofocus/>
+
                 </div>
                 <div x-show="delay_condition_response == 'no'" class="mt-5">
                     <x-input :disabled="true" type="number"
@@ -117,8 +119,9 @@
                 <div>
                     <x-input type="number" label="Montant des apports en compte" id="delay_condition"
                              wire:model.defer="amount_contribution"
-                             name="delay_condition" value="{{ old('delay_condition') }}" class="block w-full" required
+                             name="amount_contribution" value="{{ old('delay_condition') }}" class="block w-full" required
                              autofocus/>
+
                     <small class="text-gray-500 font-semibold">Veuillez renseigner ceux non pris en compte au niveau de
                         b</small>
                 </div>
@@ -127,19 +130,22 @@
                 <div>
                     <x-input type="number" label="Montant des intérêts comptabilisés" id="delay_condition"
                              wire:model.defer="amount_interest_recorded" x-model="amount_interest_recorded"
-                             name="" value="{{ old('delay_condition') }}" class="block w-full" required autofocus/>
+                             name="amount_interest_recorded" value="{{ old('delay_condition') }}" class="block w-full" required autofocus/>
+
                     <small class="text-gray-500 font-semibold">Veuillez renseigner ceux non pris en compte au niveau de
                         b</small>
                 </div>
 
 {{--                Taux d'intérêt pratiqué--}}
-                <x-input type="number" label="Taux d'intérêt pratiqué" id="delay_condition" name=""
+                <x-input type="number" label="Taux d'intérêt pratiqué" id="delay_condition" name="interest_rate_charged"
                          wire:model.defer="interest_rate_charged" x-model="interest_rate_charged"
                          value="{{ old('delay_condition') }}" class="block w-full" required autofocus/>
+
 
                 <x-input :disabled="true" type="number" label="Taux d'intérêt de la BCEAO de l'année" id="delay_condition" name=""
                          wire:model.defer="bceao_interest_rate_for_the_year"
                          value="4" class="block w-full" required autofocus x-model="bceaoRate"/>
+
 
                 <x-input :disabled="true" type="number" label="Taux maximum" id="delay_condition" name=""
                          x-bind:value="bceaoRate + 3"
@@ -170,6 +176,7 @@
                          x-model="amount_of_interest_recorded"
                          value="{{ old('delay_condition') }}" class="block w-full" required autofocus/>
 
+
 {{--                    Montant des intérêts non déductibles sur comptes courants--}}
                     <x-input :disabled="true" type="number" label="Montant des intérêts non déductibles sur comptes courants" id="delay_condition"
                              x-bind:value="fnCalculateAmount()"
@@ -193,15 +200,18 @@
                              wire:model="interest_accrued" x-model="amount_of_interest_recorded"
                              value="{{ old('delay_condition') }}" class="block w-full" required autofocus/>
 
+
 {{--                Dotations aux amortissements--}}
-                    <x-input type="number" label="Dotations aux amortissements" id="delay_condition" name=""
+                    <x-input type="number" label="Dotations aux amortissements" id="delay_condition" name="depreciation_and_amortization"
                              wire:model="depreciation_and_amortization" x-model="depreciation_and_amortization"
                              value="{{ old('delay_condition') }}" class="block w-full" required autofocus/>
 
+
 {{--                Dotations aux provisions--}}
-                    <x-input type="number" label="Dotations aux provisions" id="delay_condition" name=""
+                    <x-input type="number" label="Dotations aux provisions" id="delay_condition" name="allocations_to_provisions"
                              wire:model="allocations_to_provisions" x-model="allocations_to_provisions"
                              value="{{ old('delay_condition') }}" class="block w-full" required autofocus/>
+
 
                 {{--Base de calcul--}}
                 <x-input :disabled="true" type="number" label="Base de calcul" id="delay_condition"

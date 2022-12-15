@@ -187,6 +187,15 @@ Route::middleware('auth', 'role:Super-Admin')->group(function () {
     Route::post('pack/{id}', [\App\Http\Controllers\PackController::class, 'update'])->name('pack.update');
     Route::delete('pack/{id}', [\App\Http\Controllers\PackController::class, 'destroy'])->name('pack.delete');
 
+    Route::get('accured-charges', [\App\Http\Controllers\AccuredChargeCompanyController::class, 'index'])->name('accured-charges.index');
+    Route::get('accured-charges/create', [\App\Http\Controllers\AccuredChargeCompanyController::class, 'create'])->name('accured-charges.create');
+    Route::post('accured-charges', [\App\Http\Controllers\AccuredChargeCompanyController::class, 'store'])->name('accured-charges.store');
+    Route::get('accured-charges/{id}', [\App\Http\Controllers\AccuredChargeCompanyController::class, 'edit'])->name('accured-charges.edit');
+    Route::post('accured-charges/{id}', [\App\Http\Controllers\AccuredChargeCompanyController::class, 'update'])->name('accured-charges.update');
+    Route::delete('accured-charges/{id}', [\App\Http\Controllers\AccuredChargeCompanyController::class, 'destroy'])->name('accured-charges.delete');
+
+
+
     Route::get('accounting-product', [\App\Http\Controllers\IncomeExpenseController::class, 'index'])->name('accounting-product.index');
     Route::get('accounting-product/create', [\App\Http\Controllers\IncomeExpenseController::class, 'create'])->name('accounting-product.create');
     Route::post('accounting-product', [\App\Http\Controllers\IncomeExpenseController::class, 'store'])->name('accounting-product.store');

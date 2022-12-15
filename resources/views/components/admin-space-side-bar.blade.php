@@ -27,6 +27,7 @@
             <x-app-sidebar.admin-nav-link :active="request()->routeIs('taxCenter.*')" href="{{ route('taxCenter.index') }}" label="Centre d'impot" icon="map" />
             <x-app-sidebar.admin-nav-link :active="request()->routeIs('accounting-product.*')"  href="{{ route('accounting-product.index') }}" label="Produits et charges "   icon="newspaper" />
             <x-app-sidebar.admin-nav-link :active="request()->routeIs('base.*')"  href="{{ route('base.index') }}" label="Les Bases"   icon="table"  />
+            <x-app-sidebar.admin-nav-link :active="request()->routeIs('accured-charges.*')"  href="{{ route('accured-charges.index') }}" label="Les Provisions et charges provisionnées"   icon="table" />
             <x-app-sidebar.admin-nav-link :active="request()->routeIs('type.*')"  href="{{ route('type.index') }}" label="Type d'entreprises"   icon="template" />
             <x-app-sidebar.admin-nav-link :active="request()->routeIs('typeImpot.*')" href="{{ route('typeImpot.index') }}" label="Type d'impôt" icon="cube-transparent" />
             <x-app-sidebar.admin-nav-link :active="request()->routeIs('subCategory.*')" href="{{ route('subCategory.index') }}" label="Type Detail" icon="cog" />

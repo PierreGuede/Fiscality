@@ -2,14 +2,15 @@
 
 namespace App\Http\Livewire\OtherReintegration;
 
-use App\Fiscality\AccountingResults\AccountingResult;
-use App\Fiscality\AssistanceCosts\AssistanceCost;
-use App\Fiscality\GeneralCostDetails\GeneralCostDetail;
+use Carbon\Carbon;
+use Livewire\Component;
+use Illuminate\Support\Facades\DB;
+use App\Fiscality\RADetails\RADetail;
 use App\Fiscality\GeneralCosts\GeneralCost;
 use App\Fiscality\IncomeExpenses\IncomeExpense;
-use Carbon\Carbon;
-use Illuminate\Support\Facades\DB;
-use Livewire\Component;
+use App\Fiscality\AssistanceCosts\AssistanceCost;
+use App\Fiscality\AccountingResults\AccountingResult;
+use App\Fiscality\GeneralCostDetails\GeneralCostDetail;
 
 class CreateAssistanceCost extends Component
 {
@@ -56,7 +57,7 @@ class CreateAssistanceCost extends Component
 
     public function mount($company)
     {
-        $expense = IncomeExpense::where('type', 'expense')->where('id', '!=', '5')->get();
+        $expense = RADetail::whereCompanyId($company->id)->where('type', 'expense')->where('account', '!=', '60')->get();
         $this->general_cost = $expense;
         $this->company = $company;
 
