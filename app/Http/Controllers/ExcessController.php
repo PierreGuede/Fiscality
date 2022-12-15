@@ -6,7 +6,6 @@ use App\Fiscality\Amortizations\Amortization;
 use App\Fiscality\Companies\Company;
 use App\Fiscality\Excesss\Excess;
 use Illuminate\Http\Request;
-use Illuminate\Validation\Rule;
 
 class ExcessController extends Controller
 {

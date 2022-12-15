@@ -404,6 +404,6 @@ class TownSeeder extends Seeder
 
         ];
 
-        Town::insert($towns_data);
+        Town::upsert($towns_data, ['code']);
     }
 }

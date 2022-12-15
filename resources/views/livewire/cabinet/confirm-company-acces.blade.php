@@ -3,7 +3,7 @@
 
     <div class="text-sm text-slate-500" >
         <h5 class="text-2xl font-semibold text-slate-700" >Confirmation d'accès</h5>
-        <p class="my-6" >Vous êtes sur le point d'accéder à l'espace de travail de <span class="bg-gray-200  px-2 rounded-sm font-semibold" > {{ $company->name  }}</span>. Veuillez renseigner son nom tel quel pour confirmer l'accès à cet espace de travail. </p>
+        <p class="my-6" >Vous êtes sur le point d'accéder à l'espace de travail de <br /> <span class="bg-gray-200  px-2 rounded-sm font-semibold" > {{ $company->name  }}</span> <br /> Veuillez renseigner son nom tel quel pour confirmer l'accès à cet espace de travail. </p>
 
         <x-input label="" placeholder="" wire:model="company_name"  />
         @error('company_name') <small>{{ $message  }}</small> @enderror

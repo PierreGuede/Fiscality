@@ -18,7 +18,7 @@ class GuruAmortizationSettingSeeder extends Seeder
 
         if (is_null($exist)) {
             GuruAmortizationSetting::create([
-                'depreciation_base_limit' => 4,
+                'depreciation_base_limit' => 25_000_000,
                 'recommended_rate' => 6,
             ]);
         }

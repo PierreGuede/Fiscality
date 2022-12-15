@@ -14,25 +14,27 @@ class IMItemsSeeder extends Seeder
      */
     public function run()
     {
-        IMItem::create([
-            'name' => 'Impot 1',
-            'base_id' => 2,
-        ]);
-        IMItem::create([
-            'name' => 'Impot 2',
-            'base_id' => 2,
-        ]);
-        IMItem::create([
-            'name' => 'Impot 3',
-            'base_id' => 2,
-        ]);
-        IMItem::create([
-            'name' => 'Impot 4',
-            'base_id' => 2,
-        ]);
-        IMItem::create([
-            'name' => 'Impot 5',
-            'base_id' => 2,
-        ]);
+        IMItem::upsert([
+            [
+                'name' => 'Impot 1',
+                'base_id' => 2,
+            ],
+            [
+                'name' => 'Impot 2',
+                'base_id' => 2,
+            ],
+            [
+                'name' => 'Impot 3',
+                'base_id' => 2,
+            ],
+            [
+                'name' => 'Impot 4',
+                'base_id' => 2,
+            ],
+            [
+                'name' => 'Impot 5',
+                'base_id' => 2,
+            ],
+        ], ['name']);
     }
 }

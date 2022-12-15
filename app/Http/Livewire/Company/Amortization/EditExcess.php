@@ -3,7 +3,6 @@
 namespace App\Http\Livewire\Company\Amortization;
 
 use App\Fiscality\Amortizations\Amortization;
-use App\Fiscality\Companies\Company;
 use App\Fiscality\Excesss\Excess;
 use App\Fiscality\Vehicles\Vehicle;
 use App\Models\ExcessAmortzationCategory;
@@ -12,11 +11,11 @@ use Illuminate\Support\Facades\DB;
 use LivewireUI\Modal\ModalComponent;
 use WireUi\Traits\Actions;
 
-class CreateExcess extends ModalComponent
+class EditExcess extends ModalComponent
 {
     use Actions;
 
-    public Amortization $model;
+    public ?Excess $excess;
 
     public $excessAmortzationCategory;
 
@@ -41,7 +40,7 @@ class CreateExcess extends ModalComponent
     ];
 
     public $rules = [
-        'data.category_imo' => 'required|min:1',
+//        'data.category_imo' => 'required|min:1',
         'data.excess_amortzation_category_item_id' => 'required|min:1',
         'data.dotation' => 'required|numeric|min:1',
         'data.taux_use' => 'required|numeric|between:0.01,100',
@@ -61,17 +60,26 @@ class CreateExcess extends ModalComponent
 
     ];
 
-    public function mount(Company $company)
+    public function mount(int $excess)
     {
-        $this->company = $company;
+        $this->excess = Excess::whereId($excess)->first();
         $this->excessAmortzationCategory = ExcessAmortzationCategory::all();
-        $this->data['category_imo'] = $this->excessAmortzationCategory[0]->id;
+
+        $res = ExcessAmortzationCategoryItem::whereId($this->excess->excess_amortzation_category_item_id)->first();
+        $this->data['taux_recommended'] = $res->rate;
+
+        $selectedExcessAmortizationCategoryItem = ExcessAmortzationCategoryItem::whereId($this->excess->excess_amortzation_category_item_id)->first();
+        $this->data['category_imo'] = $selectedExcessAmortizationCategoryItem->id;
 
         $this->excessAmortzationCategoryItem = ExcessAmortzationCategoryItem::where('excess_amortzation_category_id', $this->data['category_imo'])->get();
-        $this->data['excess_amortzation_category_item_id'] = $this->excessAmortzationCategoryItem[0]->id;
-        $this->data['taux_recommended'] = $this->excessAmortzationCategoryItem[0]->rate;
 
-
+        $this->fill([
+//            'category_imo' => $this->excess->category_imo,
+            'data.excess_amortzation_category_item_id' => $this->excess->excess_amortzation_category_item_id,
+            'data.taux_use' => $this->excess['taux_use'],
+            'data.taux_recommended' => $this->excess['taux_recommended'],
+            'data.dotation' => $this->excess['dotation'],
+        ]);
     }
 
     public function updatedData($value, $key)
@@ -90,7 +98,7 @@ class CreateExcess extends ModalComponent
 
     public function render()
     {
-        return view('livewire.company.amortization.create-excess');
+        return view('livewire.company.amortization.edit-excess');
     }
 
     public static function closeModalOnClickAway(): bool
@@ -100,13 +108,14 @@ class CreateExcess extends ModalComponent
 
     public function save()
     {
+
         $this->validate();
         try {
             DB::beginTransaction();
 
             $ecart = (float) $this->data['taux_use'] - (float) $this->data['taux_recommended'];
             $deductibleAmortization = ((float) $this->data['dotation'] * (float) $ecart) / (float) $this->data['taux_use'];
-            Excess::create([
+            $this->excess->fill([
                 //                'category_imo' => $this->data['category_imo'],
                 'excess_amortzation_category_item_id' => $this->data['excess_amortzation_category_item_id'],
                 'taux_use' => $this->data['taux_use'],
@@ -114,17 +123,13 @@ class CreateExcess extends ModalComponent
                 'ecart' => $ecart,
                 'dotation' => $this->data['dotation'],
                 'deductible_amortization' => $deductibleAmortization,
-                'company_id' => $this->company->id,
             ]);
 
-            $this->emit('newExcess');
-            $this->notification()->success(
-                  'Succès',
-                 'Opération effectuée avec succès!'
-            );
+            $this->excess->save();
 
             DB::commit();
-            $this->closeModal();
+            return redirect(request()->header('Referer'));
+
         } catch (\Throwable $th) {
             DB::rollBack();
 

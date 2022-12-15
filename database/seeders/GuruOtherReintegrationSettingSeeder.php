@@ -23,10 +23,11 @@ class GuruOtherReintegrationSettingSeeder extends Seeder
                 'rate_deductibility_limit' => 30,
                 'commission_on_purchase_deduction_limit' => 5,
                 'redevance_deduction_rate_limit' => 5,
-                'assistance_cost_deduction_rate_limit' => 5,
+
+                'assistance_cost_deduction_rate_limit' => 10, // C'était à
                 'state_donation_limit' => 25_000_000,
-                'state_donation_rate_thousandth' => 0.0001,
-                'advertising_gifts_deduction_limit' => 0.3,
+                'state_donation_rate_thousandth' => 0.001, // 1/1000
+                'advertising_gifts_deduction_limit' => 0.003, // 3/1000
                 'excess_rent_applicable_deduction_limit' => 365,
                 'annual_deduction_limit' => 6_250_000,
             ]);

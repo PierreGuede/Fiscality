@@ -82,6 +82,7 @@ class ExpenseProvisionedLivewire extends ModalComponent
 
         $this->emit('refreshExpenseProvision');
         $this->emit('refreshTotalCard');
+
         return redirect(request()->header('Referer'));
 
 //        $this->closeModal();

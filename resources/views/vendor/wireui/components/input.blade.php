@@ -25,7 +25,7 @@
         </div>
     @endif
 
-    <div class="relative rounded-md @unless($shadowless) shadow-sm @endunless">
+    <div class="relative !rounded-none  @unless($shadowless)  @endunless">
         @if ($prefix || $icon)
             <div class="absolute inset-y-0 left-0 pl-2.5 flex items-center pointer-events-none
                 {{ $hasError ? 'text-negative-500' : 'text-secondary-400' }}">

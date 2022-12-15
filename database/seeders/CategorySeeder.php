@@ -17,15 +17,15 @@ class CategorySeeder extends Seeder
         \DB::table('categories')->upsert([
             [
                 'code' => 'IMPOT_REEL',
-                'name' => 'Impôt réel',
+                'name' => 'Catégorie d\'activité: Impôt réel',
             ],
             [
                 'code' => 'IMPOT_MINIMUM',
-                'name' => 'Impôt minimum',
+                'name' => 'Catégorie d\'activité: Impôt minimum',
             ],
             [
                 'code' => 'IMPOT_MINIMUM_FORFETAIRE',
-                'name' => 'Impôt minimum forfaitaire',
+                'name' => 'Catégorie d\'activité: Impôt minimum forfaitaire',
             ],
         ], 'code');
 
@@ -37,7 +37,7 @@ class CategorySeeder extends Seeder
                 'name' => 'Industries',
                 'category_id' => 1,
                 'base_id' => 1,
-                'taux' => '20',
+                'taux' => '25',
                 'type_impot_id' => 1,
                 'description' => 'null',
                 'article' => 'article',
@@ -57,9 +57,9 @@ class CategorySeeder extends Seeder
                 'name' => 'Sociétés bénéficiant d’une convention minière ou pétrolière',
                 'category_id' => 1,
                 'base_id' => 1,
-                'taux' => '25',
+                'taux' => '30',
                 'type_impot_id' => 1,
-                'description' => 'null',
+                'description' => 'Merci de vous référer au taux prévu dans la convention, 30% est le taux minimum',
                 'article' => 'article',
             ],
             [
@@ -67,7 +67,7 @@ class CategorySeeder extends Seeder
                 'name' => 'Autres (Droit commun)',
                 'category_id' => 1,
                 'base_id' => 1,
-                'taux' => '25',
+                'taux' => '30',
                 'type_impot_id' => 1,
                 'description' => 'null',
                 'article' => 'article',
@@ -81,7 +81,7 @@ class CategorySeeder extends Seeder
                 'name' => 'Entreprise à prépondérance immobilière',
                 'category_id' => 2,
                 'base_id' => 2,
-                'taux' => '25',
+                'taux' => '10',
                 'type_impot_id' => 1,
                 'description' => 'null',
                 'article' => 'article',
@@ -101,7 +101,9 @@ class CategorySeeder extends Seeder
                 'name' => 'Distributeurs non importateurs de produits pétroliers et les stations services',
                 'category_id' => 2,
                 'base_id' => 3,
-                'taux' => '10',
+                //                0,6 franc CFA par litre au volume
+
+                'taux' => '0.6',
                 'type_impot_id' => 2,
                 'description' => 'null',
                 'article' => 'article',
@@ -111,9 +113,20 @@ class CategorySeeder extends Seeder
                 'name' => 'Autres cas (droit commun)',
                 'category_id' => 2,
                 'base_id' => 3,
-                'taux' => '10',
+                'taux' => '1',
                 'type_impot_id' => 2,
                 'description' => 'null',
+                'article' => 'article',
+            ],
+            [
+                //                Last
+                'code' => '508583',
+                'name' => 'Commerce de véhicule d\'occasion et produits de grande consommation',
+                'category_id' => 2,
+                'base_id' => 3,
+                'taux' => '10',
+                'type_impot_id' => 2,
+                'description' => 'Le montant fixé par voie réglementaire',
                 'article' => 'article',
             ],
         ], 'code');
@@ -124,7 +137,8 @@ class CategorySeeder extends Seeder
                 'name' => 'Distributeurs non importateurs de produits pétroliers et  les stations-services (pratiquant les prix homologués)',
                 'category_id' => 2,
                 'base_id' => 3,
-                'taux' => '10',
+                //                500_000
+                'taux' => '250000',
                 'type_impot_id' => 1,
                 'description' => 'null',
                 'article' => 'article',
@@ -134,7 +148,7 @@ class CategorySeeder extends Seeder
                 'name' => 'Autres cas (droit commun)',
                 'category_id' => 2,
                 'base_id' => 3,
-                'taux' => '10',
+                'taux' => '500000',
                 'type_impot_id' => 1,
                 'description' => 'null',
                 'article' => 'article',

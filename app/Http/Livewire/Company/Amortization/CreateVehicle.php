@@ -14,6 +14,8 @@ class CreateVehicle extends ModalComponent
 
     public Amortization $model;
 
+    public $depreciation_base_limit = 25_000_000;
+
     public $company;
 
     public $data = [

@@ -1,6 +1,6 @@
 <div>
-    <h5 class="text-gray-500">Choisissez un mode de gestion</h5>
     <p class="text-lg font-semibold text-gray-700">Mettons un petit detail ici</p>
+{{--    <h5 class="text-gray-500">Choisissez un mode de gestion</h5>--}}
 
     <div class="mt-6">
 {{--        Type de gestion--}}

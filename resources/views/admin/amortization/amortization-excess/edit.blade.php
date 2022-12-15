@@ -10,6 +10,23 @@
                 @method('PUT')
                 @csrf
                 <div>
+
+                <x-native-select label="Catégories d'immobilisation"
+                                 wire:model="data.category_imo"
+                                 placeholder="">
+                    @foreach($excessAmortzationCategory as $value)
+                        <option value="{{ $value->id  }}">{{ $value->name  }}</option>
+                    @endforeach
+                </x-native-select>
+
+                <x-native-select label="Désignation (immobilisation)"
+                                 wire:model="data.excess_amortzation_category_item_id"
+                                 placeholder="">
+                    @foreach($excessAmortzationCategoryItem as $value)
+                        <option value="{{ $value->id  }}">{{ $value->name  }} - {{ $value->rate  }}%</option>
+                    @endforeach
+                </x-native-select>
+
                 <x-input type="text" label="Catégories d'immobilisation" id="category_imo" name="category_imo"
                          value="{{ old('category_imo',$excess->category_imo) }}" class="block w-full" required autofocus />
                     @error('data.category_imo')

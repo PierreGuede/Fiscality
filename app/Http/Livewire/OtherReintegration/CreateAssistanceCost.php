@@ -2,10 +2,12 @@
 
 namespace App\Http\Livewire\OtherReintegration;
 
+use App\Fiscality\AccountingResults\AccountingResult;
 use App\Fiscality\AssistanceCosts\AssistanceCost;
 use App\Fiscality\GeneralCostDetails\GeneralCostDetail;
 use App\Fiscality\GeneralCosts\GeneralCost;
 use App\Fiscality\IncomeExpenses\IncomeExpense;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
 use Livewire\Component;
 
@@ -22,6 +24,8 @@ class CreateAssistanceCost extends Component
     public $inputs;
 
     public $inputsAssistance;
+
+    public $arrayLimit = [];
 
     protected $listeners = ['openASide', 'closeASide'];
 
@@ -55,6 +59,11 @@ class CreateAssistanceCost extends Component
         $expense = IncomeExpense::where('type', 'expense')->where('id', '!=', '5')->get();
         $this->general_cost = $expense;
         $this->company = $company;
+
+        $accountResult = AccountingResult::whereCompanyId($company->id)->whereYear('created_at', Carbon::now()->year)->get();
+
+        dump($accountResult);
+//        $this->arrayLimit = $h``
         $this->fill([
             'inputs' => collect($this->general_cost),
         ]);

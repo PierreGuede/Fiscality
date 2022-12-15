@@ -22,8 +22,7 @@ class ProvisionProvisioneCard extends Component
     {
         $this->company = $company;
         $data = AccuredChargeCompany::where('type', 'provision')->whereCompanyId($this->company->id)->whereYear('created_at', Carbon::now()->year)->get();
-        $this->total =  array_sum(array_column($data->toArray(),'amount'));
-
+        $this->total = array_sum(array_column($data->toArray(), 'amount'));
     }
 
     public function render()
@@ -34,6 +33,6 @@ class ProvisionProvisioneCard extends Component
     public function refreshProvision()
     {
         $data = AccuredChargeCompany::where('type', 'provision')->whereCompanyId($this->company->id)->whereYear('created_at', Carbon::now()->year)->get();
-        $this->total =  array_sum(array_column($data->toArray(),'amount'));
+        $this->total = array_sum(array_column($data->toArray(), 'amount'));
     }
 }

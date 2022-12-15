@@ -26,7 +26,7 @@
                     <x-create-company.step-indicator :current=" $currentStep >= 2 " title="Impôt"
                                                      description="Centres des impôts"/>
                     <x-create-company.step-indicator :current="$currentStep >= 3 " title="Activité"
-                                                     description="Domaine d'activité"/>
+                                                     description="Catégorie d'activité"/>
                     <x-create-company.step-indicator :current="$currentStep >= 4 " title="Autres informations"
                                                      description="Inforamtion suplémentaire"/>
             </div>

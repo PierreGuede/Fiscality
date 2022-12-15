@@ -46,14 +46,14 @@ class IndexSetupAccount extends Component
 
     public $listeners = ['save'];
 
-    protected $rules =[
-//        'pack' => 'required|string',
-//        'management_type' => 'required|string',
+    protected $rules = [
+        //        'pack' => 'required|string',
+        //        'management_type' => 'required|string',
         'normal_picker' => 'required|date',
         'ifu' => 'required|number',
         'rccm' => 'required|number',
-//        'ifu_file' => 'required|mimes:pdf|max:1024',
-//        'rccm_file' => 'required|mimes:pdf|max:1024',
+        //        'ifu_file' => 'required|mimes:pdf|max:1024',
+        //        'rccm_file' => 'required|mimes:pdf|max:1024',
     ];
 
     public function mount()
@@ -71,11 +71,10 @@ class IndexSetupAccount extends Component
 
     public function updatedState()
     {
-
     }
 
-
-    public function validateLastStep(){
+    public function validateLastStep()
+    {
         $this->validate();
     }
 
@@ -98,18 +97,7 @@ class IndexSetupAccount extends Component
 
     public function save($ref_payement = '')
     {
-        $this->validate();
-
-//        dd([
-//            'ref_payment' => $ref_payement,
-//            'pack' => $this->pack,
-//            'management_type' => $this->management_type,
-//            'normal_picker' => $this->normal_picker,
-//            'ifu' => $this->ifu,
-//            'rccm' => $this->rccm,
-//            'ifu_file' => $this->ifu_file,
-//            'rccm_file' => $this->rccm_file,
-//        ]);
+//        $this->validate();
 
         $user = request()->user();
 

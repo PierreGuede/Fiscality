@@ -2,13 +2,12 @@
     <div>
         <h5 class="text-base text-gray-600 font-semibold">Surplus d'amortissement</h5>
     </div>
-
     <form x-data="{
-                    taux_use: 0,
+                    taux_use: @js($data['taux_use']),
                     taux_recommended: @js($data['taux_recommended']),
-                    dotation: 0
+                    dotation: @js($data['dotation'])
                    }"
-          class="mt-10 space-y-5" wire:submit.prevent="save">
+          class="mt-6 space-y-5" wire:submit.prevent="save">
 
         <div class="space-y-2">
 
@@ -47,7 +46,7 @@
             </div>
 
             <div>
-                <x-input x-model="taux_recommended" wire:model.defer="data.taux_recommended" min="0" max="100"
+                <x-input :disabled="true" x-model="taux_recommended" wire:model.defer="data.taux_recommended" min="0" max="100"
                          step="any" type="number"
                          label="Taux d'armortissement recommandé ({{ $data['taux_recommended'] }} %)"
                          id="taux_recommended" name="taux_recommended"

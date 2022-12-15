@@ -4,7 +4,7 @@
         <p class="text-md text-slate-700 font-semibold"> Produits financier</p>
         <div class="ml-4">
             <div class="flex items-center my-3 " >
-                <x-input :disabled="$edit_rate_proceed_government" type="number" wire:model="rate_proceed_government" name="rate_proceed_government" value="25" label=" Taux des produits " />
+                <x-input :disabled="$edit_rate_proceed_government" type="number" wire:model="rate_proceed_government" name="rate_proceed_government" value="25" label=" Titre émis par l'état Béninois" />
                 <div class="space-x-3 px-2" >
                     @if($edit_rate_proceed_government)
                         <x-form.button wire:click="editRateProceedGovernment"  flat orange label="Modifier" />
@@ -15,7 +15,7 @@
                 </div>
             </div>
             <div class="flex items-center my-3 " >
-                <x-input :disabled="$edit_rcm_product_rate" type="number" wire:model="rcm_product_rate" name="rcm_product_rate" value="25" label="Taux des autres produits RCM (%)" />
+                <x-input :disabled="$edit_rcm_product_rate" type="number" wire:model="rcm_product_rate" name="rcm_product_rate" value="25" label="Autre revenue financier" />
                 <div class="space-x-3 px-2" >
                     @if($edit_rcm_product_rate)
                         <x-form.button wire:click="editRcmProductRate"  flat orange label="Modifier" />

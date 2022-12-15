@@ -15,6 +15,7 @@ class ExpenseProvisionedCard extends Component
     public Company $company;
 
     public $total = 0;
+
     public bool $can_add = true;
 
     protected $listeners = ['refreshExpenseProvision'];
@@ -23,9 +24,8 @@ class ExpenseProvisionedCard extends Component
     {
         $this->company = $company;
         $data = AccuredChargeCompany::where('type', AccuredChargeCompany::EXPENSE_PROVISIONED)->whereCompanyId($this->company->id)->whereYear('created_at', Carbon::now()->year)->get();
-        $this->can_add = count($data)> 0;
-        $this->total =  array_sum(array_column($data->toArray(),'amount'));
-
+        $this->can_add = count($data) > 0;
+        $this->total = array_sum(array_column($data->toArray(), 'amount'));
     }
 
     public function render()
@@ -36,6 +36,6 @@ class ExpenseProvisionedCard extends Component
     public function refreshExpenseProvision()
     {
         $data = AccuredChargeCompany::where('type', AccuredChargeCompany::EXPENSE_PROVISIONED)->whereCompanyId($this->company->id)->whereYear('created_at', Carbon::now()->year)->get();
-        $this->total =  array_sum(array_column($data->toArray(),'amount'));
+        $this->total = array_sum(array_column($data->toArray(), 'amount'));
     }
 }

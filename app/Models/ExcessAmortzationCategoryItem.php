@@ -6,16 +6,16 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 /**
- * @mixin IdeHelperTypeCompanyTypeImpot
+ * @mixin IdeHelperExcessAmortzationCategoryItem
  */
-class TypeCompanyTypeImpot extends Model
+class ExcessAmortzationCategoryItem extends Model
 {
     use HasFactory;
 
-    protected $table = 'type_company_type_impot';
-
     protected $fillable = [
-        'type_company_id',
-        'type_impot_id',
+        'code',
+        'name',
+        'rate',
+        'excess_amortzation_category_id',
     ];
 }

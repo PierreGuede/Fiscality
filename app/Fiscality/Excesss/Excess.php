@@ -13,8 +13,7 @@ class Excess extends Model
     use HasFactory;
 
     protected $fillable = [
-        'category_imo',
-        'designation',
+        'excess_amortzation_category_item_id',
         'taux_use',
         'taux_recommended',
         'ecart',

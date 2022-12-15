@@ -33,11 +33,14 @@ class DatabaseSeeder extends Seeder
         $this->call(GuruAmortizationSettingSeeder::class);
         $this->call(GuruDeductionSettingSeeder::class);
         $this->call(GuruOtherReintegrationSettingSeeder::class);
-        \App\Models\User::factory()->create([
+        $this->call(ExcessAmortzationCategorySeeder::class);
+        $this->call(ExcessAmortzationCategoryItemSeeder::class);
+        \App\Models\User::firstOrCreate([
+            'email' => 'test@example.com',
+            'username' => 'admintec',
+        ], [
             'name' => 'Test',
             'firstname' => 'User',
-            'username' => 'admintec',
-            'email' => 'test@example.com',
             'password' => '$2y$10$Is0AHNg89yJUYA/0jH9hUeJ7wGOC4tM9o8Nx9uAK./3XITNZB034q',
         ])->assignRole('Super-Admin');
     }

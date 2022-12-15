@@ -46,65 +46,110 @@ class DomainSeeder extends Seeder
                 'name' => 'Niveaux',
             ]);
 
-        PrincipalActivity::create([
+        PrincipalActivity::updateOrCreate([
             'name' => 'Type d\'activité 1',
-            'domain_id' => 1,
-        ]);
-        PrincipalActivity::create([
+
+        ],
+            [
+                'domain_id' => 1,
+            ]);
+        PrincipalActivity::updateOrCreate([
             'name' => 'Type d\'activité 2',
-            'domain_id' => 1,
-        ]);
-        PrincipalActivity::create([
+
+        ],
+            [
+                'domain_id' => 1,
+            ]);
+        PrincipalActivity::updateOrCreate([
             'name' => 'Type d\'activité 3',
-            'domain_id' => 1,
-        ]);
-        PrincipalActivity::create([
+
+        ],
+            [
+                'domain_id' => 1,
+            ]);
+        PrincipalActivity::updateOrCreate([
             'name' => 'Type d\'activité 4',
-            'domain_id' => 2,
-        ]);
-        PrincipalActivity::create([
+
+        ],
+            [
+                'domain_id' => 2,
+            ]);
+        PrincipalActivity::updateOrCreate([
             'name' => 'Type d\'activité 5',
-            'domain_id' => 2,
-        ]);
-        PrincipalActivity::create([
+
+        ],
+            [
+                'domain_id' => 2,
+            ]);
+        PrincipalActivity::updateOrCreate([
             'name' => 'Type d\'activité 6',
-            'domain_id' => 2,
-        ]);
-        PrincipalActivity::create([
+
+        ],
+            [
+                'domain_id' => 2,
+            ]);
+        PrincipalActivity::updateOrCreate([
             'name' => 'Type d\'activité 7',
-            'domain_id' => 3,
-        ]);
-        PrincipalActivity::create([
+
+        ],
+            [
+                'domain_id' => 3,
+            ]);
+        PrincipalActivity::updateOrCreate([
             'name' => 'Type d\'activité 8',
-            'domain_id' => 3,
-        ]);
-        PrincipalActivity::create([
+
+        ],
+            [
+                'domain_id' => 3,
+            ]);
+        PrincipalActivity::updateOrCreate([
             'name' => 'Type d\'activité 9',
-            'domain_id' => 3,
-        ]);
-        PrincipalActivity::create([
+
+        ],
+            [
+                'domain_id' => 3,
+            ]);
+        PrincipalActivity::updateOrCreate([
             'name' => 'Type d\'activité 10',
-            'domain_id' => 4,
-        ]);
-        PrincipalActivity::create([
+
+        ],
+            [
+                'domain_id' => 4,
+            ]);
+        PrincipalActivity::updateOrCreate([
             'name' => 'Type d\'activité 11',
-            'domain_id' => 4,
-        ]);
-        PrincipalActivity::create([
+
+        ],
+            [
+                'domain_id' => 4,
+            ]);
+        PrincipalActivity::updateOrCreate([
             'name' => 'Type d\'activité 12',
-            'domain_id' => 4,
-        ]);
-        PrincipalActivity::create([
+
+        ],
+            [
+                'domain_id' => 4,
+            ]);
+        PrincipalActivity::updateOrCreate([
             'name' => 'Type d\'activité 13',
-            'domain_id' => 5,
-        ]);
-        PrincipalActivity::create([
+
+        ],
+            [
+                'domain_id' => 5,
+            ]);
+        PrincipalActivity::updateOrCreate([
             'name' => 'Type d\'activité 14',
-            'domain_id' => 5,
-        ]);
-        PrincipalActivity::create([
+
+        ],
+            [
+                'domain_id' => 5,
+            ]);
+        PrincipalActivity::updateOrCreate([
             'name' => 'Type d\'activité 15',
-            'domain_id' => 5,
-        ]);
+
+        ],
+            [
+                'domain_id' => 5,
+            ]);
     }
 }

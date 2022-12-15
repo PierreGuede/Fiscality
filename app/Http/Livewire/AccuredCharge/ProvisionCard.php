@@ -15,17 +15,17 @@ class ProvisionCard extends Component
     public Company $company;
 
     public $total = 0;
-    public bool $can_add = true;
 
+    public bool $can_add = true;
 
     protected $listeners = ['refreshProvision'];
 
     public function mount($company)
     {
         $this->company = $company;
-        $data=  AccuredChargeCompany::where('type', 'provision')->whereCompanyId($this->company->id)->whereYear('created_at', Carbon::now()->year)->get();
-        $this->can_add = count($data)> 0;
-        $this->total =  array_sum(array_column($data->toArray(),'amount'));
+        $data = AccuredChargeCompany::where('type', 'provision')->whereCompanyId($this->company->id)->whereYear('created_at', Carbon::now()->year)->get();
+        $this->can_add = count($data) > 0;
+        $this->total = array_sum(array_column($data->toArray(), 'amount'));
     }
 
     public function render()

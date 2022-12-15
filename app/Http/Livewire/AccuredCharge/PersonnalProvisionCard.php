@@ -24,10 +24,9 @@ class PersonnalProvisionCard extends Component
     {
         $this->company = $company;
         $data = AccuredChargeCompany::whereType(AccuredChargeCompany::PERSONNAL_PROVISION)->whereCompanyId($this->company->id)->whereYear('created_at', Carbon::now()->year)->get();
-        $this->can_add = count($data)> 0;
+        $this->can_add = count($data) > 0;
 
-        $this->total =  array_sum(array_column($data->toArray(),'amount'));
-
+        $this->total = array_sum(array_column($data->toArray(), 'amount'));
     }
 
     public function render()
@@ -38,6 +37,6 @@ class PersonnalProvisionCard extends Component
     public function refreshProvision()
     {
         $data = AccuredChargeCompany::whereType(AccuredChargeCompany::PERSONNAL_PROVISION)->whereCompanyId($this->company->id)->whereYear('created_at', Carbon::now()->year)->get();
-        $this->total =  array_sum(array_column($data->toArray(),'amount'));
+        $this->total = array_sum(array_column($data->toArray(), 'amount'));
     }
 }

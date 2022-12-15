@@ -113,7 +113,7 @@ class CreateRedevance extends Component
                 'turnover' => (float) $this->turnover,
                 'total_renumeration' => array_sum(array_column($this->inputs->toArray(), 'account')),
                 'deduction_limit' => (float) $this->turnover * 0.05,
-                'amount_reintegrated' => $amount_reintegrate > 0 ? $amount_reintegrate : 0 ,
+                'amount_reintegrated' => $amount_reintegrate > 0 ? $amount_reintegrate : 0,
                 'company_id' => $this->company->id,
             ]);
 

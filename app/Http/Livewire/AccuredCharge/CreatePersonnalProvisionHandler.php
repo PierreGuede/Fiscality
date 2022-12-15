@@ -84,6 +84,7 @@ class CreatePersonnalProvisionHandler extends ModalComponent
             DB::commit();
             $this->emit('refreshProvision');
             $this->emit('refreshTotalCard');
+
             return redirect(request()->header('Referer'));
 //            $this->closeModal();
         } catch (\Throwable $th) {

@@ -16,7 +16,7 @@
                             'text-blue-500' => $step >= 1,
                             'text-gray-700' => $step < 1
                     ])
-                    :class=" step >= 1 ? 'text-blue-500' : 'text-gray-700'">Compte</h5>
+                    :class=" step >= 1 ? 'text-blue-500' : 'text-gray-700'">Abonnement</h5>
             </div>
 
             <div class="flex items-center gap-x-2">
@@ -54,7 +54,7 @@
         </div>
 
         <div x-show="step == 1" class="pt-6">
-            <h2 class="text-3xl font-bold text-gray-700">Compte</h2>
+            <h2 class="text-3xl font-bold text-gray-700">Abonnement</h2>
         </div>
 
         <div x-show="step == 2" class="pt-6">

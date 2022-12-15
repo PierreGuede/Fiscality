@@ -77,7 +77,7 @@ return [
         ],
         'input' => [
             'class' => Components\Input::class,
-            'alias' => 'form.input',
+            'alias' => 'input',
         ],
         'textarea' => [
             'class' => Components\Textarea::class,
