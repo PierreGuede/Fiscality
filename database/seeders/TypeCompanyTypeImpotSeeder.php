@@ -23,7 +23,6 @@ class TypeCompanyTypeImpotSeeder extends Seeder
             'type_company_id' => 1,
             'type_impot_id' => 3,
         ]);
-        
 
         TypeCompanyTypeImpot::updateOrCreate([
             'type_company_id' => 2,

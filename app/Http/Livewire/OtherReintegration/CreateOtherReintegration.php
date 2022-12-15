@@ -65,7 +65,7 @@ class CreateOtherReintegration extends Component
 
     public $other_non_deductible_expenses = 0;
 
-//Can edit
+    //Can edit
     public $can_edit_financial_cost = true;
 
     public $can_edit_commission_on_purchase = true;

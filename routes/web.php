@@ -194,8 +194,6 @@ Route::middleware('auth', 'role:Super-Admin')->group(function () {
     Route::post('accured-charges/{id}', [\App\Http\Controllers\AccuredChargeCompanyController::class, 'update'])->name('accured-charges.update');
     Route::delete('accured-charges/{id}', [\App\Http\Controllers\AccuredChargeCompanyController::class, 'destroy'])->name('accured-charges.delete');
 
-
-
     Route::get('accounting-product', [\App\Http\Controllers\IncomeExpenseController::class, 'index'])->name('accounting-product.index');
     Route::get('accounting-product/create', [\App\Http\Controllers\IncomeExpenseController::class, 'create'])->name('accounting-product.create');
     Route::post('accounting-product', [\App\Http\Controllers\IncomeExpenseController::class, 'store'])->name('accounting-product.store');

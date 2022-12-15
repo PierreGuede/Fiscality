@@ -78,13 +78,13 @@ class CreateDonationGrantContributions extends Component
         $this->company = $company;
         $income = RADetail::whereCompanyId($company->id)->whereYear('created_at', Carbon::now()->year)->whereAccount(70)->first();
 
-            $this->state_donation_inputs = collect($this->state_donation);
-            $this->addToFirstInput();
-            $this->donation_gifts_inputs = collect($this->donation_gifts);
-            $this->addToSecondInput();
+        $this->state_donation_inputs = collect($this->state_donation);
+        $this->addToFirstInput();
+        $this->donation_gifts_inputs = collect($this->donation_gifts);
+        $this->addToSecondInput();
 
         $this->fill([
-            'turnover' => $income?->amount
+            'turnover' => $income?->amount,
         ]);
     }
 

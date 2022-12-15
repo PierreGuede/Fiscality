@@ -40,7 +40,7 @@ class EditExcess extends ModalComponent
     ];
 
     public $rules = [
-//        'data.category_imo' => 'required|min:1',
+        //        'data.category_imo' => 'required|min:1',
         'data.excess_amortzation_category_item_id' => 'required|min:1',
         'data.dotation' => 'required|numeric|min:1',
         'data.taux_use' => 'required|numeric|between:0.01,100',
@@ -74,7 +74,7 @@ class EditExcess extends ModalComponent
         $this->excessAmortzationCategoryItem = ExcessAmortzationCategoryItem::where('excess_amortzation_category_id', $this->data['category_imo'])->get();
 
         $this->fill([
-//            'category_imo' => $this->excess->category_imo,
+            //            'category_imo' => $this->excess->category_imo,
             'data.excess_amortzation_category_item_id' => $this->excess->excess_amortzation_category_item_id,
             'data.taux_use' => $this->excess['taux_use'],
             'data.taux_recommended' => $this->excess['taux_recommended'],
@@ -108,7 +108,6 @@ class EditExcess extends ModalComponent
 
     public function save()
     {
-
         $this->validate();
         try {
             DB::beginTransaction();
@@ -128,8 +127,8 @@ class EditExcess extends ModalComponent
             $this->excess->save();
 
             DB::commit();
-            return redirect(request()->header('Referer'));
 
+            return redirect(request()->header('Referer'));
         } catch (\Throwable $th) {
             DB::rollBack();
 

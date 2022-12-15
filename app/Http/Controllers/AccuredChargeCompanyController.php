@@ -2,17 +2,19 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use Illuminate\Validation\Rule;
+use App\Fiscality\AccuredCharges\AccuredCharge;
 use App\Fiscality\Companies\Company;
 use App\Models\AccuredChargeCompany;
-use App\Fiscality\AccuredCharges\AccuredCharge;
+use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 
 class AccuredChargeCompanyController extends Controller
 {
-    public function index(){
-        $accuredCharge=AccuredCharge::all();
-        return view('admin.AccuredCharges.index',compact('accuredCharge'));
+    public function index()
+    {
+        $accuredCharge = AccuredCharge::all();
+
+        return view('admin.AccuredCharges.index', compact('accuredCharge'));
     }
 
     public function create()
@@ -35,28 +37,27 @@ class AccuredChargeCompanyController extends Controller
         return redirect()->route('accured-charges.index');
     }
 
-    public function edit( $id)
+    public function edit($id)
     {
-        $accuredCharges=AccuredCharge::find($id);
+        $accuredCharges = AccuredCharge::find($id);
+
         return view('admin.AccuredCharges.update', ['accuredCharges' => $accuredCharges]);
     }
 
-    public function update(Request $request,$id)
+    public function update(Request $request, $id)
     {
-        $accuredCharges=AccuredCharge::find($id);
+        $accuredCharges = AccuredCharge::find($id);
         $request->validate([
-            'compte' => ['required', 'string', 'max:255',Rule::unique('accured_charges')->ignore($id)],
-            'designation' => ['required', 'string', 'max:255',Rule::unique('accured_charges')->ignore($id)],
+            'compte' => ['required', 'string', 'max:255', Rule::unique('accured_charges')->ignore($id)],
+            'designation' => ['required', 'string', 'max:255', Rule::unique('accured_charges')->ignore($id)],
         ]);
         $accuredCharges->update([
             'compte' => strtoupper($request['compte']),
             'designation' => $request['designation'],
-            ]);
+        ]);
 
         return redirect()->route('accured-charges.index');
     }
-
-
 
     public function indexProvision(Company $company)
     {

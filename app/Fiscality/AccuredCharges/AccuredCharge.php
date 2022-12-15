@@ -18,6 +18,8 @@ class AccuredCharge extends Model
 
     public const PROVISION = 'provision';
 
+    protected $table = 'accured_charges';
+
     protected $fillable = [
         'compte',
         'designation',

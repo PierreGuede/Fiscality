@@ -2,15 +2,12 @@
 
 namespace App\Http\Livewire\OtherReintegration;
 
-use Carbon\Carbon;
-use Livewire\Component;
-use Illuminate\Support\Facades\DB;
-use App\Fiscality\RADetails\RADetail;
-use App\Fiscality\GeneralCosts\GeneralCost;
-use App\Fiscality\IncomeExpenses\IncomeExpense;
 use App\Fiscality\AssistanceCosts\AssistanceCost;
-use App\Fiscality\AccountingResults\AccountingResult;
 use App\Fiscality\GeneralCostDetails\GeneralCostDetail;
+use App\Fiscality\GeneralCosts\GeneralCost;
+use App\Fiscality\RADetails\RADetail;
+use Illuminate\Support\Facades\DB;
+use Livewire\Component;
 
 class CreateAssistanceCost extends Component
 {
@@ -61,7 +58,6 @@ class CreateAssistanceCost extends Component
         $this->general_cost = $expense;
         $this->company = $company;
 
-       
 //        $this->arrayLimit = $h``
         $this->fill([
             'inputs' => collect($this->general_cost),

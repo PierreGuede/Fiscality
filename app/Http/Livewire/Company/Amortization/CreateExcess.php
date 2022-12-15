@@ -70,8 +70,6 @@ class CreateExcess extends ModalComponent
         $this->excessAmortzationCategoryItem = ExcessAmortzationCategoryItem::where('excess_amortzation_category_id', $this->data['category_imo'])->get();
         $this->data['excess_amortzation_category_item_id'] = $this->excessAmortzationCategoryItem[0]->id;
         $this->data['taux_recommended'] = $this->excessAmortzationCategoryItem[0]->rate;
-
-
     }
 
     public function updatedData($value, $key)
@@ -119,8 +117,8 @@ class CreateExcess extends ModalComponent
 
             $this->emit('newExcess');
             $this->notification()->success(
-                  'Succès',
-                 'Opération effectuée avec succès!'
+                'Succès',
+                'Opération effectuée avec succès!'
             );
 
             DB::commit();

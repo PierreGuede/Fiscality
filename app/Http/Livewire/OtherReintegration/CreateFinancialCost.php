@@ -49,28 +49,29 @@ class CreateFinancialCost extends Component
     protected $listeners = ['openASide', 'closeASide'];
 
     protected $rules = [
-      'amount_contribution'=>'required|numeric',
-        'amount_interest_recorded'=>'required|numeric',
-        'interest_rate_charged'=>'required|numeric',
-        'depreciation_and_amortization'=>'required|numeric',
-        'allocations_to_provisions'=>'required|numeric',
-        'amount_of_interest_recorded'=>'required|numeric',
+        'amount_contribution' => 'required|numeric',
+        'amount_interest_recorded' => 'required|numeric',
+        'interest_rate_charged' => 'required|numeric',
+        'depreciation_and_amortization' => 'required|numeric',
+        'allocations_to_provisions' => 'required|numeric',
+        'amount_of_interest_recorded' => 'required|numeric',
     ];
 
     protected $messages = [
-     'amount_contribution.required'=>'Le champ est requis',
-        'amount_contribution.numeric'=>'Ce champs doit etre un entier',
-        'amount_interest_recorded.required'=>'Le champ est requis',
-        'amount_interest_recorded.numeric'=>'Ce champs doit etre un entier',
-        'interest_rate_charged.required'=>'Le champ est requis',
-        'interest_rate_charged.numeric'=>'Ce champs doit etre un entier',
-        'depreciation_and_amortization.required'=>'Le champ est requis',
-        'depreciation_and_amortization.numeric'=>'Ce champs doit etre un entier',
-        'allocations_to_provisions.required'=>'Le champ est requis',
-        'allocations_to_provisions.numeric'=>'Ce champs doit etre un entier',
-        'amount_of_interest_recorded.required'=>'Le champ est requis',
-        'amount_of_interest_recorded.numeric'=>'Ce champs doit etre un entier',
+        'amount_contribution.required' => 'Le champ est requis',
+        'amount_contribution.numeric' => 'Ce champs doit etre un entier',
+        'amount_interest_recorded.required' => 'Le champ est requis',
+        'amount_interest_recorded.numeric' => 'Ce champs doit etre un entier',
+        'interest_rate_charged.required' => 'Le champ est requis',
+        'interest_rate_charged.numeric' => 'Ce champs doit etre un entier',
+        'depreciation_and_amortization.required' => 'Le champ est requis',
+        'depreciation_and_amortization.numeric' => 'Ce champs doit etre un entier',
+        'allocations_to_provisions.required' => 'Le champ est requis',
+        'allocations_to_provisions.numeric' => 'Ce champs doit etre un entier',
+        'amount_of_interest_recorded.required' => 'Le champ est requis',
+        'amount_of_interest_recorded.numeric' => 'Ce champs doit etre un entier',
     ];
+
     public function mount($company)
     {
         $this->financialCost = [];

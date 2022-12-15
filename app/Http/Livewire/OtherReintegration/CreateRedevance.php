@@ -3,7 +3,6 @@
 namespace App\Http\Livewire\OtherReintegration;
 
 use App\Fiscality\Companies\Company;
-use App\Fiscality\IncomeExpenses\IncomeExpense;
 use App\Fiscality\RADetails\RADetail;
 use App\Fiscality\RedevanceDetails\RedevanceDetail;
 use App\Fiscality\Redevances\Redevance;
@@ -74,7 +73,7 @@ class CreateRedevance extends Component
         $this->inputs = collect($this->guru_redevance);
         $this->add();
         $this->fill([
-            'turnover' => $income?->amount
+            'turnover' => $income?->amount,
         ]);
     }
 

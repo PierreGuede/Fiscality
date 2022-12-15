@@ -58,7 +58,7 @@ class CreateAdvertisingGift extends Component
         $this->currentStep = 1;
         $this->company = $company;
         $this->fill([
-            'turnover' => $income?->amount
+            'turnover' => $income?->amount,
         ]);
     }
 
