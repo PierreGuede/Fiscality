@@ -61,9 +61,7 @@ class CreateAssistanceCost extends Component
         $this->general_cost = $expense;
         $this->company = $company;
 
-        $accountResult = AccountingResult::whereCompanyId($company->id)->whereYear('created_at', Carbon::now()->year)->get();
-
-        dump($accountResult);
+       
 //        $this->arrayLimit = $h``
         $this->fill([
             'inputs' => collect($this->general_cost),
