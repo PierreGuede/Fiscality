@@ -51,9 +51,10 @@
                                 </div>
 
                                 <div class="col-span-3">
-                                    <x-input type="number" label="" id="delay_condition" name="" wire:model.defer="inputs.{{ $key }}.amount"
-                                             value="{{ old('delay_condition') }}" class="block w-full" required x-model="arrayLimit[{{ $key }}]"
-                                             autofocus/>
+                                    <x-input :disabled="count($general_cost) > $key" for="input_{{ $key }}_amount"
+                                        type="text" id="input_{{ $key }}_amount"
+                                        wire:model.defer="inputs.{{ $key }}.amount"
+                                        class="" required autofocus />
                                 </div>
 
 
