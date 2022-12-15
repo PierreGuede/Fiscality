@@ -65,6 +65,21 @@ class CreateOtherReintegration extends Component
 
     public $other_non_deductible_expenses = 0;
 
+//Can edit
+    public $can_edit_financial_cost = true;
+
+    public $can_edit_commission_on_purchase = true;
+
+    public $can_edit_redevance = true;
+
+    public $can_edit_accounting_financial_technical_assistance_costs = true;
+
+    public $can_edit_donation_grant_contribution = true;
+
+    public $can_edit_advertising_gift = true;
+
+    public $can_edit_excess_rent = true;
+
     public $listeners = ['refresh'];
 
     public $rules = [
@@ -170,47 +185,55 @@ class CreateOtherReintegration extends Component
         $this->notification()->success('Succès', 'Opération effectuée avec succès!');
     }
 
-        public function refreshFinancialCost()
-        {
-            $data = FinancialCost::whereCompanyId($this->company->id)->whereYear('created_at', Carbon::now()->year)->first();
-            $this->financial_cost = is_null($data) ? 0 : $data->total_amount_reintegrated;
-        }
+    public function refreshFinancialCost()
+    {
+        $data = FinancialCost::whereCompanyId($this->company->id)->whereYear('created_at', Carbon::now()->year)->first();
+        $this->can_edit_financial_cost = ! is_null($data);
+        $this->financial_cost = is_null($data) ? 0 : $data->total_amount_reintegrated;
+    }
 
-        public function refreshCommissionOnPurchase()
-        {
-            $data = CommissionOnPurchase::whereCompanyId($this->company->id)->whereYear('created_at', Carbon::now()->year)->first();
-            $this->commission_on_purchase = is_null($data) ? 0 : $data->renseigned_commission;
-        }
+    public function refreshCommissionOnPurchase()
+    {
+        $data = CommissionOnPurchase::whereCompanyId($this->company->id)->whereYear('created_at', Carbon::now()->year)->first();
+        $this->can_edit_commission_on_purchase = ! is_null($data);
+        $this->commission_on_purchase = is_null($data) ? 0 : $data->renseigned_commission;
+    }
 
-        public function refreshRedevance()
-        {
-            $data = Redevance::whereCompanyId($this->company->id)->whereYear('created_at', Carbon::now()->year)->first();
-            $this->redevance = is_null($data) ? 0 : $data->amount_reintegrated;
-        }
+    public function refreshRedevance()
+    {
+        $data = Redevance::whereCompanyId($this->company->id)->whereYear('created_at', Carbon::now()->year)->first();
+        $this->can_edit_redevance = ! is_null($data);
+        $this->redevance = is_null($data) ? 0 : $data->amount_reintegrated;
+    }
 
-        public function refreshAccountingFinancialTechnicalAssistanceCosts()
-        {
-            $data = AssistanceCost::whereCompanyId($this->company->id)->whereYear('created_at', Carbon::now()->year)->first();
-            $this->accountind_financial_technical_assistance_costs = is_null($data) ? 0 : $data->reintegrate_amount;
-        }
+    public function refreshAccountingFinancialTechnicalAssistanceCosts()
+    {
+        $data = AssistanceCost::whereCompanyId($this->company->id)->whereYear('created_at', Carbon::now()->year)->first();
+        $this->can_edit_accounting_financial_technical_assistance_costs = ! is_null($data);
+        $this->accountind_financial_technical_assistance_costs = is_null($data) ? 0 : $data->reintegrate_amount;
+    }
 
-        public function refreshDonationGrantContribution()
-        {
-            $data = DonationGrantContribution::whereCompanyId($this->company->id)->whereYear('created_at', Carbon::now()->year)->first();
-            $this->donation_grant_contribution = is_null($data) ? 0 : $data->surplus_state;
-        }
+    public function refreshDonationGrantContribution()
+    {
+        $data = DonationGrantContribution::whereCompanyId($this->company->id)->whereYear('created_at', Carbon::now()->year)->first();
+        $this->can_edit_donation_grant_contribution = ! is_null($data);
+        $this->donation_grant_contribution = is_null($data) ? 0 : $data->surplus_state;
+    }
 
-        public function refreshAdvertisingGift()
-        {
-            $data = AdvertisingGift::whereCompanyId($this->company->id)->whereYear('created_at', Carbon::now()->year)->first();
-            $this->advertising_gift = is_null($data) ? 0 : $data->surplus_reintegrated;
-        }
+    public function refreshAdvertisingGift()
+    {
+        $data = AdvertisingGift::whereCompanyId($this->company->id)->whereYear('created_at', Carbon::now()->year)->first();
+        $this->can_edit_advertising_gift = ! is_null($data);
+        $this->advertising_gift = is_null($data) ? 0 : $data->surplus_reintegrated;
+    }
 
-        public function refreshExcessRent()
-        {
-            $data = ExcessRent::whereCompanyId($this->company->id)->whereYear('created_at', Carbon::now()->year)->first();
-            $this->excess_rent = is_null($data) ? 0 : $data->amount_rent_reintegrated;
-        }
+    public function refreshExcessRent()
+    {
+        $data = ExcessRent::whereCompanyId($this->company->id)->whereYear('created_at', Carbon::now()->year)->first();
+
+        $this->can_edit_excess_rent = ! is_null($data);
+        $this->excess_rent = is_null($data) ? 0 : $data->amount_rent_reintegrated;
+    }
 
         public function refresh()
         {

@@ -3,9 +3,12 @@
 namespace App\Http\Livewire\OtherReintegration;
 
 use App\Fiscality\Companies\Company;
+use App\Fiscality\IncomeExpenses\IncomeExpense;
+use App\Fiscality\RADetails\RADetail;
 use App\Fiscality\RedevanceDetails\RedevanceDetail;
 use App\Fiscality\Redevances\Redevance;
 use App\Models\GuruRedevance;
+use Carbon\Carbon;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\DB;
 use Livewire\Component;
@@ -63,11 +66,15 @@ class CreateRedevance extends Component
     public function mount(Company $company)
     {
 //        $this->add();
+        $income = RADetail::whereCompanyId($company->id)->whereYear('created_at', Carbon::now()->year)->whereAccount(70)->first();
+
         $this->currentStep = 1;
         $this->company = $company;
         $this->guru_redevance = GuruRedevance::all();
+        $this->inputs = collect($this->guru_redevance);
+        $this->add();
         $this->fill([
-            'inputs' => collect($this->guru_redevance),
+            'turnover' => $income?->amount
         ]);
     }
 

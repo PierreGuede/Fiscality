@@ -82,8 +82,10 @@ class CreateHeadOfficeCost extends Component
 
         $taxable_income_before_restatement_head_office_costs = (is_null($account_result) ? 0 : $account_result->ar_value) + $this->totalReintegration() - $this->totalDeduction();
 
+        $this->inputs = collect([]);
+        $this->add();
+
         $this->fill([
-            'inputs' => collect([]),
             'account_result' => is_null($account_result) ? 0 : $account_result->ar_value,
             'total_reintegration' => $this->totalReintegration(),
             'total_deduction' => $this->totalDeduction(),

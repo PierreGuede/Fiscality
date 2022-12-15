@@ -18,6 +18,12 @@ import './../../vendor/power-components/livewire-powergrid/dist/powergrid'
 
 FilePond.registerPlugin(FilePondPluginFileValidateType, FilePondPluginFileEncode, FilePondPluginFileValidateSize);
 
+// Letting all input number file to accept float number
+const allInputsNumber =  document.querySelectorAll('input[type=number]');
+allInputsNumber.forEach(inputNumber => {
+    inputNumber.setAttribute('step', 'any');
+})
+
 // const paymentButton = document.querySelector('#payment');
 // const price = document.querySelector('#price');
 //

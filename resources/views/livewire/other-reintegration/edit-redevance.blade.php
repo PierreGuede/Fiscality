@@ -108,7 +108,7 @@
                 </div>
 
                 <div class="mt-2 space-y-3 ">
-                    <x-input x-model="turnover" wire:model.defer="turnover" type="number" step="0.01" label="Chiffre d'affaires" id="turnover" name="turnover"
+                    <x-input :disabled="true" x-model="turnover" wire:model.defer="turnover" type="number" step="0.01" label="Chiffre d'affaires" id="turnover" name="turnover"
                              value="{{ old('turnover') }}" class="block w-full" required autofocus/>
                     <x-input  type="number" wire:model.defer="deduction_limit" step="0.01" label="Limite de déduction" id="delay_condition" name=""
                              x-bind:value="turnover * 0.05" class="block w-full" step="0.01" required autofocus/>

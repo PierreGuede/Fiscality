@@ -5,6 +5,8 @@ namespace App\Http\Livewire\OtherReintegration;
 use App\Fiscality\AdvertisingGiftDetails\AdvertisingGiftDetail;
 use App\Fiscality\AdvertisingGifts\AdvertisingGift;
 use App\Fiscality\Companies\Company;
+use App\Fiscality\RADetails\RADetail;
+use Carbon\Carbon;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\DB;
 use Livewire\Component;
@@ -48,10 +50,15 @@ class CreateAdvertisingGift extends Component
 
     public function mount(Company $company)
     {
+        $income = RADetail::whereCompanyId($company->id)->whereYear('created_at', Carbon::now()->year)->whereAccount(70)->first();
+
+        $this->inputs = collect([]);
+        $this->add();
+
         $this->currentStep = 1;
         $this->company = $company;
         $this->fill([
-            'inputs' => collect([]),
+            'turnover' => $income?->amount
         ]);
     }
 

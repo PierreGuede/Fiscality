@@ -10,7 +10,7 @@
             <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/>
         </svg>
     </button>
-    <div x-data="{ state_donation_data: [], donation_gift: [], turnover: 0 }"
+    <div x-data="{ state_donation_data: [], donation_gift: [], turnover: @js($turnover) }"
          class="relative overflow-y-auto w-1/2 bg-white h-full ml-auto  px-12">
         <h5 class="text-xl font-semibold text-gray-700 my-6" >Dons à l'état</h5>
 

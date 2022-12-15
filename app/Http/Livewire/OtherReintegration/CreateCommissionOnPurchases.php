@@ -60,9 +60,8 @@ class CreateCommissionOnPurchases extends Component
         $this->redevances = [];
         $this->currentStep = 1;
         $this->company = $company;
-        $this->fill([
-            'inputs' => collect($this->redevances),
-        ]);
+        $this->inputs  = collect([]);
+        $this->add();
     }
 
     public function render()

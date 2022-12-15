@@ -14,43 +14,59 @@ class IncomeExpenseSeeder extends Seeder
      */
     public function run()
     {
-        IncomeExpense::create([
-            'account' => '70',
+        IncomeExpense::updateOrCreate([
+                'account' => '70',
+            ],
+            [
             'name' => 'Vente',
             'type' => 'income',
         ]);
-        IncomeExpense::create([
-            'account' => '71',
+        IncomeExpense::updateOrCreate([
+                'account' => '71',
+            ],
+            [
             'name' => 'Subvention d\'exploitation',
             'type' => 'income',
         ]);
-        IncomeExpense::create([
-            'account' => '72',
+        IncomeExpense::updateOrCreate([
+                'account' => '72',
+            ],
+            [
             'name' => 'Production immobilisée',
             'type' => 'income',
         ]);
-        IncomeExpense::create([
-            'account' => '73',
+        IncomeExpense::updateOrCreate([
+                'account' => '73',
+            ],
+            [
             'name' => 'Variation de stocks de biens et services produits',
             'type' => 'income',
         ]);
-        IncomeExpense::create([
-            'account' => '60',
+        IncomeExpense::updateOrCreate([
+                'account' => '60',
+            ],
+            [
             'name' => 'Achat',
             'type' => 'expense',
         ]);
-        IncomeExpense::create([
-            'account' => '61',
+        IncomeExpense::updateOrCreate([
+                'account' => '61',
+            ],
+            [
             'name' => 'Transport',
             'type' => 'expense',
         ]);
-        IncomeExpense::create([
-            'account' => '62',
+        IncomeExpense::updateOrCreate([
+                'account' => '62',
+            ],
+            [
             'name' => 'Services extérieurs',
             'type' => 'expense',
         ]);
-        IncomeExpense::create([
-            'account' => '63',
+        IncomeExpense::updateOrCreate([
+                'account' => '63',
+            ],
+            [
             'name' => 'Autres services extérieurs',
             'type' => 'expense',
         ]);

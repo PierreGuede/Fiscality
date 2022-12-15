@@ -68,10 +68,27 @@
             </div>
             <div class="col-span-1 mx-auto my-auto ">
 
-                <button type="button" onclick=" Livewire.emitTo('other-reintegration.create-financial-cost', 'openASide')"
-                        class="focus:outline-none hover:bg-blue-100 p-1.5 rounded-md">
-                    <x-icon name="plus-circle" class="w-6 w-6 stroke-blue-500" />
-                </button>
+                @if($can_edit_financial_cost)
+                    <button type="button"  onclick="Livewire.emitTo('other-reintegration.edit-financial-cost', 'openASide')"
+                            class="focus:outline-none hover:bg-blue-100 p-1.5 rounded-md">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"  class="stroke-2 stroke-blue-500 w-5   ">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L10.582 16.07a4.5 4.5 0 01-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 011.13-1.897l8.932-8.931zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0115.75 21H5.25A2.25 2.25 0 013 18.75V8.25A2.25 2.25 0 015.25 6H10" />
+                        </svg>
+                    </button>
+
+                    <button type="button"  onclick="Livewire.emitTo('other-reintegration.detail-financial-cost', 'openASide')"
+                            class="focus:outline-none hover:bg-green-100 p-1.5 rounded-md">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="stroke-2 stroke-green-400 w-5   ">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M2.036 12.322a1.012 1.012 0 010-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178z" />
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                        </svg>
+                    </button>
+                @else
+                    <button type="button" onclick=" Livewire.emitTo('other-reintegration.create-financial-cost', 'openASide')"
+                            class="focus:outline-none hover:bg-blue-100 p-1.5 rounded-md">
+                        <x-icon name="plus-circle" class="  stroke-blue-500 w-5" />
+                    </button>
+                @endif
 
             </div>
         </div>
@@ -86,10 +103,29 @@
                           autofocus/>
             </div>
             <div class="col-span-1 mx-auto my-auto">
-                <button type="button" onclick="Livewire.emitTo('other-reintegration.create-commission-on-purchases', 'openASide')"
-                        class="focus:outline-none hover:bg-blue-100 p-1.5 rounded-md">
-                    <x-icon name="plus-circle" class="w-6 w-6 stroke-blue-500" />
-                </button>
+                @if($can_edit_commission_on_purchase)
+
+                    <button type="button"  onclick="Livewire.emitTo('other-reintegration.edit-commission-on-purchases', 'openASide')"
+                            class="focus:outline-none hover:bg-blue-100 p-1.5 rounded-md">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"  class="stroke-2 stroke-blue-500 w-5   ">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L10.582 16.07a4.5 4.5 0 01-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 011.13-1.897l8.932-8.931zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0115.75 21H5.25A2.25 2.25 0 013 18.75V8.25A2.25 2.25 0 015.25 6H10" />
+                        </svg>
+                    </button>
+
+                    <button type="button"  onclick="Livewire.emitTo('other-reintegration.detail-commission-on-purchases', 'openASide')"
+                            class="focus:outline-none hover:bg-green-100 p-1.5 rounded-md">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="stroke-2 stroke-green-400 w-5   ">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M2.036 12.322a1.012 1.012 0 010-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178z" />
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                        </svg>
+
+                    </button>
+                @else
+                    <button type="button" onclick=" Livewire.emitTo('other-reintegration.create-commission-on-purchases', 'openASide')"
+                            class="focus:outline-none hover:bg-blue-100 p-1.5 rounded-md">
+                        <x-icon name="plus-circle" class="  stroke-blue-500 w-5" />
+                    </button>
+                @endif
 
             </div>
         </div>
@@ -118,10 +154,28 @@
                          wire:model.defer="redevance" value="{{ old('username') }}" class="w-full "  autofocus/>
             </div>
             <div class="col-span-1 mx-auto my-auto">
-                <button type="button"  onclick="Livewire.emitTo('other-reintegration.create-redevance', 'openASide')"
-                        class="focus:outline-none hover:bg-blue-100 p-1.5 rounded-md">
-                    <x-icon name="plus-circle" class="w-6 w-6 stroke-blue-500" />
-                </button>
+                @if($can_edit_redevance)
+
+                    <button type="button"  onclick="Livewire.emitTo('other-reintegration.edit-redevance', 'openASide')"
+                            class="focus:outline-none hover:bg-blue-100 p-1.5 rounded-md">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"  class="stroke-2 stroke-blue-500 w-5   ">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L10.582 16.07a4.5 4.5 0 01-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 011.13-1.897l8.932-8.931zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0115.75 21H5.25A2.25 2.25 0 013 18.75V8.25A2.25 2.25 0 015.25 6H10" />
+                        </svg>
+                    </button>
+
+                    <button type="button"  onclick="Livewire.emitTo('other-reintegration.detail-redevance', 'openASide')"
+                            class="focus:outline-none hover:bg-green-100 p-1.5 rounded-md">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="stroke-2 stroke-green-400 w-5   ">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M2.036 12.322a1.012 1.012 0 010-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178z" />
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                        </svg>
+                    </button>
+                @else
+                    <button type="button" onclick=" Livewire.emitTo('other-reintegration.create-redevance', 'openASide')"
+                            class="focus:outline-none hover:bg-blue-100 p-1.5 rounded-md">
+                        <x-icon name="plus-circle" class="  stroke-blue-500 w-5" />
+                    </button>
+                @endif
 
             </div>
         </div>
@@ -136,11 +190,29 @@
                          value="{{ old('username') }}" class="w-full "  autofocus/>
             </div>
             <div class="col-span-1 mx-auto my-auto">
-                <button type="button"
-                         onclick="Livewire.emitTo('other-reintegration.create-assistance-cost', 'openASide')"
-                        class="focus:outline-none hover:bg-blue-100 p-1.5 rounded-md">
-                    <x-icon name="plus-circle" class="w-6 w-6 stroke-blue-500" />
-                </button>
+                @if($can_edit_accounting_financial_technical_assistance_costs)
+                    <button type="button"  onclick="Livewire.emitTo('other-reintegration.edit-assistance-cost', 'openASide')"
+                            class="focus:outline-none hover:bg-blue-100 p-1.5 rounded-md">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"  class="stroke-2 stroke-blue-500 w-5   ">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L10.582 16.07a4.5 4.5 0 01-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 011.13-1.897l8.932-8.931zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0115.75 21H5.25A2.25 2.25 0 013 18.75V8.25A2.25 2.25 0 015.25 6H10" />
+                        </svg>
+                    </button>
+
+                    <button type="button"  onclick="Livewire.emitTo('other-reintegration.detail-assistance-cost', 'openASide')"
+                            class="focus:outline-none hover:bg-green-100 p-1.5 rounded-md">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="stroke-2 stroke-green-400 w-5   ">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M2.036 12.322a1.012 1.012 0 010-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178z" />
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                        </svg>
+
+                    </button>
+
+                @else
+                    <button type="button" onclick=" Livewire.emitTo('other-reintegration.create-assistance-cost', 'openASide')"
+                            class="focus:outline-none hover:bg-blue-100 p-1.5 rounded-md">
+                        <x-icon name="plus-circle" class="  stroke-blue-500 w-5" />
+                    </button>
+                @endif
 
             </div>
         </div>
@@ -170,11 +242,29 @@
                           autofocus/>
             </div>
             <div class="col-span-1 mx-auto my-auto">
-                <button type="button"
-                         onclick="Livewire.emitTo('other-reintegration.create-donation-grant-contributions', 'openASide')"
-                        class="focus:outline-none hover:bg-blue-100 p-1.5 rounded-md">
-                    <x-icon name="plus-circle" class="w-6 w-6 stroke-blue-500" />
-                </button>
+                @if($can_edit_donation_grant_contribution)
+                    <button type="button"  onclick="Livewire.emitTo('other-reintegration.edit-donation-grant-contributions', 'openASide')"
+                            class="focus:outline-none hover:bg-blue-100 p-1.5 rounded-md">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"  class="stroke-2 stroke-blue-500 w-5   ">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L10.582 16.07a4.5 4.5 0 01-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 011.13-1.897l8.932-8.931zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0115.75 21H5.25A2.25 2.25 0 013 18.75V8.25A2.25 2.25 0 015.25 6H10" />
+                        </svg>
+                    </button>
+
+                    <button type="button"  onclick="Livewire.emitTo('other-reintegration.detail-donation-grant-contributions', 'openASide')"
+                            class="focus:outline-none hover:bg-green-100 p-1.5 rounded-md">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="stroke-2 stroke-green-400 w-5   ">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M2.036 12.322a1.012 1.012 0 010-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178z" />
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                        </svg>
+
+                    </button>
+
+                @else
+                    <button type="button" onclick=" Livewire.emitTo('other-reintegration.create-donation-grant-contributions', 'openASide')"
+                            class="focus:outline-none hover:bg-blue-100 p-1.5 rounded-md">
+                        <x-icon name="plus-circle" class="  stroke-blue-500 w-5" />
+                    </button>
+                @endif
 
             </div>
         </div>
@@ -189,11 +279,29 @@
                          autofocus/>
             </div>
             <div class="col-span-1 mx-auto my-auto">
-                <button type="button"
-                         onclick="Livewire.emitTo('other-reintegration.create-advertising-gift', 'openASide')"
-                        class="focus:outline-none hover:bg-blue-100 p-1.5 rounded-md">
-                    <x-icon name="plus-circle" class="w-6 w-6 stroke-blue-500" />
-                </button>
+                @if($can_edit_advertising_gift)
+                    <button type="button"  onclick="Livewire.emitTo('other-reintegration.edit-advertising-gift', 'openASide')"
+                            class="focus:outline-none hover:bg-blue-100 p-1.5 rounded-md">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"  class="stroke-2 stroke-blue-500 w-5   ">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L10.582 16.07a4.5 4.5 0 01-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 011.13-1.897l8.932-8.931zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0115.75 21H5.25A2.25 2.25 0 013 18.75V8.25A2.25 2.25 0 015.25 6H10" />
+                        </svg>
+                    </button>
+
+                    <button type="button"  onclick="Livewire.emitTo('other-reintegration.detail-advertising-gift', 'openASide')"
+                            class="focus:outline-none hover:bg-green-100 p-1.5 rounded-md">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="stroke-2 stroke-green-400 w-5   ">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M2.036 12.322a1.012 1.012 0 010-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178z" />
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                        </svg>
+
+                    </button>
+
+                @else
+                    <button type="button" onclick=" Livewire.emitTo('other-reintegration.create-advertising-gift', 'openASide')"
+                            class="focus:outline-none hover:bg-blue-100 p-1.5 rounded-md">
+                        <x-icon name="plus-circle" class="  stroke-blue-500 w-5" />
+                    </button>
+                @endif
 
             </div>
         </div>
@@ -329,10 +437,29 @@
                          autofocus/>
             </div>
             <div class="col-span-1 mx-auto my-auto ">
-                <button type="button"  onclick="Livewire.emitTo('other-reintegration.create-excess-rent', 'openASide')"
-                        class="focus:outline-none hover:bg-blue-100 p-1.5 rounded-md">
-                    <x-icon name="plus-circle" class="w-6 w-6 stroke-blue-500" />
-                </button>
+                @if($can_edit_excess_rent)
+                    <button type="button"  onclick="Livewire.emitTo('other-reintegration.edit-excess-rent', 'openASide')"
+                            class="focus:outline-none hover:bg-blue-100 p-1.5 rounded-md">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"  class="stroke-2 stroke-blue-500 w-5   ">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L10.582 16.07a4.5 4.5 0 01-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 011.13-1.897l8.932-8.931zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0115.75 21H5.25A2.25 2.25 0 013 18.75V8.25A2.25 2.25 0 015.25 6H10" />
+                        </svg>
+                    </button>
+
+                    <button type="button"  onclick="Livewire.emitTo('other-reintegration.detail-excess-rent', 'openASide')"
+                            class="focus:outline-none hover:bg-green-100 p-1.5 rounded-md">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="stroke-2 stroke-green-400 w-5   ">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M2.036 12.322a1.012 1.012 0 010-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178z" />
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                        </svg>
+
+                    </button>
+
+                @else
+                    <button type="button" onclick=" Livewire.emitTo('other-reintegration.create-excess-rent', 'openASide')"
+                            class="focus:outline-none hover:bg-blue-100 p-1.5 rounded-md">
+                        <x-icon name="plus-circle" class="  stroke-blue-500 w-5" />
+                    </button>
+                @endif
 
             </div>
         </div>

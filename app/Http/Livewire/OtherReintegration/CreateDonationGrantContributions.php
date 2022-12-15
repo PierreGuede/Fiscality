@@ -3,11 +3,13 @@
 namespace App\Http\Livewire\OtherReintegration;
 
 use App\Fiscality\Companies\Company;
+use App\Fiscality\RADetails\RADetail;
 use App\Models\DonationGiftDetail;
 use App\Models\DonationGrantContribution;
 use App\Models\GuruDonationsGift;
 use App\Models\GuruStateDonationDetail;
 use App\Models\StateDonationDetail;
+use Carbon\Carbon;
 use Illuminate\Support\Collection;
 use Livewire\Component;
 
@@ -74,10 +76,15 @@ class CreateDonationGrantContributions extends Component
         $this->donation_gifts = GuruDonationsGift::all();
 
         $this->company = $company;
+        $income = RADetail::whereCompanyId($company->id)->whereYear('created_at', Carbon::now()->year)->whereAccount(70)->first();
+
+            $this->state_donation_inputs = collect($this->state_donation);
+            $this->addToFirstInput();
+            $this->donation_gifts_inputs = collect($this->donation_gifts);
+            $this->addToSecondInput();
 
         $this->fill([
-            'state_donation_inputs' => collect($this->state_donation),
-            'donation_gifts_inputs' => collect($this->donation_gifts),
+            'turnover' => $income?->amount
         ]);
     }
 

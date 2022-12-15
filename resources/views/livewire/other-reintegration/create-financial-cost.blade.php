@@ -59,7 +59,7 @@
                 </div>
 
                 <div x-show="lib_condition_response == 'no'" class="mt-5">
-                    <x-input type="text" label="Montant à réintégrer" id="lib_condition"
+                    <x-input type="number" label="Montant à réintégrer" id="lib_condition"
                              wire:model.defer="lib_condition" name="lib_condition"
                              value="{{ old('lib_condition') }}" class="block w-full" required autofocus/>
 
@@ -93,7 +93,7 @@
                 </div>
 
                 <div x-show="delay_condition_response == 'yes'" class="mt-5">
-                    <x-input type="text"
+                    <x-input type="number"
                              label="Montants des intérêts déduits sur les fonds non remboursés sur plus de cinq ans"
                              id="delay_condition" wire:model.defer="delay_condition" name="delay_condition"
                              value="{{ old('delay_condition') }}" class="block w-full" required autofocus/>
@@ -153,7 +153,7 @@
 
                 <div>
                     <p class="text-sm text-gray-400">Surplus de taux pratiqué</p>
-                    <p class="w-full h-10 p-2 px-3 text-gray-900 placeholder-transparent border border-gray-300 rounded-sm peer focus:ring-blue-500/40 focus:ring-4 focus:outline-none align-center focus:border-blue-600"
+                    <p class="w-full text-left h-10 p-2 px-3 text-gray-900 placeholder-transparent border border-gray-300 rounded-sm peer focus:ring-blue-500/40 focus:ring-4 focus:outline-none align-center focus:border-blue-600"
                        x-text="Number(interest_rate_charged)-Number(Number(bceaoRate)+3)"> </p>
                 </div>
 
