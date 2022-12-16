@@ -9,12 +9,32 @@
     </div>
 
     @livewire('other-reintegration.create-financial-cost', ['company' => $company ])
+    @livewire('other-reintegration.edit-financial-cost', ['company' => $company ])
+    @livewire('other-reintegration.detail-financial-cost', ['company' => $company ])
+
     @livewire('other-reintegration.create-commission-on-purchases', ['company' => $company ])
+    @livewire('other-reintegration.edit-commission-on-purchases', ['company' => $company ])
+    @livewire('other-reintegration.detail-commission-on-purchases', ['company' => $company ])
+
     @livewire('other-reintegration.create-redevance', ['company' => $company ])
+    @livewire('other-reintegration.edit-redevance', ['company' => $company ])
+    @livewire('other-reintegration.detail-redevance', ['company' => $company ])
+
     @livewire('other-reintegration.create-assistance-cost', ['company' => $company ])
+    @livewire('other-reintegration.edit-assistance-cost', ['company' => $company ])
+    @livewire('other-reintegration.detail-assistance-cost', ['company' => $company ])
+
     @livewire('other-reintegration.create-donation-grant-contributions', ['company' => $company ])
+    @livewire('other-reintegration.edit-donation-grant-contributions', ['company' => $company ])
+    @livewire('other-reintegration.detail-donation-grant-contributions', ['company' => $company ])
+
     @livewire('other-reintegration.create-advertising-gift', ['company' => $company ])
+    @livewire('other-reintegration.edit-advertising-gift', ['company' => $company ])
+    @livewire('other-reintegration.detail-advertising-gift', ['company' => $company ])
+
     @livewire('other-reintegration.create-excess-rent', ['company' => $company ])
+    @livewire('other-reintegration.edit-excess-rent', ['company' => $company ])
+    @livewire('other-reintegration.detail-excess-rent', ['company' => $company ])
 
     <form class="space-y-4 text-sm" wire:submit.prevent="save">
 

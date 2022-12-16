@@ -1,7 +1,7 @@
 <div  >
 
 {{--    @livewire('total-card', ['total' => $total])--}}
-    <x-total-card :total="$total" />
+    <x-total-card label="Total Résultat Comptable" :total="$total" />
 {{--    @if ($account_result!=null)--}}
 {{--        @else--}}
 {{--    <div class="mb-6 space-y-3">--}}

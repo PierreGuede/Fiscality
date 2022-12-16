@@ -122,7 +122,7 @@ class CreateIncome extends ModalComponent
 
         $total_data = $this->processDataTotalAmount($this->inputs);
 
-        $exist = AccountingResult::whereCompanyId($this->company->id)->first();
+        $exist = AccountingResult::whereCompanyId($this->company->id)->whereYear('created_at', Carbon::now()->year)->first();
         try {
             DB::beginTransaction();
             if (is_null($exist)) {
