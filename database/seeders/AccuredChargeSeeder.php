@@ -14,7 +14,7 @@ class AccuredChargeSeeder extends Seeder
      */
     public function run()
     {
-        AccuredCharge::upsert(
+        \DB::table('accured_charges')->upsert(
             [
                 [
 
@@ -57,7 +57,7 @@ class AccuredChargeSeeder extends Seeder
                     'designation' => 'Dotation aux dépréciations des immobilisations coroporelles',
                     'type' => AccuredCharge::PROVISION,
                 ]
-            ], ['compte']);
+            ], 'compte');
 
     }
 }

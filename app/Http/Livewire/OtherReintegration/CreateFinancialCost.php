@@ -6,6 +6,7 @@ use App\Fiscality\AccountingResults\AccountingResult;
 use App\Fiscality\FinancialCostConditions\FinancialCostCondition;
 use App\Fiscality\FinancialCostInterests\FinancialCostInterest;
 use App\Fiscality\FinancialCosts\FinancialCost;
+use App\Http\Livewire\OtherReintegrationSettingHandler;
 use Carbon\Carbon;
 use Illuminate\Support\Str;
 use Livewire\Component;
@@ -15,6 +16,10 @@ class CreateFinancialCost extends Component
     public $financialCost;
 
     public $rate = 4;
+
+    public  $bceao_interest_rate = 4 ;
+    public  $rate_deductibility_limit = 30;
+    public  $minimum_rate = 3 ;
 
     public $inputs;
 
@@ -74,6 +79,11 @@ class CreateFinancialCost extends Component
 
     public function mount($company)
     {
+        $otherReintegrationSetting = OtherReintegrationSettingHandler::getValue($company->id);
+        $this->rate_deductibility_limit = $otherReintegrationSetting->rate_deductibility_limit;
+        $this->bceao_interest_rate = $otherReintegrationSetting->bceao_interest_rate;
+        $this->minimum_rate = $otherReintegrationSetting->minimum_rate;
+
         $this->financialCost = [];
         $this->company = $company;
         $this->rc = AccountingResult::whereCompanyId($this->company->id)->whereYear('created_at', Carbon::now()->year)->first();

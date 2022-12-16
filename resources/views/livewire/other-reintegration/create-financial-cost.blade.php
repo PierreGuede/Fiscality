@@ -11,9 +11,12 @@
         </svg>
 
     </button>
+
     <div x-data="{ lib_condition_response: 'yes', delay_condition_response: 'yes',
-                     bceaoRate:4,
-                     rate_surplus:0,
+                     bceaoRate: @js($bceao_interest_rate),
+                     max_rate: @js($minimum_rate),
+                     rate_deductibility_limit: @js($rate_deductibility_limit) / 100,
+                     rate_surplus: 0,
                      interest_rate_charged: 0,
                      amount_interest_recorded: 0,
                      amount_reintegrated: 0,
@@ -22,7 +25,7 @@
                      allocations_to_provisions: 0,
                      calculation_base: 0,
                      fnCalculateAmount() {
-                        return this.bceaoRate && this.interest_rate_charged && this.amount_interest_recorded ?  this.amount_interest_recorded * ((Number(this.interest_rate_charged)-(this.bceaoRate+3)) / this.interest_rate_charged) : 0;
+                        return this.bceaoRate && this.interest_rate_charged && this.amount_interest_recorded ?  this.amount_interest_recorded * ((Number(this.interest_rate_charged)-(this.bceaoRate + this.max_rate)) / this.interest_rate_charged) : 0;
                      },
 
                     fnBaseCalcul(){
@@ -148,13 +151,13 @@
 
 
                 <x-input :disabled="true" type="number" label="Taux maximum" id="delay_condition" name=""
-                         x-bind:value="bceaoRate + 3"
+                         x-bind:value="bceaoRate + max_rate"
                          value="{{ old('delay_condition') }}" class="block w-full" required autofocus/>
 
                 <div>
                     <p class="text-sm text-gray-400">Surplus de taux pratiqué</p>
                     <p class="w-full text-left h-10 p-2 px-3 text-gray-900 placeholder-transparent border border-gray-300 rounded-sm peer focus:ring-blue-500/40 focus:ring-4 focus:outline-none align-center focus:border-blue-600"
-                       x-text="Number(interest_rate_charged)-Number(Number(bceaoRate)+3)"> </p>
+                       x-text="Number(interest_rate_charged)-Number(Number(bceaoRate)+max_rate)"> </p>
                 </div>
 
                 <x-input :disabled="true" type="number" label="Montant à réintégrer" id="delay_condition" name=""
@@ -220,7 +223,7 @@
 
                 {{--Plafond de déductibilité--}}
                 <x-input :disabled="true" type="number" label="Plafond de déductibilité" id="delay_condition"
-                         x-bind:value="  ({{  $rc?->ar_value }} + fnBaseCalcul()) * (30/100)"  class="block w-full" required autofocus/>
+                         x-bind:value="  ({{  $rc?->ar_value }} + fnBaseCalcul()) * rate_deductibility_limit"  class="block w-full" required autofocus/>
 
 
                 {{-- <x-input type="number"  label="Plafond de déductibilité" id="delay_condition" name="" wire:model="deductibility_limit"
@@ -228,7 +231,7 @@
 
                 <p class="text-sm text-gray-400">Montant à réintégrer</p>
                 <p class="w-full h-10 p-2 px-3 text-gray-900 placeholder-transparent border border-gray-300 rounded-sm peer focus:ring-blue-500/40 focus:ring-4 focus:outline-none align-center focus:border-blue-600"
-                   x-text="((Number(amount_of_interest_recorded) - fnCalculateAmount()) - (({{  $rc?->ar_value }} + fnBaseCalcul()) * (30/100) * (30/100))) > 0 ? ((Number(amount_of_interest_recorded) - fnCalculateAmount()) - (({{  $rc?->ar_value }} + fnBaseCalcul()) * (30/100) * (30/100))) : 0 ">
+                   x-text="((Number(amount_of_interest_recorded) - fnCalculateAmount()) - (({{  $rc?->ar_value }} + fnBaseCalcul()) * rate_deductibility_limit * rate_deductibility_limit)) > 0 ? ((Number(amount_of_interest_recorded) - fnCalculateAmount()) - (({{  $rc?->ar_value }} + fnBaseCalcul()) * rate_deductibility_limit * rate_deductibility_limit)) : 0 ">
 
                 {{-- <x-input type="number"  label="Montant à réintégrer" id="delay_condition" name="" wire:model="amount_reintegrate"
                          value="{{ old('delay_condition') }}" class="block w-full" required autofocus /> --}}

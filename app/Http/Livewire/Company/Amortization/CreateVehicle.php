@@ -5,6 +5,7 @@ namespace App\Http\Livewire\Company\Amortization;
 use App\Fiscality\Amortizations\Amortization;
 use App\Fiscality\Companies\Company;
 use App\Fiscality\Vehicles\Vehicle;
+use App\Models\AmortizationSetting;
 use LivewireUI\Modal\ModalComponent;
 use WireUi\Traits\Actions;
 
@@ -48,6 +49,12 @@ class CreateVehicle extends ModalComponent
     public function mount(Company $company)
     {
         $this->company = $company;
+
+        $setting = AmortizationSetting::whereCompanyId($company->id)->first();
+        $this->fill([
+            'plafond' => $setting->depreciation_base_limit,
+            'depreciation_base_limit' => $setting->depreciation_base_limit
+        ]);
     }
 
     public function render()

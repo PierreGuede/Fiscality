@@ -18,22 +18,28 @@ class RADetailImport implements ToCollection, WithHeadingRow
     {
 
         $company= Company::whereEmail($rows[0]['company_email'])->first();
+        $type= $rows[0]['type'];
         $exist = AccountingResult::whereCompanyId($company->id)->first();
 
         if (is_null($exist)) {
             $total_data = array_sum(array_column($rows->toArray(), 'amount'));
             $accounting_result = AccountingResult::create([
-                'total_incomes' => $total_data,
-                'total_expenses' => 0,
-                'ar_value' => $total_data - 0,
+                'total_incomes' => $type == \App\Fiscality\RADetails\RADetail::INCOME ?   $total_data : 0,
+                'total_expenses' => $type == \App\Fiscality\RADetails\RADetail::EXPENSE ?   $total_data : 0,
+                'ar_value' => $total_data ,
                 'company_id' => $company->id,
             ]);
 
             $this->add($rows, $accounting_result);
         } else {
             $total_data = array_sum(array_column($rows->toArray(), 'amount'));
-            $exist->total_incomes = $total_data;
-            $exist->ar_value = (float) $total_data - (float) $exist->total_expenses;
+            if ($type == \App\Fiscality\RADetails\RADetail::INCOME) {
+                $exist->total_incomes = $total_data;
+                $exist->ar_value = (float) $total_data - (float) $exist->total_expenses;
+            } else {
+                $exist->total_expenses = $total_data;
+                $exist->ar_value = $exist->total_incomes - $total_data;
+            }
             $this->add($rows, $exist);
 
             $exist->save();

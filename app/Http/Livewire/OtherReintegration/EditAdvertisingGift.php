@@ -5,6 +5,7 @@ namespace App\Http\Livewire\OtherReintegration;
 use App\Fiscality\AdvertisingGiftDetails\AdvertisingGiftDetail;
 use App\Fiscality\AdvertisingGifts\AdvertisingGift;
 use App\Fiscality\Companies\Company;
+use App\Http\Livewire\OtherReintegrationSettingHandler;
 use Carbon\Carbon;
 use Illuminate\Support\Collection;
 use Livewire\Component;
@@ -12,6 +13,8 @@ use Livewire\Component;
 class EditAdvertisingGift extends Component
 {
     public bool  $open_a_side = false;
+
+    public $donation_limit_rate = 3/1000;
 
     public Company $company;
 
@@ -58,6 +61,9 @@ class EditAdvertisingGift extends Component
 
     public function mount(Company $company)
     {
+        $otherReintegrationSetting = OtherReintegrationSettingHandler::getValue($company->id);
+        $this->donation_limit_rate = $otherReintegrationSetting->advertising_gifts_deduction_limit;
+
         $this->currentStep = 1;
         $this->company = $company;
         $this->advertising_gift_detail = AdvertisingGiftDetail::whereCompanyId($this->company->id)->whereYear('created_at', Carbon::now()->year)->get();

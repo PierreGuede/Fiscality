@@ -14,20 +14,8 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::table('companies', function (Blueprint $table) {
-            $table->foreignIdFor(DiscountType::class)->constrained();
-        });
-    }
-
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
-    public function down()
-    {
-        Schema::table('companies', function (Blueprint $table) {
-            //
+        Schema::whenTableDoesntHaveColumn('companies','discount_type_id' ,function (Blueprint $table) {
+            $table->foreignIdFor(DiscountType::class)->nullable()->constrained();
         });
     }
 };

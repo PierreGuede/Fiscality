@@ -6,6 +6,7 @@ use App\Fiscality\AdvertisingGiftDetails\AdvertisingGiftDetail;
 use App\Fiscality\AdvertisingGifts\AdvertisingGift;
 use App\Fiscality\Companies\Company;
 use App\Fiscality\RADetails\RADetail;
+use App\Http\Livewire\OtherReintegrationSettingHandler;
 use Carbon\Carbon;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\DB;
@@ -14,6 +15,8 @@ use Livewire\Component;
 class CreateAdvertisingGift extends Component
 {
     public bool  $open_a_side = false;
+
+    public $donation_limit_rate = 3/1000;
 
     public Company $company;
 
@@ -50,6 +53,9 @@ class CreateAdvertisingGift extends Component
 
     public function mount(Company $company)
     {
+        $otherReintegrationSetting = OtherReintegrationSettingHandler::getValue($company->id);
+        $this->donation_limit_rate = $otherReintegrationSetting->advertising_gifts_deduction_limit;
+
         $income = RADetail::whereCompanyId($company->id)->whereYear('created_at', Carbon::now()->year)->whereAccount(70)->first();
 
         $this->inputs = collect([]);

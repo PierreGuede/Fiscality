@@ -10,7 +10,11 @@
             <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/>
         </svg>
     </button>
-    <div x-data="{  arrayLimit: [] , fatAmount: 0, rate: 5 }"
+    <div x-data="{
+                    arrayLimit: @js($arrayLimit) ,
+                    fatAmount: 0,
+                    rate: @js($deduction_limit_rate) /100
+                }"
          class="relative overflow-y-auto w-1/2 bg-white h-full ml-auto  px-12">
         <h2 class="text-2xl font-bold text-gray-7002 py-8">Frais d'assistance</h2>
 
@@ -19,7 +23,7 @@
             <div class="w-full h-0.5 bg-blue-300" ></div>
             <div class=" ml-6 mt-4 space-y-4 ">
                 <div class="grid grid-cols-12 gap-x-4">
-                    <h5 class="py-1 text-sm font-semibold text-gray-700 col-span-2">Comptede charges </h5>
+                    <h5 class="py-1 text-sm font-semibold text-gray-700 col-span-2">Compte de charges </h5>
                     <h5 class="py-1 text-sm font-semibold text-gray-700 col-span-7">Intitulé </h5>
                     <h5 class="py-1 text-sm font-semibold text-gray-700 col-span-3">Montant </h5>
 
@@ -52,7 +56,8 @@
 
                                 <div class="col-span-3">
                                     <x-input :disabled="count($general_cost) > $key" for="input_{{ $key }}_amount"
-                                        type="text" id="input_{{ $key }}_amount"
+                                        type="number" step="any" id="input_{{ $key }}_amount"
+                                             x-model="arrayLimit[{{ $key  }}]"
                                         wire:model.defer="inputs.{{ $key }}.amount"
                                         class="" required autofocus />
                                 </div>

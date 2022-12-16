@@ -10,7 +10,7 @@
             <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/>
         </svg>
     </button>
-    <div x-data="{  array_of_amount: @js($arr_sum), turnover: @js($turnover) }"
+    <div x-data="{  array_of_amount: @js($arr_sum), turnover: @js($turnover), rate: @js($deduction_limit_rate)/100 }"
          class="relative overflow-y-auto w-1/2 bg-white h-full ml-auto  px-12">
         <h2 class="text-2xl font-bold text-gray-7002 py-8">Redevances</h2>
 
@@ -111,9 +111,9 @@
                     <x-input :disabled="true" x-model="turnover" wire:model.defer="turnover" type="number" step="0.01" label="Chiffre d'affaires" id="turnover" name="turnover"
                              value="{{ old('turnover') }}" class="block w-full" required autofocus/>
                     <x-input  type="number" wire:model.defer="deduction_limit" step="0.01" label="Limite de déduction" id="delay_condition" name=""
-                             x-bind:value="turnover * 0.05" class="block w-full" step="0.01" required autofocus/>
+                             x-bind:value="turnover * rate" class="block w-full" step="0.01" required autofocus/>
                     <x-input type="number" wire:model.defer="amount_reintegrated" step="0.01" label="Montant à réintégrer" id="reintegration_amount" name=""
-                             x-bind:value="array_of_amount.length > 0 && array_of_amount.reduce((acc, next) => Number(acc) + Number(next)  , 0) - (turnover * 0.05) > 0 ? array_of_amount.reduce((acc, next) => Number(acc) + Number(next)  , 0) - (turnover * 0.05) : 0" class="block w-full" required autofocus/>
+                             x-bind:value="array_of_amount.length > 0 && array_of_amount.reduce((acc, next) => Number(acc) + Number(next)  , 0) - (turnover * rate) > 0 ? array_of_amount.reduce((acc, next) => Number(acc) + Number(next)  , 0) - (turnover * rate) : 0" class="block w-full" required autofocus/>
                 </div>
 
             </div>

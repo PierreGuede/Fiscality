@@ -10,7 +10,12 @@
             <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/>
         </svg>
     </button>
-    <div x-data="{ state_donation_data: [], donation_gift: [], turnover: @js($turnover) }"
+    <div x-data="{ state_donation_data: [],
+                    donation_gift: [],
+                    turnover: @js($turnover),
+                    limit: @js($limit),
+                    rate_thousandth: @js($rate_thousandth)
+                }"
          class="relative overflow-y-auto w-1/2 bg-white h-full ml-auto  px-12">
         <h5 class="text-xl font-semibold text-gray-700 my-6" >Dons à l'état</h5>
 
@@ -97,7 +102,7 @@
                 <x-input :disabled="true" type="number" label="Total dons à l'Etat ou ses démenbrements" id="delay_condition" name=""
                          x-bind:value="state_donation_data.reduce((acc, next) => Number(acc) + Number(next)  , 0) " class="block w-full" required autofocus/>
                 <x-input :disabled="true" type="number" label="Excedent des dons à l'Etat" id="delay_condition" name=""
-                         x-bind:value="state_donation_data.reduce((acc, next) => Number(acc) + Number(next)  , 0) - {{ $limit  }}" class="block w-full" required autofocus/>
+                         x-bind:value="state_donation_data.reduce((acc, next) => Number(acc) + Number(next)  , 0) - limit" class="block w-full" required autofocus/>
             </div>
 
 
@@ -109,7 +114,7 @@
                     <x-input x-model="turnover" wire:model.defer="turnover" type="number" step="any" label="Chiffre d'affaire" id="turnover" name=""
                              value="" class="block w-full" required autofocus/>
                     <x-input :disabled="true" type="number" step="any" label="Millième du Chiffre d'affaires" id="delay_condition" name=""
-                             x-bind:value="turnover * (1/1000)" class="block w-full" required autofocus/>
+                             x-bind:value="turnover * rate_thousandth" class="block w-full" required autofocus/>
                 </div>
             </div>
 
@@ -194,7 +199,7 @@
                     <x-input :disabled="true" type="number" label="Total dons & libéralités" id="delay_condition" name=""
                              x-bind:value="donation_gift.reduce((acc, next) => Number(acc) + Number(next)  , 0) " class="block w-full" required autofocus/>
                     <x-input :disabled="true" type="number" label="Excédent de dons" id="delay_condition" name=""
-                             x-bind:value="donation_gift.reduce((acc, next) => Number(acc) + Number(next)  , 0) - state_donation_data.reduce((acc, next) => Number(acc) + Number(next)  , 0) - {{ $limit  }}" class="block w-full" required autofocus/>
+                             x-bind:value="donation_gift.reduce((acc, next) => Number(acc) + Number(next)  , 0) - state_donation_data.reduce((acc, next) => Number(acc) + Number(next)  , 0) - limit" class="block w-full" required autofocus/>
                 </div>
             </div>
 

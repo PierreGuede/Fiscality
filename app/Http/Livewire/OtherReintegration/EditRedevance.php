@@ -5,6 +5,7 @@ namespace App\Http\Livewire\OtherReintegration;
 use App\Fiscality\Companies\Company;
 use App\Fiscality\RedevanceDetails\RedevanceDetail;
 use App\Fiscality\Redevances\Redevance;
+use App\Http\Livewire\OtherReintegrationSettingHandler;
 use App\Models\GuruRedevance;
 use Carbon\Carbon;
 use Illuminate\Support\Collection;
@@ -20,6 +21,8 @@ class EditRedevance extends Component
     public string  $response = 'no';
 
     public Company $company;
+
+    public  $deduction_limit_rate = 5;
 
     public $redevance_details;
 
@@ -72,6 +75,9 @@ class EditRedevance extends Component
 
     public function mount(Company $company)
     {
+        $otherReintegrationSetting = OtherReintegrationSettingHandler::getValue($company->id);
+        $this->deduction_limit_rate = $otherReintegrationSetting->redevance_deduction_rate_limit;
+
         $this->currentStep = 1;
         $this->company = $company;
         $this->guru_redevance = GuruRedevance::all();

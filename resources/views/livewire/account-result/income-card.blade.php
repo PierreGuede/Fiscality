@@ -17,16 +17,14 @@
         <div class="mt-auto ">
 
 
-            @if((is_null($total) or $total['total_incomes'] == 0) && empty($total['ar_value']) )
-            <button onclick="Livewire.emit('openModal', 'account-result.import-income', {{ json_encode([ "company" => $company ]) }})" class="w-full focus:outline-none text-sm border-b-2 border-blue-50 flex  items-center justify-center px-4 py-2 text-blue-50 bg-blue-500 hover:bg-blue-400 gap-x-2 font-semibold" >
+            @if((is_null($total) or $total['total_incomes'] == 0)  )
+            <button onclick="Livewire.emit('openModal', 'account-result.import-income', {{ json_encode([ "company" => $company ]) }})" class="w-full focus:outline-none text-sm border-b-2 border-green-50 flex  items-center justify-center px-4 py-2 text-green-700 bg-green-100 hover:bg-green-500 hover:text-green-50 gap-x-2 font-semibold" >
                 <x-icon name="upload" class="stroke-2 stroke-blue-50 w-5" />
-
                 <span>Importer</span>
             </button>
+
                 <button onclick="Livewire.emit('openModal', 'account-result.create-income', {{ json_encode([ "company" => $company ]) }})" class="w-full focus:outline-none text-sm border-b-2 border-blue-50 flex  items-center justify-center px-4 py-2 text-blue-50 bg-blue-500 hover:bg-blue-400 gap-x-2 font-semibold" >
-
                     <x-icon name="plus-circle" class="stroke-2 stroke-blue-50 w-5" />
-
                     <span>Ajouter</span>
                 </button>
             @endif

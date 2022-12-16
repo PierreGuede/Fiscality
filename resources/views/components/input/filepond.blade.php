@@ -11,6 +11,8 @@
                     @this.removeUpload('{{ $attributes['wire:model'] }}', filename, load)
                 },
             },
+
+            labelIdle: 'Déposez un fichier ou <span class=\'filepond--label-action\'> Choisissez </span>'
         });
     "
 >

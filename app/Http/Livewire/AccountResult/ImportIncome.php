@@ -14,16 +14,24 @@ class ImportIncome extends ModalComponent
 
     public $file;
 
+    protected $rules = [
+        'file'=> ['required']
+    ];
+
     public function render()
     {
         return view('livewire.account-result.import-income');
     }
 
     public function save() {
+        $this->validate();
 
         \Maatwebsite\Excel\Facades\Excel::import(new RADetailImport, $this->file);
 
         $this->notification()->success('Succès', 'Importation effectuée avec succès!');
+        $this->emit('refreshIncome');
+
+
         $this->closeModal();
 
     }

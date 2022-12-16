@@ -98,7 +98,7 @@
                                     <div class="mt-4">
                                         <x-label for="created_date" :value="__('Date de création de l\'entreprise')"/>
                                         <x-datetime-picker
-                                            label=""
+                                            label="Date de création"
                                             name="created_date"
                                             wire:model.defer="created_date"
                                             class="rounded-sm shadow-none border-gray-300"

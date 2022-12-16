@@ -4,6 +4,7 @@ namespace App\Http\Livewire\OtherReintegration;
 
 use App\Fiscality\Companies\Company;
 use App\Fiscality\RADetails\RADetail;
+use App\Http\Livewire\OtherReintegrationSettingHandler;
 use App\Models\DonationGiftDetail;
 use App\Models\DonationGrantContribution;
 use App\Models\GuruDonationsGift;
@@ -22,6 +23,7 @@ class CreateDonationGrantContributions extends Component
     public $company;
 
     public $limit = 25_000_000;
+    public $rate_thousandth = 1000 ;
 
     public $state_donation;
 
@@ -72,6 +74,10 @@ class CreateDonationGrantContributions extends Component
 
     public function mount(Company $company)
     {
+        $otherReintegrationSetting = OtherReintegrationSettingHandler::getValue($company->id);
+        $this->limit = $otherReintegrationSetting->state_donation_limit;
+        $this->rate_thousandth = $otherReintegrationSetting->state_donation_rate_thousandth;
+
         $this->state_donation = GuruStateDonationDetail::all();
         $this->donation_gifts = GuruDonationsGift::all();
 

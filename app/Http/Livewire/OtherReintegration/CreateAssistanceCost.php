@@ -6,6 +6,7 @@ use App\Fiscality\AssistanceCosts\AssistanceCost;
 use App\Fiscality\GeneralCostDetails\GeneralCostDetail;
 use App\Fiscality\GeneralCosts\GeneralCost;
 use App\Fiscality\RADetails\RADetail;
+use App\Http\Livewire\OtherReintegrationSettingHandler;
 use Illuminate\Support\Facades\DB;
 use Livewire\Component;
 
@@ -14,6 +15,8 @@ class CreateAssistanceCost extends Component
     public bool  $open_a_side = false;
 
     public string  $response = 'no';
+
+    public  $deduction_limit_rate = 5;
 
     public $general_cost;
 
@@ -55,10 +58,14 @@ class CreateAssistanceCost extends Component
     public function mount($company)
     {
         $expense = RADetail::whereCompanyId($company->id)->where('type', 'expense')->where('account', '!=', '60')->get();
+
+        $otherReintegrationSetting = OtherReintegrationSettingHandler::getValue($company->id);
+        $this->deduction_limit_rate = $otherReintegrationSetting->assistance_cost_deduction_rate_limit;
+
         $this->general_cost = $expense;
         $this->company = $company;
 
-//        $this->arrayLimit = $h``
+        $this->arrayLimit = array_column($this->general_cost->toArray(), 'amount');
         $this->fill([
             'inputs' => collect($this->general_cost),
         ]);

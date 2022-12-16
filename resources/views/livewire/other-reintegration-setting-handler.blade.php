@@ -42,7 +42,7 @@
         <div class="ml-4 py-2">
             <p class="text-md text-slate-700 font-semibold"> Commission sur achat</p>
             <div class="flex items-center my-3 ml-4 " >
-                <x-input :disabled="$edit_commission_on_purchase_deduction_limit" type="number" wire:model="commission_on_purchase_deduction_limit" name="commission_on_purchase_deduction_limit" value="25" label="Taux de limite de deduction ( 5%)" />
+                <x-input :disabled="$edit_commission_on_purchase_deduction_limit" type="number" wire:model="commission_on_purchase_deduction_limit" name="commission_on_purchase_deduction_limit" value="25" label="Limite de deduction ( 5%)" />
                 <div class="space-x-3 px-2" >
                     @if($edit_commission_on_purchase_deduction_limit)
                         <x-form.button wire:click="editCommissionOnPurchaseDeductionLimit"  flat orange label="Modifier" />
@@ -56,7 +56,7 @@
         <div class="ml-4 py-2">
             <p class="text-md text-slate-700 font-semibold">Redevances</p>
             <div class="flex items-center my-3 ml-4 " >
-                <x-input :disabled="$edit_redevance_deduction_rate_limit" type="number" wire:model="redevance_deduction_rate_limit" name="redevacne_deduction_rate_limit" value="25" label="Taux de limite de deduction ( 5%)" />
+                <x-input :disabled="$edit_redevance_deduction_rate_limit" type="number" wire:model="redevance_deduction_rate_limit" name="redevacne_deduction_rate_limit" value="25" label="Limite de deduction ( 5%)" />
                 <div class="space-x-3 px-2" >
                     @if($edit_redevance_deduction_rate_limit)
                         <x-form.button wire:click="editRedevanceDeductionRateLimit"  flat orange label="Modifier" />
@@ -71,7 +71,7 @@
             <p class="text-md text-slate-700 font-semibold">Frais d'assistance technique comptable et financière</p>
             <div class="ml-4">
                 <div class="flex items-center my-3 " >
-                    <x-input :disabled="$edit_assistance_cost_deduction_rate_limit" type="number" wire:model="assistance_cost_deduction_rate_limit" name="assistance_cost_deduction_rate_limit" value="25" label="Taux de limite de deduction ( 5%)" />
+                    <x-input :disabled="$edit_assistance_cost_deduction_rate_limit" type="number" wire:model="assistance_cost_deduction_rate_limit" name="assistance_cost_deduction_rate_limit" value="25" label="Limite de deduction ( 5%)" />
                     <div class="space-x-3 px-2" >
                         @if($edit_assistance_cost_deduction_rate_limit)
                             <x-form.button wire:click="editAssistanceCostReductionRateLimit"  flat orange label="Modifier" />
@@ -114,7 +114,7 @@
             <p class="text-md text-slate-700 font-semibold">Cadeaux à caractère publicitaire</p>
             <div class="ml-4">
                 <div class="flex items-center my-3 " >
-                    <x-input :disabled="$edit_advertising_gifts_deduction_limit" type="number" wire:model="advertising_gifts_deduction_limit" name="advertising_gifts_deduction_limit" value="25" label="Taux de limite de deduction ( 0.3%)" />
+                    <x-input :disabled="$edit_advertising_gifts_deduction_limit" type="number" wire:model="advertising_gifts_deduction_limit" name="advertising_gifts_deduction_limit" value="25" label="Limite de deduction ( 0.3%)" />
                     <div class="space-x-3 px-2" >
                         @if($edit_advertising_gifts_deduction_limit)
                             <x-form.button wire:click="editAdvertisingGiftsDeductionLimit"  flat orange label="Modifier" />

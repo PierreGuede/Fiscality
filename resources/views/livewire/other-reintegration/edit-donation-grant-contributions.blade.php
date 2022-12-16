@@ -11,7 +11,13 @@
         </svg>
     </button>
     <div
-        x-data="{ state_donation_data: [], donation_gift: [], turnover: 0 }"
+        x-data="{
+                    state_donation_data: [],
+                    donation_gift: [],
+                    turnover: 0,
+                    limit: @js($limit),
+                    rate_thousandth: @js($rate_thousandth)
+                }"
         x-init=" state_donation_data = @js($state_donation_data); donation_gift = @js($donation_gift); turnover = @js($turnover);"
          class="relative overflow-y-auto w-1/2 bg-white h-full ml-auto  px-12">
         <h5 class="text-xl font-semibold text-gray-700 my-6" >Dons à l'état</h5>

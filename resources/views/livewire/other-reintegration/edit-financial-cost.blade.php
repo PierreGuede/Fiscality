@@ -10,15 +10,17 @@
 
         </button>
     <div x-data="{ lib_condition_response: 'yes', delay_condition_response: 'yes',
-                     bceaoRate:Number({{ $financialCost->financialCostInterest[2]->bceao_interest_rate_for_the_year }}),
+                    bceaoRate: @js($bceao_interest_rate),
+                     max_rate: @js($minimum_rate),
+                     rate_deductibility_limit: @js($rate_deductibility_limit) / 100,
                      rate_surplus:0,
-                     amount_contribution:Number({{ $financialCost->financialCostInterest[2]->amount_contribution }}),
-                     interest_rate_charged:Number({{ $financialCost->financialCostInterest[2]->interest_rate_charged }}),
-                     amount_interest_recorded:{{ $financialCost->financialCostInterest[2]->amount_interest_recorded }},
+                     amount_contribution:Number({{ $financialCost?->financialCostInterest[2]->amount_contribution }}),
+                     interest_rate_charged:Number({{ $financialCost?->financialCostInterest[2]->interest_rate_charged }}),
+                     amount_interest_recorded:{{ $financialCost?->financialCostInterest[2]->amount_interest_recorded }},
                      amount_reintegrated:'0',
-                     amount_of_interest_recorded:{{ $financialCost->financialCostCondition->amount_of_interest_recorded }},
-                     depreciation_and_amortization:{{ $financialCost->financialCostCondition->depreciation_and_amortization }},
-                     allocations_to_provisions:{{ $financialCost->financialCostCondition->allocations_to_provisions }},
+                     amount_of_interest_recorded:{{ $financialCost?->financialCostCondition->amount_of_interest_recorded }},
+                     depreciation_and_amortization:{{ $financialCost?->financialCostCondition->depreciation_and_amortization }},
+                     allocations_to_provisions:{{ $financialCost?->financialCostCondition->allocations_to_provisions }},
                      calculation_base:'' }"  class="relative overflow-y-auto w-1/2 bg-white h-full ml-auto  px-12" >
         <h2 class="text-2xl font-bold text-gray-7002 py-8">Frais financier</h2>
 

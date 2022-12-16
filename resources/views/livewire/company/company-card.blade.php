@@ -1,6 +1,6 @@
 <div x-data="{ name: '' } " class=" flex gap-x-4 bg-white p-4 rounded-md h-52 " >
 
-        <div class="bg-white border-2 border-blue-500 shadow-lg shadow-blue-200 flex items-center justify-center rounded-md aspect-square h-16 " >
+        <div class="bg-white border-2 border-blue-500 shadow-lg shadow-blue-200 flex items-center justify-center rounded-md aspect-square h-12 " >
             @if($company->logo == '' )
                 <x-icon class="w-6 h-6 stroke-blue-500" name="office-building" />
             @else
@@ -20,10 +20,10 @@
             <x-form.button
                 onclick="Livewire.emit('openModal', 'cabinet.confirm-company-acces', {{ json_encode([ $company->id]) }})"
 {{--                href="{{ route('work.show', $company->id) }}"--}}
-                        primary  xs icon="lock-open" label=" " />
-            <x-form.button positive outline xs icon="eye" label=""  />
+                        primary outline  xs icon="lock-open" label="Accéder" />
+            <x-form.button positive outline xs icon="eye" label="Voir"  />
             @hasrole('cabinet')
-            <x-form.button negative  xs icon="trash" label="" />
+                 <x-form.button negative outline  xs icon="trash" label="Suppr" />
             @endrole
 
         </div>

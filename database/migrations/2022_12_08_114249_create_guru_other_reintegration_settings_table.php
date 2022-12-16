@@ -21,7 +21,7 @@ return new class extends Migration
             $table->decimal('redevance_deduction_rate_limit', 15, 2);
             $table->decimal('assistance_cost_deduction_rate_limit', 15, 2);
             $table->decimal('state_donation_limit', 15, 2);
-            $table->decimal('state_donation_rate_thousandth', 15, 2);
+            $table->decimal('state_donation_rate_thousandth', 15, 4);
             $table->decimal('advertising_gifts_deduction_limit', 15, 2);
             $table->decimal('excess_rent_applicable_deduction_limit', 15, 2);
             $table->decimal('annual_deduction_limit', 15, 2);

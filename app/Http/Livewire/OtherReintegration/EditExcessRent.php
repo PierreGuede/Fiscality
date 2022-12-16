@@ -4,6 +4,7 @@ namespace App\Http\Livewire\OtherReintegration;
 
 use App\Fiscality\Companies\Company;
 use App\Fiscality\ExcessRents\ExcessRent;
+use App\Http\Livewire\OtherReintegrationSettingHandler;
 use Carbon\Carbon;
 use Livewire\Component;
 
@@ -46,6 +47,10 @@ class EditExcessRent extends Component
 
     public function mount(Company $company)
     {
+        $otherReintegrationSetting = OtherReintegrationSettingHandler::getValue($company->id);
+        $this->applicable_deduction_limit = $otherReintegrationSetting->excess_rent_applicable_deduction_limit;
+        $this->annual_deduction_limit = $otherReintegrationSetting->annual_deduction_limit;
+
         $this->currentStep = 1;
         $this->company = $company;
 

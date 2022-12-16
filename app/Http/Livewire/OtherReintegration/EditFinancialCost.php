@@ -6,14 +6,17 @@ use App\Fiscality\AccountingResults\AccountingResult;
 use App\Fiscality\FinancialCostConditions\FinancialCostCondition;
 use App\Fiscality\FinancialCostInterests\FinancialCostInterest;
 use App\Fiscality\FinancialCosts\FinancialCost;
+use App\Http\Livewire\OtherReintegrationSettingHandler;
 use Illuminate\Support\Str;
 use Livewire\Component;
 
 class EditFinancialCost extends Component
 {
-    /* 'inputs2' => collect($this->financialCostInterest1),
-            'inputs3' => collect($this->financialCostInterest2),
-            'inputs4' => collect($this->financialCostInterest3), */
+
+    public  $bceao_interest_rate = 4 ;
+    public  $rate_deductibility_limit = 30;
+    public  $minimum_rate = 3 ;
+
     public $financialCost;
 
     public $financialCostCondition;
@@ -50,7 +53,7 @@ class EditFinancialCost extends Component
         'inputs_one.amount_reintegrated'=>'required',
 
         'inputs_two.amount_contribution'=>'required',
-        'inputs_two.amount_contribution'=>'required',
+//        'inputs_two.amount_contribution'=>'required',
         'inputs_two.amount_interest_recorded'=>'required',
         'inputs_two.interest_rate_charged'=>'required',
         'inputs_two.bceao_interest_rate_for_the_year'=>'required',
@@ -62,11 +65,16 @@ class EditFinancialCost extends Component
     ];
     public function mount($company)
     {
+        $otherReintegrationSetting = OtherReintegrationSettingHandler::getValue($company->id);
+        $this->rate_deductibility_limit = $otherReintegrationSetting->rate_deductibility_limit;
+        $this->bceao_interest_rate = $otherReintegrationSetting->bceao_interest_rate;
+        $this->minimum_rate = $otherReintegrationSetting->minimum_rate;
+
         $this->financialCost = FinancialCost::whereCompanyId($this->company->id)->where('date',date('Y'))->first();
-        $this->inputs=$this->financialCost->financialCostInterest[0];
-        $this->inputs_one=$this->financialCost->financialCostInterest[1];
-        $this->inputs_two=$this->financialCost->financialCostInterest[2];
-        $this->inputs_three=$this->financialCost->financialCostCondition;
+        $this->inputs=$this->financialCost?->financialCostInterest[0];
+        $this->inputs_one=$this->financialCost?->financialCostInterest[1];
+        $this->inputs_two=$this->financialCost?->financialCostInterest[2];
+        $this->inputs_three=$this->financialCost?->financialCostCondition;
         $this->company = $company;
         $this->rc = AccountingResult::where('company_id', $this->company->id)->first();
 

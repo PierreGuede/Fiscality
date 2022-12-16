@@ -10,7 +10,7 @@
             <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/>
         </svg>
     </button>
-    <div x-data="{ total_advertising_gift: [], turnover: @js($turnover) }"
+    <div x-data="{ total_advertising_gift: [], turnover: @js($turnover), donation_limit_rate: @js($donation_limit_rate) }"
          class="relative overflow-y-auto w-1/2 bg-white h-full ml-auto  px-12">
         <h2 class="text-2xl font-bold text-gray-7002 py-8">Cadeaux à caractère publicitaire</h2>
 
@@ -91,10 +91,10 @@
                        wire:model.defer="turnover"  value="{{ old('delay_condition') }}" class="block w-full" required autofocus/>
                 <x-input :disabled="true" type="number" step="any" label="Limite de déduction" id="delay_condition" name=""
                         wire:model.defer="deduction_limit"
-                         x-bind:value="turnover * (3/1000)" class="block w-full" required autofocus/>
+                         x-bind:value="turnover * donation_limit_rate" class="block w-full" required autofocus/>
                 <x-input :disabled="true" type="number" step="any" label="Excédent à réintégrer" id="delay_condition" name=""
                         wire:model.defer="surplus_reintegrated"
-                         x-bind:value="total_advertising_gift.reduce((acc,next) => Number(acc) + Number(next), 0) - turnover * (3/1000)" class="block w-full" required autofocus/>
+                         x-bind:value="total_advertising_gift.reduce((acc,next) => Number(acc) + Number(next), 0) - turnover * donation_limit_rate" class="block w-full" required autofocus/>
             </div>
 
             <div class="mt-4 flex justify-end  " >

@@ -3,6 +3,7 @@
 namespace App\Http\Livewire\OtherReintegration;
 
 use App\Fiscality\Companies\Company;
+use App\Http\Livewire\OtherReintegrationSettingHandler;
 use App\Models\DonationGiftDetail;
 use App\Models\DonationGrantContribution;
 use App\Models\GuruDonationsGift;
@@ -17,6 +18,9 @@ class EditDonationGrantContributions extends Component
     public bool  $open_a_side = false;
 
     public string  $response = 'no';
+
+    public $limit = 25_000_000;
+    public $rate_thousandth = 1000 ;
 
     public $company;
 
@@ -50,7 +54,6 @@ class EditDonationGrantContributions extends Component
 
     public $surplus_state;
 
-    public $limit;
 
     protected $listeners = ['openASide', 'closeASide'];
 
@@ -91,6 +94,10 @@ class EditDonationGrantContributions extends Component
 
     public function mount(Company $company)
     {
+        $otherReintegrationSetting = OtherReintegrationSettingHandler::getValue($company->id);
+        $this->limit = $otherReintegrationSetting->state_donation_limit;
+        $this->rate_thousandth = $otherReintegrationSetting->state_donation_rate_thousandth;
+
         $this->company = $company;
 
         $this->state_donation = GuruStateDonationDetail::all();

@@ -6,6 +6,7 @@ use App\Fiscality\Companies\Company;
 use App\Fiscality\RADetails\RADetail;
 use App\Fiscality\RedevanceDetails\RedevanceDetail;
 use App\Fiscality\Redevances\Redevance;
+use App\Http\Livewire\OtherReintegrationSettingHandler;
 use App\Models\GuruRedevance;
 use Carbon\Carbon;
 use Illuminate\Support\Collection;
@@ -22,6 +23,8 @@ class CreateRedevance extends Component
     public string  $response = 'no';
 
     public Company $company;
+
+    public  $deduction_limit_rate = 5;
 
     public $guru_redevance;
 
@@ -64,8 +67,9 @@ class CreateRedevance extends Component
 
     public function mount(Company $company)
     {
-//        $this->add();
         $income = RADetail::whereCompanyId($company->id)->whereYear('created_at', Carbon::now()->year)->whereAccount(70)->first();
+        $otherReintegrationSetting = OtherReintegrationSettingHandler::getValue($company->id);
+        $this->deduction_limit_rate = $otherReintegrationSetting->redevance_deduction_rate_limit;
 
         $this->currentStep = 1;
         $this->company = $company;
