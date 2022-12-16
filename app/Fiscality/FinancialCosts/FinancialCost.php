@@ -2,8 +2,12 @@
 
 namespace App\Fiscality\FinancialCosts;
 
+use App\Fiscality\FinancialCostConditions\FinancialCostCondition;
+use App\Fiscality\FinancialCostInterests\FinancialCostInterest;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 
 /**
  * @mixin IdeHelperFinancialCost
@@ -20,4 +24,12 @@ class FinancialCost extends Model
         'date',
         'company_id',
     ];
+    public function financialCostCondition():HasOne{
+        return $this->hasOne(FinancialCostCondition::class);
+    }
+
+    public function financialCostInterest():HasMany{
+        return $this->hasMany(FinancialCostInterest::class);
+    }
+
 }
