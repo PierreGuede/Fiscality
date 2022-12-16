@@ -43,6 +43,7 @@ class Company extends Model
         'company_id',
         'tax_center_id',
         'user_id',
+        'discount_type_id'
 
     ];
 

@@ -43,7 +43,7 @@
                                     <div class="mt-4">
                                         <x-label for="name" :value="__('Domaine d\'activités')"/>
                                         <x-native-select label="Domaine d'activité de votre entreprise"
-                                                         wire:change="findActivity" wire:model="domain_id"
+                                                         wire:change="findActivity" wire:model.defer="domain_id"
                                                          class="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:border-primary-300 focus:ring focus:ring-primary-200 focus:ring-opacity-50 focus-within:text-primary-600">
                                             <option value=""></option>
                                             @foreach ($domain as $domain)
@@ -54,7 +54,7 @@
                                     @if (count($principalActivity) > 0)
                                         <div class="mt-4">
                                             <x-label for="name" :value="__('Activité principale')"/>
-                                            <x-native-select label="Activité principale " wire:model="activity_id"
+                                            <x-native-select label="Activité principale " wire:model.defer="activity_id"
                                                              class="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:border-primary-300 focus:ring focus:ring-primary-200 focus:ring-opacity-50 focus-within:text-primary-600">
                                                 <option value="" selected>Choisir</option>
                                                 @foreach ($principalActivity as $principalActivity)
@@ -77,7 +77,7 @@
                                     <div class="mt-4 ">
                                         <x-label id="centre" :value="__('Centre des impôts gestionnaire')"/>
                                         <x-native-select label="Centre des impôts gestionnaire"
-                                                         wire:model="tax_center_id"
+                                                         wire:model.defer="tax_center_id"
                                                          class="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:border-primary-300 focus:ring focus:ring-primary-200 focus:ring-opacity-50 focus-within:text-primary-600" {{-- name="type_company_id" --}}>
                                             <option value=""></option>
                                             @foreach ($taxCenter as $taxCenter)
@@ -87,11 +87,33 @@
                                     </div>
                                     <div class="mt-4">
                                         <x-label for="name" :value="__('Type entreprise')"/>
-                                        <x-native-select label="Type entreprise" wire:model="type_company_id"
+                                        <x-native-select label="Type entreprise" wire:model.defer="type_company_id"
                                                          class="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:border-primary-300 focus:ring focus:ring-primary-200 focus:ring-opacity-50 focus-within:text-primary-600" {{-- name="type_company_id" --}}>
                                             <option value=""></option>
                                             @foreach ($type as $type)
                                                 <option value="{{ $type->id }}">{{ $type->name }}</option>
+                                            @endforeach
+                                        </x-native-select>
+                                    </div>
+                                    <div class="mt-4">
+                                        <x-label for="created_date" :value="__('Date de création de l\'entreprise')"/>
+                                        <x-datetime-picker
+                                            label=""
+                                            name="created_date"
+                                            wire:model.defer="created_date"
+                                            class="rounded-sm shadow-none border-gray-300"
+                                            without-time="true"
+                                            placeholder="Date de création"
+                                            max="{{ \Carbon\Carbon::now()  }}"
+                                        />
+                                    </div>
+                                    <div class="mt-4">
+                                        <x-label for="name" :value="__('Je suis')"/>
+                                        <x-native-select label="Je suis" wire:model.defer="discount_type_id"
+                                                         class="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:border-primary-300 focus:ring focus:ring-primary-200 focus:ring-opacity-50 focus-within:text-primary-600" {{-- name="type_company_id" --}}>
+                                            <option value=""></option>
+                                            @foreach ($discount_type as $discount_type)
+                                                <option value="{{ $discount_type->id }}">{{ $discount_type->name }}</option>
                                             @endforeach
                                         </x-native-select>
                                     </div>
@@ -109,7 +131,7 @@
                                         <div class="mt-4  space-y-4">
                                             @foreach ($typeCat as $typeCat)
                                                 <div class="">
-                                                    <x-native-select :label="$typeCat->name" wire:model="sub_category_id.{{ $typeCat->id }}"
+                                                    <x-native-select :label="$typeCat->name" wire:model.defer="sub_category_id.{{ $typeCat->id }}"
                                                                      class="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:border-primary-300 focus:ring focus:ring-primary-200 focus:ring-opacity-50 focus-within:text-primary-600">
                                                         <option value=""></option>
                                                         @foreach ($typeCat->detailType as $subCat)
@@ -135,7 +157,7 @@
                                                  label="Raison sociale"
                                                  id="name"
                                                  name="name"
-                                                 wire:model="name" {{-- name="name" --}}
+                                                 wire:model.defer="name" {{-- name="name" --}}
                                                  class="block w-full"
                                                  value="{{ old('name')}}"
                                                  autofocus/>
@@ -144,29 +166,29 @@
 
 
                                     <div class="mt-4">
-                                        <x-input wire:model="email" label="Email"
+                                        <x-input wire:model.defer="email" label="Email"
                                         type="email"
                                                  name="email"
                                                  class="block w-full"
                                                  value="{{ old('email') }}"/>
                                     </div>
 
-                                <div class="mt-4">
+                                {{-- <div class="mt-4">
                                     <x-label for="created_date" :value="__('Date de création')"/>
                                     <x-datetime-picker
                                         label=""
                                         name="created_date"
-                                        wire:model="created_date"
+                                        wire:model.defer="created_date"
                                         class="rounded-sm shadow-none border-gray-300"
                                         without-time="true"
                                         placeholder="Date de création"
                                         max="{{ \Carbon\Carbon::now()  }}"
                                     />
-                                </div>
+                                </div> --}}
 
                                     <div class="mt-4 ">
                                         <x-label for="ifu" :value="__('IFU')"/>
-                                        <x-input label="IFU" wire:model="ifu" {{-- name="ifu" --}}
+                                        <x-input label="IFU" wire:model.defer="ifu" {{-- name="ifu" --}}
                                                 type="text"
                                                  name="ifu"
                                                  class="block w-full"
@@ -178,7 +200,7 @@
 
                                     <div class="mt-4">
                                         <x-label for="rccm" :value="__('RCCM')"/>
-                                        <x-input wire:model="rccm" {{-- name="rccm" --}}
+                                        <x-input wire:model.defer="rccm" {{-- name="rccm" --}}
                                                 type="text"
                                                  name="rccm"
                                                 label="RCCM"
@@ -187,7 +209,7 @@
                                     </div>
                                     <div class="mt-4">
                                         <x-label id="celphone" :value="__('Numéro de téléphone')"/>
-                                        <x-input label="Numéro de téléphone" wire:model="celphone" {{-- name="celphone" --}}
+                                        <x-input label="Numéro de téléphone" wire:model.defer="celphone" {{-- name="celphone" --}}
                                         type="text"
                                          name="celphone"
                                         class="block w-full"

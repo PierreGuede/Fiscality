@@ -9,6 +9,7 @@ use App\Fiscality\PrincipalActivities\PrincipalActivity;
 use App\Fiscality\TaxCenters\TaxCenter;
 use App\Fiscality\TypeCompanies\TypeCompany;
 use App\Fiscality\TypeImpots\TypeImpot;
+use App\Models\DiscountType;
 use App\Models\TypeCompanyTypeImpot;
 use Illuminate\Support\Facades\DB;
 use Livewire\Component;
@@ -49,6 +50,8 @@ class MultiStepForm extends Component
 
     public $type_company_id;
 
+    public $discount_type_id;
+
     // public $category_id=[];
     public $sub_category_id = [];
 
@@ -76,8 +79,8 @@ class MultiStepForm extends Component
         $typeCat = Category::all();
         $domain = Domain::all();
         $taxCenter = TaxCenter::all();
-
-        return view('livewire.multi-step-form', compact('type', 'typeCat', 'domain', 'taxCenter'));
+        $discount_type=DiscountType::all();
+        return view('livewire.multi-step-form', compact('type', 'typeCat', 'domain', 'taxCenter','discount_type'));
     }
 
     public function updatedIfu($value)
@@ -150,9 +153,11 @@ class MultiStepForm extends Component
             $this->validate([
                 'tax_center_id' => ['required'],
                 'type_company_id' => ['required'],
+                'discount_type_id' => ['required'],
             ], [
                 'tax_center_id' => 'champ obligatoire',
                 'type_company_id' => 'champ obligatoire',
+                'discount_type_id' => 'champ obligatoire',
             ]);
         } elseif ($this->currentStep == self::THRID_STEP) {
         }
@@ -226,6 +231,7 @@ class MultiStepForm extends Component
                 'tax_center_id' => $this->tax_center_id,
                 'type_company_id' => $this->type_company_id,
                 'domain_id' => $this->domain_id,
+                'discount_type_id' => $this->discount_type_id,
                 'user_id' => request()->user()->id,
             ]);
 

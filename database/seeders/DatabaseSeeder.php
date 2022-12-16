@@ -5,6 +5,8 @@ namespace Database\Seeders;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
 use Illuminate\Database\Seeder;
+use Database\Seeders\DiscountTypeSeeder;
+use Database\Seeders\ApplicableDiscountSeeder;
 
 class DatabaseSeeder extends Seeder
 {
@@ -35,6 +37,8 @@ class DatabaseSeeder extends Seeder
         $this->call(GuruOtherReintegrationSettingSeeder::class);
         $this->call(ExcessAmortzationCategorySeeder::class);
         $this->call(ExcessAmortzationCategoryItemSeeder::class);
+        $this->call(DiscountTypeSeeder::class);
+        $this->call(ApplicableDiscountSeeder::class);
         \App\Models\User::firstOrCreate([
             'email' => 'test@example.com',
             'username' => 'admintec',
