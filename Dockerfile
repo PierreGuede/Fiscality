@@ -10,8 +10,8 @@ ENV PHP_OPCACHE_REVALIDATE_FREQ=1
 RUN usermod -u 1000 www-data
 
 RUN apt-get update -y
-RUN apt-get install -y unzip libpq-dev libcurl4-gnutls-dev nginx vim zlib1g-dev libzip-dev curl
-RUN docker-php-ext-install pdo pdo_mysql bcmath curl opcache zip
+RUN apt-get install -y unzip libpq-dev libcurl4-gnutls-dev nginx vim zlib1g-dev libzip-dev curl libpng-dev
+RUN docker-php-ext-install pdo pdo_mysql bcmath curl opcache mbstring zip gd
 # RUN docker-php-ext-enable opcache
 RUN curl -sLS https://deb.nodesource.com/setup_$NODE_VERSION.x | bash - \
     && apt-get install -y nodejs \
