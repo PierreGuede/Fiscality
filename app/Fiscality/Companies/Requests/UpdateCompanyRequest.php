@@ -29,7 +29,7 @@ class UpdateCompanyRequest extends FormRequest
             'email' => ['required', 'string'],
             'celphone' => ['required', 'string'],
             'rccm' => ['required', 'string'],
-            'type_company_id' => ['required'],
+//            'type_company_id' => ['required'],
             'tax_center_id' => ['required'],
         ];
     }

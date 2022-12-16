@@ -20,7 +20,7 @@
             </div>
             <div class="flex gap-x-4" ></div>
             <div class="w-full flex gap-x-4" >
-                <x-native-select name="type_company_id" class="!w-full" label="Type d'entreprise"  >
+                <x-native-select :disabled="true" name="" class="!w-full" label="Type d'entreprise"  >
                     @foreach($company_type as $element)
                         <option value="{{ $element->id  }}" @selected($element->id == $company->type_company_id)>{{ $element->name  }}</option>
                     @endforeach

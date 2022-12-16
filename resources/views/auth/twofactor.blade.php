@@ -1,16 +1,41 @@
 <x-guest-layout>
 
 
-    <div class="h-screen w-full grid place-items-center" >
-        <div class="max-w-sm w-full space-y-2" >
-            <h5>Vérifiez votre email pour le code de vérification</h5>
-            <form method="POST" action="{{ route('verify.store')  }}">
-                @csrf
-                <x-input name="two_factor_code" id="two_factor_code" label="Code de vérification"
-                         placeholder="Code de vérification"/>
-                <a class="block text-blue-900 hover:underline-offset-1 hover:underline"  href="{{ route('verify.resend')  }}"> Renvoyez le code </a>
-                <x-button class="mt-4"  type="submit">Vérifiez</x-button>
-            </form>
+{{--    <div class="h-screen w-full grid place-items-center" >--}}
+{{--        <div class="max-w-sm w-full space-y-2" >--}}
+{{--            <h5>Vérifiez votre email pour le code de vérification</h5>--}}
+{{--            <form method="POST" action="{{ route('verify.store')  }}">--}}
+{{--                @csrf--}}
+{{--                <x-input name="two_factor_code" id="two_factor_code" label="Code de vérification"--}}
+{{--                         placeholder="Code de vérification"/>--}}
+{{--                <a class="block text-blue-900 hover:underline-offset-1 hover:underline"  href="{{ route('verify.resend')  }}"> Renvoyez le code </a>--}}
+{{--                <x-button class="mt-4"  type="submit">Vérifiez</x-button>--}}
+{{--            </form>--}}
+{{--        </div>--}}
+{{--    </div>--}}
+    <main class="flex min-h-screen items-center justify-center bg-blue-50">
+
+    <form method="POST" action="{{ route('verify.store')  }}" class="w-full max-w-lg rounded-md bg-white p-8 ">
+        @csrf
+        <div class="w-full grid place-content-center my-4" >
+            <div class="inline-block aspect-square h-16 rounded-full font-semibold text-green-50">
+                <img src="{{ asset('images/authentication.png')  }}" alt="image d'authentication">
+            </div>
         </div>
-    </div>
+        <div class="text-center" >
+            <p class="text-xl py-2 font-semibold text-gray-800">Authentifier votre compte</p>
+            <p class="text-sm text-gray-700 font-medium" >La protection de vos informations est notre priorité absolue. Veuillez confirmer votre compte en saisissant le code d'autorisation envoyé à ****-***-@gmail.com.</p>
+        </div>
+        <div class="grid place-content-center my-6 text-center">
+            <input name="two_factor_code" id="two_factor_code" class=" w-32 px-2 py-1.5 rounded-sm border text-center focus-within:outline-none focus:ring-2 focus:ring-blue-blue-200 focus-within:border-blue-500" type="text" />
+        </div>
+        <div class=" w-full flex items-end gap-x-4" >
+            <div>
+                <p class="text-xs" >La réception de votre code peut prendre une minute. <br /> Vous ne l'avez pas reçu ? <a  href="{{ route('verify.resend')  }}" class="text-blue-500 cursor-pointer hover:text-blue-700 hover:underline-offset-1 hover:underline" >Renvoyez un nouveau code</a> </p>
+            </div>
+            <button class="inline-flex px-4 py-2.5 rounded-sm bg-blue-700 text-blue-50 font-semibold focus:outline-none focus:ring-4 focus:ring-offset-2 focus:ring-blue-200" >Soumettre</button>
+        </div>
+    </form>
+        </main>
+
 </x-guest-layout>

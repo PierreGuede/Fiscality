@@ -42,7 +42,7 @@ Route::middleware('auth', 'two-factor', 'pack', 'email_verified')->group(functio
 });
 //Route::middleware('auth', 'hasOneRole', 'hasPack', 'email_verified')->group(function () {
 //Route::middleware('auth', 'two-factor', 'hasOneRole', 'hasPack', 'email_verified')->group(function () {
-Route::middleware('auth', 'two-factor', 'subscription', 'email_verified')->group(function () {
+Route::middleware('auth', 'two-factor', 'subscription')->group(function () {
     Route::get('renew-subscription', [\App\Http\Controllers\SubscriptionController::class, 'renew'])->name('renew.pack');
 });
 
