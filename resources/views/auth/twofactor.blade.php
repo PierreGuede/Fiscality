@@ -1,25 +1,11 @@
 <x-guest-layout>
-
-
-{{--    <div class="h-screen w-full grid place-items-center" >--}}
-{{--        <div class="max-w-sm w-full space-y-2" >--}}
-{{--            <h5>Vérifiez votre email pour le code de vérification</h5>--}}
-{{--            <form method="POST" action="{{ route('verify.store')  }}">--}}
-{{--                @csrf--}}
-{{--                <x-input name="two_factor_code" id="two_factor_code" label="Code de vérification"--}}
-{{--                         placeholder="Code de vérification"/>--}}
-{{--                <a class="block text-blue-900 hover:underline-offset-1 hover:underline"  href="{{ route('verify.resend')  }}"> Renvoyez le code </a>--}}
-{{--                <x-button class="mt-4"  type="submit">Vérifiez</x-button>--}}
-{{--            </form>--}}
-{{--        </div>--}}
-{{--    </div>--}}
     <main class="flex min-h-screen items-center justify-center bg-blue-50">
 
     <form method="POST" action="{{ route('verify.store')  }}" class="w-full max-w-lg rounded-md bg-white p-8 ">
         @csrf
         <div class="w-full grid place-content-center my-4" >
             <div class="inline-block aspect-square h-16 rounded-full font-semibold text-green-50">
-                <img src="{{ asset('images/authentication.png')  }}" alt="image d'authentication">
+                <img src="{{ asset('images/authentication.png')  }}" alt="image d'authentication" loading="lazy" >
             </div>
         </div>
         <div class="text-center" >
