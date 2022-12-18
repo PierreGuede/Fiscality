@@ -23,7 +23,8 @@
 
                 <x-errors />
 
-                <form method="POST" action="{{ route('register') }}" class="space-y-6">
+                <form method="POST" action="{{ route('register.user') }}" class="space-y-6">
+                    @method('POST')
                     @csrf
                     <div class="grid grid-cols-2 gap-x-4 ">
                             <x-input label="Nom" type="text" id="name" name="name" class="block col-span-1"
@@ -33,7 +34,7 @@
                     </div>
                     <div class="mt-4">
                         <x-input label="Email" name="email" type="email" class="block w-full"
-                            value="{{ old('email') }}" />
+                            value="{{ old('email') }}"  required />
                     </div>
 
                     <div class="mt-4">
