@@ -38,7 +38,7 @@
             </div>
 
             <div>
-                <x-input x-model="taux_use" wire:model.defer="data.taux_use" min="0" max="100" step="any" type="number"
+                <x-input x-model="taux_use" wire:model.defer="data.taux_use" min="{{$data['taux_recommended']}} " max="100" step="any" type="number"
                          label="Taux d'armortissement utilisé (%)" id="taux_use" name="taux_use"
                          value="{{ old('taux_use') }}" class="block w-full" required autofocus/>
                 {{--            @error('data.taux_use')--}}
