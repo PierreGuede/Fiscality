@@ -47,7 +47,7 @@
             </div>
 
             <div>
-                <x-input x-model="taux_recommended" :disabled="true" wire:model="data.taux_recommended" min="0" max="100"
+                <x-input  :disabled="true" wire:model="data.taux_recommended" min="0" max="100"
                          step="any" type="number"
                          label="Taux d'armortissement recommandé ({{ $data['taux_recommended'] }} %)"
                          id="taux_recommended" name="taux_recommended"
