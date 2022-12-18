@@ -23,11 +23,9 @@ Route::get('/', function () {
 
 Route::get('/dashboard', function () {
     return view('dashboard');
-    //email_verified
-})->middleware(['auth', 'two-factor', 'hasOneRole'])->name('dashboard');
+})->middleware(['auth', 'two-factor', 'hasOneRole', 'email_verified'])->name('dashboard');
 
-//'email_verified'
-Route::middleware(['auth', 'two-factor'])->group(function () {
+Route::middleware(['auth', 'two-factor', 'email_verified'])->group(function () {
     Route::get('setup-account', [\App\Http\Controllers\UserController::class, 'enterprise'])->name('users.enterprise')->middleware('haveNotOneRole');
 
     Route::post('upload', [\App\Http\Controllers\UploadController::class, 'store']);
@@ -41,13 +39,12 @@ Route::middleware('auth', 'two-factor', 'pack', 'email_verified')->group(functio
     Route::get('renew-subscription', [\App\Http\Controllers\SubscriptionController::class, 'renew'])->name('renew.pack');
 });
 //Route::middleware('auth', 'hasOneRole', 'hasPack', 'email_verified')->group(function () {
-//Route::middleware('auth', 'two-factor', 'hasOneRole', 'hasPack', 'email_verified')->group(function () {
-Route::middleware('auth', 'two-factor', 'subscription')->group(function () {
+Route::middleware('auth', 'two-factor', 'hasOneRole', 'hasPack', 'email_verified')->group(function () {
     Route::get('renew-subscription', [\App\Http\Controllers\SubscriptionController::class, 'renew'])->name('renew.pack');
 });
 
-//'email_verified'
-Route::middleware('auth', 'two-factor', 'hasOneRole')->group(function () {
+//
+Route::middleware('auth', 'two-factor', 'hasOneRole', 'email_verified')->group(function () {
     Route::view('about', 'about')->name('about');
 //    Route::middleware('hasOneRole')->group(function () {
     Route::get('company', [\App\Http\Controllers\CompanyController::class, 'index'])->name('company.index');
