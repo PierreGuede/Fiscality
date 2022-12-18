@@ -16,7 +16,8 @@
                     </div>
                 </div>
                 <div class="flex items-center my-3 " >
-                    <x-input :disabled="$edit_minimum_rate" type="number" wire:model="minimum_rate" name="minimum_rate" value="25" label="Taux maximum ( 3%)" />
+{{--                    Taux minimum -> Taux additionnel--}}
+                    <x-input :disabled="$edit_minimum_rate" type="number" wire:model="minimum_rate" name="minimum_rate" value="25" label="Taux additionnel ( 3%)" />
                     <div class="space-x-3 px-2" >
                         @if($edit_minimum_rate)
                             <x-form.button wire:click="editMinimumRate"  flat orange label="Modifier" />
@@ -27,7 +28,7 @@
                     </div>
                 </div>
                 <div class="flex items-center my-3 " >
-                    <x-input :disabled="$edit_rate_deductibility_limit" type="number" wire:model="rate_deductibility_limit" name="rate_deductibility_limit" value="25" label="Taux du pafond de déductibilité ( 30%)" />
+                    <x-input :disabled="$edit_rate_deductibility_limit" type="number" wire:model="rate_deductibility_limit" name="rate_deductibility_limit" value="25" label="Plafond de déductibilité ( 30%)" />
                     <div class="space-x-3 px-2" >
                         @if($edit_rate_deductibility_limit)
                             <x-form.button wire:click="editRateDeductibilityLimit"  flat orange label="Modifier" />
@@ -42,7 +43,7 @@
         <div class="ml-4 py-2">
             <p class="text-md text-slate-700 font-semibold"> Commission sur achat</p>
             <div class="flex items-center my-3 ml-4 " >
-                <x-input :disabled="$edit_commission_on_purchase_deduction_limit" type="number" wire:model="commission_on_purchase_deduction_limit" name="commission_on_purchase_deduction_limit" value="25" label="Limite de deduction ( 5%)" />
+                <x-input :disabled="$edit_commission_on_purchase_deduction_limit" type="number" wire:model="commission_on_purchase_deduction_limit" name="commission_on_purchase_deduction_limit" value="25" label="Limite de déduction ( 5%)" />
                 <div class="space-x-3 px-2" >
                     @if($edit_commission_on_purchase_deduction_limit)
                         <x-form.button wire:click="editCommissionOnPurchaseDeductionLimit"  flat orange label="Modifier" />
@@ -56,7 +57,7 @@
         <div class="ml-4 py-2">
             <p class="text-md text-slate-700 font-semibold">Redevances</p>
             <div class="flex items-center my-3 ml-4 " >
-                <x-input :disabled="$edit_redevance_deduction_rate_limit" type="number" wire:model="redevance_deduction_rate_limit" name="redevacne_deduction_rate_limit" value="25" label="Limite de deduction ( 5%)" />
+                <x-input :disabled="$edit_redevance_deduction_rate_limit" type="number" wire:model="redevance_deduction_rate_limit" name="redevacne_deduction_rate_limit" value="25" label="Limite de déduction ( 5%)" />
                 <div class="space-x-3 px-2" >
                     @if($edit_redevance_deduction_rate_limit)
                         <x-form.button wire:click="editRedevanceDeductionRateLimit"  flat orange label="Modifier" />
@@ -71,7 +72,7 @@
             <p class="text-md text-slate-700 font-semibold">Frais d'assistance technique comptable et financière</p>
             <div class="ml-4">
                 <div class="flex items-center my-3 " >
-                    <x-input :disabled="$edit_assistance_cost_deduction_rate_limit" type="number" wire:model="assistance_cost_deduction_rate_limit" name="assistance_cost_deduction_rate_limit" value="25" label="Limite de deduction ( 5%)" />
+                    <x-input :disabled="$edit_assistance_cost_deduction_rate_limit" type="number" wire:model="assistance_cost_deduction_rate_limit" name="assistance_cost_deduction_rate_limit" value="25" label="Limite de déduction ( 5%)" />
                     <div class="space-x-3 px-2" >
                         @if($edit_assistance_cost_deduction_rate_limit)
                             <x-form.button wire:click="editAssistanceCostReductionRateLimit"  flat orange label="Modifier" />
@@ -84,10 +85,12 @@
             </div>
         </div>
         <div class="ml-4 py-2">
-            <p class="text-md text-slate-700 font-semibold">Dons à l'état</p>
+{{--            Dons à l'Etat -> Dons -> --}}
+            <p class="text-md text-slate-700 font-semibold">Dons</p>
             <div class="ml-4">
                 <div class="flex items-center my-3 " >
-                    <x-input :disabled="$edit_state_donation_limit" type="number" wire:model="state_donation_limit" name="state_donation_limit" value="25" label="Limite ( 25 000 000 XOF)" />
+{{--                    Limite -> Dons à l'état--}}
+                    <x-input :disabled="$edit_state_donation_limit" type="number" wire:model="state_donation_limit" name="state_donation_limit" value="25" label="Dons à l'Etat ( 25 000 000 XOF)" />
                     <div class="space-x-3 px-2" >
                         @if($edit_state_donation_limit)
                             <x-form.button wire:click="editStateDonationLimit"  flat orange label="Modifier" />
@@ -98,7 +101,8 @@
                     </div>
                 </div>
                 <div class="flex items-center my-3 " >
-                    <x-input :disabled="$edit_state_donation_rate_thousandth" type="number" wire:model="state_donation_rate_thousandth" name="state_donation_rate_thousandth" value="25" label="Taux du millième du chiffre d'affaire ( 0.1%)" />
+{{--                    Taux du millième du chiffre d'affaire ( 0.1%) -> Limite générale  --}}
+                    <x-input :disabled="$edit_state_donation_rate_thousandth" type="number" wire:model="state_donation_rate_thousandth" name="state_donation_rate_thousandth" value="25" label="Limite générale ( 0.1%)" />
                     <div class="space-x-3 px-2" >
                         @if($edit_state_donation_rate_thousandth)
                             <x-form.button wire:click="editStateDonationRateThousandth"  flat orange label="Modifier" />
@@ -114,7 +118,7 @@
             <p class="text-md text-slate-700 font-semibold">Cadeaux à caractère publicitaire</p>
             <div class="ml-4">
                 <div class="flex items-center my-3 " >
-                    <x-input :disabled="$edit_advertising_gifts_deduction_limit" type="number" wire:model="advertising_gifts_deduction_limit" name="advertising_gifts_deduction_limit" value="25" label="Limite de deduction ( 0.3%)" />
+                    <x-input :disabled="$edit_advertising_gifts_deduction_limit" type="number" wire:model="advertising_gifts_deduction_limit" name="advertising_gifts_deduction_limit" value="25" label="Limite de déduction ( 0.3%)" />
                     <div class="space-x-3 px-2" >
                         @if($edit_advertising_gifts_deduction_limit)
                             <x-form.button wire:click="editAdvertisingGiftsDeductionLimit"  flat orange label="Modifier" />
@@ -127,10 +131,11 @@
             </div>
         </div>
         <div class="ml-4 py-2">
-            <p class="text-md text-slate-700 font-semibold">Surplus de loyer véhicule (par jours)</p>
+            <p class="text-md text-slate-700 font-semibold">Surplus de loyer véhicule </p>
             <div class="ml-4 space-y-4" >
                 <div class="flex items-center my-3 " >
-                    <x-input :disabled="$edit_excess_rent_applicable_deduction_limit" type="number" wire:model="excess_rent_applicable_deduction_limit" name="excess_rent_applicable_deduction_limit" value="25" label="Limite de deduction applicable( 365jours)" />
+{{--                    Limite de déduction applicable( 365jours) => Nombre de jours (365 par défaut)--}}
+                    <x-input :disabled="$edit_excess_rent_applicable_deduction_limit" type="number" wire:model="excess_rent_applicable_deduction_limit" name="excess_rent_applicable_deduction_limit" value="25" label="Nombre de jours (365 par défaut)" />
                     <div class="space-x-3 px-2" >
                         @if($edit_excess_rent_applicable_deduction_limit)
                             <x-form.button wire:click="editExcessRentApplicableDeductionLimit"  flat orange label="Modifier" />
@@ -141,7 +146,7 @@
                     </div>
                 </div>
                 <div class="flex items-center my-3 " >
-                    <x-input :disabled="$edit_annual_deduction_limit" type="number" wire:model="annual_deduction_limit" name="annual_deduction_limit" value="25" label=" Limite de deduction annuelle( 6 250 000 XOF)" />
+                    <x-input :disabled="$edit_annual_deduction_limit" type="number" wire:model="annual_deduction_limit" name="annual_deduction_limit" value="25" label=" Limite de déduction annuelle( 6 250 000 XOF)" />
                     <div class="space-x-3 px-2" >
                         @if($edit_annual_deduction_limit)
                             <x-form.button wire:click="editAnnualDeductionLimit"  flat orange label="Modifier" />

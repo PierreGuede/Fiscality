@@ -80,7 +80,7 @@ class CreateExcess extends ModalComponent
             $this->data['taux_recommended'] = $this->excessAmortzationCategoryItem[0]->rate;
         }
 
-        if ($key == 'taux_recommended') {
+        if ($key == 'excess_amortzation_category_item_id') {
             $res = ExcessAmortzationCategoryItem::whereId($this->data[$key])->first();
             $this->data['taux_recommended'] = $res->rate;
         }

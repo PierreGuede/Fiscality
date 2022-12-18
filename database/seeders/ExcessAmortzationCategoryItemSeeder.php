@@ -37,7 +37,12 @@ class ExcessAmortzationCategoryItemSeeder extends Seeder
                 'rate' => 30,
                 'excess_amortzation_category_id' => $second->id,
             ],
-
+            [
+                'code' => 'QUATRO',
+                'name' => 'Quatro items',
+                'rate' => 35,
+                'excess_amortzation_category_id' => $second->id,
+            ],
         ], ['code']);
     }
 }

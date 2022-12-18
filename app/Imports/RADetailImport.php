@@ -6,16 +6,22 @@ use App\Fiscality\AccountingResults\AccountingResult;
 use App\Fiscality\Companies\Company;
 use App\Models\RADetail;
 use Carbon\Carbon;
+use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Str;
+use Maatwebsite\Excel\Concerns\Importable;
 use Maatwebsite\Excel\Concerns\ToCollection;
+use Maatwebsite\Excel\Concerns\WithCalculatedFormulas;
+use Maatwebsite\Excel\Concerns\WithChunkReading;
 use Maatwebsite\Excel\Concerns\WithHeadingRow;
+use Maatwebsite\Excel\Concerns\WithMultipleSheets;
 
-class RADetailImport implements ToCollection, WithHeadingRow
+class RADetailImport implements ToCollection, WithHeadingRow, WithCalculatedFormulas,  WithChunkReading
 {
-
+    use Importable;
     public function collection(Collection $rows)
     {
+//        dd($rows);
 
         $company= Company::whereEmail($rows[0]['company_email'])->first();
         $type= $rows[0]['type'];
@@ -63,4 +69,8 @@ class RADetailImport implements ToCollection, WithHeadingRow
         }
     }
 
+     public function chunkSize(): int
+     {
+         return 10;
+     }
 }

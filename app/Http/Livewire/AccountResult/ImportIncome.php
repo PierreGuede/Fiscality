@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire\AccountResult;
 
+use App\Imports\IncomeExpenseImport;
 use App\Imports\RADetailImport;
 use Livewire\Component;
 use Livewire\WithFileUploads;
@@ -27,6 +28,8 @@ class ImportIncome extends ModalComponent
         $this->validate();
 
         \Maatwebsite\Excel\Facades\Excel::import(new RADetailImport, $this->file);
+//        $raDetails =
+//        (new RADetailImport)->import($this->file, null, \Maatwebsite\Excel\Excel::XML);
 
         $this->notification()->success('Succès', 'Importation effectuée avec succès!');
         $this->emit('refreshIncome');

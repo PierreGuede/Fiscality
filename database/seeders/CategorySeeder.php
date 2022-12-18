@@ -178,7 +178,7 @@ class CategorySeeder extends Seeder
                 'name' => 'Impôt sur les société dû',
                 'category_id' => 3,
                 'base_id' => $benefice_fiscal->id,
-                'taux' => '10',
+                'taux' => '500000',
                 'type_impot_id' => 2,
                 'description' => 'null',
                 'article' => 'article',

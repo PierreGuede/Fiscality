@@ -204,7 +204,7 @@ class MultiStepForm extends Component
             'rccm.required' => 'champ obligatoire',
             'created_date.required' => 'champ obligatoire',
             'ifu.required' => 'champ obligatoire',
-            'ifu.digits' => '13 chiffres maximum',
+            'ifu.digits' => '13 chiffres',
             'ifu.unique' => 'Le numéro IFU existe déjà',
             'email.required' => 'champ obligatoire',
             'celphone.required' => 'champ obligatoire',
