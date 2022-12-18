@@ -7,8 +7,10 @@
                      plafond: @js($depreciation_base_limit) ,
                      dotation: 0,
                      }"
-                     x-init="$watch('plafond', value => {
+                     x-init="$watch('plafond', (value, oldValue) => {
+                     if(value !== oldValue) {
                         plafond = value <  @js($depreciation_base_limit) ? @js($depreciation_base_limit) : value;
+                     }
                      })"
           class="mt-10 space-y-5" wire:submit.prevent="save">
 
